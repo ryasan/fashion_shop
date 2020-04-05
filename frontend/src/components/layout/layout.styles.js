@@ -8,7 +8,7 @@ const Layout = styled.div`
 
 Layout.Main = styled.main`
   flex-grow: 1;
-  background: var(--dark);
+  background: var(--off-white);
 `
 
 export default Layout

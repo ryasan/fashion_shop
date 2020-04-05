@@ -2,8 +2,8 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 
 const StyledRoot = css`
   :root {
-    --dark: #292929;
-    --darker: #191919;
+    --dark: #1b1920;
+    --darker: #0e0e10;
     --red: #ec1c24;
     --off-white: #e1e1e1;
     --gray: #999;

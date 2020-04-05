@@ -1,19 +1,24 @@
 import React from 'react'
 
 import Header from './header.styles'
+import { useToggleCartMutation } from '../../graphql/local-state-hooks'
 
-const HeaderComponent = () => (
-  <Header>
-    <Header.Item>
-      <Header.Link to="/">HOME</Header.Link>
-    </Header.Item>
-    <Header.Item>
-      <Header.Link to="/shop">SHOP</Header.Link>
-    </Header.Item>
-    <Header.Item>
-      <Header.CartBtn />
-    </Header.Item>
-  </Header>
-)
+const HeaderComponent = () => {
+  const [toggleCart] = useToggleCartMutation()
+
+  return (
+    <Header>
+      <Header.Item>
+        <Header.Link to="/">HOME</Header.Link>
+      </Header.Item>
+      <Header.Item>
+        <Header.Link to="/shop">SHOP</Header.Link>
+      </Header.Item>
+      <Header.Item>
+        <Header.CartBtn onClick={toggleCart} />
+      </Header.Item>
+    </Header>
+  )
+}
 
 export default HeaderComponent
