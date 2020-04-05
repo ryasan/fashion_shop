@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Footer = styled.footer`
   display: flex;
   justify-content: flex-end;
-  background: var(--darker);
+  background: var(--dark);
   padding: 2rem 3rem;
   color: white;
 `

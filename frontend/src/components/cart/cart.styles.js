@@ -7,6 +7,7 @@ const Cart = styled.div`
   right: ${props => (props.cartOpen ? '0' : '-45rem')};
   transition: right 0.2s;
   background: var(--dark);
+  border-left: 3px solid var(--darker);
 `
 
 export default Cart

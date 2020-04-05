@@ -14,8 +14,8 @@ const HeaderComponent = () => {
       <Header.Item>
         <Header.Link to="/shop">SHOP</Header.Link>
       </Header.Item>
-      <Header.Item>
-        <Header.CartBtn onClick={toggleCart} />
+      <Header.Item onClick={toggleCart}>
+        <Header.CartBtn name="cart" />
       </Header.Item>
     </Header>
   )

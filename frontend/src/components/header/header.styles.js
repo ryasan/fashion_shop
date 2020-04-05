@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import CartIcon from '../icons/cartIcon'
+import Icon from '../icons'
 
 const Header = styled.header`
-  background: var(--darker);
+  background: var(--dark);
   display: flex;
   justify-content: flex-end;
 `
@@ -38,6 +38,7 @@ Header.Item = styled.div`
 Header.Link = styled(Link)`
   width: 100%;
   height: 100%;
+  padding: 3.5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +48,7 @@ Header.Link = styled(Link)`
   transition: color 0.2s;
 `
 
-Header.CartBtn = styled(CartIcon)`
+Header.CartBtn = styled(Icon)`
   padding: 1rem;
   color: inherit;
   transition: color 0.2s;
