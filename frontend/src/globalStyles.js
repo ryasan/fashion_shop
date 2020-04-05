@@ -1,5 +1,7 @@
 import { createGlobalStyle, css } from '@nfront/global-styles'
 
+import { device } from './utils/device'
+
 const StyledRoot = css`
   :root {
     --dark: #1b1920;
@@ -18,22 +20,26 @@ const StyledRoot = css`
   *,
   *:before,
   *:after {
-    box-sizing: border-box;
-    /* outline: 1px solid red; */
+    box-sizing: inherit;
   }
 `
 
 const StyledHtml = css`
   html {
-    overflow-y: scroll;
+    box-sizing: border-box;
+    font-size: 10px;
+  }
+
+  @media ${device.mobileL} {
+    html {
+      font-size: 8px;
+    }
   }
 
   html,
   body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 10px;
     margin: 0;
-    padding: 0;
   }
 
   ul {

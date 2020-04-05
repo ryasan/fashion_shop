@@ -1,5 +1,4 @@
-import React from 'react'
-import Slider from 'react-slick'
+import React, { useState } from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -8,19 +7,19 @@ import Slide from './slide'
 import mockSlides from '../../mocks/carousel-slides.json'
 import Icon from '../icons'
 
-const PrevArrow = ({ onClick }) => (
-  <Carousel.Prev onClick={onClick}>
+const PrevArrow = ({ onClick, showArrows }) => (
+  <Carousel.Prev onClick={onClick} showArrows={showArrows}>
     <Icon name="left-arrow" />
   </Carousel.Prev>
 )
 
-const NextArrow = ({ onClick }) => (
-  <Carousel.Next onClick={onClick}>
+const NextArrow = ({ onClick, showArrows }) => (
+  <Carousel.Next onClick={onClick} showArrows={showArrows}>
     <Icon name="right-arrow" />
   </Carousel.Next>
 )
 
-const settings = {
+const settings = props => ({
   infinite: true,
   speed: 1000,
   slidesToShow: 1,
@@ -28,18 +27,22 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 5000,
   swipeToSlide: true,
-  prevArrow: <PrevArrow />,
-  nextArrow: <NextArrow />
-}
+  prevArrow: <PrevArrow {...props} />,
+  nextArrow: <NextArrow {...props} />
+})
 
-const CarouselComponent = ({ className }) => {
+const CarouselComponent = () => {
+  const [showArrows, setShowArrows] = useState(false)
+
   return (
-    <Carousel>
-      <Slider {...settings}>
+    <Carousel
+      onMouseEnter={() => setShowArrows(true)}
+      onMouseLeave={() => setShowArrows(false)}>
+      <Carousel.Slider {...settings({ showArrows })}>
         {mockSlides.map((slide, i) => (
           <Slide key={i} {...slide} />
         ))}
-      </Slider>
+      </Carousel.Slider>
     </Carousel>
   )
 }

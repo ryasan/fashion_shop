@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
+import { device } from '../../utils/device'
 
 const Header = styled.header`
   background: var(--dark);
@@ -13,10 +14,10 @@ Header.Item = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12rem;
   cursor: pointer;
   position: relative;
   color: white;
+  width: 12rem;
   &:after {
     content: '';
     position: absolute;
@@ -33,12 +34,15 @@ Header.Item = styled.div`
       width: 100%;
     }
   }
+  @media ${device.mobileL} {
+    width: 33.33333%;
+  }
 `
 
 Header.Link = styled(Link)`
   width: 100%;
   height: 100%;
-  padding: 3.5rem 0;
+  padding: 3rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
