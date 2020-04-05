@@ -1,5 +1,19 @@
 import React from 'react'
 
-const Header = ({ siteTitle }) => <header></header>
+import Header from './header.styles'
 
-export default Header
+const HeaderComponent = () => (
+  <Header>
+    <Header.Item>
+      <Header.Link to="/">HOME</Header.Link>
+    </Header.Item>
+    <Header.Item>
+      <Header.Link to="/shop">SHOP</Header.Link>
+    </Header.Item>
+    <Header.Item>
+      <Header.CartBtn />
+    </Header.Item>
+  </Header>
+)
+
+export default HeaderComponent

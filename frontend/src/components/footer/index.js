@@ -1,13 +1,9 @@
 import React from 'react'
 
+import Footer from './footer.styles'
+
 const FooterComponent = () => {
-  return (
-    <footer>
-      © {new Date().getFullYear()}, Built with
-      {` `}
-      <a href="https://www.gatsbyjs.org">Gatsby</a>
-    </footer>
-  )
+  return <Footer>© {new Date().getFullYear()}</Footer>
 }
 
 export default FooterComponent

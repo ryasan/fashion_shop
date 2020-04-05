@@ -2,15 +2,15 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 
 const StyledRoot = css`
   :root {
-    --dark: #1f1f1f;
-    --darker: #141414;
+    --dark: #292929;
+    --darker: #191919;
     --red: #ec1c24;
     --off-white: #e1e1e1;
     --gray: #999;
     --light-gray: #bbb;
-    --small-font: 1.2rem;
-    --regular-font: 1.4rem;
-    --large-font: 1.7rem;
+    --small-font: 1rem;
+    --regular-font: 1.8rem;
+    --large-font: 2.6rem;
     --max-width: 118rem;
     --focus-shadow: 0 0 2px 1px var(--light-gray);
   }
@@ -30,7 +30,7 @@ const StyledHtml = css`
 
   html,
   body {
-    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 10px;
     margin: 0;
     padding: 0;
@@ -62,7 +62,7 @@ const StyledHtml = css`
   }
 
   p {
-    font-size: var(--large-font);
+    font-size: var(--regular-font);
   }
 
   ::-webkit-scrollbar {
@@ -70,12 +70,12 @@ const StyledHtml = css`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: var(--dark);
+    background-color: var(--darker);
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--off-white);
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 1rem;
   }
 
   ::-webkit-scrollbar-thumb:hover {
