@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from '@nfront/global-styles'
 
-import { device } from './utils/device'
+import { device } from '../utils'
 
 const StyledRoot = css`
   :root {
@@ -14,7 +14,6 @@ const StyledRoot = css`
     --regular-font: 1.8rem;
     --large-font: 2.6rem;
     --max-width: 118rem;
-    --focus-shadow: 0 0 2px 1px var(--light-gray);
   }
 
   *,
@@ -24,8 +23,12 @@ const StyledRoot = css`
   }
 `
 
+// prettier-ignore
 const StyledHtml = css`
-  html {
+  html,
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
     box-sizing: border-box;
     font-size: 10px;
   }
@@ -36,54 +39,28 @@ const StyledHtml = css`
     }
   }
 
-  html,
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-  }
-
   ul {
     margin: 0;
     padding: 0;
   }
 
-  li {
-    list-style-type: none;
-  }
-
-  h1 {
-    font-size: 5rem;
-  }
-
-  h2 {
-    font-size: 4rem;
-  }
-
-  h3 {
-    font-size: 3rem;
-  }
-
-  h4 {
-    font-size: 2rem;
-  }
-
-  p {
-    font-size: var(--regular-font);
-  }
+  li { list-style-type: none; } 
+  h1 { font-size: 5rem; }
+  h2 { font-size: 4rem; }
+  h3 { font-size: 3rem; }
+  h4 { font-size: 2rem; }
+  p  { font-size: var(--regular-font); }
 
   ::-webkit-scrollbar {
     width: 0.8rem;
   }
-
   ::-webkit-scrollbar-track {
     background-color: var(--darker);
   }
-
   ::-webkit-scrollbar-thumb {
     background: var(--off-white);
     border-radius: 1rem;
   }
-
   ::-webkit-scrollbar-thumb:hover {
     background: var(--off-white);
   }

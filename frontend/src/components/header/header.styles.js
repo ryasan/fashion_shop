@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
-import { device } from '../../utils/device'
+import { device } from '../../utils'
 
 const Header = styled.header`
   background: var(--dark);

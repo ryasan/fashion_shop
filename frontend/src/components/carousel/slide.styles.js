@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { device } from '../../utils/device'
+import { device } from '../../utils'
 
 const Slide = styled.div`
   background: url(${props => props.bg}) center center/cover no-repeat;

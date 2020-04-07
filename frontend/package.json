@@ -24,10 +24,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-flip-move": "^3.0.4",
     "react-helmet": "^5.2.1",
     "react-slick": "^0.25.2",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "styled-components-modifiers": "^1.2.5"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

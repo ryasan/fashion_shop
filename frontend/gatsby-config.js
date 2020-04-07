@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-global-styles`,
       options: {
-        pathToConfigModule: `src/globalStyles`,
+        pathToConfigModule: `src/styles/global.styles.js`,
         props: {
           theme: false
         }
