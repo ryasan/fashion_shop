@@ -6,13 +6,10 @@ import {
 
 import MODIFIER_CONFIG from './config/modifier-config'
 
-export const Button = styled.button`
-  padding: 1rem 2rem;
-  cursor: pointer;
-  border: none;
+export const B = styled.b`
   ${applyStyleModifiers(MODIFIER_CONFIG)};
 `
 
-Button.propTypes = {
+B.propTypes = {
   modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
 }

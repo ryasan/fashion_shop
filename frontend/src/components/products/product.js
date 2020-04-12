@@ -1,14 +1,18 @@
 import React from 'react'
 
 import Product from './product.styles'
+import PropTypes from 'prop-types'
+import { formatPrice } from '../../utils'
 
 const ProductComponent = ({ product }) => {
+  const formattedPrice = formatPrice(product.price)
+
   return (
     <Product>
       {product.isFreeShipping && (
-        <Product.Deal modifiers={['dark', 'whiteText', 'smallText']}>
+        <Product.Special modifiers={['dark', 'whiteText', 'smallText']}>
           Free shipping
-        </Product.Deal>
+        </Product.Special>
       )}
       <Product.Thumb>
         <Product.Img
@@ -16,13 +20,24 @@ const ProductComponent = ({ product }) => {
           alt={product.title}
         />
       </Product.Thumb>
-      <Product.Title></Product.Title>
-      <Product.Price></Product.Price>
+      <Product.Title>{product.title}</Product.Title>
+      <Product.Divider modifiers="red" />
+      <Product.Price>
+        <Product.B>${formattedPrice.slice(0, -3)}</Product.B>
+        <Product.Small>
+          {formattedPrice.slice(formattedPrice.length - 3)}
+        </Product.Small>
+      </Product.Price>
       <Product.BuyBtn modifiers={['dark', 'whiteText']}>
         Add to cart
       </Product.BuyBtn>
     </Product>
   )
+}
+
+Product.ProductComponent = {
+  product: PropTypes.object.isRequired,
+  isFreeShipping: PropTypes.bool.isRequired
 }
 
 export default ProductComponent

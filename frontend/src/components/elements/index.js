@@ -1,3 +1,6 @@
 export * from './button'
 export * from './image'
 export * from './span'
+export * from './small'
+export * from './hr'
+export * from './b'

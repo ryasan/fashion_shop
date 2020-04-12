@@ -7,7 +7,7 @@ import ProductList from '../components/products'
 import ErrorBoundary from '../components/error-boundary/index'
 import { useMockProducts } from '../utils'
 
-const ShopContent = (props) => {
+const ShopProducts = props => {
   const { mockProducts, loading, error } = useMockProducts()
 
   if (loading) return <Shop.Loader />
@@ -21,7 +21,7 @@ const ShopPage = () => {
       <SEO title="Shop" />
       <Shop>
         <Shop.ProductsContainer>
-          <ShopContent />
+          <ShopProducts />
         </Shop.ProductsContainer>
       </Shop>
     </Layout>

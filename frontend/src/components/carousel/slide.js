@@ -4,31 +4,30 @@ import { navigate } from 'gatsby'
 import Slide from './slide.styles'
 import Icon from '../icons/index'
 
-const Element = ({ element }) => {
-  switch (element.tag) {
+const Element = ({ tag, to, text, icon }) => {
+  const Tag = tag.toLowerCase()
+  switch (tag) {
     case 'button':
       return (
         <Slide.ElementWrap>
-          <element.tag onClick={() => navigate(element.to)}>
-            {element.text}
-          </element.tag>
+          <Tag onClick={() => navigate(to)}>{text}</Tag>
         </Slide.ElementWrap>
       )
     case 'input':
       return (
         <Slide.ElementWrap>
-          <Icon name={element.icon} />
-          <element.tag placeholder={element.text} />
+          <Icon name={icon} />
+          <Tag placeholder={text} />
         </Slide.ElementWrap>
       )
   }
 }
 
-const SlideComponent = ({ title, image, element }) => (
-  <Slide bg={image}>
+const SlideComponent = ({ title, element }) => (
+  <Slide>
     <Slide.Content>
       <Slide.Title>{title}</Slide.Title>
-      <Element element={element} />
+      <Element {...element} />
     </Slide.Content>
   </Slide>
 )

@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import Carousel from './carousel.styles'
 import Slide from './slide'
-import mockSlides from '../../mocks/carousel-slides.json'
+import mockSlides from './carousel-slides.json'
 import Icon from '../icons'
 
 const PrevArrow = ({ onClick, showArrows }) => (

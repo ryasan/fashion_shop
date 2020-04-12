@@ -8,8 +8,8 @@ const Layout = styled.div`
 
 Layout.Main = styled.main`
   flex-grow: 1;
-  background: var(--off-white);
   display: flex;
+  flex-direction: column;
 `
 
 export default Layout

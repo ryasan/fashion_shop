@@ -16,7 +16,7 @@ Header.Item = styled.div`
   align-items: center;
   cursor: pointer;
   position: relative;
-  color: white;
+  color: var(--off-white);
   width: 12rem;
   &:after {
     content: '';

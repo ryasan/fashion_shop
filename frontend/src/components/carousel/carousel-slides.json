@@ -2,6 +2,7 @@
   {
     "title": "Lorem Ipsum 1",
     "image": "https://source.unsplash.com/eR8qaAM6k1U/1600x900",
+    "bg": "squares",
     "element": {
       "tag": "input",
       "text": "Search for an item",
@@ -11,6 +12,7 @@
   {
     "title": "Lorem Ipsum 2",
     "image": "https://source.unsplash.com/A_IfOgYEQU4/1600x900",
+    "bg": "circle",
     "element": {
       "tag": "button",
       "text": "SHOP",
@@ -20,6 +22,7 @@
   {
     "title": "Lorem Ipsum 3",
     "image": "http://source.unsplash.com/IN5NlcSZJNY/1600x900",
+    "triangle": "",
     "element": {
       "tag": "input",
       "text": "Subscribe to our weekly newsletter",

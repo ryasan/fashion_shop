@@ -3,16 +3,18 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 import { device } from '../utils'
 
 const StyledRoot = css`
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
   :root {
     --dark: #1b1920;
     --darker: #0e0e10;
     --red: #ec1c24;
-    --off-white: #e1e1e1;
+    --off-white: #e3e6de;
     --gray: #999;
     --light-gray: #bbb;
-    --small-font: 1rem;
-    --regular-font: 1.8rem;
-    --large-font: 2.6rem;
+    --small-font: 0.8rem;
+    --regular-font: 1.4rem;
+    --large-font: 2rem;
     --max-width: 118rem;
   }
 
@@ -20,6 +22,7 @@ const StyledRoot = css`
   *:before,
   *:after {
     box-sizing: inherit;
+    /* outline: 1px solid red; */
   }
 `
 
@@ -27,10 +30,11 @@ const StyledRoot = css`
 const StyledHtml = css`
   html,
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     margin: 0;
     box-sizing: border-box;
     font-size: 10px;
+    background: var(--off-white);
   }
 
   @media ${device.mobileL} {

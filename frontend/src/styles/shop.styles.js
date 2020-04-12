@@ -12,7 +12,6 @@ const Shop = styled.div`
 Shop.ProductsContainer = styled.div`
   max-width: var(--max-width);
   width: 100%;
-  outline: 1px solid blue;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 2rem;
