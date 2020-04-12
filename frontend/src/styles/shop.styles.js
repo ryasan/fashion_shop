@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import Loader from '../components/loader'
+import { device } from '../utils'
 
 const Shop = styled.div`
   margin: 3rem 0;
@@ -15,6 +16,11 @@ Shop.ProductsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 2rem;
+  @media ${device.mobileL} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `
 
 Shop.Loader = styled(Loader)`

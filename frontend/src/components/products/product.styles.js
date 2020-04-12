@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Button, Img, Span, Small, Hr, B } from '../elements'
+import { device } from '../../utils'
 
 const Product = styled.div`
   transition: all 0.5s ease-out;
@@ -9,6 +10,10 @@ const Product = styled.div`
   justify-content: space-between;
   position: relative;
   text-align: center;
+  background: white;
+  @media ${device.mobileL} {
+    margin-bottom: 5rem;
+  }
 `
 
 Product.Img = styled(Img)`
