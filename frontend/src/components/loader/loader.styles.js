@@ -16,12 +16,12 @@ const Loader = styled.div`
 `
 
 Loader.Text = styled.span`
-  color: white;
+  color: var(--off-white);
 `
 
 Loader.Circle = styled.div`
   position: absolute;
-  border: 2px solid white;
+  border: 2px solid var(--off-white);
   width: 7rem;
   height: 7rem;
   border-radius: 50%;
@@ -32,7 +32,7 @@ Loader.Circle = styled.div`
     position: absolute;
     width: 1.5rem;
     height: 1.5rem;
-    background: white;
+    background: var(--off-white);
     border-radius: 50%;
     border: 0.5rem solid black;
     top: -1.1rem;
