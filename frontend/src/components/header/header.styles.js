@@ -2,15 +2,19 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
-import { device } from '../../utils'
+import { Ul, Li } from '../elements'
 
 const Header = styled.header`
   background: var(--dark);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 `
 
-Header.Item = styled.div`
+Header.Nav = styled(Ul)`
+  display: flex;
+`
+
+Header.NavItem = styled(Li)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,9 +38,6 @@ Header.Item = styled.div`
       width: 100%;
     }
   }
-  @media ${device.mobileL} {
-    width: 33.33333%;
-  }
 `
 
 Header.Link = styled(Link)`
@@ -53,9 +54,20 @@ Header.Link = styled(Link)`
 `
 
 Header.CartBtn = styled(Icon)`
-  padding: 1rem;
+  padding: 1.5rem;
   color: inherit;
   transition: color 0.2s;
+`
+
+Header.Logo = styled(Link)`
+  width: 10rem;
+  display: inline;
+  margin-left: 3rem;
+`
+
+Header.Img = styled(Icon)`
+  width: 100%;
+  height: 100%;
 `
 
 export default Header

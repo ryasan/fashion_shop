@@ -3,7 +3,7 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 import { device } from '../utils'
 
 const StyledRoot = css`
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
   :root {
     --dark: #1b1920;
@@ -34,7 +34,6 @@ const StyledHtml = css`
     margin: 0;
     box-sizing: border-box;
     font-size: 10px;
-    background: var(--off-white);
   }
 
   @media ${device.mobileL} {

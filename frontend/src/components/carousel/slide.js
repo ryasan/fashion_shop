@@ -23,10 +23,9 @@ const Element = ({ tag, to, text, icon }) => {
   }
 }
 
-const SlideComponent = ({ title, element }) => (
+const SlideComponent = ({ element, image }) => console.log(image) || (
   <Slide>
-    <Slide.Content>
-      <Slide.Title>{title}</Slide.Title>
+    <Slide.Content image={image}>
       <Element {...element} />
     </Slide.Content>
   </Slide>

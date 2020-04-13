@@ -16,6 +16,8 @@ Shop.ProductsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 2rem;
+  justify-items: center;
+  align-items: center;
   @media ${device.mobileL} {
     display: flex;
     flex-wrap: wrap;
@@ -23,11 +25,6 @@ Shop.ProductsContainer = styled.div`
   }
 `
 
-Shop.Loader = styled(Loader)`
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 10%;
-`
+Shop.Loader = Loader
 
 export default Shop

@@ -8,15 +8,20 @@ const HeaderComponent = () => {
 
   return (
     <Header>
-      <Header.Item>
-        <Header.Link to="/">HOME</Header.Link>
-      </Header.Item>
-      <Header.Item>
-        <Header.Link to="/shop">SHOP</Header.Link>
-      </Header.Item>
-      <Header.Item onClick={toggleCart}>
-        <Header.CartBtn name="cart" />
-      </Header.Item>
+      <Header.Logo to="/">
+        <Header.Img name='logo-royal' />
+      </Header.Logo>
+      <Header.Nav>
+        <Header.NavItem>
+          <Header.Link to="/">HOME</Header.Link>
+        </Header.NavItem>
+        <Header.NavItem>
+          <Header.Link to="/shop">SHOP</Header.Link>
+        </Header.NavItem>
+        <Header.NavItem onClick={toggleCart}>
+          <Header.CartBtn name="cart" />
+        </Header.NavItem>
+      </Header.Nav>
     </Header>
   )
 }

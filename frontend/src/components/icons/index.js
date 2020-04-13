@@ -5,6 +5,9 @@ import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
 import Magnifier from './magnifier'
 import Envelope from './envelope'
+import LogoRoyal from './logo-royal'
+import LogoJersey from './logo-jersey'
+import LogoDiamond from './logo-diamond'
 
 const Icon = props => {
   switch (props.name) {
@@ -18,6 +21,12 @@ const Icon = props => {
       return <Magnifier {...props} />
     case 'envelope':
       return <Envelope {...props} />
+    case 'logo-royal':
+      return <LogoRoyal {...props} />
+    case 'logo-jersey':
+      return <LogoJersey {...props} />
+    case 'logo-diamond':
+      return <LogoDiamond {...props} />
   }
 }
 

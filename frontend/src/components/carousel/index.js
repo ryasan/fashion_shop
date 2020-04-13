@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import Carousel from './carousel.styles'
 import Slide from './slide'
-import mockSlides from './carousel-slides.json'
+import slides from './carousel-slides.js'
 import Icon from '../icons'
 
 const PrevArrow = ({ onClick, showArrows }) => (
@@ -39,7 +39,7 @@ const CarouselComponent = () => {
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}>
       <Carousel.Slider {...settings({ showArrows })}>
-        {mockSlides.map((slide, i) => (
+        {slides.map((slide, i) => (
           <Slide key={i} {...slide} />
         ))}
       </Carousel.Slider>
