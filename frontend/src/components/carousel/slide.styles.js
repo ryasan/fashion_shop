@@ -22,14 +22,14 @@ Slide.Content = styled.div`
 `
 
 Slide.ElementWrap = styled.div`
-  width: 35rem;
+  width: 30rem;
   height: 4.5rem;
   display: flex;
   justify-content: center;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10%;
+  bottom: 30%;
 
   input {
     width: 100%;
