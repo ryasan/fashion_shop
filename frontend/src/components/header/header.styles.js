@@ -5,7 +5,7 @@ import Icon from '../icons'
 import { Ul, Li } from '../elements'
 
 const Header = styled.header`
-  background: var(--darker);
+  background: var(--dark);
   display: flex;
   justify-content: space-between;
 `
@@ -63,6 +63,8 @@ Header.Logo = styled(Link)`
   width: 10rem;
   display: inline;
   margin-left: 3rem;
+  display: flex;
+  align-items: center;
 `
 
 Header.Img = styled(Icon)`

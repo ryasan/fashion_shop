@@ -6,7 +6,7 @@ const StyledRoot = css`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
   :root {
-    --dark: #1b1920;
+    --dark: #16141A;
     --darker: #0e0e10;
     --red: #ec1c24;
     --off-white: #e3e6de;
