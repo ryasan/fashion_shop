@@ -7,7 +7,7 @@ const StyledRoot = css`
 
   :root {
     --dark: #16141A;
-    --darker: #0e0e10;
+    --darker: #141313;
     --red: #ec1c24;
     --off-white: #e3e6de;
     --gray: #999;

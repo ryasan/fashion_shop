@@ -11,6 +11,7 @@ const Product = styled.div`
   position: relative;
   text-align: center;
   background: white;
+  box-shadow: 0px 25px 18px -18px rgba(0, 0, 0, 1);
   @media ${device.mobileL} {
     margin-bottom: 5rem;
   }
@@ -47,10 +48,11 @@ Product.B = styled(B)``
 Product.Small = styled(Small)``
 
 Product.BuyBtn = styled(Button)`
-  width: 100%;
-  padding: 1.5rem 0;
+  border-width: 2px;
+  border-style: solid;
   &:hover {
-    background: var(--red);
+    color: var(--red);
+    background: var(--dark);
   }
 `
 

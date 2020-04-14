@@ -11,6 +11,7 @@ const MODIFIER_CONFIG = {
   largeText: () => css`
     font-size: var(--large-font);
   `,
+
   mediumText: () => css`
     font-size: var(--regular-font);
   `,
@@ -31,6 +32,9 @@ const MODIFIER_CONFIG = {
   `,
   whiteText: () => css`
     color: white;
+  `,
+  width100: () => css`
+    width: 100%;
   `
 }
 

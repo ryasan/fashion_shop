@@ -48,11 +48,21 @@ Home.SectionOne = styled(Home.Section)`
   overflow: hidden;
 `
 
-Home.TextList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  margin-top: 5rem;
-  max-width: var(--max-width);
+Home.SectionOneContent = styled.div`
+  z-index: 1;
+`
+
+Home.TurntablesBg = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(${require('../images/turntables-bg.jpg')}) center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.1);
+  filter: grayscale(0.8) blur(6px);
   &:before {
     content: '';
     position: absolute;
@@ -60,23 +70,15 @@ Home.TextList = styled.ul`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(${require('../images/turntables-bg.jpg')}) center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -1;
-    transform: scale(1.1);
-    filter: grayscale(0.8) blur(6px);
+    background: rgba(0, 0, 0, 0.7);
   }
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: rgba(0, 0, 0, 0.7)
-  }
+`
+
+Home.TextList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  max-width: var(--max-width);
 `
 
 Home.TextItem = styled.li`

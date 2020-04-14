@@ -5,14 +5,15 @@ import SEO from '../components/seo'
 import Carousel from '../components/carousel/index'
 import Home from '../styles/home-page.styles'
 
-const HomePage = () => {
-  return (
-    <Layout>
-      <SEO title="Home" />
-      <Home>
-        <Carousel />
-        <Home.Content>
-          <Home.SectionOne>
+const HomePage = () => (
+  <Layout>
+    <SEO title="Home" />
+    <Home>
+      <Carousel />
+      <Home.Content>
+        <Home.SectionOne>
+          <Home.TurntablesBg />
+          <Home.SectionOneContent>
             <Home.H1>Lorem Ipsum Dolor</Home.H1>
             <Home.TextList>
               <Home.TextItem>
@@ -46,33 +47,33 @@ const HomePage = () => {
                 </Home.P>
               </Home.TextItem>
             </Home.TextList>
-          </Home.SectionOne>
-          <Home.SectionTwo>
-            <Home.MaxWidth>
-              <Home.H1>Lorem Ipsum Dolor</Home.H1>
-              <Home.Icons>
-                <Home.IconWrap>
-                  <Home.Icon name="magnifier" />
-                  <Home.P>Lorem ipsum dolor sit amet</Home.P>
-                </Home.IconWrap>
-                <Home.IconWrap>
-                  <Home.Icon name="shopping-bag" />
-                  <Home.P>Lorem ipsum dolor sit amet</Home.P>
-                </Home.IconWrap>
-                <Home.IconWrap>
-                  <Home.Icon name="envelope" />
-                  <Home.P>Lorem ipsum dolor sit amet</Home.P>
-                </Home.IconWrap>
-              </Home.Icons>
-              <Home.P>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              </Home.P>
-            </Home.MaxWidth>
-          </Home.SectionTwo>
-        </Home.Content>
-      </Home>
-    </Layout>
-  )
-}
+          </Home.SectionOneContent>
+        </Home.SectionOne>
+        <Home.SectionTwo>
+          <Home.MaxWidth>
+            <Home.H1>Lorem Ipsum Dolor</Home.H1>
+            <Home.Icons>
+              <Home.IconWrap>
+                <Home.Icon name="magnifier" />
+                <Home.P>Lorem ipsum dolor sit amet</Home.P>
+              </Home.IconWrap>
+              <Home.IconWrap>
+                <Home.Icon name="shopping-bag" />
+                <Home.P>Lorem ipsum dolor sit amet</Home.P>
+              </Home.IconWrap>
+              <Home.IconWrap>
+                <Home.Icon name="envelope" />
+                <Home.P>Lorem ipsum dolor sit amet</Home.P>
+              </Home.IconWrap>
+            </Home.Icons>
+            <Home.P>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            </Home.P>
+          </Home.MaxWidth>
+        </Home.SectionTwo>
+      </Home.Content>
+    </Home>
+  </Layout>
+)
 
 export default HomePage

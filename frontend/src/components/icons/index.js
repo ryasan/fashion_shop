@@ -9,6 +9,7 @@ import LogoRoyal from './logo-royal'
 import LogoJersey from './logo-jersey'
 import LogoDiamond from './logo-diamond'
 import ShoppingBag from './shopping-bag'
+import Close from './close'
 
 const Icon = props => {
   switch (props.name) {
@@ -30,6 +31,8 @@ const Icon = props => {
       return <LogoDiamond {...props} />
     case 'shopping-bag':
       return <ShoppingBag {...props} />
+    case 'close':
+      return <Close {...props} />
   }
 }
 

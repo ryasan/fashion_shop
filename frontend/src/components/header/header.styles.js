@@ -8,10 +8,12 @@ const Header = styled.header`
   background: var(--dark);
   display: flex;
   justify-content: space-between;
+  height: 8rem;
 `
 
 Header.Nav = styled(Ul)`
   display: flex;
+  margin-right: 10rem;
 `
 
 Header.NavItem = styled(Li)`
@@ -21,7 +23,7 @@ Header.NavItem = styled(Li)`
   cursor: pointer;
   position: relative;
   color: var(--off-white);
-  width: 12rem;
+  width: 10rem;
   &:after {
     content: '';
     position: absolute;
@@ -43,18 +45,11 @@ Header.NavItem = styled(Li)`
 Header.Link = styled(Link)`
   width: 100%;
   height: 100%;
-  padding: 3rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: var(--regular-font);
   text-decoration: none;
-  color: inherit;
-  transition: color 0.2s;
-`
-
-Header.CartBtn = styled(Icon)`
-  padding: 1.5rem;
   color: inherit;
   transition: color 0.2s;
 `

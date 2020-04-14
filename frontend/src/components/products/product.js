@@ -10,7 +10,7 @@ const ProductComponent = ({ product }) => {
   return (
     <Product>
       {product.isFreeShipping && (
-        <Product.Special modifiers={['dark', 'whiteText', 'smallText']}>
+        <Product.Special modifiers={['red', 'whiteText', 'smallText']}>
           Free shipping
         </Product.Special>
       )}
@@ -28,7 +28,7 @@ const ProductComponent = ({ product }) => {
           {formattedPrice.slice(formattedPrice.length - 3)}
         </Product.Small>
       </Product.Price>
-      <Product.BuyBtn modifiers={['dark', 'whiteText']}>
+      <Product.BuyBtn modifiers={['red', 'whiteText', 'redBorder']}>
         Add to cart
       </Product.BuyBtn>
     </Product>

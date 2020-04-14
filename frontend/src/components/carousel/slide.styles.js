@@ -73,6 +73,10 @@ Slide.ElementButtonInner = styled.div`
     svg {
       position: relative;
     }
+    &:hover {
+      color: white;
+      background: var(--red);
+    }
   }
 `
 
