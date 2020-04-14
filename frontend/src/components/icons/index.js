@@ -8,6 +8,7 @@ import Envelope from './envelope'
 import LogoRoyal from './logo-royal'
 import LogoJersey from './logo-jersey'
 import LogoDiamond from './logo-diamond'
+import ShoppingBag from './shopping-bag'
 
 const Icon = props => {
   switch (props.name) {
@@ -27,6 +28,8 @@ const Icon = props => {
       return <LogoJersey {...props} />
     case 'logo-diamond':
       return <LogoDiamond {...props} />
+    case 'shopping-bag':
+      return <ShoppingBag {...props} />
   }
 }
 

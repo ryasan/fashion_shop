@@ -8,7 +8,7 @@ const Loader = styled.div`
   position: relative;
   width: 10rem;
   height: 10rem;
-  background: black;
+  background: var(--darker);
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -34,7 +34,7 @@ Loader.Circle = styled.div`
     height: 1.5rem;
     background: var(--off-white);
     border-radius: 50%;
-    border: 0.5rem solid black;
+    border: 0.5rem solid var(--darker);
     top: -1.1rem;
     left: 50%;
     transform: translateX(-50%);

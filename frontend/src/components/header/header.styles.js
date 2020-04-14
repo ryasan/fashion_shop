@@ -5,7 +5,7 @@ import Icon from '../icons'
 import { Ul, Li } from '../elements'
 
 const Header = styled.header`
-  background: var(--dark);
+  background: var(--darker);
   display: flex;
   justify-content: space-between;
 `
