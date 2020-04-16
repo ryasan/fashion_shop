@@ -6,12 +6,11 @@ import {
 
 import MODIFIER_CONFIG from './config/modifier-config'
 
-export const Ul = styled.ul`
+export const H3 = styled.h3`
   margin: 0;
-  padding: 0;
   ${applyStyleModifiers(MODIFIER_CONFIG)};
 `
 
-Ul.propTypes = {
+H3.propTypes = {
   modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
 }

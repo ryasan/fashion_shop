@@ -8,12 +8,12 @@ const Header = styled.header`
   background: var(--dark);
   display: flex;
   justify-content: space-between;
-  height: 8rem;
+  height: 7rem;
 `
 
 Header.Nav = styled(Ul)`
   display: flex;
-  margin-right: 10rem;
+  margin-right: 8rem;
 `
 
 Header.NavItem = styled(Li)`

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import Icon from '../icons'
-import { Button } from '../elements/button'
+import { Button, Span, Ul, H4, P } from '../elements'
 import { device } from '../../utils'
 
 const Cart = styled.div`
@@ -17,7 +17,7 @@ const Cart = styled.div`
     position: absolute;
     background: var(--red);
     top: 50%;
-    transform: translate(0.1rem, -50%);
+    transform: translateY(-50%);
     width: 3px;
     height: ${props => (props.cartOpen ? '100%' : '0')};
     transition: height 0.5s;
@@ -31,21 +31,23 @@ const Cart = styled.div`
 
 Cart.Btn = styled(Button)`
   position: absolute;
-  width: 10rem;
-  height: 8rem;
+  width: 7rem;
+  height: 7rem;
   background: white;
-  left: -10rem;
+  left: -7rem;
   outline: 0;
   background: var(--dark);
   color: var(--off-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   svg {
-    padding: 1rem;
     height: 100%;
   }
   &:before {
     content: '';
     position: absolute;
-    width: 2px;
+    width: 3px;
     background: var(--red);
     bottom: 0;
     left: 0;
@@ -56,7 +58,7 @@ Cart.Btn = styled(Button)`
   &:after {
     content: '';
     position: absolute;
-    height: 2px;
+    height: 3px;
     background: var(--red);
     bottom: 0;
     right: 0;
@@ -70,5 +72,76 @@ Cart.Btn = styled(Button)`
 `
 
 Cart.Icon = Icon
+
+Cart.Content = styled.div`
+  color: var(--off-white);
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+`
+
+Cart.Header = styled.div`
+  text-align: center;
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+Cart.Bag = styled(Icon)`
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  display: inline-block;
+  margin-left: 1.5rem;
+`
+
+Cart.BagQty = styled(Span)``
+
+Cart.Title = styled(H4)``
+
+Cart.List = styled(Ul)`
+  padding: 0.2rem 2rem;
+  flex: 1;
+`
+
+Cart.P = P
+
+Cart.Footer = styled.footer`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: var(--dark);
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
+  padding: 4rem 3rem;
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-areas:
+    'sub sub-price'
+    'btn btn';
+`
+
+Cart.SubText = styled.div``
+
+Cart.Sub = styled.div`
+  grid-area: sub;
+  font-size: var(--regular-font);
+  display: flex;
+  align-items: center;
+`
+
+Cart.SubPrice = styled.div`
+  grid-area: sub-price;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`
+
+Cart.CheckoutBtn = styled(Button)`
+  grid-area: btn;
+  height: 5rem;
+`
 
 export default Cart

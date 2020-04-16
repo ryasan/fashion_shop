@@ -6,14 +6,14 @@ const StyledRoot = css`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
   :root {
-    --dark: #16141A;
-    --darker: #141313;
+    --dark: #16141a;
+    --darker: #090909;
     --red: #ec1c24;
-    --off-white: #e3e6de;
-    --gray: #999;
+    --off-white: #f5f5f5;
+    --gray: #7b797e;
     --light-gray: #bbb;
-    --small-font: 0.8rem;
-    --regular-font: 1.4rem;
+    --small-font: 1rem;
+    --regular-font: 1.6rem;
     --large-font: 2rem;
     --max-width: 118rem;
   }
@@ -22,7 +22,6 @@ const StyledRoot = css`
   *:before,
   *:after {
     box-sizing: inherit;
-    /* outline: 1px solid red; */
   }
 `
 
@@ -55,17 +54,18 @@ const StyledHtml = css`
   p  { font-size: var(--regular-font); }
 
   ::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 0.5rem;
+    background: white;
   }
   ::-webkit-scrollbar-track {
-    background-color: var(--darker);
+    background-color: var(--dark);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--off-white);
+    background: var(--darker);
     border-radius: 1rem;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--off-white);
+    background: #f5f5f5;
   }
 `
 

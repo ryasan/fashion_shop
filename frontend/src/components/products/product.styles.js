@@ -4,6 +4,7 @@ import { Button, Img, Span, Small, Hr, B } from '../elements'
 import { device } from '../../utils'
 
 const Product = styled.div`
+  height: 100%;
   transition: all 0.5s ease-out;
   display: flex;
   flex-direction: column;
@@ -50,6 +51,7 @@ Product.Small = styled(Small)``
 Product.BuyBtn = styled(Button)`
   border-width: 2px;
   border-style: solid;
+  outline-color: var(--red);
   &:hover {
     color: var(--red);
     background: var(--dark);

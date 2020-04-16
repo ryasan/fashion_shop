@@ -7,6 +7,7 @@ import {
 import MODIFIER_CONFIG from './config/modifier-config'
 
 export const P = styled.p`
+  margin: 0;
   ${applyStyleModifiers(MODIFIER_CONFIG)};
 `
 

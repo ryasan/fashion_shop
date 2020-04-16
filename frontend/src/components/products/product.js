@@ -3,14 +3,17 @@ import React from 'react'
 import Product from './product.styles'
 import PropTypes from 'prop-types'
 import { formatPrice } from '../../utils'
+import { useAddCartItemMutation } from '../../graphql/local-state-hooks'
 
 const ProductComponent = ({ product }) => {
+  product.quantity = 1
+  const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
 
   return (
     <Product>
       {product.isFreeShipping && (
-        <Product.Special modifiers={['red', 'whiteText', 'smallText']}>
+        <Product.Special modifiers={['red', 'whiteColor', 'smallText']}>
           Free shipping
         </Product.Special>
       )}
@@ -28,7 +31,10 @@ const ProductComponent = ({ product }) => {
           {formattedPrice.slice(formattedPrice.length - 3)}
         </Product.Small>
       </Product.Price>
-      <Product.BuyBtn modifiers={['red', 'whiteText', 'redBorder']}>
+      <Product.BuyBtn
+        className="buy-btn"
+        modifiers={['red', 'whiteColor', 'redBorder', 'mediumText']}
+        onClick={() => addCartItem({ variables: { product } })}>
         Add to cart
       </Product.BuyBtn>
     </Product>
