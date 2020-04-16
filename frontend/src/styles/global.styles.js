@@ -12,7 +12,8 @@ const StyledRoot = css`
     --off-white: #f5f5f5;
     --gray: #7b797e;
     --light-gray: #bbb;
-    --small-font: 1rem;
+    --super-small-font: 0.8rem;
+    --small-font: 1.2rem;
     --regular-font: 1.6rem;
     --large-font: 2rem;
     --max-width: 118rem;
@@ -58,10 +59,10 @@ const StyledHtml = css`
     background: white;
   }
   ::-webkit-scrollbar-track {
-    background-color: var(--dark);
+    background-color: var(--darker);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--darker);
+    background: var(--dark);
     border-radius: 1rem;
   }
   ::-webkit-scrollbar-thumb:hover {

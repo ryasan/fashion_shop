@@ -35,7 +35,9 @@ const MODIFIER_CONFIG = {
   smallText: () => css`
     font-size: var(--small-font);
   `,
-
+  superSmallText: () => css`
+    font-size: var(--super-small-font);
+  `,
   textAlignCenter: () => css`
     text-align: center;
   `,

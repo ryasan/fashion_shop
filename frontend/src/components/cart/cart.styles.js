@@ -102,7 +102,6 @@ Cart.BagQty = styled(Span)``
 Cart.Title = styled(H4)``
 
 Cart.List = styled(Ul)`
-  padding: 0.2rem 2rem;
   flex: 1;
 `
 

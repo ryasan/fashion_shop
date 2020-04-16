@@ -1,8 +1,8 @@
 import React from 'react'
 
-const MagnifierIcon = ({ className }) => (
+const MagnifierIcon = (props) => (
   <svg
-    className={className}
+    {...props}
     enableBackground="new 0 0 96 96"
     height="96px"
     id="magnifying_glass"

@@ -13,7 +13,7 @@ const ProductComponent = ({ product }) => {
   return (
     <Product>
       {product.isFreeShipping && (
-        <Product.Special modifiers={['red', 'whiteColor', 'smallText']}>
+        <Product.Special modifiers={['red', 'whiteColor', 'superSmallText']}>
           Free shipping
         </Product.Special>
       )}

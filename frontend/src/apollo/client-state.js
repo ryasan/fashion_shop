@@ -32,10 +32,9 @@ export const Mutation = {
     client.writeData({ data })
   },
   removeCartItem: (_, { id }, { client }) => {
-    const { cartItems, cartCount, cartTotal, cartOpen } = client.readQuery({
+    const { cartItems, cartCount, cartTotal } = client.readQuery({
       query: CART_QUERY
     })
-    console.log('cart open from client', cartOpen)
     const product = cartItems.find(p => p.id === id)
     const data = {
       cartOpen: true,
