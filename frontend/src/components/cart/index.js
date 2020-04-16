@@ -16,6 +16,7 @@ const CartComponent = () => {
   } = useCartQuery()
 
   const _toggleCart = e => {
+    console.log('cart ref contains target?',cartRef.current.contains(e.target))
     if (
       !cartRef.current.contains(e.target) &&
       !e.target.classList.contains('buy-btn') &&

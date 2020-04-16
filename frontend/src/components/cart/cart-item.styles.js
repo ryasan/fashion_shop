@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { Li, Img, P, Span } from '../elements'
-import Icon from '../icons'
 
 const CartItem = styled(Li)`
   width: 100%;
@@ -35,22 +34,18 @@ CartItem.P = P
 
 CartItem.Delete = styled.div`
   color: black;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   position: absolute;
   top: -0.3rem;
   right: 0;
   cursor: pointer;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+  background: url(${require('../../images/close.svg')}) center center;
+  background-size: cover;
   &:hover {
     color: var(--red);
   }
 `
-
-CartItem.Icon = Icon
 
 CartItem.Qty = Span
 

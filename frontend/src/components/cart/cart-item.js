@@ -28,9 +28,7 @@ const CartItemComponent = ({ product }) => {
         </CartItem.P>
       </CartItem.Details>
       <CartItem.Price>
-        <CartItem.Delete onClick={handleRemoveCartItem} className="del-btn">
-          <CartItem.Icon name="close" />
-        </CartItem.Delete>
+        <CartItem.Delete onClick={handleRemoveCartItem} className="del-btn" />
         <CartItem.P modifiers={['mediumText', 'redColor']}>
           {product.currencyFormat} {product.price}
         </CartItem.P>

@@ -13,7 +13,11 @@ export const Mutation = {
       query: CART_QUERY
     })
     const foundProduct = cartItems.find(p => p.id === product.id)
-    const data = {}
+    const data = {
+      cartOpen: true,
+      cartCount: cartCount + 1,
+      cartTotal: cartTotal + product.price
+    }
 
     if (foundProduct) {
       data.cartItems = cartItems.map(p => ({
@@ -21,26 +25,24 @@ export const Mutation = {
         quantity: p.id === foundProduct.id ? p.quantity + 1 : p.quantity
       }))
     }
-
     if (!foundProduct) {
       data.cartItems = [...cartItems, { ...product, __typename: 'Product' }]
     }
 
-    data.cartOpen = true
-    data.cartCount = cartCount + 1
-    data.cartTotal = cartTotal + product.price
-
     client.writeData({ data })
   },
   removeCartItem: (_, { id }, { client }) => {
-    const { cartItems, cartCount, cartTotal } = client.readQuery({
+    const { cartItems, cartCount, cartTotal, cartOpen } = client.readQuery({
       query: CART_QUERY
     })
+    console.log('cart open from client', cartOpen)
     const product = cartItems.find(p => p.id === id)
-    const data = {}
-    data.cartItems = cartItems.filter(p => p.id !== id)
-    data.cartCount = cartCount - 1
-    data.cartTotal = cartTotal - product.price * product.quantity
+    const data = {
+      cartOpen: true,
+      cartCount: cartCount - 1,
+      cartItems: cartItems.filter(p => p.id !== id),
+      cartTotal: cartTotal - product.price * product.quantity
+    }
 
     client.writeData({ data })
   }
