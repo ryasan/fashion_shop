@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 
 import Icon from '../icons'
 import { Ul, Li } from '../elements'
+import { device } from '../../utils'
 
 const Header = styled.header`
   background: var(--dark);
@@ -13,7 +14,10 @@ const Header = styled.header`
 
 Header.Nav = styled(Ul)`
   display: flex;
-  margin-right: 8rem;
+  margin-right: 9rem;
+  @media ${device.mobileL} {
+    margin-right: 7rem;
+  }
 `
 
 Header.NavItem = styled(Li)`
@@ -24,6 +28,7 @@ Header.NavItem = styled(Li)`
   position: relative;
   color: var(--off-white);
   width: 10rem;
+  margin-right: 3rem;
   &:after {
     content: '';
     position: absolute;
@@ -39,6 +44,9 @@ Header.NavItem = styled(Li)`
     &:after {
       width: 100%;
     }
+  }
+  @media ${device.mobileL} {
+    margin-right: 1rem;
   }
 `
 

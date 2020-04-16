@@ -23,14 +23,16 @@ const ProductComponent = ({ product }) => {
           alt={product.title}
         />
       </Product.Thumb>
-      <Product.Title>{product.title}</Product.Title>
-      <Product.Divider modifiers="red" />
-      <Product.Price>
-        <Product.B>${formattedPrice.slice(0, -3)}</Product.B>
-        <Product.Small>
-          {formattedPrice.slice(formattedPrice.length - 3)}
-        </Product.Small>
-      </Product.Price>
+      <Product.Details>
+        <Product.Divider modifiers="red" />
+        <Product.Title>{product.title}</Product.Title>
+        <Product.Price>
+          <Product.B>${formattedPrice.slice(0, -3)}</Product.B>
+          <Product.Small>
+            {formattedPrice.slice(formattedPrice.length - 3)}
+          </Product.Small>
+        </Product.Price>
+      </Product.Details>
       <Product.BuyBtn
         className="buy-btn"
         modifiers={['red', 'whiteColor', 'redBorder', 'mediumText']}

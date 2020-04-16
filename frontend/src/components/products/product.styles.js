@@ -4,13 +4,11 @@ import { Button, Img, Span, Small, Hr, B } from '../elements'
 import { device } from '../../utils'
 
 const Product = styled.div`
-  height: 100%;
   transition: all 0.5s ease-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  text-align: center;
   background: white;
   box-shadow: 0px 25px 18px -18px rgba(0, 0, 0, 1);
   @media ${device.mobileL} {
@@ -30,18 +28,27 @@ Product.Special = styled(Span)`
 
 Product.Thumb = styled.div``
 
+Product.Details = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 8rem;
+  position: relative;
+  text-align: center;
+`
+
 Product.Title = styled.div`
-  font-size: var(--regular-font);
-  margin: 1rem 0;
+  font-size: 1.3rem;
 `
 
 Product.Divider = styled(Hr)`
-  width: 2rem;
+  width: 3rem;
 `
 
 Product.Price = styled.div`
-  font-size: 2em;
-  margin: 1rem 0;
+  font-size: 2rem;
+  width: 100%;
 `
 
 Product.B = styled(B)``
