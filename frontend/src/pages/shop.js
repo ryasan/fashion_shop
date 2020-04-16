@@ -9,6 +9,7 @@ import { useMockProducts } from '../utils'
 
 const ShopProducts = () => {
   const { mockProducts, loading, error } = useMockProducts()
+
   if (loading) return <Shop.Loader color="white" />
   if (error) return <ErrorBoundary error={error} />
   return <ProductList products={mockProducts} />

@@ -6,8 +6,8 @@ to { transform: rotate(360deg); }
 
 const Loader = styled.div`
   position: relative;
-  width: 10rem;
-  height: 10rem;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,8 +15,8 @@ const Loader = styled.div`
 
 Loader.Space = styled.div`
   animation: ${orbit} 1s linear infinite;
-  width: 10rem;
-  height: 10rem;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,11 +54,11 @@ Loader.Circle = styled.circle`
 
 Loader.Satellite = styled.div`
   position: absolute;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   top: 50%;
-  right: 0.2rem;
+  right: 2px;
   transform: translateY(-50%);
   background: ${props => renderColor(props.color)};
 `
