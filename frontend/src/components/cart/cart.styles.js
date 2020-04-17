@@ -18,7 +18,7 @@ const Cart = styled.div`
     background: var(--red);
     top: 50%;
     transform: translateY(-50%);
-    width: 3px;
+    width: 2px;
     height: ${props => (props.cartOpen ? '100%' : '0')};
     transition: height 0.5s;
     transition-delay: 0.2s;
@@ -47,7 +47,7 @@ Cart.Btn = styled(Button)`
   &:before {
     content: '';
     position: absolute;
-    width: 3px;
+    width: 2px;
     background: var(--red);
     bottom: 0;
     left: 0;

@@ -8,6 +8,7 @@ import { formatPrice } from '../../utils'
 const CartItemComponent = ({ product }) => {
   const [removeCartItem] = useRemoveCartItemMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
+  const availableSizes = product.availableSizes.join(' | ')
 
   const handleMouseOver = () => {
     setIsMouseOver(true)
@@ -30,7 +31,7 @@ const CartItemComponent = ({ product }) => {
         <CartItem.Details>
           <CartItem.P>{product.title}</CartItem.P>
           <CartItem.P modifiers={['grayColor', 'smallText']}>
-            {`${product.availableSizes.join(' | ')} | ${product.style}`}
+            {`${availableSizes} | ${product.style}`}
             <br />
             Quantity:{' '}
             <CartItem.Qty modifiers="offWhiteColor">
