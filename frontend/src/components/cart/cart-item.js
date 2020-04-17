@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import CartItem from './cart-item.styles'
 import { useRemoveCartItemMutation } from '../../graphql/local-state-hooks'
+import { formatPrice } from '../../utils'
 
 const CartItemComponent = ({ product }) => {
   const [removeCartItem] = useRemoveCartItemMutation()
@@ -46,7 +47,7 @@ const CartItemComponent = ({ product }) => {
             onClick={handleRemoveCartItem}
           />
           <CartItem.P modifiers={['mediumText', 'redColor']}>
-            {product.currencyFormat} {product.price}
+            {formatPrice(product.price)}
           </CartItem.P>
         </CartItem.Price>
       </CartItem.Content>

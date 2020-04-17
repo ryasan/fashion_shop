@@ -27,7 +27,7 @@ const ProductComponent = ({ product }) => {
         <Product.Divider modifiers="red" />
         <Product.Title>{product.title}</Product.Title>
         <Product.Price>
-          <Product.B>${formattedPrice.slice(0, -3)}</Product.B>
+          <Product.B>{formattedPrice.slice(0, -3)}</Product.B>
           <Product.Small>
             {formattedPrice.slice(formattedPrice.length - 3)}
           </Product.Small>
@@ -44,8 +44,19 @@ const ProductComponent = ({ product }) => {
 }
 
 Product.ProductComponent = {
-  product: PropTypes.object.isRequired,
-  isFreeShipping: PropTypes.bool.isRequired
+  product: PropTypes.shape({
+    currencyFormat: PropTypes.string.isRequired,
+    currencyId: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    isFreeShipping: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    sku: PropTypes.number.isRequired,
+    style: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    featured: PropTypes.bool.isRequired,
+    availableSizes: PropTypes.array.isRequired
+  })
 }
 
 export default ProductComponent

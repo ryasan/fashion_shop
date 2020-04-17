@@ -12,7 +12,7 @@ const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
   const cartRef = useRef(null)
   const {
-    data: { cartItems, cartOpen, cartTotal, currencyFormat, currencyId }
+    data: { cartItems, cartOpen, cartTotal, currencyId }
   } = useCartQuery()
 
   const _toggleCart = e => {
@@ -59,7 +59,7 @@ const CartComponent = () => {
           <Cart.Sub modifiers={['mediumText']}>SUBTOTAL</Cart.Sub>
           <Cart.SubPrice>
             <Cart.P modifiers={['redColor', 'textAlignRight', 'largeText']}>
-              {currencyFormat} {formatPrice(cartTotal, currencyId)}
+              {formatPrice(cartTotal, currencyId)}
             </Cart.P>
           </Cart.SubPrice>
           <Cart.CheckoutBtn modifiers={['darker', 'offWhiteColor']}>

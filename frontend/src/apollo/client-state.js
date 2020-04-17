@@ -13,6 +13,7 @@ export const Mutation = {
       query: CART_QUERY
     })
     const foundProduct = cartItems.find(p => p.id === product.id)
+
     const data = {
       cartOpen: true,
       cartCount: cartCount + 1,
