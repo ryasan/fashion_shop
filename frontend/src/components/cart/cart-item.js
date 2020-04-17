@@ -18,7 +18,7 @@ const CartItemComponent = ({ product }) => {
   }
 
   const handleRemoveCartItem = () => {
-    removeCartItem({ variables: { id: product.id } })
+    removeCartItem({ variables: { product } })
   }
 
   return (

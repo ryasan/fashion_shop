@@ -19,11 +19,9 @@ export const ADD_CART_ITEM = gql`
 `
 
 export const REMOVE_CART_ITEM = gql`
-  mutation removeCartItemMutation($id: Int!) {
-    removeCartItem(id: $id) @client {
-      id {
-        ...ProductFragment
-      }
+  mutation removeCartItemMutation($product: Product!) {
+    removeCartItem(product: $product) @client {
+      ...ProductFragment
     }
   }
   ${PRODUCT_FRAGMENT}
