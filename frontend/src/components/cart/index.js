@@ -12,7 +12,7 @@ const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
   const cartRef = useRef(null)
   const {
-    data: { cartItems, cartOpen, cartTotal, currencyId }
+    data: { cartItems, cartOpen, cartTotal, currencyId, cartCount }
   } = useCartQuery()
 
   const _toggleCart = e => {
@@ -34,14 +34,24 @@ const CartComponent = () => {
     <Cart cartOpen={cartOpen} ref={cartRef}>
       <Cart.Btn cartOpen={cartOpen} onClick={toggleCart}>
         <Cart.Icon name={cartOpen ? 'close' : 'cart'} />
+        {!cartOpen && cartCount > 0 && (
+          <Cart.ClosedBagQty modifiers={['red', 'smallText']}>
+            {cartCount}
+          </Cart.ClosedBagQty>
+        )}
       </Cart.Btn>
 
       <Cart.Content>
         <Cart.Header>
           <Cart.Title>Cart</Cart.Title>
-          <Cart.Bag name="cart">
-            <Cart.BagQty></Cart.BagQty>
-          </Cart.Bag>
+          <Cart.BagContainer>
+            <Cart.Bag name="cart" />
+            {cartCount > 0 && (
+              <Cart.OpenBagQty modifiers={['red', 'smallText']}>
+                {cartCount}
+              </Cart.OpenBagQty>
+            )}
+          </Cart.BagContainer>
         </Cart.Header>
 
         <Cart.List>

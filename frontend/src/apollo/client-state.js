@@ -1,7 +1,7 @@
 import { CART_QUERY } from '../graphql/local-state-queries'
 import { TOGGLE_CART, REMOVE_CART_ITEM, ADD_CART_ITEM } from './action-types'
 
-const reducer = (actionType, client, variables) => {
+const cartReducer = (actionType, client, variables) => {
   const state = client.readQuery({ query: CART_QUERY })
   const { cartOpen, cartCount, cartItems, cartTotal } = state
   let product
@@ -50,11 +50,11 @@ const reducer = (actionType, client, variables) => {
 // local data
 export const Mutation = {
   toggleCart: (_, variables, { client }) =>
-    reducer(TOGGLE_CART, client, variables),
+    cartReducer(TOGGLE_CART, client, variables),
   addCartItem: (_, variables, { client }) =>
-    reducer(ADD_CART_ITEM, client, variables),
+    cartReducer(ADD_CART_ITEM, client, variables),
   removeCartItem: (_, variables, { client }) =>
-    reducer(REMOVE_CART_ITEM, client, variables)
+    cartReducer(REMOVE_CART_ITEM, client, variables)
 }
 
 export const defaults = {

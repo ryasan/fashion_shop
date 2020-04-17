@@ -14,9 +14,9 @@ const Header = styled.header`
 
 Header.Nav = styled(Ul)`
   display: flex;
-  margin-right: 9rem;
+  margin-right: 7rem;
   @media ${device.mobileL} {
-    margin-right: 7rem;
+    margin-right: 5rem;
   }
 `
 
@@ -28,7 +28,7 @@ Header.NavItem = styled(Li)`
   position: relative;
   color: var(--off-white);
   width: 10rem;
-  margin-right: 3rem;
+  margin-right: 1rem;
   &:after {
     content: '';
     position: absolute;

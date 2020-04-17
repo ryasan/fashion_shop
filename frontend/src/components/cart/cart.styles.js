@@ -89,17 +89,39 @@ Cart.Header = styled.div`
   align-items: center;
 `
 
+Cart.BagContainer = styled.div`
+  position: relative;
+`
+
 Cart.Bag = styled(Icon)`
   width: 4rem;
   height: 4rem;
-  position: relative;
   display: inline-block;
   margin-left: 1.5rem;
 `
 
-Cart.BagQty = styled(Span)``
+Cart.BagQty = styled(Span)`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--off-white);
+  position: absolute;
+`
 
-Cart.Title = styled(H4)``
+Cart.ClosedBagQty = styled(Cart.BagQty)`
+  bottom: 1rem;
+  right: 1.2rem;
+`
+
+Cart.OpenBagQty = styled(Cart.BagQty)`
+  right: -0.5rem;
+  bottom: -0.5rem;
+`
+
+Cart.Title = H4
 
 Cart.List = styled(Ul)`
   flex: 1;
