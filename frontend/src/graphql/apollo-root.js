@@ -29,7 +29,7 @@ const PersistApolloProvider = ({ children }) => {
       uri: process.env.NODE_ENV === 'development' ? devEndpoint : prodEndpoint,
       clientState: {
         resolvers: { Mutation },
-        defaults: cartInitialState
+        defaults: { ...cartInitialState, previousUrl: null }
       },
       fetch: fetch,
       cache: cache

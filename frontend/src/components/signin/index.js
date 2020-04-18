@@ -2,6 +2,8 @@ import React, { useReducer } from 'react'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
 import Signin from './signin.styles'
 import Icon from '../icons'
@@ -9,7 +11,7 @@ import { Input, Small, A, P } from '../elements'
 import {
   EMAIL,
   PASSWORD,
-  CONFIRM_PASSWORD,
+  CONFIRM,
   TOGGLE_SIGNUP,
   MESSAGE
 } from './action-types'
@@ -17,38 +19,74 @@ import {
 const initialState = {
   email: '',
   password: '',
-  confirmPassword: '',
-  message: '',
-  isSignup: false
+  confirm: '',
+  message: undefined,
+  isSignup: false,
+  formIsValid: false
+}
+
+const validateFields = ({ password, confirm, email }) => {
+  return validate(email) && password && confirm && password === confirm
 }
 
 const reducer = (state, action) => {
-  switch (action.type) {
+  const { email, password, confirm, isSignup } = state
+  const { payload, type } = action
+  let formIsValid
+
+  switch (type) {
     case EMAIL:
-      return { ...state, email: action.payload }
+      return { ...state, email: payload }
     case PASSWORD:
-      return { ...state, password: action.payload }
-    case CONFIRM_PASSWORD:
-      return { ...state, confirmPassword: action.payload }
-    case TOGGLE_SIGNUP:
-      return { ...state, isSignup: !state.isSignup }
-    case MESSAGE:
+      formIsValid = validateFields({ password: payload, confirm, email })
       return {
         ...state,
-        message: action.payload.message,
-        formIsValid: action.payload.isValid
+        message: formIsValid && 'Looks good!',
+        formIsValid: formIsValid,
+        password: payload
+      }
+    case CONFIRM:
+      formIsValid = validateFields({ confirm: payload, password, email })
+      return {
+        ...state,
+        message: formIsValid && 'Looks good!',
+        formIsValid: formIsValid,
+        confirm: payload
+      }
+    case MESSAGE:
+      return { ...state, message: payload }
+    case TOGGLE_SIGNUP:
+      return {
+        ...state,
+        isSignup: !isSignup,
+        email: '',
+        password: '',
+        confirm: '',
+        message: ''
       }
     default:
       return state
   }
 }
 
+export const PREVIOUS_URL_QUERY = gql`
+  query @client {
+    previousUrl
+  }
+`
+
 const SigninPage = ({ className }) => {
+  const { data: { previousUrl } } = useQuery(PREVIOUS_URL_QUERY) // prettier-ignore
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { isSignup, email, password, confirmPassword, message } = state
+  const { isSignup, email, password, confirm, message, formIsValid } = state
   const signupText = isSignup
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
+  const messageModifiers = [
+    formIsValid ? 'greenColor' : 'redColor',
+    'width100',
+    'textAlignCenter'
+  ]
 
   const toggleSignup = () => dispatch({ type: TOGGLE_SIGNUP })
 
@@ -59,30 +97,26 @@ const SigninPage = ({ className }) => {
     })
   }
 
-  const validateForm = () => {
+  const handleOnSubmit = e => {
+    e.preventDefault()
     if (!validate(email)) {
       return dispatch({
         type: MESSAGE,
-        payload: { message: 'Email is not valid' }
+        payload: 'Email is not valid'
       })
     } else if (password.length < 1) {
       return dispatch({
         type: MESSAGE,
-        payload: { message: 'Please enter a password' }
+        payload: 'Please enter a password'
       })
-    } else if (isSignup && password !== confirmPassword) {
+    } else if (isSignup && password !== confirm) {
       return dispatch({
         type: MESSAGE,
-        payload: { message: 'Passwords do not match' }
+        payload: 'Passwords do not match'
       })
     } else {
-      navigate(-1)
+      navigate(previousUrl ? -1 : '/') // go back a page or go home
     }
-  }
-
-  const handleOnSubmit = e => {
-    e.preventDefault()
-    validateForm()
   }
 
   const renderLinks = () => {
@@ -130,16 +164,14 @@ const SigninPage = ({ className }) => {
               <Input
                 placeholder="confirm password"
                 type="password"
-                name="confirmPassword"
-                value={confirmPassword}
+                name="confirm"
+                value={confirm}
                 onChange={handleOnChange}
               />
             </Signin.Field>
           )}
 
-          <P modifiers={['redColor', 'width100', 'textAlignCenter']}>
-            {message}
-          </P>
+          <P modifiers={messageModifiers}>{message}</P>
 
           <Signin.Field>
             <Signin.Submit type="submit" />

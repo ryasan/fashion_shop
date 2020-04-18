@@ -1,5 +1,5 @@
 export const EMAIL = 'EMAIL'
 export const PASSWORD = 'PASSWORD'
-export const CONFIRM_PASSWORD = 'CONFIRM_PASSWORD'
-export const TOGGLE_SIGNUP = 'TOGGLE_SIGNUP'
+export const CONFIRM = 'CONFIRM'
 export const MESSAGE = 'MESSAGE'
+export const TOGGLE_SIGNUP = 'TOGGLE_SIGNUP'
