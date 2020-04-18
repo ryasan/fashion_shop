@@ -21,6 +21,11 @@ const Form = styled.form`
     &[type='submit'] {
       background: var(--red);
       color: white;
+      outline-color: var(--red);
+      &:hover {
+        background: transparent;
+        color: var(--red);
+      }
     }
   }
 `

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Form from '../components/form'
+import Form from '../form'
 
 const Signin = styled.div`
   width: 40rem;
@@ -13,12 +13,21 @@ const Signin = styled.div`
   align-items: center;
   padding: 3em;
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.6);
+  small {
+    font-size: var(--small-font);
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+  p {
+    margin: 2rem 0;
+  }
 `
 
 Signin.Form = Form
 
 Signin.Header = styled.div`
-  background: url(${require('../images/logo-royal.svg')}) center 30%;
+  background: url(${require('../../images/logo-royal.svg')}) center 30%;
   background-size: contain;
   background-repeat: no-repeat;
   height: 25rem;
@@ -33,6 +42,7 @@ Signin.Field = styled.div`
   margin-bottom: 2rem;
   svg {
     height: 100%;
+    width: 3.5rem;
     background: var(--red);
     color: var(--dark);
     position: absolute;

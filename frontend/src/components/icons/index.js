@@ -10,6 +10,8 @@ import LogoJersey from './logo-jersey'
 import LogoDiamond from './logo-diamond'
 import ShoppingBag from './shopping-bag'
 import Close from './close'
+import Account from './account'
+import Key from './key'
 
 const Icon = props => {
   switch (props.name) {
@@ -33,6 +35,10 @@ const Icon = props => {
       return <ShoppingBag {...props} />
     case 'close':
       return <Close {...props} />
+    case 'account':
+      return <Account {...props} />
+    case 'key':
+      return <Key />
   }
 }
 

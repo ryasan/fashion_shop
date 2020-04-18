@@ -14,6 +14,12 @@ const MODIFIER_CONFIG = {
   grayColor: () => css`
     color: var(--gray);
   `,
+  green: () => css`
+    background: var(--green);
+  `,
+  greenColor: () => css`
+    color: var(--green);
+  `,
   largeText: () => css`
     font-size: var(--large-font);
   `,

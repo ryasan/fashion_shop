@@ -10,6 +10,8 @@
     "apollo-boost": "^0.4.7",
     "apollo-cache-persist": "^0.1.1",
     "babel-plugin-styled-components": "^1.10.7",
+    "change-case": "^4.1.1",
+    "email-validator": "^2.0.4",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
     "gatsby-plugin-global-styles": "^1.0.17",
