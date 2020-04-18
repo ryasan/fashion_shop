@@ -14,6 +14,9 @@ const HeaderComponent = () => (
       <Header.NavItem>
         <Header.Link to="/shop">SHOP</Header.Link>
       </Header.NavItem>
+      <Header.NavItem>
+        <Header.Link to="/signin">SIGNIN</Header.Link>
+      </Header.NavItem>
     </Header.Nav>
   </Header>
 )

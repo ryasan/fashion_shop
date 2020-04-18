@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import CartItem from './cart-item.styles'
-import { useRemoveCartItemMutation } from '../../graphql/local-state-hooks'
+import { useRemoveCartItemMutation } from '../../graphql/cart/hooks'
 import { formatPrice } from '../../utils'
 
 const CartItemComponent = ({ product }) => {

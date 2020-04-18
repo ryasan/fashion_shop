@@ -3,7 +3,7 @@ import React from 'react'
 import Product from './product.styles'
 import PropTypes from 'prop-types'
 import { formatPrice } from '../../utils'
-import { useAddCartItemMutation } from '../../graphql/local-state-hooks'
+import { useAddCartItemMutation } from '../../graphql/cart/hooks'
 
 const ProductComponent = ({ product }) => {
   product.quantity = 1
@@ -45,8 +45,6 @@ const ProductComponent = ({ product }) => {
 
 Product.ProductComponent = {
   product: PropTypes.shape({
-    currencyFormat: PropTypes.string.isRequired,
-    currencyId: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     isFreeShipping: PropTypes.bool.isRequired,

@@ -15,7 +15,7 @@ Shop.ProductsContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-gap: 2rem;
+  grid-gap: 5rem;
   justify-items: center;
   align-items: center;
   @media ${device.mobileL} {

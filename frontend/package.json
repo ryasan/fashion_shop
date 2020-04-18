@@ -34,6 +34,7 @@
     "styled-components-modifiers": "^1.2.5"
   },
   "devDependencies": {
+    "@testing-library/react": "^10.0.2",
     "eslint": "^6.8.0",
     "eslint-config-gatsby-standard": "^2.2.0",
     "prettier": "^1.19.1"

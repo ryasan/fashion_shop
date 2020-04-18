@@ -10,7 +10,7 @@ const Product = styled.div`
   justify-content: space-between;
   position: relative;
   background: white;
-  box-shadow: 0px 25px 18px -18px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 1);
   @media ${device.mobileL} {
     margin-bottom: 5rem;
   }

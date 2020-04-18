@@ -10,8 +10,6 @@ export const CART_QUERY = gql`
     cartCount
     cartTotal
     cartOpen
-    currencyFormat
-    currencyId
   }
   ${PRODUCT_FRAGMENT}
 `

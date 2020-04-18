@@ -6,8 +6,9 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { persistCache } from 'apollo-cache-persist'
 
-import { Mutation, defaults } from './client-state'
 import LoaderComponent from '../components/loader'
+import { Mutation } from './local-resolvers'
+import { cartInitialState } from './cart/reducer'
 
 const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'TBD'
@@ -19,16 +20,19 @@ const Loader = styled(LoaderComponent)`
   align-items: center;
 `
 
-const App = ({ children }) => {
+const PersistApolloProvider = ({ children }) => {
   const [client, setClient] = useState(null)
 
   useEffect(() => {
     const cache = new InMemoryCache()
     const client = new ApolloClient({
       uri: process.env.NODE_ENV === 'development' ? devEndpoint : prodEndpoint,
-      clientState: { resolvers: { Mutation }, defaults },
-      fetch,
-      cache
+      clientState: {
+        resolvers: { Mutation },
+        defaults: cartInitialState
+      },
+      fetch: fetch,
+      cache: cache
     })
 
     persistCache({ cache, storage: window.localStorage }).then(() => {
@@ -43,6 +47,6 @@ const App = ({ children }) => {
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 
-export const wrapRootElement = ({ element }) => {
-  return <App>{element}</App>
+export const ApolloRoot = ({ element }) => {
+  return <PersistApolloProvider>{element}</PersistApolloProvider>
 }

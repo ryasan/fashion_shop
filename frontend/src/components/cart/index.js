@@ -5,14 +5,14 @@ import CartItem from './cart-item'
 import {
   useCartQuery,
   useToggleCartMutation
-} from '../../graphql/local-state-hooks'
+} from '../../graphql/cart/hooks'
 import { formatPrice } from '../../utils'
 
 const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
   const cartRef = useRef(null)
   const {
-    data: { cartItems, cartOpen, cartTotal, currencyId, cartCount }
+    data: { cartItems, cartOpen, cartTotal, cartCount }
   } = useCartQuery()
 
   const _toggleCart = e => {
@@ -69,7 +69,7 @@ const CartComponent = () => {
           <Cart.Sub modifiers={['mediumText']}>SUBTOTAL</Cart.Sub>
           <Cart.SubPrice>
             <Cart.P modifiers={['redColor', 'textAlignRight', 'largeText']}>
-              {formatPrice(cartTotal, currencyId)}
+              {formatPrice(cartTotal)}
             </Cart.P>
           </Cart.SubPrice>
           <Cart.CheckoutBtn modifiers={['darker', 'offWhiteColor']}>

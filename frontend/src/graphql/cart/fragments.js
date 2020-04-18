@@ -4,8 +4,6 @@ export const PRODUCT_FRAGMENT = gql`
   fragment ProductFragment on Product {
     availableSizes
     id
-    currencyFormat
-    currencyId
     description
     id
     isFreeShipping
