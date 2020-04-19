@@ -15,7 +15,7 @@ const LayoutComponent = ({ children }) => {
   useEffect(() => {
     globalHistory.listen(({ action }) => {
       if (action === 'PUSH' && pathname) {
-        client.writeData({ data: { previousUrl: pathname } })
+        client.writeData({ data: { previousPage: pathname } })
       }
     })
   }, [])

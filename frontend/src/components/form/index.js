@@ -10,17 +10,16 @@ const Form = styled.form`
   input {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--red);
     border-radius: 3px;
+    border: 1px solid var(--red);
     font-size: var(--regular-font);
-    cursor: pointer;
     &:not([type='submit']) {
       padding: 1rem 0 1rem 5rem;
       outline-color: var(--red);
     }
     &[type='submit'] {
-      background: var(--red);
       color: white;
+      background: var(--red);
       outline-color: var(--red);
       &:hover {
         background: transparent;

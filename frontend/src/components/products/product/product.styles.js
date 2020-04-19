@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { Button, Img, Span, Small, Hr, B } from '../elements'
-import { device } from '../../utils'
+import { Button, Image, Span, Small, Hr, B } from '../../elements'
+import { device } from '../../../utils'
 
 const Product = styled.div`
   transition: all 0.5s ease-out;
@@ -16,7 +16,7 @@ const Product = styled.div`
   }
 `
 
-Product.Img = styled(Img)`
+Product.Image = styled(Image)`
   width: 100%;
 `
 
@@ -51,9 +51,9 @@ Product.Price = styled.div`
   width: 100%;
 `
 
-Product.B = styled(B)``
+Product.Dollars = B
 
-Product.Small = styled(Small)``
+Product.Cents = Small
 
 Product.BuyBtn = styled(Button)`
   border-width: 2px;

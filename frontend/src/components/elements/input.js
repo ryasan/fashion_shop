@@ -7,7 +7,9 @@ import {
 import MODIFIER_CONFIG from './config/modifier-config'
 
 export const Input = styled.input`
-  cursor: pointer;
+  &[type='submit'] {
+    cursor: pointer;
+  }
   ${applyStyleModifiers(MODIFIER_CONFIG)};
 `
 

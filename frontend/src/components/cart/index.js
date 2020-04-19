@@ -59,18 +59,18 @@ const CartComponent = () => {
             <CartItem key={p.id} product={p} />
           ))}
           {!cartItems.length && (
-            <Cart.P modifiers="textAlignCenter">
+            <Cart.Text modifiers="textAlignCenter">
               Add some products to the cart 😉
-            </Cart.P>
+            </Cart.Text>
           )}
         </Cart.List>
 
         <Cart.Footer>
           <Cart.Sub modifiers={['mediumText']}>SUBTOTAL</Cart.Sub>
           <Cart.SubPrice>
-            <Cart.P modifiers={['redColor', 'textAlignRight', 'largeText']}>
+            <Cart.Text modifiers={['redColor', 'textAlignRight', 'largeText']}>
               {formatPrice(cartTotal)}
-            </Cart.P>
+            </Cart.Text>
           </Cart.SubPrice>
           <Cart.CheckoutBtn modifiers={['darker', 'offWhiteColor']}>
             CHECKOUT

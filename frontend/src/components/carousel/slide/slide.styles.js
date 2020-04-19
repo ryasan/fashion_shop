@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import Icon from '../icons/index'
-import { device } from '../../utils'
+import Icon from '../../icons/index'
+import { device } from '../../../utils'
 
 const Slide = styled.div`
   height: 50rem;

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import Icon from '../icons'
-import { Button, Span, Ul, H4, P } from '../elements'
+import { Button, Span, H4, P } from '../elements'
 import { device } from '../../utils'
 
 const Cart = styled.div`
@@ -123,11 +123,11 @@ Cart.OpenBagQty = styled(Cart.BagQty)`
 
 Cart.Title = H4
 
-Cart.List = styled(Ul)`
+Cart.List = styled.ul`
   flex: 1;
 `
 
-Cart.P = P
+Cart.Text = P
 
 Cart.Footer = styled.footer`
   position: absolute;

@@ -38,6 +38,9 @@ const MODIFIER_CONFIG = {
   redColor: () => css`
     color: var(--red);
   `,
+  redOutline: () => css`
+    outline-color: var(--red);
+  `,
   smallText: () => css`
     font-size: var(--small-font);
   `,

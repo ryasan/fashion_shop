@@ -14,61 +14,71 @@ const HomePage = () => (
         <Home.SectionOne>
           <Home.TurntablesBg />
           <Home.SectionOneContent>
-            <Home.H1>Lorem Ipsum Dolor</Home.H1>
+            <Home.SectionTitle modifiers={['redColor', 'textAlignCenter']}>
+              Lorem Ipsum Dolor
+            </Home.SectionTitle>
             <Home.TextList>
               <Home.TextItem>
                 <Home.Span>NEW FOR 2020</Home.Span>
-                <Home.H2>Lorem Ipsum</Home.H2>
-                <Home.P>
+                <Home.TextTitle modifiers={['redColor']}>
+                  Lorem Ipsum
+                </Home.TextTitle>
+                <Home.Description>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Autem, necessitatibus cupiditate repellat doloremque hic
                   itaque vero dolorem fugiat ex accusamus, nesciunt facere modi?
                   Totam velit quam asperiores voluptates voluptatum amet.
-                </Home.P>
+                </Home.Description>
               </Home.TextItem>
               <Home.TextItem>
                 <Home.Span>ANNOUNCING...</Home.Span>
-                <Home.H2>Lorem Ipsum</Home.H2>
-                <Home.P>
+                <Home.TextTitle modifiers={['redColor']}>
+                  Lorem Ipsum
+                </Home.TextTitle>
+                <Home.Description>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis
                   facilis impedit repudiandae accusamus esse unde eos, eum,
                   harum consequuntur cum dignissimos voluptatum fugiat
                   asperiores autem dicta.
-                </Home.P>
+                </Home.Description>
               </Home.TextItem>
               <Home.TextItem>
                 <Home.Span>ANNOUNCING...</Home.Span>
-                <Home.H2>Lorem Ipsum</Home.H2>
-                <Home.P>
+                <Home.TextTitle modifiers={['redColor']}>
+                  Lorem Ipsum
+                </Home.TextTitle>
+                <Home.Description>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Autem, necessitatibus cupiditate repellat doloremque hic
                   itaque vero dolorem fugiat ex accusamus, nesciunt facere modi?
                   Totam velit quam asperiores voluptates voluptatum amet.
-                </Home.P>
+                </Home.Description>
               </Home.TextItem>
             </Home.TextList>
           </Home.SectionOneContent>
         </Home.SectionOne>
         <Home.SectionTwo>
           <Home.MaxWidth>
-            <Home.H1>Lorem Ipsum Dolor</Home.H1>
+            <Home.SectionTitle modifiers={['redColor', 'textAlignCenter']}>
+              Lorem Ipsum Dolor
+            </Home.SectionTitle>
             <Home.Icons>
               <Home.IconWrap>
                 <Home.Icon name="magnifier" />
-                <Home.P>Lorem ipsum dolor sit amet</Home.P>
+                <Home.Description>Lorem ipsum dolor sit amet</Home.Description>
               </Home.IconWrap>
               <Home.IconWrap>
                 <Home.Icon name="shopping-bag" />
-                <Home.P>Lorem ipsum dolor sit amet</Home.P>
+                <Home.Description>Lorem ipsum dolor sit amet</Home.Description>
               </Home.IconWrap>
               <Home.IconWrap>
                 <Home.Icon name="envelope" />
-                <Home.P>Lorem ipsum dolor sit amet</Home.P>
+                <Home.Description>Lorem ipsum dolor sit amet</Home.Description>
               </Home.IconWrap>
             </Home.Icons>
-            <Home.P>
+            <Home.Description>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            </Home.P>
+            </Home.Description>
           </Home.MaxWidth>
         </Home.SectionTwo>
       </Home.Content>

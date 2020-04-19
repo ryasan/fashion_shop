@@ -2,24 +2,37 @@ import React from 'react'
 
 import Product from './product.styles'
 import PropTypes from 'prop-types'
-import { formatPrice } from '../../utils'
-import { useAddCartItemMutation } from '../../graphql/cart/hooks'
+import { formatPrice } from '../../../utils'
+import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
 const ProductComponent = ({ product }) => {
   product.quantity = 1
   const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
 
+  const amount = {
+    dollar: formattedPrice.slice(0, -3),
+    cents: formattedPrice.slice(formattedPrice.length - 3)
+  }
+  const modifiers = {
+    special: ['red', 'whiteColor', 'superSmallText'],
+    button: ['red', 'whiteColor', 'redBorder', 'mediumText']
+  }
+
+  const handleAddCartItem = () => {
+    addCartItem({ variables: { product } })
+  }
+
   return (
     <Product>
       {product.isFreeShipping && (
-        <Product.Special modifiers={['red', 'whiteColor', 'superSmallText']}>
+        <Product.Special modifiers={modifiers.special}>
           Free shipping
         </Product.Special>
       )}
       <Product.Thumb>
-        <Product.Img
-          src={require(`../../images/products/${product.sku}_1.jpg`)}
+        <Product.Image
+          src={require(`../../../images/products/${product.sku}_1.jpg`)}
           alt={product.title}
         />
       </Product.Thumb>
@@ -27,16 +40,14 @@ const ProductComponent = ({ product }) => {
         <Product.Divider modifiers="red" />
         <Product.Title>{product.title}</Product.Title>
         <Product.Price>
-          <Product.B>{formattedPrice.slice(0, -3)}</Product.B>
-          <Product.Small>
-            {formattedPrice.slice(formattedPrice.length - 3)}
-          </Product.Small>
+          <Product.Dollars>{amount.dollars}</Product.Dollars>
+          <Product.Cents>{amount.cents}</Product.Cents>
         </Product.Price>
       </Product.Details>
       <Product.BuyBtn
         className="buy-btn"
-        modifiers={['red', 'whiteColor', 'redBorder', 'mediumText']}
-        onClick={() => addCartItem({ variables: { product } })}>
+        modifiers={modifiers.button}
+        onClick={handleAddCartItem}>
         Add to cart
       </Product.BuyBtn>
     </Product>

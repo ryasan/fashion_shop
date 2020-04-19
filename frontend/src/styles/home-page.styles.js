@@ -20,16 +20,9 @@ Home.Section = styled.section`
   padding: 10rem 0;
 `
 
-Home.H1 = styled(H1)`
-  color: var(--red);
-  text-align: center;
-`
-
-Home.H2 = styled(H2)`
-  color: var(--red);
-`
-
-Home.P = P
+Home.SectionTitle = H1
+Home.TextTitle = H2
+Home.Description = P
 
 Home.Span = styled(Span)`
   color: var(--red);

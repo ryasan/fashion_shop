@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
 
-import { Li, Img, P, Span } from '../elements'
-import Icon from '../icons'
+import { Image, P, Span } from '../../elements'
+import Icon from '../../icons'
 
-const CartItem = styled(Li)`
+const CartItem = styled.li`
   width: 100%;
   height: 12rem;
   border-top: 2px solid #101010;
@@ -18,6 +18,7 @@ const CartItem = styled(Li)`
     `}
 `
 
+
 CartItem.Content = styled.div`
   padding: 1.5rem;
   width: 100%;
@@ -26,9 +27,11 @@ CartItem.Content = styled.div`
   justify-content: space-between;
 `
 
-CartItem.Thumb = styled(Img)`
+CartItem.Thumb = styled(Image)`
   height: 100%;
 `
+
+CartItem.Text = P
 
 CartItem.Details = styled.div`
   flex: 1;
@@ -38,13 +41,13 @@ CartItem.Details = styled.div`
   }
 `
 
+CartItem.Qty = Span
+
 CartItem.Price = styled.div`
   display: flex;
   align-items: center;
   position: relative;
 `
-
-CartItem.P = P
 
 CartItem.Delete = styled(Icon)`
   width: 1.5rem;
@@ -59,6 +62,5 @@ CartItem.Delete = styled(Icon)`
   }
 `
 
-CartItem.Qty = Span
 
 export default CartItem

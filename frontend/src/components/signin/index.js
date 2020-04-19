@@ -7,7 +7,7 @@ import gql from 'graphql-tag'
 
 import Signin from './signin.styles'
 import Icon from '../icons'
-import { Input, Small, A, P } from '../elements'
+import { Input } from '../elements'
 import {
   EMAIL,
   PASSWORD,
@@ -26,7 +26,7 @@ const initialState = {
 }
 
 const validateFields = ({ password, confirm, email }) => {
-  return validate(email) && password && confirm && password === confirm
+  return validate(email) && password && password === confirm
 }
 
 const reducer = (state, action) => {
@@ -69,17 +69,17 @@ const reducer = (state, action) => {
   }
 }
 
-export const PREVIOUS_URL_QUERY = gql`
+const PREVIOUS_PAGE_QUERY = gql`
   query @client {
-    previousUrl
+    previousPage
   }
 `
 
 const SigninPage = ({ className }) => {
-  const { data: { previousUrl } } = useQuery(PREVIOUS_URL_QUERY) // prettier-ignore
+  const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
   const [state, dispatch] = useReducer(reducer, initialState)
   const { isSignup, email, password, confirm, message, formIsValid } = state
-  const signupText = isSignup
+  const signinText = isSignup
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
   const messageModifiers = [
@@ -115,19 +115,19 @@ const SigninPage = ({ className }) => {
         payload: 'Passwords do not match'
       })
     } else {
-      navigate(previousUrl ? -1 : '/') // go back a page or go home
+      navigate(['/', '/shop'].includes(previousPage) ? -1 : '/') // go back a page or go home
     }
   }
 
   const renderLinks = () => {
     return isSignup ? (
-      <A modifiers="redColor" onClick={toggleSignup}>
+      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
         Signin
-      </A>
+      </Signin.Link>
     ) : (
-      <A modifiers="redColor" onClick={toggleSignup}>
+      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
         Signup
-      </A>
+      </Signin.Link>
     )
   }
 
@@ -171,7 +171,9 @@ const SigninPage = ({ className }) => {
             </Signin.Field>
           )}
 
-          <P modifiers={messageModifiers}>{message}</P>
+          <Signin.MessageText modifiers={messageModifiers}>
+            {message}
+          </Signin.MessageText>
 
           <Signin.Field>
             <Signin.Submit type="submit" />
@@ -179,9 +181,9 @@ const SigninPage = ({ className }) => {
         </Signin.Fieldset>
       </Signin.Form>
 
-      <Small modifiers="whiteColor">
-        {signupText} {renderLinks()}
-      </Small>
+      <Signin.SmallText modifiers="whiteColor">
+        {signinText} {renderLinks()}
+      </Signin.SmallText>
     </Signin>
   )
 }

@@ -5,7 +5,7 @@ import Header from './header.styles'
 const HeaderComponent = () => (
   <Header>
     <Header.Logo to="/">
-      <Header.Img name="logo-royal" />
+      <Header.Image name="logo-royal" />
     </Header.Logo>
     <Header.Nav>
       <Header.NavItem>

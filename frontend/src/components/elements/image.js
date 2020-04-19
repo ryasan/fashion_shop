@@ -6,10 +6,10 @@ import {
 
 import MODIFIER_CONFIG from './config/modifier-config'
 
-export const Img = styled.img`
+export const Image = styled.img`
   ${applyStyleModifiers(MODIFIER_CONFIG)};
 `
 
-Img.propTypes = {
+Image.propTypes = {
   modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
 }

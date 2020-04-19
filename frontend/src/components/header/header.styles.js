@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
-import { Ul, Li } from '../elements'
 import { device } from '../../utils'
 
 const Header = styled.header`
@@ -12,7 +11,7 @@ const Header = styled.header`
   height: 7rem;
 `
 
-Header.Nav = styled(Ul)`
+Header.Nav = styled.ul`
   display: flex;
   margin-right: 7rem;
   @media ${device.mobileL} {
@@ -20,7 +19,7 @@ Header.Nav = styled(Ul)`
   }
 `
 
-Header.NavItem = styled(Li)`
+Header.NavItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +69,7 @@ Header.Logo = styled(Link)`
   align-items: center;
 `
 
-Header.Img = styled(Icon)`
+Header.Image = styled(Icon)`
   width: 100%;
   height: 100%;
 `
