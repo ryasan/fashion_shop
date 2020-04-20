@@ -33,17 +33,13 @@ Cart.Btn = styled(Button)`
   position: absolute;
   width: 7rem;
   height: 7rem;
-  background: white;
   left: -7rem;
   outline: 0;
   background: var(--dark);
-  color: var(--off-white);
+  fill: var(--off-white);
   display: flex;
   justify-content: center;
   align-items: center;
-  svg {
-    height: 100%;
-  }
   &:before {
     content: '';
     position: absolute;
@@ -67,7 +63,7 @@ Cart.Btn = styled(Button)`
     width: ${props => (props.cartOpen ? '100%' : '0')};
   }
   &:hover {
-    color: var(--red);
+    fill: var(--red);
   }
 `
 
@@ -98,6 +94,7 @@ Cart.Bag = styled(Icon)`
   height: 4rem;
   display: inline-block;
   margin-left: 1.5rem;
+  fill: var(--off-white);
 `
 
 Cart.BagQty = styled(Span)`

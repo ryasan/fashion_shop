@@ -9,6 +9,7 @@ const ProductComponent = ({ product }) => {
   product.quantity = 1
   const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
+  const productImage = require(`../../../images/products/${product.sku}_1.jpg`)
 
   const amount = {
     dollar: formattedPrice.slice(0, -3),
@@ -32,7 +33,7 @@ const ProductComponent = ({ product }) => {
       )}
       <Product.Thumb>
         <Product.Image
-          src={require(`../../../images/products/${product.sku}_1.jpg`)}
+          src={productImage}
           alt={product.title}
         />
       </Product.Thumb>

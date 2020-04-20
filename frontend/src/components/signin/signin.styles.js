@@ -6,8 +6,8 @@ import { Input, Small, A, P } from '../elements'
 
 const Signin = styled.div`
   width: 40rem;
-  position: absolute;
-  top: 20%;
+  position: relative;
+  margin: 5% 0;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -22,7 +22,10 @@ const Signin = styled.div`
     text-align: center;
   }
   p {
-    margin: 2rem 0;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -52,13 +55,14 @@ Signin.Field = styled.div`
     height: 100%;
     width: 3.5rem;
     background: var(--red);
-    color: var(--dark);
+    fill: var(--off-white);
     position: absolute;
     top: 50%;
     padding: 0.7rem;
     transform: translateY(-50%);
     border-radius: 3px;
   }
+  &:nth-last-child(3),
   &:last-child {
     margin: 0;
   }

@@ -8,8 +8,10 @@ import gql from 'graphql-tag'
 import Signin from './signin.styles'
 import Icon from '../icons'
 import { Input } from '../elements'
+import { useSignupMutation } from '../../graphql/user/hooks'
 import {
   EMAIL,
+  USERNAME,
   PASSWORD,
   CONFIRM,
   TOGGLE_SIGNUP,
@@ -18,52 +20,49 @@ import {
 
 const initialState = {
   email: '',
+  username: '',
   password: '',
   confirm: '',
-  message: undefined,
+  message: null,
   isSignup: false,
   formIsValid: false
 }
 
-const validateFields = ({ password, confirm, email }) => {
-  return validate(email) && password && password === confirm
+const validateFields = ({ password, confirm, email, username }) => {
+  return validate(email) && username && password && password === confirm
+}
+
+const createNewState = ({ state, type, payload }) => {
+  const target = type.toLowerCase()
+  const formIsValid = validateFields({
+    ...state,
+    [target]: payload
+  })
+
+  return {
+    ...state,
+    formIsValid,
+    [target]: payload,
+    message: formIsValid ? 'Looks good!' : null
+  }
 }
 
 const reducer = (state, action) => {
-  const { email, password, confirm, isSignup } = state
   const { payload, type } = action
-  let formIsValid
 
   switch (type) {
     case EMAIL:
-      return { ...state, email: payload }
+      return createNewState({ state, type, payload })
+    case USERNAME:
+      return createNewState({ state, type, payload })
     case PASSWORD:
-      formIsValid = validateFields({ password: payload, confirm, email })
-      return {
-        ...state,
-        message: formIsValid && 'Looks good!',
-        formIsValid: formIsValid,
-        password: payload
-      }
+      return createNewState({ state, type, payload })
     case CONFIRM:
-      formIsValid = validateFields({ confirm: payload, password, email })
-      return {
-        ...state,
-        message: formIsValid && 'Looks good!',
-        formIsValid: formIsValid,
-        confirm: payload
-      }
+      return createNewState({ state, type, payload })
     case MESSAGE:
       return { ...state, message: payload }
     case TOGGLE_SIGNUP:
-      return {
-        ...state,
-        isSignup: !isSignup,
-        email: '',
-        password: '',
-        confirm: '',
-        message: ''
-      }
+      return { ...initialState, isSignup: !state.isSignup }
     default:
       return state
   }
@@ -77,15 +76,17 @@ const PREVIOUS_PAGE_QUERY = gql`
 
 const SigninPage = ({ className }) => {
   const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
+  const [signup] = useSignupMutation()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { isSignup, email, password, confirm, message, formIsValid } = state
+  const { isSignup, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
   const signinText = isSignup
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
   const messageModifiers = [
     formIsValid ? 'greenColor' : 'redColor',
     'width100',
-    'textAlignCenter'
+    'textAlignCenter',
+    'smallText'
   ]
 
   const toggleSignup = () => dispatch({ type: TOGGLE_SIGNUP })
@@ -100,21 +101,15 @@ const SigninPage = ({ className }) => {
   const handleOnSubmit = e => {
     e.preventDefault()
     if (!validate(email)) {
-      return dispatch({
-        type: MESSAGE,
-        payload: 'Email is not valid'
-      })
-    } else if (password.length < 1) {
-      return dispatch({
-        type: MESSAGE,
-        payload: 'Please enter a password'
-      })
+      return dispatch({ type: MESSAGE, payload: 'Email is not valid' })
+    } else if (!username) {
+      return dispatch({ type: MESSAGE, payload: 'Please enter a username' })
+    } else if (!password) {
+      return dispatch({ type: MESSAGE, payload: 'Please enter a password' })
     } else if (isSignup && password !== confirm) {
-      return dispatch({
-        type: MESSAGE,
-        payload: 'Passwords do not match'
-      })
+      return dispatch({ type: MESSAGE, payload: 'Passwords do not match' })
     } else {
+      signup({ variables: { email, username, password } })
       navigate(['/', '/shop'].includes(previousPage) ? -1 : '/') // go back a page or go home
     }
   }
@@ -131,45 +126,56 @@ const SigninPage = ({ className }) => {
     )
   }
 
+  const fields = [
+    {
+      icon: 'account-circle',
+      type: 'text',
+      name: 'email',
+      value: email,
+      isSignup: false
+    },
+    {
+      icon: 'account-box',
+      type: 'text',
+      name: 'username',
+      value: username,
+      isSignup: true
+    },
+    {
+      icon: 'key',
+      type: 'password',
+      name: 'password',
+      value: password,
+      isSignup: false
+    },
+    {
+      icon: 'key',
+      type: 'password',
+      name: 'confirm',
+      value: confirm,
+      isSignup: true
+    }
+  ]
+
   return (
     <Signin>
       <Signin.Header />
       <Signin.Form method="post" onSubmit={handleOnSubmit}>
         <Signin.Fieldset>
-          <Signin.Field>
-            <Icon name="account" />
-            <Input
-              placeholder="email"
-              type="text"
-              name="email"
-              value={email}
-              onChange={handleOnChange}
-            />
-          </Signin.Field>
-
-          <Signin.Field>
-            <Icon name="key" />
-            <Input
-              placeholder="password"
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleOnChange}
-            />
-          </Signin.Field>
-
-          {isSignup && (
-            <Signin.Field>
-              <Icon name="key" />
-              <Input
-                placeholder="confirm password"
-                type="password"
-                name="confirm"
-                value={confirm}
-                onChange={handleOnChange}
-              />
-            </Signin.Field>
-          )}
+          {fields
+            .filter(f => isSignup || !f.isSignup)
+            .map((f, i) => (
+              <Signin.Field key={i}>
+                <Icon name={f.icon} />
+                <Input
+                  placeholder={f.name}
+                  type={f.type}
+                  name={f.name}
+                  value={f.value}
+                  onChange={handleOnChange}
+                />
+              </Signin.Field>
+            ))}
 
           <Signin.MessageText modifiers={messageModifiers}>
             {message}

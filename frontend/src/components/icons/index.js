@@ -15,6 +15,9 @@ import Key from './key'
 
 const Icon = props => {
   switch (props.name) {
+    case 'account-circle':
+    case 'account-box':
+      return <Account {...props} />
     case 'cart':
       return <Cart {...props} />
     case 'left-arrow':
@@ -35,8 +38,6 @@ const Icon = props => {
       return <ShoppingBag {...props} />
     case 'close':
       return <Close {...props} />
-    case 'account':
-      return <Account {...props} />
     case 'key':
       return <Key />
   }

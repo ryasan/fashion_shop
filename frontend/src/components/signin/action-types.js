@@ -1,4 +1,5 @@
 export const EMAIL = 'EMAIL'
+export const USERNAME = 'USERNAME'
 export const PASSWORD = 'PASSWORD'
 export const CONFIRM = 'CONFIRM'
 export const MESSAGE = 'MESSAGE'

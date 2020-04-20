@@ -5,7 +5,6 @@ export const PRODUCT_FRAGMENT = gql`
     availableSizes
     id
     description
-    id
     isFreeShipping
     price
     sku
