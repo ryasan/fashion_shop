@@ -1,7 +1,38 @@
 type Query {
-  products: [Product]!
+  foo: String
 }
 
-type Product {
-  id: Int!
+type Mutation {
+  signup(email: String!, username: Sting!, password: String!): User
+}
+
+interface Node {
+  id: ID!
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  username: String!
+  password: String!
+  cart: [CartItem!]!
+}
+
+type CartItem implements Node {
+  id: ID!
+  quantity: Int!
+  product: Product
+  user: User!
+}
+
+type Product implements Node {
+  id: ID!
+  availableSizes: [String!]!
+  description: String!
+  isFreeShipping: Boolean!
+  price: Int!
+  sku: Int!
+  style: String!
+  title: String!
+  featured: Boolean!
 }

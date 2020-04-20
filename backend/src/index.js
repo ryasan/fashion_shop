@@ -25,6 +25,6 @@ const options = {
   playground: '/playground'
 }
 
-server.start(options, deets =>
+server.start(options, (deets) =>
   console.log('Server is running on port: ', deets.port)
 )

@@ -1,3 +1,5 @@
-const Query = {}
+const Query = {
+  foo: () => {}
+}
 
 module.exports = Query
