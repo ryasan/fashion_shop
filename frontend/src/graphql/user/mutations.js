@@ -11,7 +11,6 @@ export const SIGNUP_MUTATION = gql`
       email
       username
       password
-      cart
     }
   }
 `

@@ -76,7 +76,7 @@ const PREVIOUS_PAGE_QUERY = gql`
 
 const SigninPage = ({ className }) => {
   const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
-  const [signup] = useSignupMutation()
+  const [signup,{ data, loading, error }] = useSignupMutation()
   const [state, dispatch] = useReducer(reducer, initialState)
   const { isSignup, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
   const signinText = isSignup
@@ -110,9 +110,11 @@ const SigninPage = ({ className }) => {
       return dispatch({ type: MESSAGE, payload: 'Passwords do not match' })
     } else {
       signup({ variables: { email, username, password } })
-      navigate(['/', '/shop'].includes(previousPage) ? -1 : '/') // go back a page or go home
+      // navigate(['/', '/shop'].includes(previousPage) ? -1 : '/') // go back a page or go home
     }
   }
+
+  console.log(data, loading, error)
 
   const renderLinks = () => {
     return isSignup ? (
