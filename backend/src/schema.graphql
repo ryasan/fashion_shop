@@ -1,16 +1,14 @@
+# import * from './generated/prisma.graphql'
+
 type Query {
   foo: String
 }
 
 type Mutation {
-  signup(email: String!, username: Sting!, password: String!): User
+  signup(email: String!, username: String!, password: String!): User
 }
 
-interface Node {
-  id: ID!
-}
-
-type User implements Node {
+type User {
   id: ID!
   email: String!
   username: String!
@@ -18,14 +16,14 @@ type User implements Node {
   cart: [CartItem!]!
 }
 
-type CartItem implements Node {
+type CartItem {
   id: ID!
   quantity: Int!
   product: Product
   user: User!
 }
 
-type Product implements Node {
+type Product {
   id: ID!
   availableSizes: [String!]!
   description: String!
