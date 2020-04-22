@@ -31,6 +31,7 @@ const PersistApolloProvider = ({ children }) => {
         resolvers: { Mutation },
         defaults: { ...cartInitialState, previousPage: null }
       },
+      credentials: 'include',
       fetch: fetch,
       cache: cache
     })
@@ -47,6 +48,4 @@ const PersistApolloProvider = ({ children }) => {
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 
-export const ApolloRoot = ({ element }) => {
-  return <PersistApolloProvider>{element}</PersistApolloProvider>
-}
+export default PersistApolloProvider

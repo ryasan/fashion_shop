@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Form from '../form'
 import Icon from '../icons'
-import { Input, Small, A, P } from '../elements'
+import { Input, Small, A, P, Button } from '../elements'
 
 const Signin = styled.div`
   width: 40rem;
@@ -35,7 +35,7 @@ Signin.SmallText = Small
 Signin.MessageText = P
 Signin.Icon = Icon
 Signin.Input = Input
-Signin.Submit = Input
+Signin.Submit = Button
 
 Signin.Header = styled.div`
   background: url(${require('../../images/logo-royal.svg')}) center 30%;

@@ -8,7 +8,7 @@ export const TOGGLE_CART = gql`
 `
 
 export const ADD_CART_ITEM = gql`
-  mutation addCartItemMutation($product: Product) {
+  mutation($product: Product) {
     addCartItem(product: $product) @client {
       product {
         ...ProductFragment
@@ -19,7 +19,7 @@ export const ADD_CART_ITEM = gql`
 `
 
 export const REMOVE_CART_ITEM = gql`
-  mutation removeCartItemMutation($product: Product!) {
+  mutation($product: Product!) {
     removeCartItem(product: $product) @client {
       ...ProductFragment
     }

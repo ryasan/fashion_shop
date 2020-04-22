@@ -40,6 +40,7 @@ Cart.Btn = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: fill 0.2s;
   &:before {
     content: '';
     position: absolute;

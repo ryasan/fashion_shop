@@ -7,7 +7,6 @@ import {
 import MODIFIER_CONFIG from './config/modifier-config'
 
 export const Button = styled.button`
-  padding: 1.5rem 2rem;
   cursor: pointer;
   border: none;
   ${applyStyleModifiers(MODIFIER_CONFIG)};

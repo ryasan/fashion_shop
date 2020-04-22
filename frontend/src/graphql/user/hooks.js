@@ -1,7 +1,28 @@
-import { useMutation } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 
-import { SIGNUP_MUTATION } from './mutations'
+import { SIGNUP_MUTATION, SIGNIN_MUTATION, SIGNOUT_MUTATION } from './mutations'
+import { CURRENT_USER_QUERY } from './queries'
+
+export const useCurrentUserQuery = () => {
+  return useQuery(CURRENT_USER_QUERY, {
+    fetchPolicy: 'network-only'
+  })
+}
+
+export const useSigninMutation = () => {
+  const [signin, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }]
+  })
+  return { authorize: signin, data, error, loading }
+}
+
+export const useSignoutMutation = () => {
+  return useMutation(SIGNOUT_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }]
+  })
+}
 
 export const useSignupMutation = () => {
-  return useMutation(SIGNUP_MUTATION)
+  const [signup, { data, error, loading }] = useMutation(SIGNUP_MUTATION, {})
+  return { authorize: signup, data, error, loading }
 }

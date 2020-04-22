@@ -1,1 +1,1 @@
-export { ApolloRoot as wrapRootElement } from './src/graphql/apollo-root'
+export { wrapRootElement } from './src/root'

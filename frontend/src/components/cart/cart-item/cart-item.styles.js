@@ -56,9 +56,9 @@ CartItem.Delete = styled(Icon)`
   top: -0.3rem;
   right: 0;
   cursor: pointer;
-  color: black;
+  fill: black;
   &:hover {
-    color: var(--off-white);
+    fill: var(--off-white);
   }
 `
 

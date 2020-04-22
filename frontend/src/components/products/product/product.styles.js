@@ -59,6 +59,7 @@ Product.BuyBtn = styled(Button)`
   border-width: 2px;
   border-style: solid;
   outline-color: var(--red);
+  padding: 1.5rem 2rem;
   &:hover {
     color: var(--red);
     background: var(--dark);

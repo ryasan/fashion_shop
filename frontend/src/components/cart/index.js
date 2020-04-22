@@ -72,7 +72,7 @@ const CartComponent = () => {
               {formatPrice(cartTotal)}
             </Cart.Text>
           </Cart.SubPrice>
-          <Cart.CheckoutBtn modifiers={['darker', 'offWhiteColor']}>
+          <Cart.CheckoutBtn modifiers={['darker', 'offWhiteColor', 'largeText']}>
             CHECKOUT
           </Cart.CheckoutBtn>
         </Cart.Footer>

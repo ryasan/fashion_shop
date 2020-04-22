@@ -9,11 +9,35 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   height: 7rem;
+  .toast-container {
+    width: auto;
+  }
+  .toast {
+    background: var(--dark);
+    font-size: var(--regular-font);
+    color: var(--off-white);
+    overflow: initial;
+    position: relative;
+    padding: 0 3rem;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -2rem;
+      right: 0;
+      width: 0;
+      height: 0;
+      border: 2rem solid transparent;
+      border-top-color: var(--dark);
+      border-bottom: 0;
+      border-right: 0;
+    }
+  }
 `
 
 Header.Nav = styled.ul`
   display: flex;
-  margin-right: 7rem;
+  margin-right: 6rem;
   @media ${device.mobileL} {
     margin-right: 5rem;
   }
@@ -40,6 +64,9 @@ Header.NavItem = styled.li`
   }
   &:hover {
     color: var(--red);
+    svg {
+      fill: var(--red);
+    }
     &:after {
       width: 100%;
     }
@@ -47,21 +74,24 @@ Header.NavItem = styled.li`
   @media ${device.mobileL} {
     margin-right: 1rem;
   }
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--regular-font);
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+  }
 `
 
-Header.Link = styled(Link)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--regular-font);
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.2s;
-`
+Header.SignoutBtn = styled.a``
 
-Header.Logo = styled(Link)`
+Header.Link = Link
+
+Header.LogoContainer = styled(Link)`
   width: 10rem;
   display: inline;
   margin-left: 3rem;
@@ -69,9 +99,14 @@ Header.Logo = styled(Link)`
   align-items: center;
 `
 
-Header.Image = styled(Icon)`
+Header.Logo = styled(Icon)`
   width: 100%;
   height: 100%;
+`
+
+Header.NavIcon = styled(Icon)`
+  fill: var(--off-white);
+  transition: fill 0.2s;
 `
 
 export default Header
