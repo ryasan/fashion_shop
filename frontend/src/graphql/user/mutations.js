@@ -1,5 +1,13 @@
 import gql from 'graphql-tag'
 
+export const DELETE_ME = gql`
+  mutation {
+    deleteMe {
+      message
+    }
+  }
+`
+
 export const SIGNIN_MUTATION = gql`
   mutation($email: String!, $password: String!) {
     signin(email: $email, password: $password) {

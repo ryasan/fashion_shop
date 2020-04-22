@@ -1,10 +1,15 @@
 import { css } from 'styled-components'
 
 const MODIFIER_CONFIG = {
-  clear: () =>
-    css`
-      background-color: transparent;
-    `,
+  border2px: () => css`
+    border-width: 2px;
+  `,
+  border3px: () => css`
+    border-width: 3px;
+  `,
+  clear: () => css`
+    background-color: transparent;
+  `,
   dark: () => css`
     background-color: var(--dark);
   `,
@@ -43,6 +48,9 @@ const MODIFIER_CONFIG = {
   `,
   smallText: () => css`
     font-size: var(--small-font);
+  `,
+  solidBorder: () => css`
+    border-style: solid;
   `,
   superSmallText: () => css`
     font-size: var(--super-small-font);

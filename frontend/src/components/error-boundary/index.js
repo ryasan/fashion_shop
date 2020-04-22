@@ -8,7 +8,9 @@ const ErrorBoundaryComponent = ({ error, children }) => {
       <ErrorBoundary>
         {error.networkError.result.errors.map((error, i) => (
           <ErrorBoundary.Text key={i}>
-            <ErrorBoundary.Addon modifiers="redColor">!&nbsp;</ErrorBoundary.Addon>
+            <ErrorBoundary.Addon modifiers="redColor">
+              !&nbsp;
+            </ErrorBoundary.Addon>
             {error.message}
           </ErrorBoundary.Text>
         ))}
@@ -20,21 +22,16 @@ const ErrorBoundaryComponent = ({ error, children }) => {
     return (
       <ErrorBoundary>
         <ErrorBoundary.Text>
-          <ErrorBoundary.Addon modifiers="redColor">!&nbsp;</ErrorBoundary.Addon>
-          {error.title}: {error.message}
+          <ErrorBoundary.Addon modifiers="redColor">
+            !&nbsp;
+          </ErrorBoundary.Addon>
+          {error?.title}: {error.message}
         </ErrorBoundary.Text>
       </ErrorBoundary>
     )
   }
 
-  return (
-    <ErrorBoundary>
-      <ErrorBoundary.Text>
-        <ErrorBoundary.Addon modifiers="redColor">!&nbsp;</ErrorBoundary.Addon>
-        Error: An unknown error has occurred
-      </ErrorBoundary.Text>
-    </ErrorBoundary>
-  )
+  return children
 }
 
 ErrorBoundaryComponent.defaultProps = {

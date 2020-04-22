@@ -95,7 +95,10 @@ const SigninPage = ({ className }) => {
 
   useEffect(() => {
     if (error) {
-      dispatch({ type: MESSAGE, payload: error.message.substring(15) })
+      dispatch({
+        type: MESSAGE,
+        payload: error.message.substring(15)
+      })
     }
   }, [error])
 
@@ -106,7 +109,9 @@ const SigninPage = ({ className }) => {
     }
   }, [data])
 
-  const toggleSignup = () => dispatch({ type: TOGGLE_SIGNUP })
+  const toggleSignup = () => {
+    dispatch({ type: TOGGLE_SIGNUP })
+  }
 
   const handleOnChange = async e => {
     dispatch({
@@ -145,18 +150,6 @@ const SigninPage = ({ className }) => {
     }
   }
 
-  const renderLinks = () => {
-    return isSignin ? (
-      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
-        Signup
-      </Signin.Link>
-    ) : (
-      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
-        Signin
-      </Signin.Link>
-    )
-  }
-
   const fields = [
     {
       icon: 'account-circle',
@@ -190,6 +183,18 @@ const SigninPage = ({ className }) => {
 
   const filterFields = field => {
     return isSignin && field.hideWhenSignin ? null : field
+  }
+
+  const renderLinks = () => {
+    return isSignin ? (
+      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
+        Signup
+      </Signin.Link>
+    ) : (
+      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
+        Signin
+      </Signin.Link>
+    )
   }
 
   return (

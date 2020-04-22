@@ -1,40 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { navigate } from '@reach/router'
 
 import PleaseSignin from './please-sign-in.styles'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
+import { redButton, clearButton } from '../shared'
+import { withHoverHOC } from '../../utils'
 
-const PleaseSigninComponent = ({ children }) => {
-  const [isHovering, setIsHovering] = useState(false)
+const PleaseSigninComponent = props => {
   const { data } = useCurrentUserQuery()
   const me = data && data.me
-  const btnModifiers = [
-    isHovering ? 'transparent' : 'red',
-    isHovering ? 'redColor' : 'whiteColor',
-    'redBorder',
-    'mediumText',
-    'redOutline'
-  ]
-  const textModifiers = ['whiteColor', 'mediumText']
 
   if (!me) {
     return (
       <PleaseSignin>
-        <PleaseSignin.Text modifiers={textModifiers}>
+        <PleaseSignin.Text modifiers={['whiteColor', 'mediumText']}>
           Please sign in before continuing
         </PleaseSignin.Text>
         <PleaseSignin.Btn
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
+          {...props.handleHover()}
           onClick={() => navigate('/signin')}
-          modifiers={btnModifiers}>
+          modifiers={props.isHovering ? clearButton : redButton}>
           Signin
         </PleaseSignin.Btn>
       </PleaseSignin>
     )
   }
 
-  return children
+  return props.children
 }
 
-export default PleaseSigninComponent
+export default withHoverHOC(PleaseSigninComponent)

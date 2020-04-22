@@ -10,15 +10,10 @@ const ProductComponent = ({ product }) => {
   const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
   const productImage = require(`../../../images/products/${product.sku}_1.jpg`)
-
-  const amount = {
-    dollar: formattedPrice.slice(0, -3),
-    cents: formattedPrice.slice(formattedPrice.length - 3)
-  }
-  const modifiers = {
-    special: ['red', 'whiteColor', 'superSmallText'],
-    button: ['red', 'whiteColor', 'redBorder', 'mediumText']
-  }
+  const specialModifiers = ['red', 'whiteColor', 'superSmallText']
+  const btnModifiers = ['red', 'whiteColor', 'redBorder', 'mediumText']
+  const dollars = formattedPrice.slice(0, -3)
+  const cents = formattedPrice.slice(formattedPrice.length - 3)
 
   const handleAddCartItem = () => {
     addCartItem({ variables: { product } })
@@ -27,27 +22,24 @@ const ProductComponent = ({ product }) => {
   return (
     <Product>
       {product.isFreeShipping && (
-        <Product.Special modifiers={modifiers.special}>
+        <Product.Special modifiers={specialModifiers}>
           Free shipping
         </Product.Special>
       )}
       <Product.Thumb>
-        <Product.Image
-          src={productImage}
-          alt={product.title}
-        />
+        <Product.Image src={productImage} alt={product.title} />
       </Product.Thumb>
       <Product.Details>
         <Product.Divider modifiers="red" />
         <Product.Title>{product.title}</Product.Title>
         <Product.Price>
-          <Product.Dollars>{amount.dollars}</Product.Dollars>
-          <Product.Cents>{amount.cents}</Product.Cents>
+          <Product.Dollars>{dollars}</Product.Dollars>
+          <Product.Cents>{cents}</Product.Cents>
         </Product.Price>
       </Product.Details>
       <Product.BuyBtn
         className="buy-btn"
-        modifiers={modifiers.button}
+        modifiers={btnModifiers}
         onClick={handleAddCartItem}>
         Add to cart
       </Product.BuyBtn>
