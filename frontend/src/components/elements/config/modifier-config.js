@@ -56,6 +56,9 @@ const MODIFIER_CONFIG = {
   textAlignRight: () => css`
     text-align: right;
   `,
+  transparent: () => css`
+    background: transparent;
+  `,
   uppercase: () => css`
     text-transform: uppercase;
   `,

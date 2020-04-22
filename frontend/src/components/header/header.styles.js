@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
+import { Small } from '../elements'
 import { device } from '../../utils'
 
 const Header = styled.header`
@@ -90,6 +91,7 @@ Header.NavItem = styled.li`
 Header.SignoutBtn = styled.a``
 
 Header.Link = Link
+Header.Text = Small
 
 Header.LogoContainer = styled(Link)`
   width: 10rem;

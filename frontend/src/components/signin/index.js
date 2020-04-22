@@ -101,8 +101,8 @@ const SigninPage = ({ className }) => {
 
   useEffect(() => {
     if (data) {
-      // console.log(data.signin)
-      // navigate(['/', '/shop'].includes(previousPage) ? -1 : '/') // go back a page or go home
+      const routes = ['/', '/shop', '/account']
+      navigate(routes.includes(previousPage) ? -1 : '/') // go back a page or go home
     }
   }, [data])
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { navigate } from '@reach/router'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 
@@ -28,6 +29,19 @@ const HeaderComponent = () => {
     autoClose: 3000
   }
 
+  const goToAccountPage = () => {
+    navigate('/account')
+  }
+
+  // prettier-ignore
+  const navItems = [
+    { isVisible: true, element: <Header.Link to="/">HOME</Header.Link> },
+    { isVisible: true, element: <Header.Link to="/shop">SHOP</Header.Link> },
+    { isVisible: me, element: <Header.SignoutBtn onClick={signout}>SIGNOUT</Header.SignoutBtn> },
+    { isVisible: !me, element: <Header.Link to="/signin">SIGNIN</Header.Link> },
+    { isVisible: me, element: <Header.NavIcon name="account-circle" onClick={goToAccountPage} /> }
+  ]
+
   return (
     <Header>
       <Header.LogoContainer to="/">
@@ -35,26 +49,11 @@ const HeaderComponent = () => {
       </Header.LogoContainer>
       <ToastContainer {...toastOptions} />
       <Header.Nav>
-        <Header.NavItem>
-          <Header.Link to="/">HOME</Header.Link>
-        </Header.NavItem>
-        <Header.NavItem>
-          <Header.Link to="/shop">SHOP</Header.Link>
-        </Header.NavItem>
-        {me ? (
-          <Header.NavItem>
-            <Header.SignoutBtn onClick={signout}>SIGNOUT</Header.SignoutBtn>
-          </Header.NavItem>
-        ) : (
-          <Header.NavItem>
-            <Header.Link to="/signin">SIGNIN</Header.Link>
-          </Header.NavItem>
-        )}
-        {me && (
-          <Header.NavItem>
-            <Header.NavIcon name="account-circle" />
-          </Header.NavItem>
-        )}
+        {navItems
+          .filter(item => item.isVisible)
+          .map((item, i) => (
+            <Header.NavItem key={i}>{item.element}</Header.NavItem>
+          ))}
       </Header.Nav>
     </Header>
   )
