@@ -1,3 +1,12 @@
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
+}
+
 type User {
   id: ID! @unique @id
   username: String! @unique
@@ -21,7 +30,7 @@ type Product {
   description: String!
   isFreeShipping: Boolean!
   price: Int!
-  sku: Int!
+  sku: String!
   style: String!
   title: String!
   featured: Boolean!

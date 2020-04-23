@@ -1,5 +1,14 @@
 # import * from './generated/prisma.graphql'
 
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
+}
+
 type Query {
   me: User
 }
@@ -28,11 +37,11 @@ type CartItem {
 
 type Product {
   id: ID!
-  availableSizes: [String!]!
+  availableSizes: [Size!]
   description: String!
   isFreeShipping: Boolean!
   price: Int!
-  sku: Int!
+  sku: String!
   style: String!
   title: String!
   featured: Boolean!
