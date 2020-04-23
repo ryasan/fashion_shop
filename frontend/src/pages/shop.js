@@ -44,26 +44,32 @@ const ShopProducts = () => {
 
   if (loading) return <Shop.Loader color="white" />
 
-  useEffect(() => {
-    setState(data.products[0].availableSizes)
-    delete data.products[0].availableSizes
-    delete data.products[0].__typename
-    delete data.products[0].quantity
-    delete data.products[0].id
-  }, [])
+  // useEffect(() => {
+  //   if (data) {
+  //     // setState(data.products[0].availableSizes)
+  //     // delete data.products[0].availableSizes
+  //     // delete data.products[0].__typename
+  //     // delete data.products[0].quantity
+  //     // delete data.products[0].id
+  //   }
+  // }, [data])
 
+  // console.log(state)
   return (
     <ErrorBoundary error={error}>
-      <button onClick={() => {
-            createProduct({
-              variables: {
-                input: {
-                  ...data.products[0],
-                  availableSizes: { set: state }
-                }
-              }
-            })
-      }}>add products</button>
+      <button
+        onClick={() => {
+          // createProduct({
+          //   variables: {
+          //     input: {
+          //       ...data.products[0],
+          //       availableSizes: { set: state }
+          //     }
+          //   }
+          // })
+        }}>
+        add products
+      </button>
       {/* <ProductList products={data.products} /> */}
     </ErrorBoundary>
   )

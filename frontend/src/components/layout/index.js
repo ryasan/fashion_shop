@@ -14,7 +14,7 @@ toast.configure()
 
 const toastOptions = {
   draggable: false,
-  closeButton: false,
+  closeButton: true,
   hideProgressBar: true,
   className: 'toast-container',
   toastClassName: 'toast',
@@ -32,6 +32,10 @@ const LayoutComponent = ({ children }) => {
       }
     })
   }, [])
+
+  useEffect(() => {
+    console.log(toast)
+  }, [toast])
 
   return (
     <Layout>
