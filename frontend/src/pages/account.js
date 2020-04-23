@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Account from '../styles/account-page.styles'
-
 import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
 import { redButton, clearButton } from '../components/elements'
 import { withHoverState } from '../utils'
@@ -20,7 +20,7 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
   }
 
   useEffect(() => {
-    console.log('delete data', data)
+    if (data) toast(data.deleteMe.message)
   }, [data])
 
   if (loading) {
@@ -30,17 +30,19 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
   if (me) {
     return (
       <Account.Details>
-        <Account.Text modifiers="whiteColor">email: {me.email}</Account.Text>
-        <Account.Text modifiers="whiteColor">
-          username: {me.username}
-        </Account.Text>
-        <Account.DeleteMeBtn
-          {...mouseHoverProps}
-          onClick={handleDelete}
-          modifiers={isHovering ? clearButton : redButton}>
-          Delete Account
-        </Account.DeleteMeBtn>
-        {/* order history */}
+        <Account.ErrorBoundary error={error}>
+          <Account.Text modifiers="whiteColor">email: {me.email}</Account.Text>
+          <Account.Text modifiers="whiteColor">
+            username: {me.username}
+          </Account.Text>
+          <Account.DeleteMeBtn
+            {...mouseHoverProps}
+            onClick={handleDelete}
+            modifiers={isHovering ? clearButton : redButton}>
+            Delete Account
+          </Account.DeleteMeBtn>
+          {/* order history */}
+        </Account.ErrorBoundary>
       </Account.Details>
     )
   }
