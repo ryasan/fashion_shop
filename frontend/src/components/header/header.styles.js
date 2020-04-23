@@ -1,15 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
 import { Small } from '../elements'
 import { device } from '../../utils'
 
-const Header = styled.header`
-  background: var(--dark);
-  display: flex;
-  justify-content: space-between;
-  height: 7rem;
+const ToastStyles = css`
   .toast-container {
     width: auto;
   }
@@ -34,6 +30,14 @@ const Header = styled.header`
       border-right: 0;
     }
   }
+`
+
+const Header = styled.header`
+  background: var(--dark);
+  display: flex;
+  justify-content: space-between;
+  height: 7rem;
+  ${ToastStyles};
 `
 
 Header.Nav = styled.ul`

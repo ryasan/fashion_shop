@@ -14,9 +14,7 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
   const handleDelete = e => {
     e.preventDefault()
     const ok = confirm(`Delete account for ${me.username}?`)
-    if (ok) {
-      deleteMe()
-    }
+    if (ok) deleteMe()
   }
 
   useEffect(() => {

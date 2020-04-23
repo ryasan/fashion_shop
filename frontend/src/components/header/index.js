@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.min.css'
+import { toast } from 'react-toastify'
 
 import Header from './header.styles'
 import {
   useCurrentUserQuery,
   useSignoutMutation
 } from '../../graphql/user/hooks'
-
-toast.configure()
 
 const HeaderComponent = () => {
   const { data } = useCurrentUserQuery()
@@ -19,15 +16,6 @@ const HeaderComponent = () => {
   useEffect(() => {
     if (signoutData) toast(signoutData.signout.message)
   }, [signoutData])
-
-  const toastOptions = {
-    draggable: false,
-    closeButton: false,
-    hideProgressBar: true,
-    className: 'toast-container',
-    toastClassName: 'toast',
-    autoClose: 3000
-  }
 
   const goToAccountPage = () => {
     navigate('/account')
@@ -47,7 +35,6 @@ const HeaderComponent = () => {
       <Header.LogoContainer to="/">
         <Header.Logo name="logo-royal" />
       </Header.LogoContainer>
-      <ToastContainer {...toastOptions} />
       <Header.Nav>
         {navItems
           .filter(item => item.isVisible)
