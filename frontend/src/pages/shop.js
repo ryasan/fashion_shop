@@ -5,14 +5,17 @@ import Shop from '../styles/shop-page.styles'
 import SEO from '../components/seo/index'
 import ProductList from '../components/products'
 import ErrorBoundary from '../components/error-boundary/index'
-import { useMockProducts } from '../utils'
+import { useProductsQuery } from '../graphql/product/hooks'
 
 const ShopProducts = () => {
-  const { mockProducts, loading, error } = useMockProducts()
+  const { data, error, loading } = useProductsQuery()
 
   if (loading) return <Shop.Loader color="white" />
-  if (error) return <ErrorBoundary error={error} />
-  return <ProductList products={mockProducts} />
+  return (
+    <ErrorBoundary error={error}>
+      <ProductList products={data.products} />
+    </ErrorBoundary>
+  )
 }
 
 const ShopPage = () => {

@@ -11,6 +11,5 @@ export const PRODUCT_FRAGMENT = gql`
     style
     title
     featured
-    quantity
   }
 `
