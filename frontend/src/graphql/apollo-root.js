@@ -11,7 +11,7 @@ import { Mutation } from './local-resolvers'
 import { cartInitialState } from './cart/reducer'
 
 const devEndpoint = 'http://localhost:5000'
-const prodEndpoint = 'TBD'
+const prodEndpoint = 'https://fashion-shop-yoga-prod.herokuapp.com'
 
 const Loader = styled(LoaderComponent)`
   width: 100%;
