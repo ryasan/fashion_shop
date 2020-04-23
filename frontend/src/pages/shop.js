@@ -11,6 +11,7 @@ const ShopProducts = () => {
   const { data, error, loading } = useProductsQuery()
 
   if (loading) return <Shop.Loader color="white" />
+  console.log('data--->',data)
   return (
     <ErrorBoundary error={error}>
       <ProductList products={data.products} />
