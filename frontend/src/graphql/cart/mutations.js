@@ -1,5 +1,5 @@
 import gql from 'graphql-tag'
-import { PRODUCT_FRAGMENT } from './fragments'
+import { CART_ITEM_FRAGMENT } from './fragments';
 
 export const TOGGLE_CART = gql`
   mutation {
@@ -11,18 +11,18 @@ export const ADD_CART_ITEM = gql`
   mutation($product: Product) {
     addCartItem(product: $product) @client {
       product {
-        ...ProductFragment
+        ...CartItemFragment
       }
     }
   }
-  ${PRODUCT_FRAGMENT}
+  ${CART_ITEM_FRAGMENT}
 `
 
 export const REMOVE_CART_ITEM = gql`
   mutation($product: Product!) {
     removeCartItem(product: $product) @client {
-      ...ProductFragment
+      ...CartItemFragment
     }
   }
-  ${PRODUCT_FRAGMENT}
+  ${CART_ITEM_FRAGMENT}
 `

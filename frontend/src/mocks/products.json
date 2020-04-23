@@ -9,7 +9,7 @@
       "id": 12,
       "isFreeShipping": true,
       "price": 1090,
-      "sku": 12064273040195392,
+      "sku": "12064273040195392",
       "style": "Black with custom print",
       "title": "Cat Tee Black T-Shirt",
       "featured": true
@@ -22,14 +22,13 @@
       "id": 13,
       "isFreeShipping": true,
       "price": 2945,
-      "sku": 51498472915966370,
+      "sku": "51498472915966370",
       "style": "Front print and paisley print",
       "title": "Dark Thug Blue-Navy T-Shirt",
       "featured": true
     },
     {
       "availableSizes": [
-        "X",
         "L",
         "XL"
       ],
@@ -37,14 +36,13 @@
       "id": 14,
       "isFreeShipping": true,
       "price": 900,
-      "sku": 10686354557628304,
+      "sku": "10686354557628304",
       "style": "Front tie dye print",
       "title": "Sphynx Tie Dye Wine T-Shirt",
       "featured": true
     },
     {
       "availableSizes": [
-        "X",
         "L",
         "XL",
         "XXL"
@@ -53,28 +51,26 @@
       "id": 15,
       "isFreeShipping": true,
       "price": 1400,
-      "sku": 11033926921508488,
+      "sku": "11033926921508488",
       "style": "Black T-Shirt with front print",
       "title": "Skuul",
       "featured": true
     },
     {
       "availableSizes": [
-        "X",
         "L"
       ],
       "description": "",
       "id": 11,
       "isFreeShipping": true,
       "price": 1325,
-      "sku": 39876704341265610,
+      "sku": "39876704341265610",
       "style": "Wine",
       "title": "Wine Skul T-Shirt",
       "featured": true
     },
     {
       "availableSizes": [
-        "X",
         "L",
         "XL",
         "XXL"
@@ -83,14 +79,13 @@
       "id": 0,
       "isFreeShipping": true,
       "price": 1090,
-      "sku": 8552515751438644,
+      "sku": "8552515751438644",
       "style": "Branco com listras pretas",
       "title": "Cat Tee Black T-Shirt",
       "featured": false
     },
     {
       "availableSizes": [
-        "X",
         "L",
         "XL",
         "XXL"
@@ -99,35 +94,33 @@
       "id": 1,
       "isFreeShipping": true,
       "price": 1090,
-      "sku": 18644119330491310,
+      "sku": "18644119330491310",
       "style": "Preta com listras brancas",
       "title": "Sphynx Tie Dye Grey T-Shirt",
       "featured": false
     },
     {
       "availableSizes": [
-        "X",
         "L"
       ],
       "description": "14/15 s/nº",
       "id": 2,
       "isFreeShipping": true,
       "price": 1490,
-      "sku": 11854078013954528,
+      "sku": "11854078013954528",
       "style": "Branco com listras pretas",
       "title": "Danger Knife Grey",
       "featured": false
     },
     {
       "availableSizes": [
-        "X",
         "L"
       ],
       "description": "2014 s/nº",
       "id": 3,
       "isFreeShipping": true,
       "price": 1490,
-      "sku": 876661122392077,
+      "sku": "876661122392077",
       "style": "Preto com listras brancas",
       "title": "White DGK Script Tee",
       "featured": false
@@ -140,14 +133,13 @@
       "id": 4,
       "isFreeShipping": false,
       "price": 2590,
-      "sku": 9197907543445676,
+      "sku": "9197907543445676",
       "style": "Branco com listras pretas",
       "title": "Born On The Streets",
       "featured": false
     },
     {
       "availableSizes": [
-        "X",
         "L",
         "XL"
       ],
@@ -155,7 +147,7 @@
       "id": 5,
       "isFreeShipping": false,
       "price": 1090,
-      "sku": 10547961582846888,
+      "sku": "10547961582846888",
       "style": "Preto",
       "title": "Tso 3D Short Sleeve T-Shirt A",
       "featured": false
@@ -169,7 +161,7 @@
       "id": 6,
       "isFreeShipping": true,
       "price": 2990,
-      "sku": 6090484789343891,
+      "sku": "6090484789343891",
       "style": "Branco",
       "title": "Man Tie Dye Cinza Grey T-Shirt",
       "featured": false
@@ -182,7 +174,7 @@
       "id": 7,
       "isFreeShipping": true,
       "price": 2250,
-      "sku": 18532669286405344,
+      "sku": "18532669286405344",
       "style": "Preto com listras brancas",
       "title": "Crazy Monkey Black T-Shirt",
       "featured": false
@@ -195,7 +187,7 @@
       "id": 8,
       "isFreeShipping": false,
       "price": 1870,
-      "sku": 5619496040738316,
+      "sku": "5619496040738316",
       "style": "Azul escuro",
       "title": "Tso 3D Black T-Shirt",
       "featured": false
@@ -209,7 +201,7 @@
       "id": 9,
       "isFreeShipping": true,
       "price": 3490,
-      "sku": 11600983276356164,
+      "sku": "11600983276356164",
       "style": "",
       "title": "Crazy Monkey Grey",
       "featured": false
@@ -223,7 +215,7 @@
       "id": 10,
       "isFreeShipping": true,
       "price": 2500,
-      "sku": 27250082398145996,
+      "sku": "27250082398145996",
       "style": "",
       "title": "On The Streets Black T-Shirt",
       "featured": false

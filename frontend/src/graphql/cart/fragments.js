@@ -1,16 +1,11 @@
 import gql from 'graphql-tag'
 
-export const PRODUCT_FRAGMENT = gql`
-  fragment ProductFragment on Product {
-    availableSizes
-    id
-    description
-    isFreeShipping
-    price
-    sku
-    style
-    title
-    featured
+import { PRODUCT_FRAGMENT } from '../product/fragments'
+
+export const CART_ITEM_FRAGMENT = gql`
+  fragment CartItemFragment on Product {
+    ...ProductFragment
     quantity
   }
+  ${PRODUCT_FRAGMENT}
 `
