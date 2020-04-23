@@ -1,11 +1,14 @@
 # import * from './generated/prisma.graphql'
 
 type Query {
-  foo: String
+  me: User
 }
 
 type Mutation {
-  signup(email: String!, username: String!, password: String!): User
+  deleteMe: SuccessMessage
+  signin(email: String!, password: String!): User!
+  signout: SuccessMessage
+  signup(email: String!, username: String!, password: String!): User!
 }
 
 type User {
@@ -33,4 +36,8 @@ type Product {
   style: String!
   title: String!
   featured: Boolean!
+}
+
+type SuccessMessage {
+  message: String
 }

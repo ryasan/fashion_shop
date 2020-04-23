@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/ryan-santos-beb648/fashion-shop/dev
-# timestamp: Mon Apr 20 2020 00:09:19 GMT-0700 (Pacific Daylight Time)
+# timestamp: Tue Apr 21 2020 00:06:19 GMT-0700 (Pacific Daylight Time)
 
 type AggregateCartItem {
   count: Int!
@@ -792,6 +792,8 @@ type User implements Node {
   email: String!
   password: String!
   cart(where: CartItemWhereInput, orderBy: CartItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CartItem!]
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 """A connection to a list of items."""
@@ -809,6 +811,8 @@ input UserCreateInput {
   username: String!
   email: String!
   password: String!
+  resetToken: String
+  resetTokenExpiry: Float
   cart: CartItemCreateManyWithoutUserInput
 }
 
@@ -822,6 +826,8 @@ input UserCreateWithoutCartInput {
   username: String!
   email: String!
   password: String!
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 """An edge in a connection."""
@@ -842,6 +848,10 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
 }
 
 type UserPreviousValues {
@@ -849,6 +859,8 @@ type UserPreviousValues {
   username: String!
   email: String!
   password: String!
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 type UserSubscriptionPayload {
@@ -892,6 +904,8 @@ input UserUpdateInput {
   username: String
   email: String
   password: String
+  resetToken: String
+  resetTokenExpiry: Float
   cart: CartItemUpdateManyWithoutUserInput
 }
 
@@ -899,6 +913,8 @@ input UserUpdateManyMutationInput {
   username: String
   email: String
   password: String
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 input UserUpdateOneRequiredWithoutCartInput {
@@ -912,6 +928,8 @@ input UserUpdateWithoutCartDataInput {
   username: String
   email: String
   password: String
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 input UserUpsertWithoutCartInput {
@@ -1088,6 +1106,68 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  resetToken: String
+
+  """All values that are not equal to given value."""
+  resetToken_not: String
+
+  """All values that are contained in given list."""
+  resetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  resetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  resetToken_lt: String
+
+  """All values less than or equal the given value."""
+  resetToken_lte: String
+
+  """All values greater than the given value."""
+  resetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  resetToken_gte: String
+
+  """All values containing the given string."""
+  resetToken_contains: String
+
+  """All values not containing the given string."""
+  resetToken_not_contains: String
+
+  """All values starting with the given string."""
+  resetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  resetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  resetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
   cart_every: CartItemWhereInput
   cart_some: CartItemWhereInput
   cart_none: CartItemWhereInput
@@ -1095,4 +1175,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  username: String
+  email: String
 }

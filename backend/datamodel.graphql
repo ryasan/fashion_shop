@@ -1,9 +1,11 @@
 type User {
   id: ID! @unique @id
   username: String! @unique
-  email: String!
+  email: String! @unique
   password: String!
-  cart: [CartItem!]! @scalarList(strategy:RELATION)
+  cart: [CartItem!]! @scalarList(strategy: RELATION)
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 type CartItem {
@@ -15,7 +17,7 @@ type CartItem {
 
 type Product {
   id: ID! @unique @id
-  availableSizes: [String]! @scalarList(strategy:RELATION)
+  availableSizes: [String]! @scalarList(strategy: RELATION)
   description: String!
   isFreeShipping: Boolean!
   price: Int!
