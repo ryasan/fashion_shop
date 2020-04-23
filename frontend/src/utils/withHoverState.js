@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 
-export const withHoverHOC = Component => props => {
+export const withHoverState = Component => props => {
   const [isHovering, setIsHovering] = useState(false)
-
-  const handleHover = () => ({
+  const mouseHoverProps = {
     onMouseEnter: () => setIsHovering(true),
     onMouseLeave: () => setIsHovering(false)
-  })
-
-  const moreProps = { ...props, isHovering, handleHover }
+  }
+  const moreProps = { ...props, isHovering, mouseHoverProps }
 
   return <Component {...moreProps} />
 }

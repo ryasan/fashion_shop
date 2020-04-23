@@ -1,35 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Account from '../styles/account-page.styles'
 
-import { useCurrentUserQuery } from '../graphql/user/hooks'
-import { redButton, clearButton } from '../components/shared'
-import { withHoverHOC } from '../utils'
+import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
+import { redButton, clearButton } from '../components/elements'
+import { withHoverState } from '../utils'
 
-const AccountDetails = props => {
+const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
+  const [deleteMe, { data, loading, error }] = useDeleteMeMutation()
+
   const handleDelete = e => {
     e.preventDefault()
-    const okToDelete = confirm('Are you sure you want to delete your account?')
-    console.log(okToDelete)
+    const ok = confirm(`Delete account for ${me.username}?`)
+    if (ok) {
+      deleteMe()
+    }
   }
 
-  if (props.me) {
+  useEffect(() => {
+    console.log('delete data', data)
+  }, [data])
+
+  if (loading) {
+    return <Account.Loader color="white" />
+  }
+
+  if (me) {
     return (
       <Account.Details>
+        <Account.Text modifiers="whiteColor">email: {me.email}</Account.Text>
         <Account.Text modifiers="whiteColor">
-          email: {props.me.email}
+          username: {me.username}
         </Account.Text>
-        <Account.Text modifiers="whiteColor">
-          username: {props.me.username}
-        </Account.Text>
-        <Account.DelMeBtn
-          {...props.handleHover()}
+        <Account.DeleteMeBtn
+          {...mouseHoverProps}
           onClick={handleDelete}
-          modifiers={props.isHovering ? clearButton : redButton}>
+          modifiers={isHovering ? clearButton : redButton}>
           Delete Account
-        </Account.DelMeBtn>
+        </Account.DeleteMeBtn>
         {/* order history */}
       </Account.Details>
     )
@@ -37,7 +47,7 @@ const AccountDetails = props => {
   return null
 }
 
-const AccountDetailsWithHoverHOC = withHoverHOC(AccountDetails)
+const AccountDetailsWithHoverState = withHoverState(AccountDetails)
 
 const AccountPage = props => {
   const { data, loading, error } = useCurrentUserQuery()
@@ -46,17 +56,17 @@ const AccountPage = props => {
   return (
     <Layout>
       <SEO title="My Account" />
-      <Account.PleaseSignin>
-        <Account.ErrorBoundary error={error}>
-          <Account>
-            {loading ? (
+      <Account>
+        <Account.PleaseSignin>
+          <Account.ErrorBoundary error={error}>
+            {loading || !me ? (
               <Account.Loader color="white" />
             ) : (
-              <AccountDetailsWithHoverHOC me={me} />
+              <AccountDetailsWithHoverState me={me} />
             )}
-          </Account>
-        </Account.ErrorBoundary>
-      </Account.PleaseSignin>
+          </Account.ErrorBoundary>
+        </Account.PleaseSignin>
+      </Account>
     </Layout>
   )
 }

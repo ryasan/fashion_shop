@@ -20,7 +20,7 @@ const arrowStyles = css`
   transform: translateY(-50%);
   fill: var(--darker);
   padding: 0.7rem;
-  opacity: ${props => (props.showArrows ? 1 : 0)};
+  opacity: ${props => (props.isHovering ? 1 : 0)};
   transition: all 0.3s;
   cursor: pointer;
   svg {
@@ -30,7 +30,7 @@ const arrowStyles = css`
 
 Carousel.Prev = styled.div`
   ${arrowStyles};
-  left: ${props => (props.showArrows ? '3.5rem' : '-3.5rem')};
+  left: ${props => (props.isHovering ? '3.5rem' : '-3.5rem')};
   svg {
     right: 2px;
   }
@@ -38,7 +38,7 @@ Carousel.Prev = styled.div`
 
 Carousel.Next = styled.div`
   ${arrowStyles};
-  right: ${props => (props.showArrows ? '3.5rem' : '-3.5rem')};
+  right: ${props => (props.isHovering ? '3.5rem' : '-3.5rem')};
   svg {
     left: 2px;
   }

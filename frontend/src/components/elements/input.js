@@ -13,6 +13,21 @@ export const Input = styled.input`
   ${applyStyleModifiers(MODIFIER_CONFIG)};
 `
 
+export const InputWithAddon = styled.input`
+  padding: 1rem 0 1rem 4rem;
+  ${applyStyleModifiers(MODIFIER_CONFIG)};
+`
+
 Input.propTypes = {
   modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
 }
+
+export const redInput = [
+  'width100',
+  'mediumText',
+  'borderRadius2px',
+  'border2px',
+  'solidBorder',
+  'redBorder',
+  'redOutline'
+]

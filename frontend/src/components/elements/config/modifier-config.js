@@ -7,6 +7,12 @@ const MODIFIER_CONFIG = {
   border3px: () => css`
     border-width: 3px;
   `,
+  borderRadius2px: () => css`
+    border-radius: 2px;
+  `,
+  borderRadius3px: () => css`
+    border-radius: 3px;
+  `,
   clear: () => css`
     background-color: transparent;
   `,
@@ -45,6 +51,12 @@ const MODIFIER_CONFIG = {
   `,
   redOutline: () => css`
     outline-color: var(--red);
+  `,
+  salmon: () => css`
+    background: var(--salmon);
+  `,
+  salmonBorder: () => css`
+    border-color: var(--salmon);
   `,
   smallText: () => css`
     font-size: var(--small-font);

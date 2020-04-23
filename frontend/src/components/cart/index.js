@@ -2,10 +2,7 @@ import React, { useEffect, useRef } from 'react'
 
 import Cart from './cart.styles'
 import CartItem from './cart-item'
-import {
-  useCartQuery,
-  useToggleCartMutation
-} from '../../graphql/cart/hooks'
+import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 import { formatPrice } from '../../utils'
 
 const CartComponent = () => {
@@ -72,7 +69,8 @@ const CartComponent = () => {
               {formatPrice(cartTotal)}
             </Cart.Text>
           </Cart.SubPrice>
-          <Cart.CheckoutBtn modifiers={['darker', 'offWhiteColor', 'largeText']}>
+          <Cart.CheckoutBtn
+            modifiers={['darker', 'offWhiteColor', 'largeText']}>
             CHECKOUT
           </Cart.CheckoutBtn>
         </Cart.Footer>

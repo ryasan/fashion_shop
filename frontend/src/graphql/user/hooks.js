@@ -34,6 +34,8 @@ export const useSignoutMutation = () => {
 }
 
 export const useSignupMutation = () => {
-  const [signup, { data, error, loading }] = useMutation(SIGNUP_MUTATION, {})
+  const [signup, { data, error, loading }] = useMutation(SIGNUP_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }]
+  })
   return { authorize: signup, data, error, loading }
 }

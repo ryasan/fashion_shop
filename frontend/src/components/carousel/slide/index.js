@@ -2,18 +2,30 @@ import React from 'react'
 import { navigate } from 'gatsby'
 
 import Slide from './slide.styles'
+import { withHoverState } from '../../../utils'
 
-const Element = ({ tag, to, text, icon }) => {
-  const Tag = tag.toLowerCase()
+const Element = ({
+  tag,
+  to,
+  text,
+  icon,
+  mouseHoverProps,
+  isHovering,
+  modifiers
+}) => {
   switch (tag) {
     case 'button':
+      const [redButton, clearButton] = modifiers
       return (
         <Slide.ElementWrap>
           <Slide.ElementButtonInner>
-            <Tag onClick={() => navigate(to)}>
+            <Slide.Button
+              {...mouseHoverProps}
+              modifiers={isHovering ? redButton : clearButton}
+              onClick={() => navigate(to)}>
               <Slide.Icon name={icon} />
               {text}
-            </Tag>
+            </Slide.Button>
           </Slide.ElementButtonInner>
         </Slide.ElementWrap>
       )
@@ -22,17 +34,21 @@ const Element = ({ tag, to, text, icon }) => {
         <Slide.ElementWrap>
           <Slide.ElementInputInner>
             <Slide.Icon name={icon} />
-            <Tag placeholder={text} />
+            <Slide.Input modifiers={modifiers} placeholder={text} />
           </Slide.ElementInputInner>
         </Slide.ElementWrap>
       )
+    default:
+      return null
   }
 }
+
+const ElementWithHoverState = withHoverState(Element)
 
 const SlideComponent = ({ element, image }) => (
   <Slide>
     <Slide.Content image={image}>
-      {element && <Element {...element} />}
+      {element && <ElementWithHoverState {...element} />}
     </Slide.Content>
   </Slide>
 )

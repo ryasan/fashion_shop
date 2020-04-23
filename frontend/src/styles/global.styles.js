@@ -9,6 +9,7 @@ const StyledRoot = css`
     --dark: #16141a;
     --darker: #090909;
     --red: #ec1c24;
+    --salmon: #fa8072;
     --green: #33FF33;
     --off-white: #f5f5f5;
     --gray: #7b797e;
