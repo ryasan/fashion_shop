@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 
@@ -38,14 +38,14 @@ const useCreateProductMutation = () => {
 }
 
 const ShopProducts = () => {
+  const [state, setState] = useState(null)
   const { data, error, loading } = useProductsQuery()
   const [createProduct] = useCreateProductMutation()
 
   if (loading) return <Shop.Loader color="white" />
 
-  const availableSizes = data.products[0].availableSizes
-  
   useEffect(() => {
+    setState(data.products[0].availableSizes)
     delete data.products[0].availableSizes
     delete data.products[0].__typename
     delete data.products[0].quantity
@@ -59,7 +59,7 @@ const ShopProducts = () => {
               variables: {
                 input: {
                   ...data.products[0],
-                  availableSizes: { set: availableSizes }
+                  availableSizes: { set: state }
                 }
               }
             })
