@@ -5,6 +5,7 @@ const throwError = (message = '') => {
 }
 
 const formatError = ({ message }) => {
+  console.log(message)
   if (!message.startsWith('Oops')) {
     return { message: 'Internal server error' }
   }

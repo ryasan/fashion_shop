@@ -11,6 +11,8 @@ enum Size {
 
 type Query {
   me: User
+  products: [Product!]!
+  productsConnection: ProductConnection!
 }
 
 type Mutation {
