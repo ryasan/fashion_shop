@@ -64,7 +64,7 @@ const ShopProducts = () => {
               }
             })
       }}>add products</button>
-      <ProductList products={data.products} />
+      {/* <ProductList products={data.products} /> */}
     </ErrorBoundary>
   )
 }
