@@ -4,7 +4,7 @@ import Product from './product'
 
 const ProductListComponent = ({ products }) => {
   return products.map((p, i) => {
-    return <Product key={p.id} product={p} />
+    return <Product key={i} product={p} />
   })
 }
 

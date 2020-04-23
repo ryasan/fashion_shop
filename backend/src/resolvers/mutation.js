@@ -3,6 +3,11 @@ const bcrypt = require('bcryptjs')
 const { throwError, createCookie } = require('../utils')
 
 const Mutation = {
+  createProduct: async (parent, args, ctx, info) => {
+    return ctx.db.mutation.createProduct({
+      data: args.input
+    })
+  },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
       where: { id: ctx.request.userId }

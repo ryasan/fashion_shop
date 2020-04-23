@@ -20,7 +20,17 @@ type Mutation {
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
+  createProduct(input: ProductCreateInput): Product!
 }
+
+# availableSizes: [Size!]
+# description: String!
+# isFreeShipping: Boolean!
+# price: Int!
+# sku: String!
+# style: String!
+# title: String!
+# featured: Boolean!
 
 type User {
   id: ID!
