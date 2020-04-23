@@ -4,7 +4,9 @@ const logger = require('morgan')
 const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken')
 
-dotenv.config({ path: '.env' })
+dotenv.config({
+  path: process.env.NODE_ENV === 'development' ? '.env.dev' : '.env.prod'
+})
 const createServer = require('./create-server')
 const db = require('./db')
 const { formatError } = require('./utils')
