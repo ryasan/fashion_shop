@@ -35,8 +35,3 @@ type Product {
   title: String!
   featured: Boolean!
 }
-
-# type CustomSize {
-#   id: ID! @id
-#   size: String!
-# }

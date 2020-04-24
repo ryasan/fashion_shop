@@ -1,13 +1,14 @@
 const bcrypt = require('bcryptjs')
+const { forwardTo } = require('prisma-binding')
 
 const { throwError, createCookie } = require('../utils')
 
 const Mutation = {
-  createProduct: async (parent, args, ctx, info) => {
-    return ctx.db.mutation.createProduct({
-      data: args.input
-    })
-  },
+  createProduct: forwardTo('db'),
+  // createProduct: async (parent, args, ctx, info) => {
+  //   console.log(args)
+  //   return {}
+  // },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
       where: { id: ctx.request.userId }

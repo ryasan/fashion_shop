@@ -5,9 +5,11 @@ const throwError = (message = '') => {
 }
 
 const formatError = ({ message }) => {
-  if (!message.startsWith('Oops')) {
-    return { message: 'Internal server error' }
-  }
+  console.log(message)
+  return message
+  // if (!message.startsWith('Oops')) {
+  //   return { message: 'Internal server error' }
+  // }
   return {
     message: message.substr(5),
     name: 'CUSTOM_ERROR'
