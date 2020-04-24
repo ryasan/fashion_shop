@@ -9,6 +9,13 @@ const ProductListComponent = () => {
   const { data, error, loading } = useProductsQuery()
 
   if (loading) return <ProductList.Loader color="white" />
+  if (!data.products.length)
+    return (
+      <ProductList.Text modifiers="offWhiteColor">
+        0 Items Found
+      </ProductList.Text>
+    )
+
   return (
     <ProductList>
       <ErrorBoundary error={error}>

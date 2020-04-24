@@ -4,6 +4,7 @@ import { Button, Image, Span, Small, Hr, B } from '../../elements'
 import { device } from '../../../utils'
 
 const Product = styled.li`
+  height: 500px;
   transition: all 0.5s ease-out;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@ const Product = styled.li`
 
 Product.Image = styled(Image)`
   width: 100%;
-  height: 350px;
+  height: 100%;
   object-fit: cover;
 `
 
