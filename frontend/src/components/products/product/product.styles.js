@@ -18,6 +18,8 @@ const Product = styled.div`
 
 Product.Image = styled(Image)`
   width: 100%;
+  height: 350px;
+  object-fit: cover;
 `
 
 Product.Special = styled(Span)`

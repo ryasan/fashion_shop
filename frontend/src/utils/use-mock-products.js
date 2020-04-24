@@ -9,7 +9,7 @@ const getMockProducts = () => {
 }
 
 export const useMockProducts = () => {
-  const [mockProducts, setMockProducts] = useState(null)
+  const [products, setMockProducts] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -22,5 +22,5 @@ export const useMockProducts = () => {
     fetchMockProducts()
   }, [])
 
-  return { mockProducts, loading, error }
+  return { data: { products }, loading, error }
 }
