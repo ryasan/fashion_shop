@@ -7,8 +7,6 @@ import ProductList from '../components/products'
 import ErrorBoundary from '../components/error-boundary/index'
 import { useProductsQuery } from '../graphql/product/hooks'
 
-
-
 const ShopProducts = () => {
   const { data, error, loading } = useProductsQuery()
 

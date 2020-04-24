@@ -1,6 +1,8 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-const ToastStyles = css`
+import Icon from '../icons'
+
+const Toast = styled.div`
   .toast-container {
     width: auto;
   }
@@ -24,26 +26,14 @@ const ToastStyles = css`
       border-bottom: 0;
       border-right: 0;
     }
-    button {
-      color: white;
-      background: white;
+    .close-button {
+      fill: var(--off-white);
+      position: absolute;
+      right: 0;
+      padding: 0.5rem;
     }
   }
 `
 
-const Layout = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: var(--dark);
-  ${ToastStyles};
-`
-
-Layout.Main = styled.main`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`
-
-export default Layout
+Toast.CloseButton = Icon
+export default Toast
