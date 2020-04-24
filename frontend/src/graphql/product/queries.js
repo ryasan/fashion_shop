@@ -24,5 +24,4 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
       }
     }
   }
-  ${PRODUCT_FRAGMENT}
 `

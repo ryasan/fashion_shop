@@ -1,11 +1,18 @@
 import React from 'react'
 
-import Product from './product'
+import Products from './products.styles'
+import ProductList from './product-list'
+import ControlsHeader from './controls-header/index'
 
-const ProductListComponent = ({ products }) => {
-  return products.map((p, i) => {
-    return <Product key={i} product={p} />
-  })
+const ProductsComponent = () => {
+  return (
+    <Products>
+      <ControlsHeader />
+      <Products.Container>
+        <ProductList />
+      </Products.Container>
+    </Products>
+  )
 }
 
-export default ProductListComponent
+export default ProductsComponent

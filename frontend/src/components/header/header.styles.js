@@ -1,50 +1,26 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import Icon from '../icons'
 import { Small } from '../elements'
 import { device } from '../../utils'
 
-const ToastStyles = css`
-  .toast-container {
-    width: auto;
-  }
-  .toast {
-    background: var(--dark);
-    font-size: var(--regular-font);
-    color: var(--off-white);
-    overflow: initial;
-    position: relative;
-    padding: 0 3rem;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: -2rem;
-      right: 0;
-      width: 0;
-      height: 0;
-      border: 2rem solid transparent;
-      border-top-color: var(--dark);
-      border-bottom: 0;
-      border-right: 0;
-    }
-  }
-`
-
 const Header = styled.header`
   background: var(--dark);
   display: flex;
   justify-content: space-between;
   height: 7rem;
-  ${ToastStyles};
 `
 
 Header.Nav = styled.ul`
   display: flex;
   margin-right: 6rem;
+  z-index: 10;
   @media ${device.mobileL} {
-    margin-right: 5rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: var(--dark);
   }
 `
 
@@ -56,7 +32,6 @@ Header.NavItem = styled.li`
   position: relative;
   color: var(--off-white);
   width: 10rem;
-  margin-right: 1rem;
   &:after {
     content: '';
     position: absolute;
@@ -77,11 +52,12 @@ Header.NavItem = styled.li`
     }
   }
   @media ${device.mobileL} {
-    margin-right: 1rem;
+    width: 100%;
+    margin: 0;
   }
   a {
     width: 100%;
-    height: 100%;
+    height: 7rem;
     display: flex;
     justify-content: center;
     align-items: center;

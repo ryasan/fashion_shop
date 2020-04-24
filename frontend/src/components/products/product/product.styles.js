@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { Button, Image, Span, Small, Hr, B } from '../../elements'
 import { device } from '../../../utils'
 
-const Product = styled.div`
+const Product = styled.li`
   transition: all 0.5s ease-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   background: white;
+  border-radius: 3px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 1);
   @media ${device.mobileL} {
     margin-bottom: 5rem;
@@ -26,6 +27,7 @@ Product.Special = styled(Span)`
   position: absolute;
   padding: 0.5rem;
   right: 0;
+  transform: rotate(10deg) translate(1rem, -1rem);
 `
 
 Product.Thumb = styled.div``
