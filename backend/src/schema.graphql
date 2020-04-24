@@ -11,7 +11,7 @@ enum Size {
 
 type Query {
   me: User
-  products: [Product!]!
+  products(where: ProductWhereInput, sizes: [Size]): [Product!]!
   productsConnection: ProductConnection!
 }
 
@@ -22,15 +22,6 @@ type Mutation {
   signup(email: String!, username: String!, password: String!): User!
   createProduct(input: ProductCreateInput): Product!
 }
-
-# availableSizes: [Size!]
-# description: String!
-# isFreeShipping: Boolean!
-# price: Int!
-# sku: String!
-# style: String!
-# title: String!
-# featured: Boolean!
 
 type User {
   id: ID!
@@ -58,6 +49,10 @@ type Product {
   title: String!
   featured: Boolean!
 }
+
+# type CustomSize {
+#   size: String!
+# }
 
 type SuccessMessage {
   message: String

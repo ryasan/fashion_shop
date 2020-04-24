@@ -26,7 +26,7 @@ type CartItem {
 
 type Product {
   id: ID! @unique @id
-  availableSizes: [String]! @scalarList(strategy: RELATION)
+  availableSizes: [Size!]! @scalarList(strategy: RELATION)
   description: String!
   isFreeShipping: Boolean!
   price: Int!
@@ -35,3 +35,8 @@ type Product {
   title: String!
   featured: Boolean!
 }
+
+# type CustomSize {
+#   id: ID! @id
+#   size: String!
+# }
