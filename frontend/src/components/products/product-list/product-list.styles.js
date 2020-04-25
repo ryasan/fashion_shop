@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-import Loader from '../../loader'
 import { device } from '../../../utils'
-import { P } from '../../elements'
 
 const ProductList = styled.ul`
   width: 100%;
@@ -18,8 +16,5 @@ const ProductList = styled.ul`
     justify-content: center;
   }
 `
-
-ProductList.Text = P
-ProductList.Loader = Loader
 
 export default ProductList

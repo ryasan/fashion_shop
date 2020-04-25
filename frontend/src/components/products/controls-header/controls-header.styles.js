@@ -13,8 +13,6 @@ const ControlsHeader = styled.div`
 
 ControlsHeader.ErrorBoundary = ErrorBoundary
 
-ControlsHeader.Count = styled(P)`
-  color: var(--off-white);
-`
+ControlsHeader.Count = P
 
 export default ControlsHeader

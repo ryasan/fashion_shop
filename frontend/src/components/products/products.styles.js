@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+import Loader from '../loader'
+import ErrorBoundary from '../error-boundary'
+import { P } from '../elements'
+
 const Products = styled.div`
   max-width: var(--max-width);
   width: 100%;
@@ -13,5 +17,9 @@ Products.Container = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+Products.Loader = Loader
+Products.Text = P
+Products.ErrorBoundary = ErrorBoundary
 
 export default Products

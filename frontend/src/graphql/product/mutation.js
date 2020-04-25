@@ -10,3 +10,19 @@ export const CREATE_PRODUCT_MUTATION = gql`
   }
   ${PRODUCT_FRAGMENT}
 `
+
+export const ADD_SIZE_FILTER_MUTATION = gql`
+  mutation($size: String!) {
+    addSizeFilter(size: $size) @client {
+      sizeFilters
+    }
+  }
+`
+
+export const REMOVE_SIZE_FILTER_MUTATION = gql`
+  mutation($size: String!) {
+    removeSizeFilter(size: $size) @client {
+      sizeFilters
+    }
+  }
+`

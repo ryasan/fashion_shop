@@ -3,13 +3,30 @@ import React from 'react'
 import Products from './products.styles'
 import ProductList from './product-list'
 import ControlsHeader from './controls-header/index'
+import {
+  useProductsConnectionQuery,
+  useFiltersQuery
+} from '../../graphql/product/hooks'
 
 const ProductsComponent = () => {
+  const {
+    data: { sizeFilters }
+  } = useFiltersQuery()
+  const { data, error, loading } = useProductsConnectionQuery({ sizeFilters })
+  const products = data?.productsConnection.edges
+  const count = data?.productsConnection.aggregate.count
+
   return (
     <Products>
-      <ControlsHeader />
+      <ControlsHeader count={count} />
       <Products.Container>
-        <ProductList />
+        <Products.ErrorBoundary error={error}>
+          {loading ? (
+            <Products.Loader color="white" />
+          ) : (
+            <ProductList products={products} />
+          )}
+        </Products.ErrorBoundary>
       </Products.Container>
     </Products>
   )

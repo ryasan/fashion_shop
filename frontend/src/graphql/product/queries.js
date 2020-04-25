@@ -11,8 +11,13 @@ export const PRODUCTS_QUERY = gql`
 `
 
 export const PRODUCTS_CONNECTION_QUERY = gql`
-  query {
-    productsConnection {
+  query($data: ProductWhereInput, $sizeFilters: [String]) {
+    productsConnection(data: $data, sizeFilters: $sizeFilters) {
+      edges {
+        node {
+          ...ProductFragment
+        }
+      }
       aggregate {
         count
       }
@@ -23,5 +28,12 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
         endCursor
       }
     }
+  }
+  ${PRODUCT_FRAGMENT}
+`
+
+export const FILTERS_QUERY = gql`
+  query {
+    sizeFilters @client
   }
 `
