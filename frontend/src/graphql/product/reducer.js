@@ -1,8 +1,13 @@
-import { ADD_SIZE_FILTER, REMOVE_SIZE_FILTER } from './action-types'
+import {
+  ADD_SIZE_FILTER,
+  REMOVE_SIZE_FILTER,
+  TOGGLE_FREE_SHIPPING_FILTER
+} from './action-types'
 import { FILTERS_QUERY } from './queries'
 
 export const filtersInitialState = {
-  sizeFilters: []
+  sizeFilters: [],
+  freeShippingFilter: false
 }
 
 const filtersReducer = (actionType, client, variables) => {
@@ -21,6 +26,13 @@ const filtersReducer = (actionType, client, variables) => {
         data: {
           ...state,
           sizeFilters: sizeFilters.filter(s => s !== variables.size)
+        }
+      })
+    case TOGGLE_FREE_SHIPPING_FILTER:
+      return client.writeData({
+        data: {
+          ...state,
+          freeShippingFilter: !state.freeShippingFilter
         }
       })
   }

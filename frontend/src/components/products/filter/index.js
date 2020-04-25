@@ -5,6 +5,10 @@ import {
   useAddSizeFilterMutation,
   useRemoveSizeFilterMutation
 } from '../../../graphql/cart/hooks'
+import {
+  useToggleFreeShippingMutation,
+  useFiltersQuery
+} from '../../../graphql/product/hooks'
 
 const sizeFilters = ['S', 'M', 'L', 'XL', 'XXL']
 
@@ -30,6 +34,9 @@ const Size = ({ size }) => {
 }
 
 const FilterComponent = () => {
+  const [toggleFreeShippingFilter] = useToggleFreeShippingMutation()
+  const { data: { freeShippingFilter } } = useFiltersQuery() // prettier-ignore
+
   return (
     <Filter>
       <Filter.Title>Sizes:</Filter.Title>
@@ -38,6 +45,11 @@ const FilterComponent = () => {
           <Size key={i} size={size} />
         ))}
       </Filter.Sizes>
+      <Filter.FreeShipping
+        onClick={toggleFreeShippingFilter}
+        isSelected={freeShippingFilter}>
+        Free shipping
+      </Filter.FreeShipping>
     </Filter>
   )
 }

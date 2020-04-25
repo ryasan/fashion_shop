@@ -9,10 +9,11 @@ import {
 } from '../../graphql/product/hooks'
 
 const ProductsComponent = () => {
-  const {
-    data: { sizeFilters }
-  } = useFiltersQuery()
-  const { data, error, loading } = useProductsConnectionQuery({ sizeFilters })
+  const { data: { sizeFilters, freeShippingFilter } } = useFiltersQuery() // prettier-ignore
+  const { data, error, loading } = useProductsConnectionQuery({
+    sizeFilters,
+    freeShippingFilter
+  })
   const products = data?.productsConnection.edges
   const count = data?.productsConnection.aggregate.count
 

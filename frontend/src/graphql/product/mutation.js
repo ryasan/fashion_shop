@@ -13,16 +13,18 @@ export const CREATE_PRODUCT_MUTATION = gql`
 
 export const ADD_SIZE_FILTER_MUTATION = gql`
   mutation($size: String!) {
-    addSizeFilter(size: $size) @client {
-      sizeFilters
-    }
+    addSizeFilter(size: $size) @client
   }
 `
 
 export const REMOVE_SIZE_FILTER_MUTATION = gql`
   mutation($size: String!) {
-    removeSizeFilter(size: $size) @client {
-      sizeFilters
-    }
+    removeSizeFilter(size: $size) @client
+  }
+`
+
+export const TOGGLE_FREE_SHIPPING_FILTER_MUTATION = gql`
+  mutation {
+    toggleFreeShippingFilter @client
   }
 `

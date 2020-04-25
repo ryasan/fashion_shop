@@ -5,7 +5,7 @@ import { device } from '../../../utils'
 const ProductList = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 5rem;
   justify-items: center;
   align-items: center;
