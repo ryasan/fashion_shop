@@ -5,10 +5,6 @@ const { throwError, createCookie } = require('../utils')
 
 const Mutation = {
   createProduct: forwardTo('db'),
-  // createProduct: async (parent, args, ctx, info) => {
-  //   console.log(args)
-  //   return {}
-  // },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
       where: { id: ctx.request.userId }

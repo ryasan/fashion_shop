@@ -11,8 +11,11 @@ enum Size {
 
 type Query {
   me: User
-  products(where: ProductWhereInput, sizes: [Size]): [Product!]
-  productsConnection: ProductConnection!
+  products: [Product!]
+  productsConnection(
+    data: ProductWhereInput
+    sizeFilters: [String]
+  ): ProductConnection!
 }
 
 type Mutation {
