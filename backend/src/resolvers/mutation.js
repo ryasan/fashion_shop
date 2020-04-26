@@ -9,20 +9,22 @@ const Mutation = {
 
     for (const s of sizes) {
       const sizeExists = await ctx.db.exists.Size({ name: s })
-      const size = await ctx.db.query.Size({ name: s })
-      if (sizeExists) {
-        ctx.db.mutation.updateSize({
-          where: { id: size.id },
-          data: { name: s, products: { set: [...size.products, product.id] } }
-        })
-      } else {
-        ctx.db.mutation.createSize({
-          data: {
-            name: s,
-            products: { set: [product.id] }
-          }
-        })
-      }
+      console.log(ctx.db.query)
+      // const size = await ctx.db.query.Size({ name: s })
+      console.log('---->', size)
+      // if (sizeExists) {
+      //   ctx.db.mutation.updateSize({
+      //     where: { id: size.id },
+      //     data: { name: s, products: { set: [...size.products, product.id] } }
+      //   })
+      // } else {
+      //   ctx.db.mutation.createSize({
+      //     data: {
+      //       name: s,
+      //       products: { set: [product.id] }
+      //     }
+      //   })
+      // }
     }
 
     return product

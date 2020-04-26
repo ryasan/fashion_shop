@@ -4,6 +4,8 @@ type Query {
   me: User
   products: [Product!]
   productsConnection(filters: Filters!): ProductConnection!
+  size(where: SizeWhereInput): Size!
+  sizes(where: SizeWhereInput): [Size]!
 }
 
 input Filters {

@@ -248,17 +248,12 @@ type Product {
   sku: String!
   style: String!
   title: String!
-  availableSizes: [String!]!
 }
 
 type ProductConnection {
   pageInfo: PageInfo!
   edges: [ProductEdge]!
   aggregate: AggregateProduct!
-}
-
-input ProductCreateavailableSizesInput {
-  set: [String!]
 }
 
 input ProductCreateInput {
@@ -270,7 +265,6 @@ input ProductCreateInput {
   sku: String!
   style: String!
   title: String!
-  availableSizes: ProductCreateavailableSizesInput
 }
 
 input ProductCreateOneInput {
@@ -311,7 +305,6 @@ type ProductPreviousValues {
   sku: String!
   style: String!
   title: String!
-  availableSizes: [String!]!
 }
 
 type ProductSubscriptionPayload {
@@ -332,10 +325,6 @@ input ProductSubscriptionWhereInput {
   NOT: [ProductSubscriptionWhereInput!]
 }
 
-input ProductUpdateavailableSizesInput {
-  set: [String!]
-}
-
 input ProductUpdateDataInput {
   description: String
   isFreeShipping: Boolean
@@ -344,7 +333,6 @@ input ProductUpdateDataInput {
   sku: String
   style: String
   title: String
-  availableSizes: ProductUpdateavailableSizesInput
 }
 
 input ProductUpdateInput {
@@ -355,7 +343,6 @@ input ProductUpdateInput {
   sku: String
   style: String
   title: String
-  availableSizes: ProductUpdateavailableSizesInput
 }
 
 input ProductUpdateManyMutationInput {
@@ -366,7 +353,6 @@ input ProductUpdateManyMutationInput {
   sku: String
   style: String
   title: String
-  availableSizes: ProductUpdateavailableSizesInput
 }
 
 input ProductUpdateOneRequiredInput {
