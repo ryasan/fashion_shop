@@ -1,12 +1,3 @@
-enum Size {
-  XS
-  S
-  M
-  L
-  XL
-  XXL
-}
-
 type User {
   id: ID! @unique @id
   username: String! @unique
@@ -26,11 +17,9 @@ type CartItem {
 
 type Product {
   id: ID! @unique @id
-  availableSizes: [Size!]! @scalarList (strategy: RELATION)
   description: String!
   isFreeShipping: Boolean!
   isFeatured: Boolean!
-  isAvailable: Boolean! @default(value: false)
   price: Int!
   sku: String!
   style: String!
@@ -38,6 +27,7 @@ type Product {
 }
 
 type Size {
-  id: ID! @id
-  products: [Product!]!
+  id: ID! @id @unique
+  name: String!
+  products: [ID!]! @scalarList(strategy: RELATION)
 }

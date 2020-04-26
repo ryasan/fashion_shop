@@ -1,14 +1,5 @@
 # import * from './generated/prisma.graphql'
 
-enum Size {
-  XS
-  S
-  M
-  L
-  XL
-  XXL
-}
-
 type Query {
   me: User
   products: [Product!]
@@ -25,11 +16,12 @@ type Mutation {
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
-  createProduct(data: ProductCreateInput): Product!
+  createProduct(data: ProductCreateInput, sizes: [String]): Product!
   updateProduct(
     data: ProductUpdateInput!
     where: ProductWhereUniqueInput!
   ): Product
+  createSize(data: SizeCreateInput!): Size!
 }
 
 type User {
@@ -49,15 +41,19 @@ type CartItem {
 
 type Product {
   id: ID!
-  availableSizes: [Size!]!
   description: String!
   isFreeShipping: Boolean!
   isFeatured: Boolean!
-  isAvailable: Boolean!
   price: Int!
   sku: String!
   style: String!
   title: String!
+}
+
+type Size {
+  id: ID!
+  name: String!
+  products: [ID!]!
 }
 
 type SuccessMessage {

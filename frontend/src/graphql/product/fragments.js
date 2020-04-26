@@ -7,7 +7,7 @@ export const PRODUCT_FRAGMENT = gql`
     description
     isFreeShipping
     isFeatured
-    isAvailable
+    availableSizes
     price
     sku
     style

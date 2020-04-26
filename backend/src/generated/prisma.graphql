@@ -6,6 +6,10 @@ type AggregateProduct {
   count: Int!
 }
 
+type AggregateSize {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -204,6 +208,12 @@ type Mutation {
   upsertProduct(where: ProductWhereUniqueInput!, create: ProductCreateInput!, update: ProductUpdateInput!): Product!
   deleteProduct(where: ProductWhereUniqueInput!): Product
   deleteManyProducts(where: ProductWhereInput): BatchPayload!
+  createSize(data: SizeCreateInput!): Size!
+  updateSize(data: SizeUpdateInput!, where: SizeWhereUniqueInput!): Size
+  updateManySizes(data: SizeUpdateManyMutationInput!, where: SizeWhereInput): BatchPayload!
+  upsertSize(where: SizeWhereUniqueInput!, create: SizeCreateInput!, update: SizeUpdateInput!): Size!
+  deleteSize(where: SizeWhereUniqueInput!): Size
+  deleteManySizes(where: SizeWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -231,15 +241,14 @@ type PageInfo {
 
 type Product {
   id: ID!
-  availableSizes: [Size!]!
   description: String!
   isFreeShipping: Boolean!
   isFeatured: Boolean!
-  isAvailable: Boolean!
   price: Int!
   sku: String!
   style: String!
   title: String!
+  availableSizes: [String!]!
 }
 
 type ProductConnection {
@@ -249,20 +258,19 @@ type ProductConnection {
 }
 
 input ProductCreateavailableSizesInput {
-  set: [Size!]
+  set: [String!]
 }
 
 input ProductCreateInput {
   id: ID
-  availableSizes: ProductCreateavailableSizesInput
   description: String!
   isFreeShipping: Boolean!
   isFeatured: Boolean!
-  isAvailable: Boolean
   price: Int!
   sku: String!
   style: String!
   title: String!
+  availableSizes: ProductCreateavailableSizesInput
 }
 
 input ProductCreateOneInput {
@@ -284,8 +292,6 @@ enum ProductOrderByInput {
   isFreeShipping_DESC
   isFeatured_ASC
   isFeatured_DESC
-  isAvailable_ASC
-  isAvailable_DESC
   price_ASC
   price_DESC
   sku_ASC
@@ -298,15 +304,14 @@ enum ProductOrderByInput {
 
 type ProductPreviousValues {
   id: ID!
-  availableSizes: [Size!]!
   description: String!
   isFreeShipping: Boolean!
   isFeatured: Boolean!
-  isAvailable: Boolean!
   price: Int!
   sku: String!
   style: String!
   title: String!
+  availableSizes: [String!]!
 }
 
 type ProductSubscriptionPayload {
@@ -328,43 +333,40 @@ input ProductSubscriptionWhereInput {
 }
 
 input ProductUpdateavailableSizesInput {
-  set: [Size!]
+  set: [String!]
 }
 
 input ProductUpdateDataInput {
-  availableSizes: ProductUpdateavailableSizesInput
   description: String
   isFreeShipping: Boolean
   isFeatured: Boolean
-  isAvailable: Boolean
   price: Int
   sku: String
   style: String
   title: String
+  availableSizes: ProductUpdateavailableSizesInput
 }
 
 input ProductUpdateInput {
-  availableSizes: ProductUpdateavailableSizesInput
   description: String
   isFreeShipping: Boolean
   isFeatured: Boolean
-  isAvailable: Boolean
   price: Int
   sku: String
   style: String
   title: String
+  availableSizes: ProductUpdateavailableSizesInput
 }
 
 input ProductUpdateManyMutationInput {
-  availableSizes: ProductUpdateavailableSizesInput
   description: String
   isFreeShipping: Boolean
   isFeatured: Boolean
-  isAvailable: Boolean
   price: Int
   sku: String
   style: String
   title: String
+  availableSizes: ProductUpdateavailableSizesInput
 }
 
 input ProductUpdateOneRequiredInput {
@@ -412,8 +414,6 @@ input ProductWhereInput {
   isFreeShipping_not: Boolean
   isFeatured: Boolean
   isFeatured_not: Boolean
-  isAvailable: Boolean
-  isAvailable_not: Boolean
   price: Int
   price_not: Int
   price_in: [Int!]
@@ -480,24 +480,129 @@ type Query {
   product(where: ProductWhereUniqueInput!): Product
   products(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Product]!
   productsConnection(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProductConnection!
+  size(where: SizeWhereUniqueInput!): Size
+  sizes(where: SizeWhereInput, orderBy: SizeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Size]!
+  sizesConnection(where: SizeWhereInput, orderBy: SizeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SizeConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
-enum Size {
-  XS
-  S
-  M
-  L
-  XL
-  XXL
+type Size {
+  id: ID!
+  name: String!
+  products: [ID!]!
+}
+
+type SizeConnection {
+  pageInfo: PageInfo!
+  edges: [SizeEdge]!
+  aggregate: AggregateSize!
+}
+
+input SizeCreateInput {
+  id: ID
+  name: String!
+  products: SizeCreateproductsInput
+}
+
+input SizeCreateproductsInput {
+  set: [ID!]
+}
+
+type SizeEdge {
+  node: Size!
+  cursor: String!
+}
+
+enum SizeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type SizePreviousValues {
+  id: ID!
+  name: String!
+  products: [ID!]!
+}
+
+type SizeSubscriptionPayload {
+  mutation: MutationType!
+  node: Size
+  updatedFields: [String!]
+  previousValues: SizePreviousValues
+}
+
+input SizeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SizeWhereInput
+  AND: [SizeSubscriptionWhereInput!]
+  OR: [SizeSubscriptionWhereInput!]
+  NOT: [SizeSubscriptionWhereInput!]
+}
+
+input SizeUpdateInput {
+  name: String
+  products: SizeUpdateproductsInput
+}
+
+input SizeUpdateManyMutationInput {
+  name: String
+  products: SizeUpdateproductsInput
+}
+
+input SizeUpdateproductsInput {
+  set: [ID!]
+}
+
+input SizeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [SizeWhereInput!]
+  OR: [SizeWhereInput!]
+  NOT: [SizeWhereInput!]
+}
+
+input SizeWhereUniqueInput {
+  id: ID
 }
 
 type Subscription {
   cartItem(where: CartItemSubscriptionWhereInput): CartItemSubscriptionPayload
   product(where: ProductSubscriptionWhereInput): ProductSubscriptionPayload
+  size(where: SizeSubscriptionWhereInput): SizeSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 

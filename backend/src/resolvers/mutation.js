@@ -4,7 +4,29 @@ const { forwardTo } = require('prisma-binding')
 const { throwError, createCookie } = require('../utils')
 
 const Mutation = {
-  createProduct: forwardTo('db'),
+  createProduct: async (parent, { data, sizes }, ctx, info) => {
+    const product = await ctx.db.mutation.createProduct({ data }, info)
+
+    for (const s of sizes) {
+      const sizeExists = await ctx.db.exists.Size({ name: s })
+      const size = await ctx.db.query.Size({ name: s })
+      if (sizeExists) {
+        ctx.db.mutation.updateSize({
+          where: { id: size.id },
+          data: { name: s, products: { set: [...size.products, product.id] } }
+        })
+      } else {
+        ctx.db.mutation.createSize({
+          data: {
+            name: s,
+            products: { set: [product.id] }
+          }
+        })
+      }
+    }
+
+    return product
+  },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
       where: { id: ctx.request.userId }
