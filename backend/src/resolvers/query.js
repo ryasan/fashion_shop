@@ -8,24 +8,33 @@ const Query = {
     return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
   },
   products: forwardTo('db'),
-  // productsConnection: async (parent, args, ctx, info) => {
-  //   console.log(args.data)
-  //   const productsConnection = await ctx.db.query.productsConnection(
-  //     { where: args.data },
-  //     info
-  //   )
+  productsConnection: async (parent, args, ctx, info) => {
+    const { sizeFilters } = args.filters
+    const oldConnection = await ctx.db.query.productsConnection({}, info)
+    if (!sizeFilters.length) return oldConnection
 
-  //   if (args.sizeFilters && args.sizeFilters.length) {
-  //     productsConnection.edges = productsConnection.edges.filter(
-  //       ({ node: { availableSizes } }) => {
-  //         return intersection(availableSizes, args.sizeFilters).length > 0
-  //       }
-  //     )
-  //   }
+    for (const p of oldConnection.edges) {
+      const product = p.node
+      const isAvailable = intersection(product.availableSizes, sizeFilters).length > 0 // prettier-ignore
+      const { __typename, id, ...newProduct } = product
 
-  //   return productsConnection
-  // }
-  productsConnection: forwardTo('db')
+      await ctx.db.mutation.updateProduct({
+        where: { id },
+        data: {
+          ...newProduct,
+          isAvailable: isAvailable,
+          availableSizes: { set: newProduct.availableSizes }
+        }
+      })
+    }
+
+    const newConnection = await ctx.db.query.productsConnection(
+      { where: { isAvailable: true } },
+      info
+    )
+
+    return newConnection
+  }
 }
 
 module.exports = Query

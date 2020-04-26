@@ -5,12 +5,11 @@ import PropTypes from 'prop-types'
 import { formatPrice } from '../../../utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
-const ProductComponent = ({ product }) => {
-  product.quantity = 1
+const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
   const productImage = require(`../../../images/products/${product.sku}_1.jpg`)
-  const specialModifiers = ['red', 'whiteColor', 'superSmallText']
+  const specialModifiers = ['red', 'whiteColor', 'smallText']
   const btnModifiers = ['red', 'whiteColor', 'redBorder', 'mediumText']
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
@@ -18,6 +17,8 @@ const ProductComponent = ({ product }) => {
   const handleAddCartItem = () => {
     addCartItem({ variables: { product } })
   }
+
+  product.quantity = 1
 
   return (
     <Product>
@@ -28,10 +29,10 @@ const ProductComponent = ({ product }) => {
       )}
       <Product.Thumb>
         <Product.Image src={productImage} alt={product.title} />
+        <Product.Title>{product.title}</Product.Title>
       </Product.Thumb>
       <Product.Details>
         <Product.Divider modifiers="red" />
-        <Product.Title>{product.title}</Product.Title>
         <Product.Price>
           <Product.Dollars>{dollars}</Product.Dollars>
           <Product.Cents>{cents}</Product.Cents>

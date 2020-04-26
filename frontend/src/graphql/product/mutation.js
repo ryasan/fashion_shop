@@ -11,6 +11,15 @@ export const CREATE_PRODUCT_MUTATION = gql`
   ${PRODUCT_FRAGMENT}
 `
 
+export const UPDATE_PRODUCT_MUTATION = gql`
+  mutation($data: ProductUpdateInput!, $where: ProductWhereUniqueInput!) {
+    updateProduct(data: $data, where: $where) {
+      ...ProductFragment
+    }
+  }
+  ${PRODUCT_FRAGMENT}
+`
+
 export const ADD_SIZE_FILTER_MUTATION = gql`
   mutation($size: String!) {
     addSizeFilter(size: $size) @client

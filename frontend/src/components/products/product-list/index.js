@@ -6,9 +6,9 @@ import OneProduct from '../product'
 const ProductListComponent = ({ products }) => {
   return (
     <ProductList>
-      {products.map(({ node }) => {
-        return <OneProduct key={node.id} product={node} />
-      })}
+      {products.map(({ node }) => (
+        <OneProduct key={node.id} product={node} />
+      ))}
     </ProductList>
   )
 }

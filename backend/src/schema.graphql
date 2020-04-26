@@ -12,7 +12,12 @@ enum Size {
 type Query {
   me: User
   products: [Product!]
-  productsConnection(data: ProductWhereInput): ProductConnection!
+  productsConnection(filters: Filters!): ProductConnection!
+}
+
+input Filters {
+  freeShippingFilter: Boolean!
+  sizeFilters: [String!]!
 }
 
 type Mutation {
@@ -21,6 +26,10 @@ type Mutation {
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
   createProduct(data: ProductCreateInput): Product!
+  updateProduct(
+    data: ProductUpdateInput!
+    where: ProductWhereUniqueInput!
+  ): Product
 }
 
 type User {
@@ -34,20 +43,21 @@ type User {
 type CartItem {
   id: ID!
   quantity: Int!
-  product: Product
+  product: Product!
   user: User!
 }
 
 type Product {
   id: ID!
-  availableSizes: [String!]!
+  availableSizes: [Size!]!
   description: String!
   isFreeShipping: Boolean!
+  isFeatured: Boolean!
+  isAvailable: Boolean!
   price: Int!
   sku: String!
   style: String!
   title: String!
-  featured: Boolean!
 }
 
 type SuccessMessage {

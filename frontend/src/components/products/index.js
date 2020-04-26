@@ -11,8 +11,8 @@ import {
 const ProductsComponent = () => {
   const { data: { sizeFilters, freeShippingFilter } } = useFiltersQuery() // prettier-ignore
   const { data, error, loading } = useProductsConnectionQuery({
-    sizeFilters,
-    freeShippingFilter
+    freeShippingFilter,
+    sizeFilters
   })
   const products = data?.productsConnection.edges
   const count = data?.productsConnection.aggregate.count

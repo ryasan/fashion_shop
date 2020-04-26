@@ -29,9 +29,13 @@ Product.Special = styled(Span)`
   padding: 0.5rem;
   right: 0;
   transform: rotate(10deg) translate(1rem, -1rem);
+  z-index: 1;
 `
 
-Product.Thumb = styled.div``
+Product.Thumb = styled.div`
+  position: relative;
+  text-align: center;
+`
 
 Product.Details = styled.div`
   margin-top: 2rem;
@@ -44,7 +48,17 @@ Product.Details = styled.div`
 `
 
 Product.Title = styled.div`
-  font-size: 1.3rem;
+  font-size: 2rem;
+  padding: 0.5rem 2rem;
+  background: var(--red);
+  color: var(--off-white);
+  transform: skew(-10deg);
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  height: auto;
+  width: 80%;
+  transform: translateX(-50%) skew(-12deg) rotate(-5deg);
 `
 
 Product.Divider = styled(Hr)`

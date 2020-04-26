@@ -6,10 +6,11 @@ export const PRODUCT_FRAGMENT = gql`
     id
     description
     isFreeShipping
+    isFeatured
+    isAvailable
     price
     sku
     style
     title
-    featured
   }
 `

@@ -11,8 +11,8 @@ export const PRODUCTS_QUERY = gql`
 `
 
 export const PRODUCTS_CONNECTION_QUERY = gql`
-  query($data: ProductWhereInput, $sizeFilters: [String]) {
-    productsConnection(data: $data, sizeFilters: $sizeFilters) {
+  query($filters: Filters!) {
+    productsConnection(filters: $filters) {
       edges {
         node {
           ...ProductFragment

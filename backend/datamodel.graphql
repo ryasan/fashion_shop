@@ -12,7 +12,7 @@ type User {
   username: String! @unique
   email: String! @unique
   password: String!
-  cart: [CartItem!]!
+  cart: [CartItem!]! @relation(name: "CartItemOfUser")
   resetToken: String
   resetTokenExpiry: Float
 }
@@ -20,18 +20,24 @@ type User {
 type CartItem {
   id: ID! @unique @id
   quantity: Int! @default(value: 1)
-  product: Product #relationship to Product
-  user: User! #relationship to User
+  product: Product!
+  user: User! @relation(name: "CartItemOfUser")
 }
 
 type Product {
   id: ID! @unique @id
-  availableSizes: [String!]! @scalarList(strategy: RELATION)
+  availableSizes: [Size!]! @scalarList (strategy: RELATION)
   description: String!
   isFreeShipping: Boolean!
+  isFeatured: Boolean!
+  isAvailable: Boolean! @default(value: false)
   price: Int!
   sku: String!
   style: String!
   title: String!
-  featured: Boolean!
+}
+
+type Size {
+  id: ID! @id
+  products: [Product!]!
 }

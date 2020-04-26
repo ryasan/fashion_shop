@@ -16,9 +16,7 @@ const prodEndpoint = 'https://fashion-shop-yoga-prod.herokuapp.com'
 
 const Loader = styled(LoaderComponent)`
   width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
+  margin-top: 15vh;
 `
 
 const PersistApolloProvider = ({ children }) => {
@@ -47,9 +45,8 @@ const PersistApolloProvider = ({ children }) => {
 
     return () => {}
   }, [])
-
+  
   if (!client) return <Loader modifiers={['dark', 'darkColor']} />
-
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 

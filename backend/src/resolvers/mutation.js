@@ -56,7 +56,8 @@ const Mutation = {
 
     createCookie({ ctx, userId: user.id })
     return user
-  }
+  },
+  updateProduct: forwardTo('db')
 }
 
 module.exports = Mutation

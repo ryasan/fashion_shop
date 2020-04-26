@@ -17,7 +17,7 @@ type BatchPayload {
 type CartItem {
   id: ID!
   quantity: Int!
-  product: Product
+  product: Product!
   user: User!
 }
 
@@ -30,7 +30,7 @@ type CartItemConnection {
 input CartItemCreateInput {
   id: ID
   quantity: Int
-  product: ProductCreateOneInput
+  product: ProductCreateOneInput!
   user: UserCreateOneWithoutCartInput!
 }
 
@@ -42,7 +42,7 @@ input CartItemCreateManyWithoutUserInput {
 input CartItemCreateWithoutUserInput {
   id: ID
   quantity: Int
-  product: ProductCreateOneInput
+  product: ProductCreateOneInput!
 }
 
 type CartItemEdge {
@@ -110,7 +110,7 @@ input CartItemSubscriptionWhereInput {
 
 input CartItemUpdateInput {
   quantity: Int
-  product: ProductUpdateOneInput
+  product: ProductUpdateOneRequiredInput
   user: UserUpdateOneRequiredWithoutCartInput
 }
 
@@ -141,7 +141,7 @@ input CartItemUpdateManyWithWhereNestedInput {
 
 input CartItemUpdateWithoutUserDataInput {
   quantity: Int
-  product: ProductUpdateOneInput
+  product: ProductUpdateOneRequiredInput
 }
 
 input CartItemUpdateWithWhereUniqueWithoutUserInput {
@@ -231,14 +231,15 @@ type PageInfo {
 
 type Product {
   id: ID!
-  availableSizes: [String!]!
+  availableSizes: [Size!]!
   description: String!
   isFreeShipping: Boolean!
+  isFeatured: Boolean!
+  isAvailable: Boolean!
   price: Int!
   sku: String!
   style: String!
   title: String!
-  featured: Boolean!
 }
 
 type ProductConnection {
@@ -248,7 +249,7 @@ type ProductConnection {
 }
 
 input ProductCreateavailableSizesInput {
-  set: [String!]
+  set: [Size!]
 }
 
 input ProductCreateInput {
@@ -256,11 +257,12 @@ input ProductCreateInput {
   availableSizes: ProductCreateavailableSizesInput
   description: String!
   isFreeShipping: Boolean!
+  isFeatured: Boolean!
+  isAvailable: Boolean
   price: Int!
   sku: String!
   style: String!
   title: String!
-  featured: Boolean!
 }
 
 input ProductCreateOneInput {
@@ -280,6 +282,10 @@ enum ProductOrderByInput {
   description_DESC
   isFreeShipping_ASC
   isFreeShipping_DESC
+  isFeatured_ASC
+  isFeatured_DESC
+  isAvailable_ASC
+  isAvailable_DESC
   price_ASC
   price_DESC
   sku_ASC
@@ -288,20 +294,19 @@ enum ProductOrderByInput {
   style_DESC
   title_ASC
   title_DESC
-  featured_ASC
-  featured_DESC
 }
 
 type ProductPreviousValues {
   id: ID!
-  availableSizes: [String!]!
+  availableSizes: [Size!]!
   description: String!
   isFreeShipping: Boolean!
+  isFeatured: Boolean!
+  isAvailable: Boolean!
   price: Int!
   sku: String!
   style: String!
   title: String!
-  featured: Boolean!
 }
 
 type ProductSubscriptionPayload {
@@ -323,48 +328,49 @@ input ProductSubscriptionWhereInput {
 }
 
 input ProductUpdateavailableSizesInput {
-  set: [String!]
+  set: [Size!]
 }
 
 input ProductUpdateDataInput {
   availableSizes: ProductUpdateavailableSizesInput
   description: String
   isFreeShipping: Boolean
+  isFeatured: Boolean
+  isAvailable: Boolean
   price: Int
   sku: String
   style: String
   title: String
-  featured: Boolean
 }
 
 input ProductUpdateInput {
   availableSizes: ProductUpdateavailableSizesInput
   description: String
   isFreeShipping: Boolean
+  isFeatured: Boolean
+  isAvailable: Boolean
   price: Int
   sku: String
   style: String
   title: String
-  featured: Boolean
 }
 
 input ProductUpdateManyMutationInput {
   availableSizes: ProductUpdateavailableSizesInput
   description: String
   isFreeShipping: Boolean
+  isFeatured: Boolean
+  isAvailable: Boolean
   price: Int
   sku: String
   style: String
   title: String
-  featured: Boolean
 }
 
-input ProductUpdateOneInput {
+input ProductUpdateOneRequiredInput {
   create: ProductCreateInput
   update: ProductUpdateDataInput
   upsert: ProductUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: ProductWhereUniqueInput
 }
 
@@ -404,6 +410,10 @@ input ProductWhereInput {
   description_not_ends_with: String
   isFreeShipping: Boolean
   isFreeShipping_not: Boolean
+  isFeatured: Boolean
+  isFeatured_not: Boolean
+  isAvailable: Boolean
+  isAvailable_not: Boolean
   price: Int
   price_not: Int
   price_in: [Int!]
@@ -454,8 +464,6 @@ input ProductWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
-  featured: Boolean
-  featured_not: Boolean
   AND: [ProductWhereInput!]
   OR: [ProductWhereInput!]
   NOT: [ProductWhereInput!]
@@ -476,6 +484,15 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
+}
+
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
 }
 
 type Subscription {
