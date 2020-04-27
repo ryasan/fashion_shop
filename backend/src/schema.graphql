@@ -16,7 +16,6 @@ type Mutation {
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
   createProduct(data: ProductCreateInput): Product!
-  deleteProduct(where: ProductWhereUniqueInput!): Product
   updateProduct(
     data: ProductUpdateInput!
     where: ProductWhereUniqueInput!
