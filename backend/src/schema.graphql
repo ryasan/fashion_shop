@@ -11,10 +11,12 @@ type Query {
 
 type Mutation {
   deleteMe: SuccessMessage
+  deleteProduct(where: ProductWhereUniqueInput!): Product
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
   createProduct(data: ProductCreateInput): Product!
+  deleteProduct(where: ProductWhereUniqueInput!): Product
   updateProduct(
     data: ProductUpdateInput!
     where: ProductWhereUniqueInput!

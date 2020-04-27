@@ -13,6 +13,7 @@ const Mutation = {
 
     return { message: 'Your account has successfully been removed' }
   },
+  deleteProduct: forwardTo('db'),
   signin: async (parent, { email, password }, ctx, info) => {
     const user = await ctx.db.query.user({ where: { email } })
     if (!user) {
