@@ -11,8 +11,11 @@ export const PRODUCTS_QUERY = gql`
 `
 
 export const PRODUCTS_CONNECTION_QUERY = gql`
-  query($filters: ProductWhereInput) {
-    productsConnection(filters: $filters) {
+  query($freeShippingSelected: Boolean, $sizeFilters: [String]) {
+    productsConnection(
+      freeShippingSelected: $freeShippingSelected
+      sizeFilters: $sizeFilters
+    ) {
       edges {
         node {
           ...ProductFragment

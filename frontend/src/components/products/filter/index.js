@@ -5,10 +5,7 @@ import {
   useAddSizeFilterMutation,
   useRemoveSizeFilterMutation
 } from '../../../graphql/cart/hooks'
-import {
-  useToggleFreeShippingMutation,
-  useFiltersQuery
-} from '../../../graphql/product/hooks'
+import { useToggleFreeShippingMutation } from '../../../graphql/product/hooks'
 
 const sizeFilters = ['S', 'M', 'L', 'XL', 'XXL']
 
@@ -34,15 +31,15 @@ const Size = ({ size }) => {
 }
 
 const FilterComponent = () => {
-  const [freeShippingSelected, setFreeShippingSelected] = useState(false)
-  const [toggleFreeShippingFilter] = useToggleFreeShippingMutation()
+  const [isSelected, setIsSelected] = useState(false)
+  const [setFreeShippingSelected] = useToggleFreeShippingMutation()
 
   useEffect(() => {
-    toggleFreeShippingFilter()
-  }, [freeShippingSelected])
+    setFreeShippingSelected({ variables: { isSelected } })
+  }, [isSelected])
 
-  const toggleFilter = () => {
-    setFreeShippingSelected(prevState => !prevState)
+  const toggleFreeShippingSelected = () => {
+    setIsSelected(prevState => !prevState)
   }
 
   return (
@@ -54,8 +51,8 @@ const FilterComponent = () => {
         ))}
       </Filter.Sizes>
       <Filter.FreeShipping
-        onClick={toggleFilter}
-        isSelected={freeShippingSelected}>
+        onClick={toggleFreeShippingSelected}
+        isSelected={isSelected}>
         Free shipping
       </Filter.FreeShipping>
     </Filter>

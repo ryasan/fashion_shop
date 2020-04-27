@@ -1,49 +1,21 @@
-import React, { useState } from 'react'
-import { intersection } from 'lodash'
+import React from 'react'
 
 import Products from './products.styles'
 import ProductList from './product-list'
 import ControlsHeader from './controls-header/index'
 import {
   useProductsConnectionQuery,
-  useFiltersQuery,
-  useProductsQuery
+  useFiltersQuery
 } from '../../graphql/product/hooks'
 
-const isInStock = (sizes, filters) => {
-  return intersection(sizes, filters).length > 0
-}
-
-const ProductsFilteredBySize = ({ products, setCount }) => {
-  const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
-  console.log(sizeFilters)
-  const inStock = products.filter(p => {
-    return isInStock(p.availableSizes, sizeFilters)
-  })
-  const productIds = inStock.map(p => p.id)
-
-  const filters = {
-    AND: [
-      { isFreeShipping: freeShippingSelected || undefined },
-      { id_in: productIds.length > 0 ? productIds : undefined }
-    ]
-  }
-
-  const { data, error, loading } = useProductsConnectionQuery({ filters })
-
-  if (loading) return <Products.Loader color="white" />
-  if (error) return <Products.ErrorBoundary error={error} />
-
-  const filteredProducts = data.productsConnection.edges
-  const count = data.productsConnection.aggregate.count
-  setCount(count)
-
-  return <ProductList products={filteredProducts} />
-}
-
 const ProductsComponent = () => {
-  const [count, setCount] = useState(null)
-  const { data, error, loading } = useProductsQuery()
+  const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
+  const { data, error, loading } = useProductsConnectionQuery({
+    sizeFilters,
+    freeShippingSelected
+  })
+  const count = data?.productsConnection.aggregate.count
+  const products = data?.productsConnection.edges.map(e => e.node)
 
   return (
     <Products>
@@ -53,10 +25,7 @@ const ProductsComponent = () => {
           {loading ? (
             <Products.Loader color="white" />
           ) : (
-            <ProductsFilteredBySize
-              products={data.products}
-              setCount={setCount}
-            />
+            <ProductList products={products} />
           )}
         </Products.ErrorBoundary>
       </Products.Container>

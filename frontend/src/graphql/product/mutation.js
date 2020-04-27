@@ -32,8 +32,8 @@ export const REMOVE_SIZE_FILTER_MUTATION = gql`
   }
 `
 
-export const TOGGLE_FREE_SHIPPING_FILTER_MUTATION = gql`
-  mutation {
-    toggleFreeShippingFilter @client
+export const SET_FREE_SHIPPING_SELECTED_MUTATION = gql`
+  mutation($isSelected: Boolean!) {
+    setFreeShippingSelected(isSelected: $isSelected) @client
   }
 `

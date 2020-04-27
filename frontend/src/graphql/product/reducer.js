@@ -1,7 +1,7 @@
 import {
   ADD_SIZE_FILTER,
   REMOVE_SIZE_FILTER,
-  TOGGLE_FREE_SHIPPING_FILTER
+  SET_FREE_SHIPPING_SELECTED
 } from './action-types'
 import { FILTERS_QUERY } from './queries'
 
@@ -28,11 +28,11 @@ const filtersReducer = (actionType, client, variables) => {
           sizeFilters: sizeFilters.filter(s => s !== variables.size)
         }
       })
-    case TOGGLE_FREE_SHIPPING_FILTER:
+    case SET_FREE_SHIPPING_SELECTED:
       return client.writeData({
         data: {
           ...state,
-          freeShippingSelected: !state.freeShippingSelected
+          freeShippingSelected: variables.isSelected
         }
       })
   }

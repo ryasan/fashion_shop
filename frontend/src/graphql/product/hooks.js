@@ -7,7 +7,7 @@ import {
 } from './queries'
 import {
   CREATE_PRODUCT_MUTATION,
-  TOGGLE_FREE_SHIPPING_FILTER_MUTATION,
+  SET_FREE_SHIPPING_SELECTED_MUTATION,
   UPDATE_PRODUCT_MUTATION
 } from './mutation'
 
@@ -15,9 +15,9 @@ export const useProductsQuery = () => {
   return useQuery(PRODUCTS_QUERY)
 }
 
-export const useProductsConnectionQuery = ({ filters }) => {
+export const useProductsConnectionQuery = filters => {
   return useQuery(PRODUCTS_CONNECTION_QUERY, {
-    variables:  { filters },
+    variables: filters,
     fetchPolicy: 'network-only'
   })
 }
@@ -35,5 +35,5 @@ export const useFiltersQuery = () => {
 }
 
 export const useToggleFreeShippingMutation = () => {
-  return useMutation(TOGGLE_FREE_SHIPPING_FILTER_MUTATION)
+  return useMutation(SET_FREE_SHIPPING_SELECTED_MUTATION)
 }

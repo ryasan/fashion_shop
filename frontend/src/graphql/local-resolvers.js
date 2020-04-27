@@ -6,7 +6,7 @@ import {
 import {
   ADD_SIZE_FILTER,
   REMOVE_SIZE_FILTER,
-  TOGGLE_FREE_SHIPPING_FILTER
+  SET_FREE_SHIPPING_SELECTED
 } from './product/action-types'
 import cartReducer from './cart/reducer'
 import filtersReducer from './product/reducer'
@@ -23,6 +23,6 @@ export const Mutation = {
     filtersReducer(ADD_SIZE_FILTER, client, variables),
   removeSizeFilter: (_, variables, { client }) =>
     filtersReducer(REMOVE_SIZE_FILTER, client, variables),
-  toggleFreeShippingFilter: (_, variables, { client }) =>
-    filtersReducer(TOGGLE_FREE_SHIPPING_FILTER, client, variables)
+  setFreeShippingSelected: (_, variables, { client }) =>
+    filtersReducer(SET_FREE_SHIPPING_SELECTED, client, variables)
 }
