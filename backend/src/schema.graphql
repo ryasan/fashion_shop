@@ -3,10 +3,7 @@
 type Query {
   me: User
   products: [Product!]
-  productsConnection(
-    where: ProductWhereInput
-    orderBy: ProductOrderByInput
-  ): ProductConnection!
+  productsConnection(filters: ProductWhereInput): ProductConnection!
 }
 
 type Mutation {
