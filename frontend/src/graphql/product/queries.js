@@ -11,7 +11,7 @@ export const PRODUCTS_QUERY = gql`
 `
 
 export const PRODUCTS_CONNECTION_QUERY = gql`
-  query($filters: Filters!) {
+  query($filters: ProductWhereInput) {
     productsConnection(filters: $filters) {
       edges {
         node {

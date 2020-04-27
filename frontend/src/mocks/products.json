@@ -3,10 +3,10 @@
     {
       "availableSizes": [
         "S",
+        "M",
         "XXL"
       ],
       "description": "4 MSL",
-      "isAvailable": true,
       "isFreeShipping": false,
       "price": 1090,
       "sku": "12064273040195392",
@@ -19,7 +19,6 @@
         "M"
       ],
       "description": "",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 2945,
       "sku": "51498472915966370",
@@ -33,7 +32,6 @@
         "XL"
       ],
       "description": "GPX Poly 1",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 900,
       "sku": "10686354557628304",
@@ -43,12 +41,12 @@
     },
     {
       "availableSizes": [
+        "S",
         "L",
         "XL",
         "XXL"
       ],
       "description": "Treino 2014",
-      "isAvailable": true,
       "isFreeShipping": false,
       "price": 1400,
       "sku": "11033926921508488",
@@ -58,10 +56,10 @@
     },
     {
       "availableSizes": [
+        "M",
         "L"
       ],
       "description": "",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 1325,
       "sku": "39876704341265610",
@@ -76,7 +74,6 @@
         "XXL"
       ],
       "description": "14/15 s/nº",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 1090,
       "sku": "8552515751438644",
@@ -86,12 +83,12 @@
     },
     {
       "availableSizes": [
+        "S",
         "L",
         "XL",
         "XXL"
       ],
       "description": "14/15 s/nº",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 1090,
       "sku": "18644119330491310",
@@ -101,10 +98,10 @@
     },
     {
       "availableSizes": [
+        "S",
         "L"
       ],
       "description": "14/15 s/nº",
-      "isAvailable": true,
       "isFreeShipping": false,
       "price": 1490,
       "sku": "11854078013954528",
@@ -117,7 +114,6 @@
         "L"
       ],
       "description": "2014 s/nº",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 1490,
       "sku": "876661122392077",
@@ -130,7 +126,6 @@
         "XL"
       ],
       "description": "14/15 s/nº - Jogador",
-      "isAvailable": true,
       "isFreeShipping": false,
       "price": 2590,
       "sku": "9197907543445676",
@@ -140,11 +135,11 @@
     },
     {
       "availableSizes": [
+        "M",
         "L",
         "XL"
       ],
       "description": "14/15 + Camiseta 1º Mundial",
-      "isAvailable": true,
       "isFreeShipping": false,
       "price": 1090,
       "sku": "10547961582846888",
@@ -158,7 +153,6 @@
         "XXL"
       ],
       "description": "Goleiro 13/14",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 2990,
       "sku": "6090484789343891",
@@ -171,7 +165,6 @@
         "S"
       ],
       "description": "1977 Infantil",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 2250,
       "sku": "18532669286405344",
@@ -184,7 +177,6 @@
         "XL"
       ],
       "description": "",
-      "isAvailable": true,
       "isFreeShipping": false,
       "price": 1870,
       "sku": "5619496040738316",
@@ -198,7 +190,6 @@
         "XL"
       ],
       "description": "",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 3490,
       "sku": "11600983276356164",
@@ -208,11 +199,11 @@
     },
     {
       "availableSizes": [
+        "M",
         "L",
         "XL"
       ],
       "description": "",
-      "isAvailable": true,
       "isFreeShipping": true,
       "price": 2500,
       "sku": "27250082398145996",

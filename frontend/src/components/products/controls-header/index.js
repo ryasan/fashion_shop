@@ -9,7 +9,7 @@ const ControlsHeaderComponent = ({ count }) => {
     <ControlsHeader>
       <Filter />
       <ControlsHeader.Count modifiers="offWhiteColor">
-        Found {count} product{count > 0 && 's'}
+        {count !== null && `Found ${count} product${count !== 1 ? 's' : ''}`}
       </ControlsHeader.Count>
       <Sort />
     </ControlsHeader>

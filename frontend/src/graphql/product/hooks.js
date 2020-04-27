@@ -15,13 +15,9 @@ export const useProductsQuery = () => {
   return useQuery(PRODUCTS_QUERY)
 }
 
-export const useProductsConnectionQuery = filters => {
-  const { freeShippingFilter, sizeFilters } = filters
-
+export const useProductsConnectionQuery = ({ filters }) => {
   return useQuery(PRODUCTS_CONNECTION_QUERY, {
-    variables: {
-      filters: { freeShippingFilter, sizeFilters }
-    },
+    variables:  { filters },
     fetchPolicy: 'network-only'
   })
 }
