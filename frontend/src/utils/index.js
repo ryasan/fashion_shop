@@ -1,5 +1,6 @@
 export * from './device'
 export * from './use-mock-products'
 export * from './capitalize'
-export * from './formatPrice'
+export * from './format-price'
 export * from './with-hover-state'
+export * from './seed-products'

@@ -6,38 +6,38 @@
         "M",
         "XXL"
       ],
-      "description": "4 MSL",
       "isFreeShipping": false,
+      "isFeatured": true,
       "price": 1090,
+      "description": "4 MSL",
       "sku": "12064273040195392",
       "style": "Black with custom print",
-      "title": "Cat Tee Black T-Shirt",
-      "isFeatured": true
+      "title": "Cat Tee Black T-Shirt"
     },
     {
       "availableSizes": [
         "M"
       ],
-      "description": "",
       "isFreeShipping": true,
+      "isFeatured": true,
       "price": 2945,
+      "description": "",
       "sku": "51498472915966370",
       "style": "Front print and paisley print",
-      "title": "Dark Thug Blue-Navy T-Shirt",
-      "isFeatured": true
+      "title": "Dark Thug Blue-Navy T-Shirt"
     },
     {
       "availableSizes": [
         "L",
         "XL"
       ],
-      "description": "GPX Poly 1",
       "isFreeShipping": true,
+      "isFeatured": true,
       "price": 900,
+      "description": "GPX Poly 1",
       "sku": "10686354557628304",
       "style": "Front tie dye print",
-      "title": "Sphynx Tie Dye Wine T-Shirt",
-      "isFeatured": true
+      "title": "Sphynx Tie Dye Wine T-Shirt"
     },
     {
       "availableSizes": [
@@ -46,26 +46,26 @@
         "XL",
         "XXL"
       ],
-      "description": "Treino 2014",
       "isFreeShipping": false,
+      "isFeatured": true,
       "price": 1400,
+      "description": "Treino 2014",
       "sku": "11033926921508488",
       "style": "Black T-Shirt with front print",
-      "title": "Skuul",
-      "isFeatured": true
+      "title": "Skuul"
     },
     {
       "availableSizes": [
         "M",
         "L"
       ],
-      "description": "",
       "isFreeShipping": true,
+      "isFeatured": true,
       "price": 1325,
+      "description": "",
       "sku": "39876704341265610",
       "style": "Wine",
-      "title": "Wine Skul T-Shirt",
-      "isFeatured": true
+      "title": "Wine Skul T-Shirt"
     },
     {
       "availableSizes": [
@@ -73,13 +73,13 @@
         "XL",
         "XXL"
       ],
-      "description": "14/15 s/nº",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 1090,
+      "description": "14/15 s/nº",
       "sku": "8552515751438644",
       "style": "Branco com listras pretas",
-      "title": "Cat Tee Black T-Shirt",
-      "isFeatured": false
+      "title": "Cat Tee Black T-Shirt"
     },
     {
       "availableSizes": [
@@ -88,50 +88,50 @@
         "XL",
         "XXL"
       ],
-      "description": "14/15 s/nº",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 1090,
+      "description": "14/15 s/nº",
       "sku": "18644119330491310",
       "style": "Preta com listras brancas",
-      "title": "Sphynx Tie Dye Grey T-Shirt",
-      "isFeatured": false
+      "title": "Sphynx Tie Dye Grey T-Shirt"
     },
     {
       "availableSizes": [
         "S",
         "L"
       ],
-      "description": "14/15 s/nº",
       "isFreeShipping": false,
+      "isFeatured": false,
       "price": 1490,
+      "description": "14/15 s/nº",
       "sku": "11854078013954528",
       "style": "Branco com listras pretas",
-      "title": "Danger Knife Grey",
-      "isFeatured": false
+      "title": "Danger Knife Grey"
     },
     {
       "availableSizes": [
         "L"
       ],
-      "description": "2014 s/nº",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 1490,
+      "description": "2014 s/nº",
       "sku": "876661122392077",
       "style": "Preto com listras brancas",
-      "title": "White DGK Script Tee",
-      "isFeatured": false
+      "title": "White DGK Script Tee"
     },
     {
       "availableSizes": [
         "XL"
       ],
-      "description": "14/15 s/nº - Jogador",
       "isFreeShipping": false,
+      "isFeatured": false,
       "price": 2590,
+      "description": "14/15 s/nº - Jogador",
       "sku": "9197907543445676",
       "style": "Branco com listras pretas",
-      "title": "Born On The Streets",
-      "isFeatured": false
+      "title": "Born On The Streets"
     },
     {
       "availableSizes": [
@@ -139,63 +139,63 @@
         "L",
         "XL"
       ],
-      "description": "14/15 + Camiseta 1º Mundial",
       "isFreeShipping": false,
+      "isFeatured": false,
       "price": 1090,
+      "description": "14/15 + Camiseta 1º Mundial",
       "sku": "10547961582846888",
       "style": "Preto",
-      "title": "Tso 3D Short Sleeve T-Shirt A",
-      "isFeatured": false
+      "title": "Tso 3D Short Sleeve T-Shirt A"
     },
     {
       "availableSizes": [
         "XL",
         "XXL"
       ],
-      "description": "Goleiro 13/14",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 2990,
+      "description": "Goleiro 13/14",
       "sku": "6090484789343891",
       "style": "Branco",
-      "title": "Man Tie Dye Cinza Grey T-Shirt",
-      "isFeatured": false
+      "title": "Man Tie Dye Cinza Grey T-Shirt"
     },
     {
       "availableSizes": [
         "S"
       ],
-      "description": "1977 Infantil",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 2250,
+      "description": "1977 Infantil",
       "sku": "18532669286405344",
       "style": "Preto com listras brancas",
-      "title": "Crazy Monkey Black T-Shirt",
-      "isFeatured": false
+      "title": "Crazy Monkey Black T-Shirt"
     },
     {
       "availableSizes": [
         "XL"
       ],
-      "description": "",
       "isFreeShipping": false,
+      "isFeatured": false,
       "price": 1870,
+      "description": "",
       "sku": "5619496040738316",
       "style": "Azul escuro",
-      "title": "Tso 3D Black T-Shirt",
-      "isFeatured": false
+      "title": "Tso 3D Black T-Shirt"
     },
     {
       "availableSizes": [
         "L",
         "XL"
       ],
-      "description": "",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 3490,
+      "description": "",
       "sku": "11600983276356164",
       "style": "",
-      "title": "Crazy Monkey Grey",
-      "isFeatured": false
+      "title": "Crazy Monkey Grey"
     },
     {
       "availableSizes": [
@@ -203,13 +203,13 @@
         "L",
         "XL"
       ],
-      "description": "",
       "isFreeShipping": true,
+      "isFeatured": false,
       "price": 2500,
+      "description": "",
       "sku": "27250082398145996",
       "style": "",
-      "title": "On The Streets Black T-Shirt",
-      "isFeatured": false
+      "title": "On The Streets Black T-Shirt"
     }
   ]
 }

@@ -14,7 +14,7 @@ const ProductsComponent = () => {
     sizeFilters,
     freeShippingSelected
   })
-  const count = data?.productsConnection.aggregate.count
+  const count = data?.productsConnection?.aggregate?.count
   const products = data?.productsConnection.edges.map(e => e.node)
 
   return (

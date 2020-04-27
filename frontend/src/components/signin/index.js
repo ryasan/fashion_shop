@@ -86,7 +86,7 @@ const SigninPage = ({ className }) => {
   const signinText = isSignin
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
-  const messageModifiers = [
+  const computedColors = [
     formIsValid ? 'greenColor' : 'redColor',
     'width100',
     'textAlignCenter',
@@ -216,7 +216,7 @@ const SigninPage = ({ className }) => {
             </Signin.Field>
           ))}
 
-          <Signin.MessageText modifiers={messageModifiers}>
+          <Signin.MessageText modifiers={computedColors}>
             {message}
           </Signin.MessageText>
 
