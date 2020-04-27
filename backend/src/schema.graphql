@@ -3,7 +3,10 @@
 type Query {
   me: User
   products: [Product!]
-  productsConnection(filters: ProductWhereInput): ProductConnection!
+  productsConnection(
+    freeShippingSelected: Boolean
+    sizeFilters: [String]
+  ): ProductConnection!
 }
 
 type Mutation {

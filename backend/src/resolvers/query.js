@@ -1,4 +1,9 @@
+const { intersection } = require('lodash')
 const { forwardTo } = require('prisma-binding')
+
+const isInStock = (sizes, filters) => {
+  return intersection(sizes, filters).length > 0
+}
 
 const Query = {
   me: (parent, args, ctx, info) => {
@@ -7,17 +12,23 @@ const Query = {
     return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
   },
   products: forwardTo('db'),
-  productsConnection: async (parent, { filters }, ctx, info) => {
-    if (filters.AND) {
-      const inputFilterValues = filters.AND.map((filter) => {
-        return Object.values(filter)[0]
-      })
-      if (inputFilterValues.every((v) => !v)) {
-        return ctx.db.query.productsConnection({}, info)
-      }
+  productsConnection: async (parent, args, ctx, info) => {
+    const { sizeFilters, freeShippingSelected } = args
+    const { edges } = await ctx.db.query.productsConnection({}, info)
+
+    const inStock = edges.filter((product) => {
+      return isInStock(product.node.availableSizes, sizeFilters)
+    })
+    const productIds = inStock.map((product) => product.node.id)
+
+    const where = {
+      AND: [
+        { isFreeShipping: freeShippingSelected || undefined },
+        { id_in: productIds.length > 0 ? productIds : undefined }
+      ]
     }
 
-    return ctx.db.query.productsConnection({ where: filters }, info)
+    return ctx.db.query.productsConnection({ where }, info)
   }
 }
 
