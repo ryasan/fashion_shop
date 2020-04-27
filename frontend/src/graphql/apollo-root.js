@@ -12,7 +12,7 @@ import { cartInitialState } from './cart/reducer'
 import { filtersInitialState } from './product/reducer'
 
 const devEndpoint = 'http://localhost:5000'
-const prodEndpoint = 'https://fashion-shop-yoga-prod.herokuapp.com'
+const prodEndpoint = 'https://fashion-shop-prod.herokuapp.com'
 
 const Loader = styled(LoaderComponent)`
   width: 100%;
