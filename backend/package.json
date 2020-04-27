@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon src/index.js",
     "start": "NODE_ENV=production node src/index.js",
-    "deploy-dev": "prisma deploy --env-file .env.dev",
+    "deploy": "prisma deploy --env-file .env.dev",
     "deploy-prod": "prisma deploy --env-file .env.prod"
   },
   "dependencies": {

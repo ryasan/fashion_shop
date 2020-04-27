@@ -3,14 +3,10 @@
 type Query {
   me: User
   products: [Product!]
-  productsConnection(filters: Filters!): ProductConnection!
-  size(where: SizeWhereInput): Size!
-  sizes(where: SizeWhereInput): [Size]!
-}
-
-input Filters {
-  freeShippingFilter: Boolean!
-  sizeFilters: [String!]!
+  productsConnection(
+    where: ProductWhereInput
+    orderBy: ProductOrderByInput
+  ): ProductConnection!
 }
 
 type Mutation {
@@ -18,12 +14,11 @@ type Mutation {
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
-  createProduct(data: ProductCreateInput, sizes: [String]): Product!
+  createProduct(data: ProductCreateInput): Product!
   updateProduct(
     data: ProductUpdateInput!
     where: ProductWhereUniqueInput!
   ): Product
-  createSize(data: SizeCreateInput!): Size!
 }
 
 type User {
@@ -46,18 +41,14 @@ type Product {
   description: String!
   isFreeShipping: Boolean!
   isFeatured: Boolean!
+  isAvailable: Boolean
   price: Int!
   sku: String!
   style: String!
   title: String!
-}
-
-type Size {
-  id: ID!
-  name: String!
-  products: [ID!]!
+  availableSizes: [Size!]
 }
 
 type SuccessMessage {
-  message: String
+  message: String!
 }
