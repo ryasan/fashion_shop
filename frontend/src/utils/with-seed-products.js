@@ -1,12 +1,12 @@
-// import React from 'react'
+import React from 'react'
 import { useCreateProductMutation } from '../graphql/product/hooks'
 
 import { products as mockProducts } from '../mocks/products.json'
 
-export const seedProducts = ({ products }) => {
+export const withSeedProducts = Component => props => {
   const [createProduct] = useCreateProductMutation()
 
-  if (products.length > 1) {
+  const seedProducts = () => {
     for (const p of mockProducts) {
       createProduct({
         variables: {
@@ -18,4 +18,6 @@ export const seedProducts = ({ products }) => {
       })
     }
   }
+
+  return <Component {...props} seedProducts={seedProducts} />
 }

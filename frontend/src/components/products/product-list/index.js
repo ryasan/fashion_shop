@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import ProductList from './product-list.styles'
 import OneProduct from '../product'
-import { seedProducts } from '../../../utils/seed-products'
+import { withSeedProducts } from '../../../utils/with-seed-products'
 
-const ProductListComponent = ({ products }) => {
+const ProductListComponent = ({ products, seedProducts }) => {
   return (
     <ProductList>
       <button onClick={() => seedProducts({ products })}>seed em</button>
@@ -20,4 +20,4 @@ ProductListComponent.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-export default ProductListComponent
+export default withSeedProducts(ProductListComponent)
