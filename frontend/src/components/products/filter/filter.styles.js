@@ -8,7 +8,7 @@ const Filter = styled.div`
   border-radius: 3px;
 `
 
-const baseButtonStyles = isSelected => css`
+const filterBtnStyles = isSelected => css`
   background: ${isSelected ? 'black' : 'var(--off-white)'};
   color: ${isSelected ? 'var(--off-white)' : 'black'};
   display: flex;
@@ -32,19 +32,19 @@ const baseButtonStyles = isSelected => css`
 Filter.FreeShipping = styled(Button)`
   padding: 1rem 1rem;
   border-radius: 2px;
-  ${props => baseButtonStyles(props.isSelected)};
+  ${props => filterBtnStyles(props.isSelected)};
 `
 
 Filter.Sizes = styled.ul`
   display: flex;
 `
 
-Filter.SingleSize = styled(Button)`
+Filter.OneSize = styled(Button)`
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   cursor: pointer;
-  ${props => baseButtonStyles(props.isSelected)};
+  ${props => filterBtnStyles(props.isSelected)};
 `
 
 Filter.Title = styled(H4)`

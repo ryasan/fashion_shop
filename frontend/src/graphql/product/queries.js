@@ -35,6 +35,6 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
 export const FILTERS_QUERY = gql`
   query {
     sizeFilters @client
-    freeShippingFilter @client
+    freeShippingSelected @client
   }
 `

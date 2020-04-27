@@ -27,15 +27,23 @@ const Size = ({ size }) => {
   }, [isSelected])
 
   return (
-    <Filter.SingleSize onClick={toggleSelect} isSelected={isSelected}>
+    <Filter.OneSize onClick={toggleSelect} isSelected={isSelected}>
       {size}
-    </Filter.SingleSize>
+    </Filter.OneSize>
   )
 }
 
 const FilterComponent = () => {
+  const [freeShippingSelected, setFreeShippingSelected] = useState(false)
   const [toggleFreeShippingFilter] = useToggleFreeShippingMutation()
-  const { data: { freeShippingFilter } } = useFiltersQuery() // prettier-ignore
+
+  useEffect(() => {
+    toggleFreeShippingFilter()
+  }, [freeShippingSelected])
+
+  const toggleFilter = () => {
+    setFreeShippingSelected(prevState => !prevState)
+  }
 
   return (
     <Filter>
@@ -46,8 +54,8 @@ const FilterComponent = () => {
         ))}
       </Filter.Sizes>
       <Filter.FreeShipping
-        onClick={toggleFreeShippingFilter}
-        isSelected={freeShippingFilter}>
+        onClick={toggleFilter}
+        isSelected={freeShippingSelected}>
         Free shipping
       </Filter.FreeShipping>
     </Filter>

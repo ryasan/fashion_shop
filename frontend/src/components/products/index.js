@@ -15,7 +15,8 @@ const isInStock = (sizes, filters) => {
 }
 
 const ProductsFilteredBySize = ({ products, setCount }) => {
-  const { data: { sizeFilters, freeShippingFilter } } = useFiltersQuery() // prettier-ignore
+  const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
+  console.log(sizeFilters)
   const inStock = products.filter(p => {
     return isInStock(p.availableSizes, sizeFilters)
   })
@@ -23,7 +24,7 @@ const ProductsFilteredBySize = ({ products, setCount }) => {
 
   const filters = {
     AND: [
-      { isFreeShipping: freeShippingFilter || undefined },
+      { isFreeShipping: freeShippingSelected || undefined },
       { id_in: productIds.length > 0 ? productIds : undefined }
     ]
   }

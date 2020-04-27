@@ -7,7 +7,7 @@ import { FILTERS_QUERY } from './queries'
 
 export const filtersInitialState = {
   sizeFilters: [],
-  freeShippingFilter: false
+  freeShippingSelected: false
 }
 
 const filtersReducer = (actionType, client, variables) => {
@@ -32,7 +32,7 @@ const filtersReducer = (actionType, client, variables) => {
       return client.writeData({
         data: {
           ...state,
-          freeShippingFilter: !state.freeShippingFilter
+          freeShippingSelected: !state.freeShippingSelected
         }
       })
   }

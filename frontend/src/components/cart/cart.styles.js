@@ -6,7 +6,7 @@ import { device } from '../../utils'
 
 const Cart = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 20;
   height: 100%;
   width: 45rem;
   right: ${props => (props.cartOpen ? '0' : '-45rem')};
