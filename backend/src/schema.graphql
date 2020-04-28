@@ -6,6 +6,7 @@ type Query {
   productsConnection(
     freeShippingSelected: Boolean
     sizeFilters: [String]
+    orderBy: ProductOrderByInput
   ): ProductConnection!
 }
 
