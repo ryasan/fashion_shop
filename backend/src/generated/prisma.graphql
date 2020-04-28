@@ -1,5 +1,5 @@
 # source: https://fashion-shop-prod-793154e41d.herokuapp.com/fashion-shop-prod/prod
-# timestamp: Mon Apr 27 2020 16:37:16 GMT-0700 (Pacific Daylight Time)
+# timestamp: Mon Apr 27 2020 22:46:02 GMT-0700 (Pacific Daylight Time)
 
 type AggregateCartItem {
   count: Int!
