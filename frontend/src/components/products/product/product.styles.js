@@ -30,6 +30,7 @@ Product.Special = styled(Span)`
   right: 0;
   transform: rotate(10deg) translate(1rem, -1rem);
   z-index: 1;
+  border-radius: 2px;
 `
 
 Product.Thumb = styled.div`
@@ -60,6 +61,7 @@ Product.Title = styled.div`
   height: auto;
   width: 80%;
   transform: translateX(-50%) skew(-12deg) rotate(-5deg);
+  border-radius: 3px;
 `
 
 Product.Divider = styled(Hr)`
