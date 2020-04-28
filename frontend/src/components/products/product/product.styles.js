@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { Button, Image, Span, Small, Hr, B } from '../../elements'
 import { device } from '../../../utils'
 
 const Product = styled.li`
@@ -18,13 +17,7 @@ const Product = styled.li`
   }
 `
 
-Product.Image = styled(Image)`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`
-
-Product.Special = styled(Span)`
+Product.Special = styled.div`
   position: absolute;
   padding: 0.5rem;
   right: 0;
@@ -36,56 +29,55 @@ Product.Special = styled(Span)`
 Product.Thumb = styled.div`
   position: relative;
   text-align: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `
 
 Product.Details = styled.div`
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 8rem;
-  position: relative;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 5.5rem;
   text-align: center;
   color: black;
+  width: 100%;
+  span {
+    font-size: 2rem;
+    padding: 0.5rem 2rem;
+    background: var(--red);
+    color: var(--off-white);
+    transform: skew(-10deg);
+    width: 80%;
+    border-radius: 3px;
+    align-self: center;
+  }
+  hr {
+    width: 3rem;
+  }
 `
 
-Product.Title = styled.div`
-  font-size: 2rem;
-  padding: 0.5rem 2rem;
-  background: var(--red);
-  color: var(--off-white);
-  transform: skew(-10deg);
-  position: absolute;
-  bottom: -2rem;
-  left: 50%;
-  height: auto;
-  width: 80%;
-  transform: translateX(-50%) skew(-12deg) rotate(-5deg);
-  border-radius: 3px;
-`
-
-Product.Divider = styled(Hr)`
-  width: 3rem;
-`
-
-Product.Price = styled.div`
+const Price = styled.div`
   font-size: 2rem;
   width: 100%;
 `
 
-Product.Dollars = B
-
-Product.Cents = Small
-
-Product.BuyBtn = styled(Button)`
-  border-width: 2px;
-  border-style: solid;
-  outline-color: var(--red);
-  padding: 1.5rem 2rem;
-  &:hover {
-    color: var(--red);
-    background: var(--dark);
+Product.Button = styled.div`
+  button {
+    border-width: 2px;
+    border-style: solid;
+    outline-color: var(--red);
+    padding: 1.5rem 2rem;
+    width: 100%;
+    &:hover {
+      color: var(--red);
+      background: var(--dark);
+    }
   }
 `
 
+export { Price }
 export default Product

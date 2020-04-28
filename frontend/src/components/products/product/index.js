@@ -1,9 +1,10 @@
 import React from 'react'
-
-import Product from './product.styles'
 import PropTypes from 'prop-types'
+
+import Product, { Price } from './product.styles'
 import { formatPrice } from '../../../utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
+import { Button, Image, Span, Small, Hr, B } from '../../elements'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
@@ -27,22 +28,24 @@ const ProductComponent = ({ product, sizeFilters }) => {
         </Product.Special>
       )}
       <Product.Thumb>
-        <Product.Image src={productImage} alt={product.title} />
-        <Product.Title>{product.title}</Product.Title>
+        <Image src={productImage} alt={product.title} />
       </Product.Thumb>
       <Product.Details>
-        <Product.Divider modifiers="red" />
-        <Product.Price>
-          <Product.Dollars>{dollars}</Product.Dollars>
-          <Product.Cents>{cents}</Product.Cents>
-        </Product.Price>
+        <Span>{product.title}</Span>
+        <Hr modifiers="red" />
+        <Price>
+          <B>{dollars}</B>
+          <Small>{cents}</Small>
+        </Price>
       </Product.Details>
-      <Product.BuyBtn
-        className="buy-btn"
-        modifiers={btnModifiers}
-        onClick={handleAddCartItem}>
-        Add to cart
-      </Product.BuyBtn>
+      <Product.Button>
+        <Button
+          className="buy-btn"
+          modifiers={btnModifiers}
+          onClick={handleAddCartItem}>
+          Add to cart
+        </Button>
+      </Product.Button>
     </Product>
   )
 }
