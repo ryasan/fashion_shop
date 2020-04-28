@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import { Button, P } from '../../elements'
 
 const Filter = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   border-radius: 3px;

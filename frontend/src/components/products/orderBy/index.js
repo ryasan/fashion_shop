@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Sort from './sort.styles'
+import OrderBy from './orderBy.styles'
 
 const options = [
   { name: 'Select', value: 'id_ASC' },
@@ -14,16 +14,16 @@ const SortComponent = ({ setOrderBy }) => {
   const handleOnChange = e => setOrderBy(e.target.value)
 
   return (
-    <Sort>
-      <Sort.Label modifiers="mediumText">Order by:</Sort.Label>
-      <Sort.Select modifiers="smallText" onChange={handleOnChange}>
+    <OrderBy>
+      <OrderBy.Label modifiers="mediumText">Order by:</OrderBy.Label>
+      <OrderBy.Select modifiers="smallText" onChange={handleOnChange}>
         {options.map((opt, i) => (
-          <Sort.Option key={i} value={opt.value}>
+          <OrderBy.Option key={i} value={opt.value}>
             {opt.name}
-          </Sort.Option>
+          </OrderBy.Option>
         ))}
-      </Sort.Select>
-    </Sort>
+      </OrderBy.Select>
+    </OrderBy>
   )
 }
 
