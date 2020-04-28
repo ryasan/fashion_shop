@@ -1,20 +1,9 @@
-import styled from 'styled-components'
-import {
-  applyStyleModifiers,
-  styleModifierPropTypes
-} from 'styled-components-modifiers'
+import { buildStyledComponent } from '../../utils'
 
-import MODIFIER_CONFIG from './config/modifier-config'
-
-export const Button = styled.button`
-  cursor: pointer;
-  border: none;
-  ${applyStyleModifiers(MODIFIER_CONFIG)};
-`
-
-Button.propTypes = {
-  modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
-}
+export const Button = buildStyledComponent({
+  element: 'button',
+  constantStyles: ['border: none', 'cursor: pointer']
+})
 
 export const redButton = [
   'red',

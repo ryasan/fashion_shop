@@ -26,6 +26,7 @@ const Form = styled.form`
       color: white;
       background: var(--red);
       outline-color: var(--red);
+      cursor: pointer;
       &:hover {
         background: transparent;
         color: var(--red);

@@ -6,6 +6,7 @@ const OrderBy = styled.div`
   select {
     margin-left: 1rem;
     height: 3rem;
+    background: var(--off-white);
   }
   display: flex;
   align-items: center;

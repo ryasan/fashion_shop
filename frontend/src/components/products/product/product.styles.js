@@ -24,6 +24,8 @@ Product.Special = styled.div`
   transform: rotate(10deg) translate(1rem, -1rem);
   z-index: 1;
   border-radius: 2px;
+  background: red;
+  font-size: var(--small-font);
 `
 
 Product.Thumb = styled.div`
@@ -41,7 +43,7 @@ Product.Details = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  bottom: 5.5rem;
+  bottom: 6rem;
   text-align: center;
   color: black;
   width: 100%;
@@ -73,8 +75,8 @@ Product.Button = styled.div`
     padding: 1.5rem 2rem;
     width: 100%;
     &:hover {
-      color: var(--red);
-      background: var(--dark);
+      border-color: #f3443c;
+      background: #f3443c;
     }
   }
 `

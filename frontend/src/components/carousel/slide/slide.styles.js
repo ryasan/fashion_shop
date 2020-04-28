@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Icon from '../../icons/index'
 import { device } from '../../../utils'
-import { Button, InputWithAddon } from '../../elements'
+import { Button } from '../../elements'
 
 const Slide = styled.div`
   height: 50rem;
@@ -59,7 +59,10 @@ Slide.ElementButtonInner = styled.div`
   }
 `
 
+Slide.Input = styled.input`
+  padding: 1rem 0 1rem 4rem;
+`
+
 Slide.Button = Button
-Slide.Input = InputWithAddon
 Slide.Icon = Icon
 export default Slide

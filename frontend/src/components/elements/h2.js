@@ -1,16 +1,6 @@
-import styled from 'styled-components'
-import {
-  applyStyleModifiers,
-  styleModifierPropTypes
-} from 'styled-components-modifiers'
+import { buildStyledComponent } from '../../utils'
 
-import MODIFIER_CONFIG from './config/modifier-config'
-
-export const H2 = styled.h2`
-  margin: 0;
-  ${applyStyleModifiers(MODIFIER_CONFIG)};
-`
-
-H2.propTypes = {
-  modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
-}
+export const H2 = buildStyledComponent({
+  element: 'h2',
+  constantStyles: ['margin: 0']
+})

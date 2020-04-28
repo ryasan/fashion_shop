@@ -1,15 +1,3 @@
-import styled from 'styled-components'
-import {
-  applyStyleModifiers,
-  styleModifierPropTypes
-} from 'styled-components-modifiers'
+import { buildStyledComponent } from '../../utils'
 
-import MODIFIER_CONFIG from './config/modifier-config'
-
-export const Option = styled.option`
-  ${applyStyleModifiers(MODIFIER_CONFIG)};
-`
-
-Option.propTypes = {
-  modifiers: styleModifierPropTypes(MODIFIER_CONFIG)
-}
+export const Option = buildStyledComponent({ element: 'option' })
