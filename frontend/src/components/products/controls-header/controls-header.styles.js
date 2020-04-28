@@ -4,15 +4,18 @@ import ErrorBoundary from '../../error-boundary'
 import { P } from '../../elements'
 
 const ControlsHeader = styled.div`
+  width: 100%;
   background: transparent;
   display: flex;
   justify-content: space-between;
   margin-bottom: 5rem;
-  width: 100%;
 `
 
 ControlsHeader.ErrorBoundary = ErrorBoundary
 
-ControlsHeader.Count = P
+ControlsHeader.Count = styled(P)`
+  flex: 1;
+  text-align: center;
+`
 
 export default ControlsHeader

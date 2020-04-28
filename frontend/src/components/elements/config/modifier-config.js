@@ -7,6 +7,9 @@ const MODIFIER_CONFIG = {
   border3px: () => css`
     border-width: 3px;
   `,
+  borderNone: () => css`
+    border: none;
+  `,
   borderRadius2px: () => css`
     border-radius: 2px;
   `,
@@ -18,6 +21,9 @@ const MODIFIER_CONFIG = {
   `,
   dark: () => css`
     background-color: var(--dark);
+  `,
+  darkColor: () => css`
+    color: var(--dark);
   `,
   darker: () => css`
     background-color: var(--darker);

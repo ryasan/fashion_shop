@@ -11,10 +11,15 @@ export const PRODUCTS_QUERY = gql`
 `
 
 export const PRODUCTS_CONNECTION_QUERY = gql`
-  query($freeShippingSelected: Boolean, $sizeFilters: [String]) {
+  query(
+    $freeShippingSelected: Boolean
+    $sizeFilters: [String]
+    $orderBy: ProductOrderByInput
+  ) {
     productsConnection(
       freeShippingSelected: $freeShippingSelected
       sizeFilters: $sizeFilters
+      orderBy: $orderBy
     ) {
       edges {
         node {

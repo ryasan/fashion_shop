@@ -2,23 +2,23 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 
 import { device } from '../utils'
 
+// prettier-ignore
 const StyledRoot = css`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
-
   :root {
-    --dark: #16141a;
-    --darker: #090909;
-    --red: #ec1c24;
-    --salmon: #fa8072;
-    --green: #33ff33;
-    --off-white: #f5f5f5;
-    --gray: #7b797e;
-    --light-gray: #bbb;
+    --dark            : #16141a;
+    --darker          : #090909;
+    --red             : #ec1c24;
+    --salmon          : #fa8072;
+    --green           : #33ff33;
+    --off-white       : #f5f5f5;
+    --gray            : #7b797e;
+    --light-gray      : #bbb;
     --super-small-font: 0.8rem;
-    --small-font: 1.2rem;
-    --regular-font: 1.6rem;
-    --large-font: 2rem;
-    --max-width: 118rem;
+    --small-font      : 1.2rem;
+    --regular-font    : 1.6rem;
+    --large-font      : 2rem;
+    --max-width       : 118rem;
   }
 
   *,
@@ -36,6 +36,7 @@ const StyledHtml = css`
     margin: 0;
     box-sizing: border-box;
     font-size: 10px;
+    color: var(--off-white);
   }
 
   @media ${device.mobileL} {

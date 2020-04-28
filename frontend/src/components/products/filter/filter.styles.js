@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
 
-import { H4, Button } from '../../elements'
+import { Button, P } from '../../elements'
 
 const Filter = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   border-radius: 3px;
@@ -30,8 +31,8 @@ const filterBtnStyles = isSelected => css`
 `
 
 Filter.FreeShipping = styled(Button)`
-  padding: 1rem 1rem;
-  border-radius: 2px;
+  border-radius: 5px;
+  height: 3.5rem;
   ${props => filterBtnStyles(props.isSelected)};
 `
 
@@ -47,12 +48,6 @@ Filter.OneSize = styled(Button)`
   ${props => filterBtnStyles(props.isSelected)};
 `
 
-Filter.Title = styled(H4)`
-  background: var(--dark);
-  color: var(--off-white);
-  height: 100%;
-  display: flex;
-  align-items: center;
-`
+Filter.Title = P
 
 export default Filter

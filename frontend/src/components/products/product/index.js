@@ -13,7 +13,6 @@ const ProductComponent = ({ product, sizeFilters }) => {
   const btnModifiers = ['red', 'whiteColor', 'redBorder', 'mediumText']
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
-
   const handleAddCartItem = () => {
     addCartItem({ variables: { product } })
   }

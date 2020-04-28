@@ -4,7 +4,7 @@ import ControlsHeader from './controls-header.styles'
 import Filter from '../filter/index'
 import Sort from '../sort/index'
 
-const ControlsHeaderComponent = ({ count }) => {
+const ControlsHeaderComponent = ({ count, setOrderBy }) => {
   return (
     <ControlsHeader>
       <Filter />
@@ -13,7 +13,7 @@ const ControlsHeaderComponent = ({ count }) => {
           {`Found ${count} product${count >= 0 ? 's' : ''}`}
         </ControlsHeader.Count>
       )}
-      <Sort />
+      <Sort setOrderBy={setOrderBy} />
     </ControlsHeader>
   )
 }

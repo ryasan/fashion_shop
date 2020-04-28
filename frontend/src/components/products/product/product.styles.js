@@ -45,6 +45,7 @@ Product.Details = styled.div`
   height: 8rem;
   position: relative;
   text-align: center;
+  color: black;
 `
 
 Product.Title = styled.div`

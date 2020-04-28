@@ -15,6 +15,7 @@ ErrorBoundary.Text = styled(P)`
   border-left: 0.3rem solid red;
   padding: 1rem 2rem;
   background: white;
+  color: red;
 `
 
 ErrorBoundary.Addon = Span
