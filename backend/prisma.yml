@@ -1,5 +1,4 @@
-# endpoint: ${env:PRISMA_ENDPOINT}
-endpoint: https://fashion-shop-prod-793154e41d.herokuapp.com/fashion-shop-prod/prod
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.graphql
 secret: ${env:PRISMA_SECRET}
 
