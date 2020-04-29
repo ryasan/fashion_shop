@@ -38,6 +38,9 @@ const Element = styled.div`
 Element.InputInner = styled.div`
   display: flex;
   justify-content: center;
+  input {
+    padding: 1rem 1rem 1rem 4rem;
+  }
   svg {
     fill: var(--red);
     position: absolute;

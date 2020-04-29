@@ -28,7 +28,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
       </Product.Image>
       <Product.Details>
         <Span>{product.title}</Span>
-        <Divider modifiers="red" />
+        <Divider />
         <Price>
           <B>{dollars}</B>
           <Small>{cents}</Small>

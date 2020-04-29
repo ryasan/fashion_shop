@@ -1,23 +1,20 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-import { device, buildStyledComponent } from '../../../utils'
+import { device } from '../../../utils'
 
-const baseStyles = css`
-  height: 500px;
+const Product = styled.div`
   transition: all 0.5s ease-out;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: relative;
   background: white;
   border-radius: 3px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 1);
+
   @media ${device.mobileL} {
     margin-bottom: 5rem;
   }
 `
-
-const Product = buildStyledComponent({ element: styled.li, baseStyles })
 
 Product.Special = styled.div`
   position: absolute;
@@ -31,8 +28,8 @@ Product.Special = styled.div`
 `
 
 Product.Image = styled.div`
-  position: relative;
   text-align: center;
+  overflow: hidden;
   img {
     width: 100%;
     height: 100%;
@@ -43,28 +40,34 @@ Product.Image = styled.div`
 Product.Details = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 6rem;
+  justify-content: center;
+  position: relative;
   text-align: center;
   width: 100%;
   span {
     font-size: 2rem;
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
     background: var(--red);
     color: var(--off-white);
-    transform: skew(-10deg);
+    transform: skew(-10deg) translateY(-1.5rem);
     width: 80%;
     border-radius: 3px;
     align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -2rem;
   }
   hr {
     width: 3rem;
     background: red;
+    margin-top: 5rem;
   }
 `
 
 export const Price = styled.div`
+  margin: 1rem 0;
   font-size: 2rem;
   width: 100%;
   color: black;

@@ -9,7 +9,7 @@ export const Button = buildStyledComponent({
   `
 })
 
-export const redModifiers = [
+export const redButton = [
   'red',
   'white_color',
   'red_border',
