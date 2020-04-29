@@ -21,7 +21,7 @@ const HomePage = () => (
             </H1>
             <TextList>
               <TextList.TextItem>
-                <Span modifiers={['medium_text', 'red_color']}>NEW FOR 2020</Span>
+                <Span modifiers={['font_size_m', 'red_color']}>NEW FOR 2020</Span>
                 <H2 modifiers={['red_color']}>Lorem Ipsum</H2>
                 <P>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -31,7 +31,7 @@ const HomePage = () => (
                 </P>
               </TextList.TextItem>
               <TextList.TextItem>
-                <Span modifiers={['medium_text', 'red_color']}>
+                <Span modifiers={['font_size_m', 'red_color']}>
                   ANNOUNCING...
                 </Span>
                 <H2 modifiers={['red_color']}>Lorem Ipsum</H2>
@@ -43,7 +43,7 @@ const HomePage = () => (
                 </P>
               </TextList.TextItem>
               <TextList.TextItem>
-                <Span modifiers={['medium_text', 'red_color']}>
+                <Span modifiers={['font_size_m', 'red_color']}>
                   ANNOUNCING...
                 </Span>
                 <H2 modifiers={['red_color']}>Lorem Ipsum</H2>

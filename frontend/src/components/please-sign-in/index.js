@@ -3,25 +3,20 @@ import { navigate } from '@reach/router'
 
 import PleaseSignin from './please-sign-in.styles'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
-import { redButton, transparentButton, P, Button } from '../elements'
+import { P, Button } from '../elements'
 import { withHoverState } from '../../utils'
 
-const PleaseSigninComponent = ({ isHovering, mouseHoverProps, children }) => {
+const PleaseSigninComponent = ({ children }) => {
   const { data } = useCurrentUserQuery()
   const me = data && data.me
 
   if (!me) {
     return (
       <PleaseSignin>
-        <P modifiers={['white_color', 'medium_text']}>
+        <P modifiers={['white_color', 'font_size_m']}>
           Please sign in before continuing
         </P>
-        <Button
-          {...mouseHoverProps}
-          onClick={() => navigate('/signin')}
-          modifiers={isHovering ? transparentButton : redButton}>
-          Signin
-        </Button>
+        <Button onClick={() => navigate('/signin')}>Signin</Button>
       </PleaseSignin>
     )
   }

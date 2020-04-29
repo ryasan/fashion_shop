@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { redButton } from '../components/elements'
+
 const Account = styled.div`
   display: flex;
   justify-content: center;
@@ -10,9 +12,8 @@ const Details = styled.div`
   max-width: var(--max-width);
   width: 100%;
   button {
+    ${redButton};
     padding: 1rem 2rem;
-    border-radius: 2px;
-    outline-color: var(--red);
   }
   p {
     margin-bottom: 2rem;

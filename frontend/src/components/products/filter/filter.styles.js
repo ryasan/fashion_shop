@@ -18,7 +18,7 @@ const filterBtnStyles = isSelected => css`
   border-style: solid;
   border-color: ${isSelected ? 'var(--off-white)' : 'black'};
   margin-left: 1rem;
-  font-size: var(--small-font);
+  font-size: var(--font-size-s);
   outline: none;
   cursor: pointer;
   &:hover {

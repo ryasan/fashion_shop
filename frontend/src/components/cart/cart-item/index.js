@@ -29,8 +29,8 @@ const CartItemComponent = ({ product }) => {
       <Content>
         <Image src={require(`../../../images/products/${product.sku}_2.jpg`)} />
         <Content.Details>
-          <Span modifiers="medium_text">{product.title}</Span>
-          <Span modifiers={['gray_color', 'small_text']}>
+          <Span modifiers="font_size_m">{product.title}</Span>
+          <Span modifiers={['gray_color', 'font_size_s']}>
             {`${availableSizes} | ${product.style}`}
             <br/>
             Quantity: <Span modifiers="off_white_color">{product.quantity}</Span>
@@ -44,7 +44,7 @@ const CartItemComponent = ({ product }) => {
             onMouseOver={handleMouseOver}
             onClick={handleRemoveCartItem}
           />
-          <Span modifiers={['medium_text', 'red_color']}>
+          <Span modifiers={['font_size_m', 'red_color']}>
             {formatPrice(product.price)}
           </Span>
         </CartItem.Price>

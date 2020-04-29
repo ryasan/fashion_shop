@@ -67,7 +67,7 @@ Header.NavItem = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: var(--regular-font);
+    font-size: var(--font-size-m);
     text-decoration: none;
     color: inherit;
     transition: color 0.2s;

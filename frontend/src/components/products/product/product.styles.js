@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { redButton } from '../../elements'
 import { device } from '../../../utils'
 
 const Product = styled.div`
@@ -24,7 +25,7 @@ Product.Special = styled.div`
   z-index: 1;
   border-radius: 2px;
   background: red;
-  font-size: var(--small-font);
+  font-size: var(--font-size-s);
 `
 
 Product.Image = styled.div`
@@ -76,16 +77,9 @@ export const Price = styled.div`
 Product.Button = styled.div`
   width: 100%;
   button {
-    outline-color: var(--red);
-    padding: 1.5rem 2rem;
+    ${redButton};
+    padding: 1.5rem 0;
     width: 100%;
-    background: var(--red);
-    color: var(--off-white);
-    font-size: var(--regular-font);
-    &:hover {
-      border-color: #f3443c;
-      background: #f3443c;
-    }
   }
 `
 

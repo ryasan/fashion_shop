@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-import Icon from '../../icons/index'
 import { device } from '../../../utils'
-import { Button } from '../../elements'
+import { redButton, redInput } from '../../elements'
 
 const Slide = styled.div`
   height: 50rem;
@@ -39,7 +38,8 @@ Element.InputInner = styled.div`
   display: flex;
   justify-content: center;
   input {
-    padding: 1rem 1rem 1rem 4rem;
+    ${redInput};
+    width: 100%;
   }
   svg {
     fill: var(--red);
@@ -52,8 +52,8 @@ Element.ButtonInner = styled.div`
   display: flex;
   justify-content: flex-end;
   button {
-    padding: 1rem 4rem;
-    position: relative;
+    ${redButton};
+    padding: 1rem 3rem;
     display: flex;
     align-items: center;
     svg {
@@ -65,9 +65,6 @@ Element.ButtonInner = styled.div`
 Slide.Input = styled.input`
   padding: 1rem 0 1rem 4rem;
 `
-
-Slide.Button = Button
-Slide.Icon = Icon
 
 export { Element }
 export default Slide

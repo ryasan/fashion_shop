@@ -6,19 +6,19 @@ import { device } from '../utils'
 const StyledRoot = css`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
   :root {
-    --dark            : #16141a;
-    --darker          : #090909;
-    --red             : #ec1c24;
-    --salmon          : #fa8072;
-    --green           : #33ff33;
-    --off-white       : #f5f5f5;
-    --gray            : #7b797e;
-    --light-gray      : #bbb;
-    --super-small-font: 0.8rem;
-    --small-font      : 1.2rem;
-    --regular-font    : 1.6rem;
-    --large-font      : 2rem;
-    --max-width       : 118rem;
+    --dark        : #16141a;
+    --darker      : #090909;
+    --red         : #ec1c24;
+    --salmon      : #fa8072;
+    --green       : #33ff33;
+    --off-white   : #f5f5f5;
+    --gray        : #7b797e;
+    --light-gray  : #bbb;
+    --font-size-xs: 0.8rem;
+    --font-size-s : 1.2rem;
+    --font-size-m : 1.6rem;
+    --font_size_lg: 2rem;
+    --max-width   : 118rem;
   }
 
   *,
@@ -55,7 +55,7 @@ const StyledHtml = css`
   h2 { font-size: 4rem; }
   h3 { font-size: 3rem; }
   h4 { font-size: 2rem; }
-  p  { font-size: var(--regular-font); }
+  p  { font-size: var(--font-size-m); }
   button { border: none; }
 
   ::-webkit-scrollbar {

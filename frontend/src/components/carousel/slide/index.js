@@ -3,28 +3,15 @@ import { navigate } from 'gatsby'
 
 import Slide, { Element } from './slide.styles'
 import Icon from '../../icons'
-import { withHoverState } from '../../../utils'
 import { Button, Input } from '../../elements'
 
-const ElementComponent = ({
-  tag,
-  to,
-  text,
-  icon,
-  mouseHoverProps,
-  isHovering,
-  modifiers
-}) => {
+const ElementComponent = ({ tag, to, text, icon }) => {
   switch (tag) {
     case 'button':
-      const [redButton, transparentButton] = modifiers
       return (
         <Element>
           <Element.ButtonInner>
-            <Button
-              {...mouseHoverProps}
-              modifiers={isHovering ? redButton : transparentButton}
-              onClick={() => navigate(to)}>
+            <Button onClick={() => navigate(to)}>
               <Icon name={icon} />
               {text}
             </Button>
@@ -36,7 +23,7 @@ const ElementComponent = ({
         <Element>
           <Element.InputInner>
             <Icon name={icon} />
-            <Input modifiers={modifiers} placeholder={text} />
+            <Input placeholder={text} />
           </Element.InputInner>
         </Element>
       )
@@ -45,12 +32,10 @@ const ElementComponent = ({
   }
 }
 
-const ElementWithHoverState = withHoverState(ElementComponent)
-
 const SlideComponent = ({ element, image }) => (
   <Slide>
     <Slide.Content image={image}>
-      {element && <ElementWithHoverState {...element} />}
+      {element && <ElementComponent {...element} />}
     </Slide.Content>
   </Slide>
 )

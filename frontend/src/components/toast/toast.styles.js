@@ -6,7 +6,7 @@ const Toast = styled.div`
   }
   .toast {
     background: var(--dark);
-    font-size: var(--regular-font);
+    font-size: var(--font-size-m);
     color: var(--off-white);
     overflow: initial;
     position: relative;

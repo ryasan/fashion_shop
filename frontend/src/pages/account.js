@@ -5,13 +5,12 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Account, { Details } from '../styles/account-page.styles'
 import ErrorBoundary from '../components/error-boundary'
-import PleaseSignin from '../components/please-sign-in/please-sign-in.styles'
+import PleaseSignin from '../components/please-sign-in'
 import Loader from '../components/loader/loader.styles'
 import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
-import { redButton, transparentButton, P, Button } from '../components/elements'
-import { withHoverState } from '../utils'
+import { P, Button } from '../components/elements'
 
-const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
+const AccountDetails = ({ me }) => {
   const [deleteMe, { data, loading, error }] = useDeleteMeMutation()
   const handleDelete = e => {
     e.preventDefault()
@@ -33,10 +32,7 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
         <ErrorBoundary error={error}>
           <P modifiers="white_color">email: {me.email}</P>
           <P modifiers="white_color">username: {me.username}</P>
-          <Button
-            {...mouseHoverProps}
-            onClick={handleDelete}
-            modifiers={isHovering ? transparentButton : redButton}>
+          <Button onClick={handleDelete}>
             Delete Account
           </Button>
           {/* order history */}
@@ -46,8 +42,6 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
   }
   return null
 }
-
-const AccountDetailsWithHoverState = withHoverState(AccountDetails)
 
 const AccountPage = props => {
   const { data, loading, error } = useCurrentUserQuery()
@@ -62,7 +56,7 @@ const AccountPage = props => {
             {loading || !me ? (
               <Loader color="white" />
             ) : (
-              <AccountDetailsWithHoverState me={me} />
+              <AccountDetails me={me} />
             )}
           </ErrorBoundary>
         </PleaseSignin>

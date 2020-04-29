@@ -91,7 +91,7 @@ const SigninPage = ({ className }) => {
     formIsValid ? 'green_color' : 'red_color',
     'width_100',
     'text_align_center',
-    'small_text'
+    'font_size_s'
   ]
 
   useEffect(() => {

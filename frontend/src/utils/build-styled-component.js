@@ -83,17 +83,17 @@ const config = {
     bold: () => css`
       font-weight: bold;
     `,
-    large_text: () => css`
-      font-size: var(--large-font);
+    font_size_lg: () => css`
+      font-size: var(--font_size_lg);
     `,
-    medium_text: () => css`
-      font-size: var(--regular-font);
+    font_size_m: () => css`
+      font-size: var(--font-size-m);
     `,
-    small_text: () => css`
-      font-size: var(--small-font);
+    font_size_s: () => css`
+      font-size: var(--font-size-s);
     `,
-    super_small_text: () => css`
-      font-size: var(--super-small-font);
+    font_size_xs: () => css`
+      font-size: var(--font-size-xs);
     `,
     text_align_center: () => css`
       text-align: center;

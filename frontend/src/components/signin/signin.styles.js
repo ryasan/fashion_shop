@@ -12,10 +12,12 @@ const Signin = styled.div`
   padding: 3em;
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.6);
   small {
-    font-size: var(--small-font);
-    cursor: pointer;
+    font-size: var(--font-size-s);
     width: 100%;
     text-align: center;
+    a {
+      cursor: pointer;
+    }
   }
   p {
     height: 3rem;

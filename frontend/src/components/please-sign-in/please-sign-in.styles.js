@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { redButton } from '../elements'
+
 const PleaseSignin = styled.div`
   height: 10rem;
   display: flex;
@@ -8,10 +10,7 @@ const PleaseSignin = styled.div`
   align-items: center;
   button {
     padding: 1rem 2rem;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 2px;
-    border: 2px solid var(--red);
+    ${redButton}
   }
 `
 

@@ -132,7 +132,7 @@ Cart.Footer = styled.footer`
   button {
     background: var(--darker);
     color: var(--off-white);
-    font-size: var(--large-font);
+    font-size: var(--font_size_lg);
     padding: 1.5rem 0;
     width: 100%;
   }
