@@ -88,10 +88,10 @@ const SigninPage = ({ className }) => {
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
   const computedColors = [
-    formIsValid ? 'greenColor' : 'redColor',
-    'width100',
-    'textAlignCenter',
-    'smallText'
+    formIsValid ? 'green_color' : 'red_color',
+    'width_100',
+    'text_align_center',
+    'small_text'
   ]
 
   useEffect(() => {
@@ -188,11 +188,11 @@ const SigninPage = ({ className }) => {
 
   const renderLinks = () => {
     return isSignin ? (
-      <A modifiers="redColor" onClick={toggleSignup}>
+      <A modifiers="red_color" onClick={toggleSignup}>
         Signup
       </A>
     ) : (
-      <A modifiers="redColor" onClick={toggleSignup}>
+      <A modifiers="red_color" onClick={toggleSignup}>
         Signin
       </A>
     )
@@ -224,7 +224,7 @@ const SigninPage = ({ className }) => {
           </Field>
         </Fieldset>
       </Form>
-      <Small modifiers="whiteColor">
+      <Small modifiers="white_color">
         {signinText} {renderLinks()}
       </Small>
     </Signin>

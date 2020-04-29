@@ -46,7 +46,7 @@ const PersistApolloProvider = ({ children }) => {
     return () => {}
   }, [])
   
-  if (!client) return <Loader modifiers={['dark', 'darkColor']} />
+  if (!client) return <Loader modifiers={['dark', 'dark_color']} />
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 

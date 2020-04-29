@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { device } from '../../../utils'
+import { device, buildStyledComponent } from '../../../utils'
 
-const Product = styled.li`
+const baseStyles = css`
   height: 500px;
   transition: all 0.5s ease-out;
   display: flex;
@@ -17,6 +17,8 @@ const Product = styled.li`
   }
 `
 
+const Product = buildStyledComponent({ element: styled.li, baseStyles })
+
 Product.Special = styled.div`
   position: absolute;
   padding: 0.5rem;
@@ -28,7 +30,7 @@ Product.Special = styled.div`
   font-size: var(--small-font);
 `
 
-Product.Thumb = styled.div`
+Product.Image = styled.div`
   position: relative;
   text-align: center;
   img {
@@ -45,7 +47,6 @@ Product.Details = styled.div`
   position: absolute;
   bottom: 6rem;
   text-align: center;
-  color: black;
   width: 100%;
   span {
     font-size: 2rem;
@@ -59,21 +60,25 @@ Product.Details = styled.div`
   }
   hr {
     width: 3rem;
+    background: red;
   }
 `
 
-const Price = styled.div`
+export const Price = styled.div`
   font-size: 2rem;
   width: 100%;
+  color: black;
 `
 
 Product.Button = styled.div`
+  width: 100%;
   button {
-    border-width: 2px;
-    border-style: solid;
     outline-color: var(--red);
     padding: 1.5rem 2rem;
     width: 100%;
+    background: var(--red);
+    color: var(--off-white);
+    font-size: var(--regular-font);
     &:hover {
       border-color: #f3443c;
       background: #f3443c;
@@ -81,5 +86,4 @@ Product.Button = styled.div`
   }
 `
 
-export { Price }
 export default Product

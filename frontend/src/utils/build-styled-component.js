@@ -1,17 +1,26 @@
-import styled, { css } from 'styled-components'
+import { css } from 'styled-components'
 
 import {
   applyStyleModifiers,
   styleModifierPropTypes
 } from 'styled-components-modifiers'
 
-export const buildStyledComponent = ({ element, constantStyles = [] }) => {
-  const styles = constantStyles.reduce((str, b) => {
-    return str + `${b};`
-  }, '')
+export const buildStyledComponent = ({
+  element,
+  baseStyles,
+  blockModifiers
+}) => {
+  const { colors, typography, borders, layout } = config
+  const MODIFIER_CONFIG = {
+    ...colors,
+    ...typography,
+    ...borders,
+    ...layout,
+    ...blockModifiers
+  }
 
-  const styledElement = styled[element]`
-    ${styles}
+  const styledElement = element`
+    ${baseStyles}
     ${applyStyleModifiers(MODIFIER_CONFIG)}
   `
 
@@ -22,107 +31,118 @@ export const buildStyledComponent = ({ element, constantStyles = [] }) => {
   return styledElement
 }
 
-const MODIFIER_CONFIG = {
-  border2px: () => css`
-    border-width: 2px;
-  `,
-  border3px: () => css`
-    border-width: 3px;
-  `,
-  borderNone: () => css`
-    border: none;
-  `,
-  borderRadius2px: () => css`
-    border-radius: 2px;
-  `,
-  borderRadius3px: () => css`
-    border-radius: 3px;
-  `,
-  clear: () => css`
-    background-color: transparent;
-  `,
-  dark: () => css`
-    background-color: var(--dark);
-  `,
-  darkColor: () => css`
-    color: var(--dark);
-  `,
-  darker: () => css`
-    background-color: var(--darker);
-  `,
-  displayBlock: () => css`
-    display: block;
-  `,
-  displayFlex: () => css`
-    display: flex;
-  `,
-  flex1: () => css`
-    flex: 1;
-  `,
-  grayColor: () => css`
-    color: var(--gray);
-  `,
-  green: () => css`
-    background: var(--green);
-  `,
-  greenColor: () => css`
-    color: var(--green);
-  `,
-  largeText: () => css`
-    font-size: var(--large-font);
-  `,
-  mediumText: () => css`
-    font-size: var(--regular-font);
-  `,
-  offWhiteColor: () => css`
-    color: var(--off-white);
-  `,
-  red: () => css`
-    background-color: var(--red);
-  `,
-  redBorder: () => css`
-    border-color: var(--red);
-  `,
-  redColor: () => css`
-    color: var(--red);
-  `,
-  redOutline: () => css`
-    outline-color: var(--red);
-  `,
-  salmon: () => css`
-    background: var(--salmon);
-  `,
-  salmonBorder: () => css`
-    border-color: var(--salmon);
-  `,
-  smallText: () => css`
-    font-size: var(--small-font);
-  `,
-  solidBorder: () => css`
-    border-style: solid;
-  `,
-  superSmallText: () => css`
-    font-size: var(--super-small-font);
-  `,
-  textAlignCenter: () => css`
-    text-align: center;
-  `,
-  textAlignLeft: () => css`
-    text-align: left;
-  `,
-  textAlignRight: () => css`
-    text-align: right;
-  `,
-  transparent: () => css`
-    background: transparent;
-  `,
-  uppercase: () => css`
-    text-transform: uppercase;
-  `,
-  whiteColor: () => css`
-    color: white;
-  `,
-  width100: () => css`
-    width: 100%;
-  `
+const config = {
+  colors: {
+    dark: () => css`
+      background-color: var(--dark);
+    `,
+    dark_color: () => css`
+      color: var(--dark);
+    `,
+    darker: () => css`
+      background-color: var(--darker);
+    `,
+    gray_color: () => css`
+      color: var(--gray);
+    `,
+    green: () => css`
+      background: var(--green);
+    `,
+    green_color: () => css`
+      color: var(--green);
+    `,
+    off_white_color: () => css`
+      color: var(--off-white);
+    `,
+    red: () => css`
+      background-color: var(--red);
+    `,
+    red_border: () => css`
+      border-color: var(--red);
+    `,
+    red_color: () => css`
+      color: var(--red);
+    `,
+    red_outline: () => css`
+      outline-color: var(--red);
+    `,
+    salmon: () => css`
+      background: var(--salmon);
+    `,
+    salmon_border: () => css`
+      border-color: var(--salmon);
+    `,
+    transparent: () => css`
+      background-color: transparent;
+    `,
+    white_color: () => css`
+      color: white;
+    `
+  },
+  typography: {
+    bold: () => css`
+      font-weight: bold;
+    `,
+    large_text: () => css`
+      font-size: var(--large-font);
+    `,
+    medium_text: () => css`
+      font-size: var(--regular-font);
+    `,
+    small_text: () => css`
+      font-size: var(--small-font);
+    `,
+    super_small_text: () => css`
+      font-size: var(--super-small-font);
+    `,
+    text_align_center: () => css`
+      text-align: center;
+    `,
+    text_align_left: () => css`
+      text-align: left;
+    `,
+    text_align_right: () => css`
+      text-align: right;
+    `,
+    uppercase: () => css`
+      text-transform: uppercase;
+    `
+  },
+  borders: {
+    border_2px: () => css`
+      border-width: 2px;
+    `,
+    border_3px: () => css`
+      border-width: 3px;
+    `,
+    border_none: () => css`
+      border: none;
+    `,
+    border_radius_2px: () => css`
+      border-radius: 2px;
+    `,
+    border_radius_3px: () => css`
+      border-radius: 3px;
+    `,
+    solid_border: () => css`
+      border-style: solid;
+    `
+  },
+  layout: {
+    display_block: () => css`
+      display: block;
+    `,
+    display_flex: () => css`
+      display: flex;
+    `,
+    flex_1: () => css`
+      flex: 1;
+    `,
+    height_100: () => css`
+      height: 100%;
+    `,
+    width_100: () => css`
+      width: 100%;
+    `
+  }
 }

@@ -1,4 +1,4 @@
-import { redButton, clearButton, redInput } from '../elements'
+import { redButton, transparentButton, redInput } from '../elements'
 
 const carouselSlides = [
   {
@@ -19,7 +19,7 @@ const carouselSlides = [
       text: 'SHOP',
       to: 'shop',
       icon: 'shopping-bag',
-      modifiers: [redButton, clearButton]
+      modifiers: [redButton, transparentButton]
     }
   },
   {

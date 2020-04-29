@@ -1,13 +1,14 @@
-import { buildStyledComponent } from '../../utils'
+import styled from 'styled-components'
+import { buildStyledComponent } from '../../utils/build-styled-component'
 
-export const Input = buildStyledComponent({ element: 'input' })
+export const Input = buildStyledComponent({ element: styled.input })
 
 export const redInput = [
-  'width100',
-  'mediumText',
-  'borderRadius2px',
-  'border2px',
-  'solidBorder',
-  'redBorder',
-  'redOutline'
+  'width_100',
+  'medium_text',
+  'border_radius_2px',
+  'border_2px',
+  'solid_border',
+  'red_border',
+  'red_outline'
 ]

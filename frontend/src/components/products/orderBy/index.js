@@ -16,8 +16,8 @@ const SortComponent = ({ setOrderBy }) => {
 
   return (
     <OrderBy>
-      <Label modifiers="mediumText">Order by:</Label>
-      <Select modifiers="smallText" onChange={handleOnChange}>
+      <Label modifiers="medium_text">Order by:</Label>
+      <Select modifiers="small_text" onChange={handleOnChange}>
         {options.map((opt, i) => (
           <Option key={i} value={opt.value}>
             {opt.name}

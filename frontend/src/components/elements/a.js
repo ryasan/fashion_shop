@@ -1,3 +1,4 @@
-import { buildStyledComponent } from '../../utils'
+import styled, { css } from 'styled-components'
+import { buildStyledComponent } from '../../utils/build-styled-component'
 
-export const A = buildStyledComponent({ element: 'a' })
+export const A = buildStyledComponent({ element: styled.a })

@@ -1,3 +1,4 @@
-import { buildStyledComponent } from '../../utils'
+import styled from 'styled-components'
+import { buildStyledComponent } from '../../utils/build-styled-component'
 
-export const Span = buildStyledComponent({ element: 'span' })
+export const Span = buildStyledComponent({ element: styled.span })

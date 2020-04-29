@@ -4,13 +4,12 @@ import PropTypes from 'prop-types'
 import Product, { Price } from './product.styles'
 import { formatPrice } from '../../../utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
-import { Button, Image, Span, Small, Hr, B } from '../../elements'
+import { Button, Image, Span, Small, Hr as Divider, B } from '../../elements'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
   const productImage = require(`../../../images/products/${product.sku}_1.jpg`)
-  const btnModifiers = ['red', 'whiteColor', 'redBorder', 'mediumText']
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
   const handleAddCartItem = () => {
@@ -21,27 +20,22 @@ const ProductComponent = ({ product, sizeFilters }) => {
 
   return (
     <Product>
-      {product.isFreeShipping && (
-        <Product.Special>
-          Free shipping
-        </Product.Special>
-      )}
-      <Product.Thumb>
+      <Product.Image>
+        {product.isFreeShipping && (
+          <Product.Special>Free shipping</Product.Special>
+        )}
         <Image src={productImage} alt={product.title} />
-      </Product.Thumb>
+      </Product.Image>
       <Product.Details>
         <Span>{product.title}</Span>
-        <Hr modifiers="red" />
+        <Divider modifiers="red" />
         <Price>
           <B>{dollars}</B>
           <Small>{cents}</Small>
         </Price>
       </Product.Details>
       <Product.Button>
-        <Button
-          className="buy-btn"
-          modifiers={btnModifiers}
-          onClick={handleAddCartItem}>
+        <Button className="buy-btn" onClick={handleAddCartItem}>
           Add to cart
         </Button>
       </Product.Button>

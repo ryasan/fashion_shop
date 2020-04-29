@@ -4,11 +4,11 @@ import { toast } from 'react-toastify'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Account, { Details } from '../styles/account-page.styles'
-import ErrorBoundary from '../components/error-boundary/error-boundary.styles'
+import ErrorBoundary from '../components/error-boundary'
 import PleaseSignin from '../components/please-sign-in/please-sign-in.styles'
 import Loader from '../components/loader/loader.styles'
 import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
-import { redButton, clearButton, P, Button } from '../components/elements'
+import { redButton, transparentButton, P, Button } from '../components/elements'
 import { withHoverState } from '../utils'
 
 const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
@@ -31,12 +31,12 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
     return (
       <Details>
         <ErrorBoundary error={error}>
-          <P modifiers="whiteColor">email: {me.email}</P>
-          <P modifiers="whiteColor">username: {me.username}</P>
+          <P modifiers="white_color">email: {me.email}</P>
+          <P modifiers="white_color">username: {me.username}</P>
           <Button
             {...mouseHoverProps}
             onClick={handleDelete}
-            modifiers={isHovering ? clearButton : redButton}>
+            modifiers={isHovering ? transparentButton : redButton}>
             Delete Account
           </Button>
           {/* order history */}

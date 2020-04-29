@@ -34,7 +34,7 @@ const CartComponent = () => {
       <Cart.Button cartOpen={cartOpen} onClick={toggleCart}>
         <Icon name={cartOpen ? 'close' : 'cart'} />
         {!cartOpen && (
-          <Bag modifiers={['red', 'smallText']} className="bag bag-closed">
+          <Bag modifiers={['red', 'small_text']} className="bag bag-closed">
             {cartCount}
           </Bag>
         )}
@@ -44,7 +44,7 @@ const CartComponent = () => {
           <H4>Cart</H4>
           <Header.Bag>
             <Icon name="cart" />
-            <Bag modifiers={['red', 'smallText']} className="bag bag-open">
+            <Bag modifiers={['red', 'small_text']} className="bag bag-open">
               {cartCount}
             </Bag>
           </Header.Bag>
@@ -53,10 +53,10 @@ const CartComponent = () => {
           {!cartItems.length && (
             <Span
               modifiers={[
-                'textAlignCenter',
-                'displayBlock',
-                'mediumText',
-                'width100'
+                'text_align_center',
+                'display_block',
+                'medium_text',
+                'width_100'
               ]}
               className="bag bag-open">
               Add some stuff to the cart :)
@@ -68,8 +68,8 @@ const CartComponent = () => {
         </Cart.List>
         <Cart.Footer>
           <SubTotal>
-            <Span modifiers={['mediumText']}>SUBTOTAL</Span>
-            <Span modifiers={['redColor', 'largeText']}>
+            <Span modifiers={['medium_text']}>SUBTOTAL</Span>
+            <Span modifiers={['red_color', 'large_text']}>
               {formatPrice(cartTotal)}
             </Span>
           </SubTotal>

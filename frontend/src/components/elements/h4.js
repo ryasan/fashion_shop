@@ -1,6 +1,9 @@
-import { buildStyledComponent } from '../../utils'
+import styled, { css } from 'styled-components'
+import { buildStyledComponent } from '../../utils/build-styled-component'
 
 export const H4 = buildStyledComponent({
-  element: 'h4',
-  constantStyles: ['margin: 0']
+  element: styled.h4,
+  baseStyles: css`
+    margin: 0;
+  `
 })

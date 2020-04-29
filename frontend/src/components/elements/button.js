@@ -1,36 +1,39 @@
-import { buildStyledComponent } from '../../utils'
+import styled, { css } from 'styled-components'
+import { buildStyledComponent } from '../../utils/build-styled-component'
 
 export const Button = buildStyledComponent({
-  element: 'button',
-  constantStyles: ['border: none', 'cursor: pointer']
+  element: styled.button,
+  baseStyles: css`
+    border: none;
+    cursor: pointer;
+  `
 })
 
-export const redButton = [
+export const redModifiers = [
   'red',
-  'whiteColor',
-  'redBorder',
-  'border2px',
-  'solidBorder',
-  'mediumText',
-  'redOutline'
+  'white_color',
+  'red_border',
+  'border_2px',
+  'solid_border',
+  'medium_text',
+  'red_outline'
 ]
 
 export const disabledRedButton = [
-  'lightRed',
-  'whiteColor',
-  'salmonBorder',
-  'border2px',
-  'solidBorder',
-  'mediumText',
-  'redOutline'
+  'white_color',
+  'salmon_border',
+  'border_2px',
+  'solid_border',
+  'medium_text',
+  'red_outline'
 ]
 
-export const clearButton = [
+export const transparentButton = [
   'transparent',
-  'redColor',
-  'redBorder',
-  'border2px',
-  'solidBorder',
-  'mediumText',
-  'redOutline'
+  'red_color',
+  'red_border',
+  'border_2px',
+  'solid_border',
+  'medium_text',
+  'red_outline'
 ]

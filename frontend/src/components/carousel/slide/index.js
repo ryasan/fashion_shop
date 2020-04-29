@@ -17,13 +17,13 @@ const ElementComponent = ({
 }) => {
   switch (tag) {
     case 'button':
-      const [redButton, clearButton] = modifiers
+      const [redButton, transparentButton] = modifiers
       return (
         <Element>
           <Element.ButtonInner>
             <Button
               {...mouseHoverProps}
-              modifiers={isHovering ? redButton : clearButton}
+              modifiers={isHovering ? redButton : transparentButton}
               onClick={() => navigate(to)}>
               <Icon name={icon} />
               {text}

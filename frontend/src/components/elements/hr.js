@@ -1,6 +1,10 @@
-import { buildStyledComponent } from '../../utils'
+import styled, { css } from 'styled-components'
+import { buildStyledComponent } from '../../utils/build-styled-component'
 
 export const Hr = buildStyledComponent({
-  element: 'hr',
-  constantStyles: ['border: none', 'height: 1px']
+  element: styled.hr,
+  baseStyles: css`
+    border: none;
+    height: 1px;
+  `
 })
