@@ -2,22 +2,22 @@ import React from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-import Carousel from './carousel.styles'
+import Carousel, { PrevButton, NextButton } from './carousel.styles'
 import Slide from './slide'
 import Icon from '../icons'
 import slides from './carousel-data'
 import { withHoverState } from '../../utils'
 
 const PrevArrow = ({ onClick, isHovering }) => (
-  <Carousel.Prev onClick={onClick} isHovering={isHovering}>
+  <PrevButton onClick={onClick} isHovering={isHovering}>
     <Icon name="left-arrow" />
-  </Carousel.Prev>
+  </PrevButton>
 )
 
 const NextArrow = ({ onClick, isHovering }) => (
-  <Carousel.Next onClick={onClick} isHovering={isHovering}>
+  <NextButton onClick={onClick} isHovering={isHovering}>
     <Icon name="right-arrow" />
-  </Carousel.Next>
+  </NextButton>
 )
 
 const settings = props => ({

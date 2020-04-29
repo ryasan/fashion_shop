@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import Products from './products.styles'
 import ProductList from './product-list'
 import ControlsHeader from './controls-header/index'
+import ErrorBoundary from '../error-boundary'
+import Loader from '../loader/loader.styles'
 import {
   useProductsConnectionQuery,
   useFiltersQuery
 } from '../../graphql/product/hooks'
-
 const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
   const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
@@ -23,13 +24,13 @@ const ProductsComponent = () => {
     <Products>
       <ControlsHeader count={count} setOrderBy={setOrderBy} />
       <Products.Container>
-        <Products.ErrorBoundary error={error}>
+        <ErrorBoundary error={error}>
           {loading ? (
-            <Products.Loader color="white" />
+            <Loader color="white" />
           ) : (
             <ProductList products={products} />
           )}
-        </Products.ErrorBoundary>
+        </ErrorBoundary>
       </Products.Container>
     </Products>
   )

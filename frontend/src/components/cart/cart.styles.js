@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-import Icon from '../icons'
-import { Button, Span, H4, P } from '../elements'
 import { device } from '../../utils'
+import { Span } from '../elements'
 
 const Cart = styled.div`
   position: fixed;
@@ -29,7 +28,26 @@ const Cart = styled.div`
   }
 `
 
-Cart.Btn = styled(Button)`
+const Bag = styled(Span)`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--off-white);
+  position: absolute;
+  &.bag-closed {
+    bottom: 1rem;
+    right: 1.2rem;
+  }
+  &.bag-open {
+    right: -0.5rem;
+    bottom: -0.5rem;
+  }
+`
+
+Cart.Button = styled.div`
   position: absolute;
   width: 7rem;
   height: 7rem;
@@ -41,6 +59,7 @@ Cart.Btn = styled(Button)`
   justify-content: center;
   align-items: center;
   transition: fill 0.2s;
+  cursor: pointer;
   &:before {
     content: '';
     position: absolute;
@@ -68,8 +87,6 @@ Cart.Btn = styled(Button)`
   }
 `
 
-Cart.Icon = Icon
-
 Cart.Content = styled.div`
   color: var(--off-white);
   height: 70%;
@@ -78,7 +95,7 @@ Cart.Content = styled.div`
   overflow-y: scroll;
 `
 
-Cart.Header = styled.div`
+const Header = styled.div`
   text-align: center;
   padding: 4rem 0;
   display: flex;
@@ -86,46 +103,20 @@ Cart.Header = styled.div`
   align-items: center;
 `
 
-Cart.BagContainer = styled.div`
+Header.Bag = styled.div`
   position: relative;
+  svg {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+    margin-left: 1.5rem;
+    fill: var(--off-white);
+  }
 `
-
-Cart.Bag = styled(Icon)`
-  width: 4rem;
-  height: 4rem;
-  display: inline-block;
-  margin-left: 1.5rem;
-  fill: var(--off-white);
-`
-
-Cart.BagQty = styled(Span)`
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--off-white);
-  position: absolute;
-`
-
-Cart.ClosedBagQty = styled(Cart.BagQty)`
-  bottom: 1rem;
-  right: 1.2rem;
-`
-
-Cart.OpenBagQty = styled(Cart.BagQty)`
-  right: -0.5rem;
-  bottom: -0.5rem;
-`
-
-Cart.Title = H4
 
 Cart.List = styled.ul`
   flex: 1;
 `
-
-Cart.Text = P
 
 Cart.Footer = styled.footer`
   position: absolute;
@@ -135,32 +126,22 @@ Cart.Footer = styled.footer`
   background: var(--dark);
   box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
   padding: 4rem 3rem;
-  display: grid;
-  grid-gap: 3rem;
-  grid-template-areas:
-    'sub sub-price'
-    'btn btn';
-`
-
-Cart.SubText = styled.div``
-
-Cart.Sub = styled.div`
-  grid-area: sub;
-  font-size: var(--regular-font);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  button {
+    background: var(--darker);
+    color: var(--off-white);
+    font-size: var(--large-font);
+    padding: 1.5rem 0;
+    width: 100%;
+  }
 `
 
-Cart.SubPrice = styled.div`
-  grid-area: sub-price;
+const SubTotal = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 `
 
-Cart.CheckoutBtn = styled(Button)`
-  grid-area: btn;
-  height: 5rem;
-`
-
+export { Bag, SubTotal, Header }
 export default Cart

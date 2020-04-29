@@ -3,15 +3,16 @@ import { toast } from 'react-toastify'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import Account from '../styles/account-page.styles'
+import Account, { Details } from '../styles/account-page.styles'
+import ErrorBoundary from '../components/error-boundary/error-boundary.styles'
+import PleaseSignin from '../components/please-sign-in/please-sign-in.styles'
+import Loader from '../components/loader/loader.styles'
 import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
-import { redButton, clearButton } from '../components/elements'
+import { redButton, clearButton, P, Button } from '../components/elements'
 import { withHoverState } from '../utils'
-import { useCreateProductMutation } from '../graphql/product/hooks'
 
 const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
   const [deleteMe, { data, loading, error }] = useDeleteMeMutation()
-  const [createProduct] = useCreateProductMutation()
   const handleDelete = e => {
     e.preventDefault()
     const ok = confirm(`Delete account for ${me.username}?`)
@@ -23,45 +24,24 @@ const AccountDetails = ({ me, mouseHoverProps, isHovering }) => {
   }, [data])
 
   if (loading) {
-    return <Account.Loader color="white" />
+    return <Loader color="white" />
   }
 
   if (me) {
     return (
-      <Account.Details>
-        <Account.ErrorBoundary error={error}>
-          <Account.Text modifiers="whiteColor">email: {me.email}</Account.Text>
-          <Account.Text modifiers="whiteColor">
-            username: {me.username}
-          </Account.Text>
-          <Account.DeleteMeBtn
+      <Details>
+        <ErrorBoundary error={error}>
+          <P modifiers="whiteColor">email: {me.email}</P>
+          <P modifiers="whiteColor">username: {me.username}</P>
+          <Button
             {...mouseHoverProps}
             onClick={handleDelete}
             modifiers={isHovering ? clearButton : redButton}>
             Delete Account
-          </Account.DeleteMeBtn>
-          <button
-            onClick={() => {
-              createProduct({
-                variables: {
-                  data: {
-                    availableSizes: { set: ['S', 'M', 'XXL'] },
-                    isFreeShipping: false,
-                    isFeatured: true,
-                    price: 1090,
-                    description: '4 MSL',
-                    sku: '12064273040195392',
-                    style: 'Black with custom print',
-                    title: 'Cat Tee Black T-Shirt'
-                  }
-                }
-              })
-            }}>
-            create product
-          </button>
+          </Button>
           {/* order history */}
-        </Account.ErrorBoundary>
-      </Account.Details>
+        </ErrorBoundary>
+      </Details>
     )
   }
   return null
@@ -77,15 +57,15 @@ const AccountPage = props => {
     <Layout>
       <SEO title="My Account" />
       <Account>
-        <Account.PleaseSignin>
-          <Account.ErrorBoundary error={error}>
+        <PleaseSignin>
+          <ErrorBoundary error={error}>
             {loading || !me ? (
-              <Account.Loader color="white" />
+              <Loader color="white" />
             ) : (
               <AccountDetailsWithHoverState me={me} />
             )}
-          </Account.ErrorBoundary>
-        </Account.PleaseSignin>
+          </ErrorBoundary>
+        </PleaseSignin>
       </Account>
     </Layout>
   )

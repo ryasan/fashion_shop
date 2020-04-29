@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import Icon from '../icons'
-import { Small } from '../elements'
 import { device } from '../../utils'
 
 const Header = styled.header`
@@ -10,6 +8,14 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   height: 7rem;
+`
+
+Header.LogoContainer = styled(Link)`
+  width: 10rem;
+  display: inline;
+  margin-left: 3rem;
+  display: flex;
+  align-items: center;
 `
 
 Header.Nav = styled.ul`
@@ -66,29 +72,10 @@ Header.NavItem = styled.li`
     color: inherit;
     transition: color 0.2s;
   }
-`
-
-Header.SignoutBtn = styled.a``
-
-Header.Link = Link
-Header.Text = Small
-
-Header.LogoContainer = styled(Link)`
-  width: 10rem;
-  display: inline;
-  margin-left: 3rem;
-  display: flex;
-  align-items: center;
-`
-
-Header.Logo = styled(Icon)`
-  width: 100%;
-  height: 100%;
-`
-
-Header.NavIcon = styled(Icon)`
-  fill: var(--off-white);
-  transition: fill 0.2s;
+  svg {
+    fill: var(--off-white);
+    transition: fill 0.2s;
+  }
 `
 
 export default Header

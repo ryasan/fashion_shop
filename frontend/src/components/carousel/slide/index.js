@@ -1,10 +1,12 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 
-import Slide from './slide.styles'
+import Slide, { Element } from './slide.styles'
+import Icon from '../../icons'
 import { withHoverState } from '../../../utils'
+import { Button, Input } from '../../elements'
 
-const Element = ({
+const ElementComponent = ({
   tag,
   to,
   text,
@@ -17,33 +19,33 @@ const Element = ({
     case 'button':
       const [redButton, clearButton] = modifiers
       return (
-        <Slide.ElementWrap>
-          <Slide.ElementButtonInner>
-            <Slide.Button
+        <Element>
+          <Element.ButtonInner>
+            <Button
               {...mouseHoverProps}
               modifiers={isHovering ? redButton : clearButton}
               onClick={() => navigate(to)}>
-              <Slide.Icon name={icon} />
+              <Icon name={icon} />
               {text}
-            </Slide.Button>
-          </Slide.ElementButtonInner>
-        </Slide.ElementWrap>
+            </Button>
+          </Element.ButtonInner>
+        </Element>
       )
     case 'input':
       return (
-        <Slide.ElementWrap>
-          <Slide.ElementInputInner>
-            <Slide.Icon name={icon} />
-            <Slide.Input modifiers={modifiers} placeholder={text} />
-          </Slide.ElementInputInner>
-        </Slide.ElementWrap>
+        <Element>
+          <Element.InputInner>
+            <Icon name={icon} />
+            <Input modifiers={modifiers} placeholder={text} />
+          </Element.InputInner>
+        </Element>
       )
     default:
       return null
   }
 }
 
-const ElementWithHoverState = withHoverState(Element)
+const ElementWithHoverState = withHoverState(ElementComponent)
 
 const SlideComponent = ({ element, image }) => (
   <Slide>

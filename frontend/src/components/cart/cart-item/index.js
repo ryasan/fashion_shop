@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import CartItem from './cart-item.styles'
+import Icon from '../../icons'
+import CartItem, { Content } from './cart-item.styles'
 import { useRemoveCartItemMutation } from '../../../graphql/cart/hooks'
 import { formatPrice } from '../../../utils'
+import { Image, Span } from '../../elements'
 
 const CartItemComponent = ({ product }) => {
   const [removeCartItem] = useRemoveCartItemMutation()
@@ -24,34 +26,29 @@ const CartItemComponent = ({ product }) => {
 
   return (
     <CartItem isMouseOver={isMouseOver}>
-      <CartItem.Content>
-        <CartItem.Thumb
-          src={require(`../../../images/products/${product.sku}_2.jpg`)}
-        />
-        <CartItem.Details>
-          <CartItem.Text>{product.title}</CartItem.Text>
-          <CartItem.Text modifiers={['grayColor', 'smallText']}>
+      <Content>
+        <Image src={require(`../../../images/products/${product.sku}_2.jpg`)} />
+        <Content.Details>
+          <Span modifiers="mediumText">{product.title}</Span>
+          <Span modifiers={['grayColor', 'smallText']}>
             {`${availableSizes} | ${product.style}`}
-            <br />
-            Quantity:{' '}
-            <CartItem.Qty modifiers="offWhiteColor">
-              {product.quantity}
-            </CartItem.Qty>
-          </CartItem.Text>
-        </CartItem.Details>
+            <br/>
+            Quantity: <Span modifiers="offWhiteColor">{product.quantity}</Span>
+          </Span>
+        </Content.Details>
         <CartItem.Price>
-          <CartItem.Delete
+          <Icon
             name="close"
             className="del-btn"
             onMouseOut={handleMouseOut}
             onMouseOver={handleMouseOver}
             onClick={handleRemoveCartItem}
           />
-          <CartItem.Text modifiers={['mediumText', 'redColor']}>
+          <Span modifiers={['mediumText', 'redColor']}>
             {formatPrice(product.price)}
-          </CartItem.Text>
+          </Span>
         </CartItem.Price>
-      </CartItem.Content>
+      </Content>
     </CartItem>
   )
 }

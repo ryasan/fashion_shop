@@ -23,7 +23,7 @@ Slide.Content = styled.div`
   position: relative;
 `
 
-Slide.ElementWrap = styled.div`
+const Element = styled.div`
   width: 30rem;
   position: absolute;
   left: 50%;
@@ -35,7 +35,7 @@ Slide.ElementWrap = styled.div`
   }
 `
 
-Slide.ElementInputInner = styled.div`
+Element.InputInner = styled.div`
   display: flex;
   justify-content: center;
   svg {
@@ -45,7 +45,7 @@ Slide.ElementInputInner = styled.div`
   }
 `
 
-Slide.ElementButtonInner = styled.div`
+Element.ButtonInner = styled.div`
   display: flex;
   justify-content: flex-end;
   button {
@@ -65,4 +65,6 @@ Slide.Input = styled.input`
 
 Slide.Button = Button
 Slide.Icon = Icon
+
+export { Element }
 export default Slide

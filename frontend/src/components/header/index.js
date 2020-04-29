@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
 import { toast } from 'react-toastify'
+import { Link } from 'gatsby'
 
 import Header from './header.styles'
+import Icon from '../icons'
+import { A } from '../elements'
 import {
   useCurrentUserQuery,
   useSignoutMutation
@@ -21,26 +24,33 @@ const HeaderComponent = () => {
     navigate('/account')
   }
 
-  // prettier-ignore
-  const navItems = [
-    { isVisible: true, element: <Header.Link to="/">HOME</Header.Link> },
-    { isVisible: true, element: <Header.Link to="/shop">SHOP</Header.Link> },
-    { isVisible: me, element: <Header.SignoutBtn onClick={signout}>SIGNOUT</Header.SignoutBtn> },
-    { isVisible: !me, element: <Header.Link to="/signin">SIGNIN</Header.Link> },
-    { isVisible: me, element: <Header.NavIcon name="account-circle" onClick={goToAccountPage} /> }
-  ]
-
   return (
     <Header>
       <Header.LogoContainer to="/">
-        <Header.Logo name="logo-royal" />
+        <Icon name="logo-royal" />
       </Header.LogoContainer>
       <Header.Nav>
-        {navItems
-          .filter(item => item.isVisible)
-          .map((item, i) => (
-            <Header.NavItem key={i}>{item.element}</Header.NavItem>
-          ))}
+        <Header.NavItem>
+          <Link to="/">HOME</Link>
+        </Header.NavItem>
+        <Header.NavItem>
+          <Link to="/shop">SHOP</Link>
+        </Header.NavItem>
+        {me && (
+          <Header.NavItem>
+            <A onClick={signout}>SIGNOUT</A>
+          </Header.NavItem>
+        )}
+        {!me && (
+          <Header.NavItem>
+            <Link to="/signin">SIGNIN</Link>{' '}
+          </Header.NavItem>
+        )}
+        {me && (
+          <Header.NavItem>
+            <Icon name="account-circle" onClick={goToAccountPage} />{' '}
+          </Header.NavItem>
+        )}
       </Header.Nav>
     </Header>
   )

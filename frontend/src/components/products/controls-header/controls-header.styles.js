@@ -1,8 +1,5 @@
 import styled from 'styled-components'
 
-import ErrorBoundary from '../../error-boundary'
-import { P } from '../../elements'
-
 const ControlsHeader = styled.div`
   width: 100%;
   background: transparent;
@@ -10,13 +7,8 @@ const ControlsHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5rem;
-`
-
-ControlsHeader.ErrorBoundary = ErrorBoundary
-
-ControlsHeader.Count = styled(P)`
-  flex: 1;
-  text-align: center;
+  span {
+  }
 `
 
 export default ControlsHeader

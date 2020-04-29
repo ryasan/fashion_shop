@@ -3,11 +3,12 @@ import React from 'react'
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
 import OrderBy from '../orderBy'
+import { Span } from '../../elements'
 
 const Count = ({ count }) => (
-  <ControlsHeader.Count modifiers="offWhiteColor">
+  <Span modifiers={['offWhiteColor', 'mediumText']}>
     {`Found ${count} product${count >= 0 ? 's' : ''}`}
-  </ControlsHeader.Count>
+  </Span>
 )
 
 const ControlsHeaderComponent = ({ count, setOrderBy }) => (

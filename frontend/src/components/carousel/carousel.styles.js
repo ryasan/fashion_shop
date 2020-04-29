@@ -28,7 +28,7 @@ const arrowStyles = css`
   }
 `
 
-Carousel.Prev = styled.div`
+const PrevButton = styled.div`
   ${arrowStyles};
   left: ${props => (props.isHovering ? '3.5rem' : '-3.5rem')};
   svg {
@@ -36,7 +36,7 @@ Carousel.Prev = styled.div`
   }
 `
 
-Carousel.Next = styled.div`
+const NextButton = styled.div`
   ${arrowStyles};
   right: ${props => (props.isHovering ? '3.5rem' : '-3.5rem')};
   svg {
@@ -46,4 +46,5 @@ Carousel.Next = styled.div`
 
 Carousel.Icon = Icon
 
+export { PrevButton, NextButton }
 export default Carousel

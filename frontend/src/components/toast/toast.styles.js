@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import Icon from '../icons'
-
 const Toast = styled.div`
   .toast-container {
     width: auto;
@@ -35,5 +33,4 @@ const Toast = styled.div`
   }
 `
 
-Toast.CloseButton = Icon
 export default Toast

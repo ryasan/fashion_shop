@@ -3,7 +3,9 @@ import React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Carousel from '../components/carousel/index'
-import Home from '../styles/home-page.styles'
+import Home, { TextList, Icons, MaxWidth } from '../styles/home-page.styles'
+import { H1, Span, P, H2 } from '../components/elements'
+import Icon from '../components/icons'
 
 const HomePage = () => (
   <Layout>
@@ -14,72 +16,68 @@ const HomePage = () => (
         <Home.SectionOne>
           <Home.TurntablesBg />
           <Home.SectionOneContent>
-            <Home.SectionTitle modifiers={['redColor', 'textAlignCenter']}>
+            <H1 modifiers={['redColor', 'textAlignCenter']}>
               Lorem Ipsum Dolor
-            </Home.SectionTitle>
-            <Home.TextList>
-              <Home.TextItem>
-                <Home.Span>NEW FOR 2020</Home.Span>
-                <Home.TextTitle modifiers={['redColor']}>
-                  Lorem Ipsum
-                </Home.TextTitle>
-                <Home.Description>
+            </H1>
+            <TextList>
+              <TextList.TextItem>
+                <Span modifiers={['mediumText', 'redColor']}>NEW FOR 2020</Span>
+                <H2 modifiers={['redColor']}>Lorem Ipsum</H2>
+                <P>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Autem, necessitatibus cupiditate repellat doloremque hic
                   itaque vero dolorem fugiat ex accusamus, nesciunt facere modi?
                   Totam velit quam asperiores voluptates voluptatum amet.
-                </Home.Description>
-              </Home.TextItem>
-              <Home.TextItem>
-                <Home.Span>ANNOUNCING...</Home.Span>
-                <Home.TextTitle modifiers={['redColor']}>
-                  Lorem Ipsum
-                </Home.TextTitle>
-                <Home.Description>
+                </P>
+              </TextList.TextItem>
+              <TextList.TextItem>
+                <Span modifiers={['mediumText', 'redColor']}>
+                  ANNOUNCING...
+                </Span>
+                <H2 modifiers={['redColor']}>Lorem Ipsum</H2>
+                <P>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis
                   facilis impedit repudiandae accusamus esse unde eos, eum,
                   harum consequuntur cum dignissimos voluptatum fugiat
                   asperiores autem dicta.
-                </Home.Description>
-              </Home.TextItem>
-              <Home.TextItem>
-                <Home.Span>ANNOUNCING...</Home.Span>
-                <Home.TextTitle modifiers={['redColor']}>
-                  Lorem Ipsum
-                </Home.TextTitle>
-                <Home.Description>
+                </P>
+              </TextList.TextItem>
+              <TextList.TextItem>
+                <Span modifiers={['mediumText', 'redColor']}>
+                  ANNOUNCING...
+                </Span>
+                <H2 modifiers={['redColor']}>Lorem Ipsum</H2>
+                <P>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Autem, necessitatibus cupiditate repellat doloremque hic
                   itaque vero dolorem fugiat ex accusamus, nesciunt facere modi?
                   Totam velit quam asperiores voluptates voluptatum amet.
-                </Home.Description>
-              </Home.TextItem>
-            </Home.TextList>
+                </P>
+              </TextList.TextItem>
+            </TextList>
           </Home.SectionOneContent>
         </Home.SectionOne>
         <Home.SectionTwo>
-          <Home.MaxWidth>
-            <Home.SectionTitle modifiers={['redColor', 'textAlignCenter']}>
+          <MaxWidth>
+            <H1 modifiers={['redColor', 'textAlignCenter']}>
               Lorem Ipsum Dolor
-            </Home.SectionTitle>
-            <Home.Icons>
-              <Home.IconWrap>
-                <Home.Icon name="magnifier" />
-                <Home.Description>Lorem ipsum dolor sit amet</Home.Description>
-              </Home.IconWrap>
-              <Home.IconWrap>
-                <Home.Icon name="shopping-bag" />
-                <Home.Description>Lorem ipsum dolor sit amet</Home.Description>
-              </Home.IconWrap>
-              <Home.IconWrap>
-                <Home.Icon name="envelope" />
-                <Home.Description>Lorem ipsum dolor sit amet</Home.Description>
-              </Home.IconWrap>
-            </Home.Icons>
-            <Home.Description>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            </Home.Description>
-          </Home.MaxWidth>
+            </H1>
+            <Icons>
+              <Icons.IconWrap>
+                <Icon name="magnifier" />
+                <P>Lorem ipsum dolor sit amet</P>
+              </Icons.IconWrap>
+              <Icons.IconWrap>
+                <Icon name="shopping-bag" />
+                <P>Lorem ipsum dolor sit amet</P>
+              </Icons.IconWrap>
+              <Icons.IconWrap>
+                <Icon name="envelope" />
+                <P>Lorem ipsum dolor sit amet</P>
+              </Icons.IconWrap>
+            </Icons>
+            <P>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</P>
+          </MaxWidth>
         </Home.SectionTwo>
       </Home.Content>
     </Home>

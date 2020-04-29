@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-import Form from '../form'
-import Icon from '../icons'
-import { Input, Small, A, P, Button } from '../elements'
-
 const Signin = styled.div`
   width: 40rem;
   position: relative;
@@ -29,15 +25,7 @@ const Signin = styled.div`
   }
 `
 
-Signin.Form = Form
-Signin.Link = A
-Signin.SmallText = Small
-Signin.MessageText = P
-Signin.Icon = Icon
-Signin.Input = Input
-Signin.Submit = Button
-
-Signin.Header = styled.div`
+const Header = styled.div`
   background: url(${require('../../images/logo-royal.svg')}) center 30%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -45,9 +33,14 @@ Signin.Header = styled.div`
   width: 60%;
 `
 
-Signin.Fieldset = styled.fieldset``
+const Fieldset = styled.fieldset`
+  span {
+    display: block;
+    margin: 2rem 0;
+  }
+`
 
-Signin.Field = styled.div`
+const Field = styled.div`
   height: 4rem;
   position: relative;
   margin-bottom: 2rem;
@@ -62,10 +55,7 @@ Signin.Field = styled.div`
     transform: translateY(-50%);
     border-radius: 3px;
   }
-  &:nth-last-child(3),
-  &:last-child {
-    margin: 0;
-  }
 `
 
+export { Fieldset, Field, Header }
 export default Signin

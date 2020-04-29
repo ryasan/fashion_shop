@@ -5,8 +5,13 @@ import {
   styleModifierPropTypes
 } from 'styled-components-modifiers'
 
-export const buildStyledComponent = ({ element, constantStyles }) => {
+export const buildStyledComponent = ({ element, constantStyles = [] }) => {
+  const styles = constantStyles.reduce((str, b) => {
+    return str + `${b};`
+  }, '')
+
   const styledElement = styled[element]`
+    ${styles}
     ${applyStyleModifiers(MODIFIER_CONFIG)}
   `
 
@@ -44,6 +49,15 @@ const MODIFIER_CONFIG = {
   `,
   darker: () => css`
     background-color: var(--darker);
+  `,
+  displayBlock: () => css`
+    display: block;
+  `,
+  displayFlex: () => css`
+    display: flex;
+  `,
+  flex1: () => css`
+    flex: 1;
   `,
   grayColor: () => css`
     color: var(--gray);

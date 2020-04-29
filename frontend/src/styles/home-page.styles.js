@@ -1,8 +1,5 @@
 import styled from 'styled-components'
 
-import Loader from '../components/loader'
-import Icon from '../components/icons'
-import { H2, P, Span, H1 } from '../components/elements'
 import { device } from '../utils'
 
 const Home = styled.div`
@@ -19,17 +16,6 @@ Home.Content = styled.div`
 Home.Section = styled.section`
   padding: 10rem 0;
 `
-
-Home.SectionTitle = H1
-Home.TextTitle = H2
-Home.Description = P
-
-Home.Span = styled(Span)`
-  color: var(--red);
-  font-size: var(--regular-font);
-`
-
-Home.Loader = Loader
 
 Home.SectionOne = styled(Home.Section)`
   align-self: center;
@@ -67,14 +53,14 @@ Home.TurntablesBg = styled.div`
   }
 `
 
-Home.TextList = styled.ul`
+const TextList = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 5rem;
   max-width: var(--max-width);
 `
 
-Home.TextItem = styled.li`
+TextList.TextItem = styled.li`
   width: 50%;
   padding: 1rem 4rem;
   color: white;
@@ -105,12 +91,12 @@ Home.SectionTwo = styled(Home.Section)`
   justify-content: center;
 `
 
-Home.MaxWidth = styled.div`
+const MaxWidth = styled.div`
   max-width: var(--max-width);
   width: 100%;
 `
 
-Home.Icons = styled.div`
+const Icons = styled.div`
   display: flex;
   justify-content: center;
   margin: 5rem;
@@ -119,7 +105,7 @@ Home.Icons = styled.div`
   }
 `
 
-Home.IconWrap = styled.div`
+Icons.IconWrap = styled.div`
   width: 33.33333%;
   display: flex;
   flex-direction: column;
@@ -129,12 +115,12 @@ Home.IconWrap = styled.div`
     margin: 5rem 0;
     width: 100%;
   }
+  svg {
+    width: 5rem;
+    height: 5rem;
+    fill: white;
+  }
 `
 
-Home.Icon = styled(Icon)`
-  width: 5rem;
-  height: 5rem;
-  fill: white;
-`
-
+export { TextList, Icons, MaxWidth }
 export default Home

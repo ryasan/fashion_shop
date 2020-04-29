@@ -5,9 +5,10 @@ import { constantCase } from 'change-case'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Signin from './signin.styles'
+import Signin, { Fieldset, Field, Header } from './signin.styles'
+import Form from '../form'
 import Icon from '../icons'
-import { Input } from '../elements'
+import { Input, Span, Button, Small, A } from '../elements'
 import { useSigninMutation, useSignupMutation } from '../../graphql/user/hooks'
 import {
   EMAIL,
@@ -187,23 +188,23 @@ const SigninPage = ({ className }) => {
 
   const renderLinks = () => {
     return isSignin ? (
-      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
+      <A modifiers="redColor" onClick={toggleSignup}>
         Signup
-      </Signin.Link>
+      </A>
     ) : (
-      <Signin.Link modifiers="redColor" onClick={toggleSignup}>
+      <A modifiers="redColor" onClick={toggleSignup}>
         Signin
-      </Signin.Link>
+      </A>
     )
   }
 
   return (
     <Signin>
-      <Signin.Header />
-      <Signin.Form method="post" onSubmit={handleOnSubmit}>
-        <Signin.Fieldset>
+      <Header />
+      <Form method="post" onSubmit={handleOnSubmit}>
+        <Fieldset>
           {fields.filter(filterFields).map((f, i) => (
-            <Signin.Field key={i}>
+            <Field key={i}>
               <Icon name={f.icon} />
               <Input
                 placeholder={f.name}
@@ -213,24 +214,19 @@ const SigninPage = ({ className }) => {
                 disabled={loading}
                 onChange={handleOnChange}
               />
-            </Signin.Field>
+            </Field>
           ))}
-
-          <Signin.MessageText modifiers={computedColors}>
-            {message}
-          </Signin.MessageText>
-
-          <Signin.Field>
-            <Signin.Submit type="submit" disabled={loading}>
+          <Span modifiers={computedColors}>{message}</Span>
+          <Field>
+            <Button type="submit" disabled={loading}>
               Submit{loading ? 'ting...' : ''}
-            </Signin.Submit>
-          </Signin.Field>
-        </Signin.Fieldset>
-      </Signin.Form>
-
-      <Signin.SmallText modifiers="whiteColor">
+            </Button>
+          </Field>
+        </Fieldset>
+      </Form>
+      <Small modifiers="whiteColor">
         {signinText} {renderLinks()}
-      </Signin.SmallText>
+      </Small>
     </Signin>
   )
 }

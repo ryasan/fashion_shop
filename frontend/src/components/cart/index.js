@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 
-import Cart from './cart.styles'
+import Cart, { Bag, SubTotal, Header } from './cart.styles'
 import CartItem from './cart-item'
+import Icon from '../icons'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 import { formatPrice } from '../../utils'
+import { Span, H4, Button } from '../elements'
 
 const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
@@ -29,50 +31,51 @@ const CartComponent = () => {
 
   return (
     <Cart cartOpen={cartOpen} ref={cartRef}>
-      <Cart.Btn cartOpen={cartOpen} onClick={toggleCart}>
-        <Cart.Icon name={cartOpen ? 'close' : 'cart'} />
-        {!cartOpen && cartCount > 0 && (
-          <Cart.ClosedBagQty modifiers={['red', 'smallText']}>
+      <Cart.Button cartOpen={cartOpen} onClick={toggleCart}>
+        <Icon name={cartOpen ? 'close' : 'cart'} />
+        {!cartOpen && (
+          <Bag modifiers={['red', 'smallText']} className="bag bag-closed">
             {cartCount}
-          </Cart.ClosedBagQty>
+          </Bag>
         )}
-      </Cart.Btn>
-
+      </Cart.Button>
       <Cart.Content>
-        <Cart.Header>
-          <Cart.Title>Cart</Cart.Title>
-          <Cart.BagContainer>
-            <Cart.Bag name="cart" />
-            {cartCount > 0 && (
-              <Cart.OpenBagQty modifiers={['red', 'smallText']}>
-                {cartCount}
-              </Cart.OpenBagQty>
-            )}
-          </Cart.BagContainer>
-        </Cart.Header>
-
+        <Header>
+          <H4>Cart</H4>
+          <Header.Bag>
+            <Icon name="cart" />
+            <Bag modifiers={['red', 'smallText']} className="bag bag-open">
+              {cartCount}
+            </Bag>
+          </Header.Bag>
+        </Header>
         <Cart.List>
+          {!cartItems.length && (
+            <Span
+              modifiers={[
+                'textAlignCenter',
+                'displayBlock',
+                'mediumText',
+                'width100'
+              ]}
+              className="bag bag-open">
+              Add some stuff to the cart :)
+            </Span>
+          )}
           {cartItems.map(p => (
             <CartItem key={p.id} product={p} />
           ))}
-          {!cartItems.length && (
-            <Cart.Text modifiers="textAlignCenter">
-              Add some products to the cart 😉
-            </Cart.Text>
-          )}
         </Cart.List>
-
         <Cart.Footer>
-          <Cart.Sub modifiers={['mediumText']}>SUBTOTAL</Cart.Sub>
-          <Cart.SubPrice>
-            <Cart.Text modifiers={['redColor', 'textAlignRight', 'largeText']}>
+          <SubTotal>
+            <Span modifiers={['mediumText']}>SUBTOTAL</Span>
+            <Span modifiers={['redColor', 'largeText']}>
               {formatPrice(cartTotal)}
-            </Cart.Text>
-          </Cart.SubPrice>
-          <Cart.CheckoutBtn
-            modifiers={['darker', 'offWhiteColor', 'largeText']}>
-            CHECKOUT
-          </Cart.CheckoutBtn>
+            </Span>
+          </SubTotal>
+          <Span className="close-btn">
+            <Button>CHECKOUT</Button>
+          </Span>
         </Cart.Footer>
       </Cart.Content>
     </Cart>

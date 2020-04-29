@@ -3,6 +3,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import Toast from './toast.styles'
+import Icon from '../icons'
 
 toast.configure()
 
@@ -20,9 +21,7 @@ export const ToastComponent = () => {
     <Toast>
       <ToastContainer
         {...options}
-        closeButton={
-          <Toast.CloseButton name="close" className="close-button" />
-        }
+        closeButton={<Icon name="close" className="close-button" />}
       />
     </Toast>
   )

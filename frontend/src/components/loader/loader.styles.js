@@ -13,7 +13,7 @@ const Loader = styled.div`
   align-items: center;
 `
 
-Loader.Space = styled.div`
+const Space = styled.div`
   animation: ${orbit} 1s linear infinite;
   width: 100px;
   height: 100px;
@@ -22,25 +22,13 @@ Loader.Space = styled.div`
   justify-content: center;
 `
 
-Loader.Planet = styled.svg`
+const Planet = styled.svg`
   transform: rotate(18deg);
   width: 100%;
   height: 100%;
 `
 
-const renderColor = color => {
-  switch (color) {
-    case 'red':
-      return 'var(--red)'
-    case 'white':
-      return 'var(--off-white)'
-    case 'dark':
-    default:
-      return 'var(--dark)'
-  }
-}
-
-Loader.Circle = styled.circle`
+const Circle = styled.circle`
   fill: transparent;
   cx: 50;
   cy: 50;
@@ -49,10 +37,10 @@ Loader.Circle = styled.circle`
   stroke-dasharray: 245;
   stroke-dashoffset: 1000;
   position: relative;
-  stroke: ${props => renderColor(props.color)};
+  stroke: ${props => props.color};
 `
 
-Loader.Satellite = styled.div`
+const Satellite = styled.div`
   position: absolute;
   width: 15px;
   height: 15px;
@@ -60,12 +48,13 @@ Loader.Satellite = styled.div`
   top: 50%;
   right: 2px;
   transform: translateY(-50%);
-  background: ${props => renderColor(props.color)};
+  background: ${props => props.color};
 `
 
-Loader.Text = styled.span`
+const Text = styled.span`
   position: absolute;
-  color: ${props => renderColor(props.color)};
+  color: ${props => props.color};
 `
 
+export { Space, Planet, Circle, Text, Satellite }
 export default Loader

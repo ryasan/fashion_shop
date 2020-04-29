@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { P, Button } from '../elements'
-
 const PleaseSignin = styled.div`
   height: 10rem;
   display: flex;
@@ -16,8 +14,5 @@ const PleaseSignin = styled.div`
     border: 2px solid var(--red);
   }
 `
-
-PleaseSignin.Btn = Button
-PleaseSignin.Text = P
 
 export default PleaseSignin
