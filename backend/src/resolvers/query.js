@@ -1,4 +1,4 @@
-const { intersection } = require('lodash')
+const { intersection, isEmpty } = require('lodash')
 const { forwardTo } = require('prisma-binding')
 
 const isInStock = (sizes, filters) => {
@@ -16,15 +16,15 @@ const Query = {
     const { sizeFilters, freeShippingSelected } = args
     const { edges } = await ctx.db.query.productsConnection({}, info)
 
-    const inStock = edges.filter((product) => {
-      return isInStock(product.node.availableSizes, sizeFilters)
+    const inStock = edges.filter(({ node }) => {
+      return isInStock(node.availableSizes, sizeFilters)
     })
     const productIds = inStock.map((product) => product.node.id)
 
     const where = {
       AND: [
         { isFreeShipping: freeShippingSelected || undefined },
-        { id_in: productIds.length > 0 ? productIds : undefined }
+        { id_in: !isEmpty(productIds) ? productIds : undefined }
       ]
     }
 
