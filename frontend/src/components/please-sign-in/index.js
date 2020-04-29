@@ -3,7 +3,7 @@ import { navigate } from '@reach/router'
 
 import PleaseSignin from './please-sign-in.styles'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
-import { P, Button } from '../elements'
+import { P, Button } from '../../elements'
 import { withHoverState } from '../../utils'
 
 const PleaseSigninComponent = ({ children }) => {

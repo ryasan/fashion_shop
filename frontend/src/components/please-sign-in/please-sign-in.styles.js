@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton } from '../elements'
+import { redButton } from '../../elements'
 
 const PleaseSignin = styled.div`
   height: 10rem;

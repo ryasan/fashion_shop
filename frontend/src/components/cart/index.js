@@ -5,7 +5,7 @@ import CartItem from './cart-item'
 import Icon from '../icons'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 import { formatPrice } from '../../utils'
-import { Span, H4, Button } from '../elements'
+import { Span, H4, Button } from '../../elements'
 
 const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()

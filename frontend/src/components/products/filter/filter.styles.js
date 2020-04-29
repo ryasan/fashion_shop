@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { Button, P } from '../../elements'
+import { Button, P } from '../../../elements'
 
 const Filter = styled.div`
   display: flex;

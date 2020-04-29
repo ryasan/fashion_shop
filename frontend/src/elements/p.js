@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { buildStyledComponent } from '../../utils/build-styled-component'
+import { buildStyledComponent } from '../utils/build-styled-component'
 
 export const P = buildStyledComponent({
   element: styled.p,

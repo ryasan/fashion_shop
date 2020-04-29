@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { device } from '../../utils'
-import { Span } from '../elements'
+import { Span } from '../../elements'
 
 const Cart = styled.div`
   position: fixed;

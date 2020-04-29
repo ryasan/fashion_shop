@@ -1,4 +1,4 @@
-import { redButton, transparentButton, redInput } from '../elements'
+import { redButton, transparentButton, redInput } from '../../elements'
 
 const carouselSlides = [
   {

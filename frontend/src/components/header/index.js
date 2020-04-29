@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 
 import Header from './header.styles'
 import Icon from '../icons'
-import { A } from '../elements'
+import { A } from '../../elements'
 import {
   useCurrentUserQuery,
   useSignoutMutation

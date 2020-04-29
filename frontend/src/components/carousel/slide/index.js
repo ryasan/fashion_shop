@@ -3,7 +3,7 @@ import { navigate } from 'gatsby'
 
 import Slide, { Element } from './slide.styles'
 import Icon from '../../icons'
-import { Button, Input } from '../../elements'
+import { Button, Input } from '../../../elements'
 
 const ElementComponent = ({ tag, to, text, icon }) => {
   switch (tag) {

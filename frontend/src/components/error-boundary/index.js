@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import ErrorBoundary from './error-boundary.styles'
-import { P, Span } from '../elements'
+import { P, Span } from '../../elements'
 
 const ErrorBoundaryComponent = ({ error, children }) => {
   if (error?.networkError?.result?.errors?.length) {

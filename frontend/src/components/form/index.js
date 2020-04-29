@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redInput, redButton } from '../elements'
+import { redInput, redButton } from '../../elements'
 
 const Form = styled.form`
   width: 100%;

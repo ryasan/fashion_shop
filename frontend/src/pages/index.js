@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Carousel from '../components/carousel/index'
 import Home, { TextList, Icons, MaxWidth } from '../styles/home-page.styles'
-import { H1, Span, P, H2 } from '../components/elements'
+import { H1, Span, P, H2 } from '../elements'
 import Icon from '../components/icons'
 
 const HomePage = () => (

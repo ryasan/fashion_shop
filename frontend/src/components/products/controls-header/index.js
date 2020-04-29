@@ -3,7 +3,7 @@ import React from 'react'
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
 import OrderBy from '../orderBy'
-import { Span } from '../../elements'
+import { Span } from '../../../elements'
 
 const Count = ({ count }) => (
   <Span modifiers={['off_white_color', 'font_size_m']}>

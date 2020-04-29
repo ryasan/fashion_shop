@@ -1,7 +1,7 @@
 import React from 'react'
 
 import OrderBy from './orderBy.styles'
-import { Label, Select, Option } from '../../elements'
+import { Label, Select, Option } from '../../../elements'
 
 const options = [
   { name: 'Select', value: 'id_ASC' },

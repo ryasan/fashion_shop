@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { buildStyledComponent } from '../../utils/build-styled-component'
+import { buildStyledComponent } from '../utils/build-styled-component'
 
 export const Button = buildStyledComponent({
   element: styled.button,
@@ -14,7 +14,7 @@ export const Button = buildStyledComponent({
 
 export const redButton = css`
   background: var(--red);
-  color: white;
+  color: var(--off-white);
   border: 2px solid var(--red);
   outline-color: var(--red);
   font-size: var(--font-size-m);

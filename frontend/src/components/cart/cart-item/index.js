@@ -5,7 +5,7 @@ import Icon from '../../icons'
 import CartItem, { Content } from './cart-item.styles'
 import { useRemoveCartItemMutation } from '../../../graphql/cart/hooks'
 import { formatPrice } from '../../../utils'
-import { Image, Span } from '../../elements'
+import { Image, Span } from '../../../elements'
 
 const CartItemComponent = ({ product }) => {
   const [removeCartItem] = useRemoveCartItemMutation()

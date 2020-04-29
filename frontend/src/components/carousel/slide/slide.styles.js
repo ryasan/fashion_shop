@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { device } from '../../../utils'
-import { redButton, redInput } from '../../elements'
+import { redButton, redInput } from '../../../elements'
 
 const Slide = styled.div`
   height: 50rem;

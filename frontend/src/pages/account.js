@@ -8,7 +8,7 @@ import ErrorBoundary from '../components/error-boundary'
 import PleaseSignin from '../components/please-sign-in'
 import Loader from '../components/loader/loader.styles'
 import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
-import { P, Button } from '../components/elements'
+import { P, Button } from '../elements'
 
 const AccountDetails = ({ me }) => {
   const [deleteMe, { data, loading, error }] = useDeleteMeMutation()

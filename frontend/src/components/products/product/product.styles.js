@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton } from '../../elements'
+import { redButton } from '../../../elements'
 import { device } from '../../../utils'
 
 const Product = styled.div`
@@ -26,6 +26,7 @@ Product.Special = styled.div`
   border-radius: 2px;
   background: red;
   font-size: var(--font-size-s);
+  color: var(--off-white);
 `
 
 Product.Image = styled.div`
