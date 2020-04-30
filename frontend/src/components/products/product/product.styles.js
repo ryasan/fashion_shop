@@ -11,7 +11,9 @@ const Product = styled.div`
   background: white;
   border-radius: 3px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 1);
-
+  a {
+    text-decoration: none;
+  }
   @media ${device.mobileL} {
     margin-bottom: 5rem;
   }
