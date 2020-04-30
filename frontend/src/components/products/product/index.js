@@ -4,19 +4,19 @@ import { Link } from 'gatsby'
 
 import Product, { Price } from './product.styles'
 import { formatPrice } from '../../../utils'
-import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 import { Button, Image, Span, Small, Hr as Divider, B } from '../../../elements'
 
-const ProductComponent = ({ product, sizeFilters }) => {
-  const [addCartItem] = useAddCartItemMutation()
-  const formattedPrice = formatPrice(product.price)
+const ProductComponent = ({ product, sizeFilters, addCartItem, me }) => {
   const image = require(`../../../images/products/${product.sku}_1.jpg`)
+  const formattedPrice = formatPrice(product.price)
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
   const detailsPage = '/shop/' + product.id
 
   const handleAddCartItem = () => {
-    addCartItem({ variables: { product } })
+    addCartItem({
+      variables: { product: product, userId: me && me.id }
+    })
   }
 
   product.quantity = 1

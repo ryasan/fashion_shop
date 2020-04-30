@@ -15,14 +15,12 @@ const ProductDetailsComponent = ({ product }) => {
 
   return (
     <ProductDetails>
-      <ProductDetails.Row modifiers={['flex_column']}>
-        <H3 modifiers="red_color">{product.title}</H3>
-      </ProductDetails.Row>
-      <ProductDetails.Row modifiers={['flex_row']}>
-        <ProductDetails.Column>
+      <H3 modifiers="red_color">{product.title}</H3>
+      <ProductDetails.Content>
+        <ProductDetails.Image>
           <Image src={product.image} alt={product.title} />
-        </ProductDetails.Column>
-        <ProductDetails.Column modifiers={['flex_column']}>
+        </ProductDetails.Image>
+        <ProductDetails.Text>
           <Span modifiers={['font_size_lg']}>{product.style}</Span>
           <Span modifiers={['font_size_lg', 'red_color']}>
             {formatPrice(product.price)}
@@ -36,14 +34,11 @@ const ProductDetailsComponent = ({ product }) => {
           <Span modifiers={['font_size_m']}>
             description: {product.description}
           </Span>
-          <Button
-            className="buy-btn"
-            onClick={handleAddCartItem}
-            modifiers={['red', 'white_color']}>
+          <Button className="buy-btn" onClick={handleAddCartItem}>
             Add to cart
           </Button>
-        </ProductDetails.Column>
-      </ProductDetails.Row>
+        </ProductDetails.Text>
+      </ProductDetails.Content>
     </ProductDetails>
   )
 }

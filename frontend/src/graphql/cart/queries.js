@@ -1,15 +1,16 @@
 import gql from 'graphql-tag'
 
-import { CART_ITEM_FRAGMENT } from './fragments';
+import { PRODUCT_FRAGMENT } from '../product/fragments'
 
 export const CART_QUERY = gql`
   query @client {
     cartItems {
-      ...CartItemFragment
+      ...ProductFragment
+      quantity
     }
     cartCount
     cartTotal
     cartOpen
   }
-  ${CART_ITEM_FRAGMENT}
+  ${PRODUCT_FRAGMENT}
 `

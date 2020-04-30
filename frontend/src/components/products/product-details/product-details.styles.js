@@ -1,18 +1,34 @@
 import styled from 'styled-components'
 
-import { Row, Column } from '../../../blocks'
+import { redButton } from '../../../elements'
 
 const ProductDetails = styled.div`
   width: 100%;
   max-width: var(--max-width);
-  .column:last-child {
-    margin-left: 5rem;
-    height: 25rem;
-    justify-content: space-between;
+`
+
+ProductDetails.Image = styled.div`
+  background: red;
+  display: flex;
+  image {
+    display: flex;
+    height: 100%;
   }
 `
 
-ProductDetails.Row = Row
-ProductDetails.Column = Column
+ProductDetails.Content = styled.div`
+  display: flex;
+`
+
+ProductDetails.Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 5rem;
+  height: 25rem;
+  button {
+    ${redButton};
+  }
+`
 
 export default ProductDetails

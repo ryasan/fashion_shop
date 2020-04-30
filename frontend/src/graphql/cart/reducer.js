@@ -5,52 +5,52 @@ export const cartInitialState = {
   cartOpen: false,
   cartItems: [],
   cartCount: 0,
-  cartTotal: 0
+  cartTotal: 0,
+  cartOwnerId: null
 }
 
-const cartReducer = (actionType, client, variables) => {
+const cartReducer = (actionType, client, variables = {}) => {
   const state = client.readQuery({ query: CART_QUERY })
   const { cartOpen, cartCount, cartItems, cartTotal } = state
-  let product
+  const { product, userId } = variables || {}
 
   switch (actionType) {
     case TOGGLE_CART:
-      client.writeData({
+      return client.writeData({
         data: {
           ...state,
           cartOpen: !cartOpen
         }
       })
-      break
+
     case REMOVE_CART_ITEM:
-      product = variables.product
-      client.writeData({
+      return client.writeData({
         data: {
           ...state,
           cartOpen: true,
-          cartCount: cartCount - 1,
+          cartCount: cartCount - product.quantity,
           cartItems: cartItems.filter(p => p.id !== product.id),
           cartTotal: cartTotal - product.price * product.quantity
         }
       })
-      break
+
     case ADD_CART_ITEM:
-      product = variables.product
       const foundProduct = cartItems.find(p => p.id === product.id)
-      client.writeData({
+      const cartWithNewProduct = [...cartItems, { ...product, __typename: 'Product' }]
+      const cartWithPlus1ProductQty = cartItems.map(p => ({
+        ...p,
+        quantity: p.id === (foundProduct || {}).id ? p.quantity + 1 : p.quantity
+      }))
+
+      return client.writeData({
         data: {
           cartOpen: true,
           cartCount: cartCount + 1,
           cartTotal: cartTotal + product.price,
-          cartItems: foundProduct
-            ? cartItems.map(p => ({
-                ...p,
-                quantity: p.id === foundProduct.id ? p.quantity + 1 : p.quantity
-              }))
-            : [...cartItems, { ...product, __typename: 'Product' }]
+          cartItems: foundProduct ? cartWithPlus1ProductQty : cartWithNewProduct,
+          cartOwnerId: userId
         }
       })
-      break
   }
 }
 
