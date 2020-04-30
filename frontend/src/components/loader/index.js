@@ -16,7 +16,6 @@ const selectedColor = color => {
 
 const LoaderComponent = ({ className, color }) => {
   const _color = selectedColor(color)
-
   return (
     <Loader className={className}>
       <Space color={_color}>

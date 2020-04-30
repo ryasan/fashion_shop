@@ -4,7 +4,7 @@ import Products from './products.styles'
 import ProductList from './product-list'
 import ControlsHeader from './controls-header/index'
 import ErrorBoundary from '../error-boundary'
-import Loader from '../loader/loader.styles'
+import Loader from '../loader'
 import {
   useProductsConnectionQuery,
   useFiltersQuery

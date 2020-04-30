@@ -1,15 +1,18 @@
 import styled from 'styled-components'
 
-import { Row } from '../../../blocks'
+import { Row, Column } from '../../../blocks'
 
 const ProductDetails = styled.div`
-  * {
-    outline: 1px solid red;
-  }
   width: 100%;
   max-width: var(--max-width);
+  .column:last-child {
+    margin-left: 5rem;
+    height: 25rem;
+    justify-content: space-between;
+  }
 `
 
 ProductDetails.Row = Row
+ProductDetails.Column = Column
 
 export default ProductDetails

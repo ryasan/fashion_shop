@@ -8,10 +8,12 @@ import {
 export const buildStyledComponent = ({
   element,
   baseStyles,
-  blockModifiers
+  blockModifiers,
+  className
 }) => {
-  const { colors, typography, borders, layout } = config
+  const { colors, typography, borders, layout, buttons } = config
   const MODIFIER_CONFIG = {
+    ...buttons,
     ...colors,
     ...typography,
     ...borders,
@@ -19,7 +21,7 @@ export const buildStyledComponent = ({
     ...blockModifiers
   }
 
-  const styledElement = element`
+  const styledElement = element.attrs(props => ({ className }))`
     ${baseStyles}
     ${applyStyleModifiers(MODIFIER_CONFIG)}
   `
@@ -32,6 +34,26 @@ export const buildStyledComponent = ({
 }
 
 const config = {
+  borders: {
+    border_2px: () => css`
+      border-width: 2px;
+    `,
+    border_3px: () => css`
+      border-width: 3px;
+    `,
+    border_none: () => css`
+      border: none;
+    `,
+    border_radius_2px: () => css`
+      border-radius: 2px;
+    `,
+    border_radius_3px: () => css`
+      border-radius: 3px;
+    `,
+    solid_border: () => css`
+      border-style: solid;
+    `
+  },
   colors: {
     dark: () => css`
       background-color: var(--dark);
@@ -79,6 +101,23 @@ const config = {
       color: white;
     `
   },
+  layout: {
+    display_block: () => css`
+      display: block;
+    `,
+    display_flex: () => css`
+      display: flex;
+    `,
+    flex_1: () => css`
+      flex: 1;
+    `,
+    height_100: () => css`
+      height: 100%;
+    `,
+    width_100: () => css`
+      width: 100%;
+    `
+  },
   typography: {
     bold: () => css`
       font-weight: bold;
@@ -106,43 +145,6 @@ const config = {
     `,
     uppercase: () => css`
       text-transform: uppercase;
-    `
-  },
-  borders: {
-    border_2px: () => css`
-      border-width: 2px;
-    `,
-    border_3px: () => css`
-      border-width: 3px;
-    `,
-    border_none: () => css`
-      border: none;
-    `,
-    border_radius_2px: () => css`
-      border-radius: 2px;
-    `,
-    border_radius_3px: () => css`
-      border-radius: 3px;
-    `,
-    solid_border: () => css`
-      border-style: solid;
-    `
-  },
-  layout: {
-    display_block: () => css`
-      display: block;
-    `,
-    display_flex: () => css`
-      display: flex;
-    `,
-    flex_1: () => css`
-      flex: 1;
-    `,
-    height_100: () => css`
-      height: 100%;
-    `,
-    width_100: () => css`
-      width: 100%;
     `
   }
 }

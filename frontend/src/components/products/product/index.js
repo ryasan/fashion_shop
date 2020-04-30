@@ -10,7 +10,7 @@ import { Button, Image, Span, Small, Hr as Divider, B } from '../../../elements'
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
   const formattedPrice = formatPrice(product.price)
-  const productImage = require(`../../../images/products/${product.sku}_1.jpg`)
+  const image = require(`../../../images/products/${product.sku}_1.jpg`)
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
   const detailsPage = '/shop/' + product.id
@@ -23,12 +23,12 @@ const ProductComponent = ({ product, sizeFilters }) => {
 
   return (
     <Product>
-      <Link to={detailsPage} state={{ product }}>
+      <Link to={detailsPage} state={{ product: { ...product, image } }}>
         <Product.Image>
           {product.isFreeShipping && (
             <Product.Special>Free shipping</Product.Special>
           )}
-          <Image src={productImage} alt={product.title} />
+          <Image src={image} alt={product.title} />
         </Product.Image>
         <Product.Details>
           <Span>{product.title}</Span>

@@ -2,26 +2,22 @@ import styled, { css } from 'styled-components'
 
 import { buildStyledComponent } from '../utils/build-styled-component'
 
-const rowModifiers = {
+const columnModifiers = {
   flex_row: () => css`
     flex-direction: row;
   `,
   flex_column: () => css`
     flex-direction: column;
-  `,
-
-  tall: () => css`
-    padding: 5rem 0;
   `
 }
 
-const rowBaseStyles = css`
+const columnBaseStyles = css`
   display: flex;
 `
 
-export const Row = buildStyledComponent({
+export const Column = buildStyledComponent({
   element: styled.div,
-  blockModifiers: rowModifiers,
-  baseStyles: rowBaseStyles,
-  className: 'row'
+  blockModifiers: columnModifiers,
+  baseStyles: columnBaseStyles,
+  className: 'column'
 })

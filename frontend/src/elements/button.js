@@ -5,6 +5,9 @@ export const Button = buildStyledComponent({
   element: styled.button,
   baseStyles: css`
     border: none;
+    padding: 1rem 0;
+    border-radius: 2px;
+    font-size: var(--font-size-m);
     cursor: pointer;
     &:disabled {
       cursor: not-allowed;
@@ -18,7 +21,6 @@ export const redButton = css`
   border: 2px solid var(--red);
   outline-color: var(--red);
   font-size: var(--font-size-m);
-  border-radius: 2px;
   &:disabled {
     border-color: #fa8072;
     background: #fa8072;
@@ -35,5 +37,4 @@ export const transparentButton = css`
   border: 2px solid var(--red);
   font-size: var(--font-size-m);
   outline-color: var(--red);
-  border-radius: 2px;
 `
