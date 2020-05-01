@@ -15,7 +15,7 @@ const CartItem = styled.li`
     `}
 `
 
-const Content = styled.div`
+CartItem.Content = styled.div`
   padding: 1.5rem;
   width: 100%;
   height: 100%;
@@ -26,7 +26,7 @@ const Content = styled.div`
   }
 `
 
-Content.Details = styled.div`
+CartItem.Details = styled.div`
   flex: 1;
   margin: 0 2rem;
   span {
@@ -56,5 +56,4 @@ CartItem.Price = styled.div`
   }
 `
 
-export { Content }
 export default CartItem

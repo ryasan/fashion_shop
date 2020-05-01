@@ -12,6 +12,7 @@ const ErrorBoundary = styled.div`
     padding: 1rem 2rem;
     background: white;
     color: red;
+    border-radius: 2px;
   }
 `
 

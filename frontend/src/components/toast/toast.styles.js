@@ -30,6 +30,9 @@ const Toast = styled.div`
       right: 0;
       padding: 0.5rem;
     }
+    &.toast-success {
+      background: red;
+    }
   }
 `
 

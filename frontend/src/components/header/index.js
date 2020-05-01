@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
-import { toast } from 'react-toastify'
 import { Link } from 'gatsby'
 
 import Header from './header.styles'
@@ -10,6 +9,7 @@ import {
   useCurrentUserQuery,
   useSignoutMutation
 } from '../../graphql/user/hooks'
+import { toast } from '../toast'
 
 const HeaderComponent = () => {
   const { data } = useCurrentUserQuery()

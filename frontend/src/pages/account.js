@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { toast } from 'react-toastify'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -9,6 +8,7 @@ import PleaseSignin from '../components/please-sign-in'
 import Loader from '../components/loader/loader.styles'
 import { useCurrentUserQuery, useDeleteMeMutation } from '../graphql/user/hooks'
 import { P, Button } from '../elements'
+import { toast } from '../components/toast'
 
 const AccountDetails = ({ me }) => {
   const [deleteMe, { data, loading, error }] = useDeleteMeMutation()

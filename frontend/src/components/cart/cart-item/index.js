@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../../icons'
-import CartItem, { Content } from './cart-item.styles'
+import CartItem from './cart-item.styles'
 import { useRemoveCartItemMutation } from '../../../graphql/cart/hooks'
 import { formatPrice } from '../../../utils'
 import { Image, Span } from '../../../elements'
@@ -26,16 +26,16 @@ const CartItemComponent = ({ product }) => {
 
   return (
     <CartItem isMouseOver={isMouseOver}>
-      <Content>
+      <CartItem.Content>
         <Image src={require(`../../../images/products/${product.sku}_2.jpg`)} />
-        <Content.Details>
+        <CartItem.Details>
           <Span modifiers="font_size_m">{product.title}</Span>
           <Span modifiers={['gray_color', 'font_size_s']}>
             {`${availableSizes} | ${product.style}`}
             <br/>
             Quantity: <Span modifiers="off_white_color">{product.quantity}</Span>
           </Span>
-        </Content.Details>
+        </CartItem.Details>
         <CartItem.Price>
           <Icon
             name="close"
@@ -48,7 +48,7 @@ const CartItemComponent = ({ product }) => {
             {formatPrice(product.price)}
           </Span>
         </CartItem.Price>
-      </Content>
+      </CartItem.Content>
     </CartItem>
   )
 }

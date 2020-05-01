@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { device } from '../../utils'
-import { Span } from '../../elements'
 
 const Cart = styled.div`
   position: fixed;
@@ -28,7 +27,7 @@ const Cart = styled.div`
   }
 `
 
-const Bag = styled(Span)`
+Cart.Bag = styled.div`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -37,14 +36,18 @@ const Bag = styled(Span)`
   justify-content: center;
   color: var(--off-white);
   position: absolute;
-  &.bag-closed {
-    bottom: 1rem;
-    right: 1.2rem;
-  }
-  &.bag-open {
-    right: -0.5rem;
-    bottom: -0.5rem;
-  }
+  background: var(--red);
+  font-size: var(--font-size-s);
+`
+
+Cart.BagOpen = styled(Cart.Bag)`
+  right: -0.5rem;
+  bottom: -0.5rem;
+`
+
+Cart.BagClose = styled(Cart.Bag)`
+  bottom: 1rem;
+  right: 1.2rem;
 `
 
 Cart.Button = styled.div`
@@ -95,7 +98,7 @@ Cart.Content = styled.div`
   overflow-y: scroll;
 `
 
-const Header = styled.div`
+Cart.Header = styled.div`
   text-align: center;
   padding: 4rem 0;
   display: flex;
@@ -103,7 +106,7 @@ const Header = styled.div`
   align-items: center;
 `
 
-Header.Bag = styled.div`
+Cart.BagContainer = styled.div`
   position: relative;
   svg {
     width: 4rem;
@@ -118,30 +121,11 @@ Cart.List = styled.ul`
   flex: 1;
 `
 
-Cart.Footer = styled.footer`
-  position: absolute;
-  bottom: 0;
+Cart.EmptyDisplay = styled.div`
+  text-align: center;
+  display: block;
+  font-size: var(--font-size-m);
   width: 100%;
-  height: 30%;
-  background: var(--dark);
-  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
-  padding: 4rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  button {
-    background: var(--darker);
-    color: var(--off-white);
-    font-size: var(--font_size_lg);
-    padding: 1.5rem 0;
-    width: 100%;
-  }
 `
 
-const SubTotal = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-export { Bag, SubTotal, Header }
 export default Cart

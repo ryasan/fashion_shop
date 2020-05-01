@@ -70,7 +70,7 @@ Product.Details = styled.div`
   }
 `
 
-export const Price = styled.div`
+const Price = styled.div`
   margin: 1rem 0;
   font-size: 2rem;
   width: 100%;
@@ -86,4 +86,5 @@ Product.Button = styled.div`
   }
 `
 
+export { Price }
 export default Product

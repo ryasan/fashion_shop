@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 
-import Cart, { Bag, SubTotal, Header } from './cart.styles'
+import Cart from './cart.styles'
 import CartItem from './cart-item'
 import Icon from '../icons'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
-import { formatPrice } from '../../utils'
-import { Span, H4, Button } from '../../elements'
+import { H4 } from '../../elements'
+import CartFooter from './cart-footer/index'
 
 const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
@@ -33,50 +33,25 @@ const CartComponent = () => {
     <Cart cartOpen={cartOpen} ref={cartRef}>
       <Cart.Button cartOpen={cartOpen} onClick={toggleCart}>
         <Icon name={cartOpen ? 'close' : 'cart'} />
-        {!cartOpen && (
-          <Bag modifiers={['red', 'font_size_s']} className="bag bag-closed">
-            {cartCount}
-          </Bag>
-        )}
+        {!cartOpen && <Cart.BagClose>{cartCount}</Cart.BagClose>}
       </Cart.Button>
       <Cart.Content>
-        <Header>
+        <Cart.Header>
           <H4>Cart</H4>
-          <Header.Bag>
+          <Cart.BagContainer>
             <Icon name="cart" />
-            <Bag modifiers={['red', 'font_size_s']} className="bag bag-open">
-              {cartCount}
-            </Bag>
-          </Header.Bag>
-        </Header>
+            <Cart.BagOpen>{cartCount}</Cart.BagOpen>
+          </Cart.BagContainer>
+        </Cart.Header>
+        {!cartItems.length && (
+          <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>
+        )}
         <Cart.List>
-          {!cartItems.length && (
-            <Span
-              modifiers={[
-                'text_align_center',
-                'display_block',
-                'font_size_m',
-                'width_100'
-              ]}
-              className="bag bag-open">
-              Add some stuff to the cart :)
-            </Span>
-          )}
           {cartItems.map(p => (
             <CartItem key={p.id} product={p} />
           ))}
         </Cart.List>
-        <Cart.Footer>
-          <SubTotal>
-            <Span modifiers={['font_size_m']}>SUBTOTAL</Span>
-            <Span modifiers={['red_color', 'font_size_lg']}>
-              {formatPrice(cartTotal)}
-            </Span>
-          </SubTotal>
-          <Span className="close-btn">
-            <Button>CHECKOUT</Button>
-          </Span>
-        </Cart.Footer>
+        <CartFooter cartTotal={cartTotal} />
       </Cart.Content>
     </Cart>
   )
