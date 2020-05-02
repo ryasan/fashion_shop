@@ -8,7 +8,9 @@ import {
 import {
   CREATE_PRODUCT_MUTATION,
   SET_FREE_SHIPPING_SELECTED_MUTATION,
-  UPDATE_PRODUCT_MUTATION
+  UPDATE_PRODUCT_MUTATION,
+  ADD_SIZE_FILTER_MUTATION,
+  REMOVE_SIZE_FILTER_MUTATION
 } from './mutation'
 
 export const useProductsQuery = () => {
@@ -36,4 +38,12 @@ export const useFiltersQuery = () => {
 
 export const useToggleFreeShippingMutation = () => {
   return useMutation(SET_FREE_SHIPPING_SELECTED_MUTATION)
+}
+
+export const useAddSizeFilterMutation = () => {
+  return useMutation(ADD_SIZE_FILTER_MUTATION)
+}
+
+export const useRemoveSizeFilterMutation = () => {
+  return useMutation(REMOVE_SIZE_FILTER_MUTATION)
 }

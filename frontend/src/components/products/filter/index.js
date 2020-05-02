@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react'
 import Filter from './filter.styles'
 import {
   useAddSizeFilterMutation,
-  useRemoveSizeFilterMutation
-} from '../../../graphql/cart/hooks'
-import { useToggleFreeShippingMutation } from '../../../graphql/product/hooks'
+  useRemoveSizeFilterMutation,
+  useToggleFreeShippingMutation
+} from '../../../graphql/product/hooks'
 
 const sizeFilters = ['S', 'M', 'L', 'XL', 'XXL']
 

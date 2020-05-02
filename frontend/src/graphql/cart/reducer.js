@@ -9,10 +9,16 @@ export const cartInitialState = {
   cartOwnerId: null
 }
 
-const cartReducer = (actionType, client, variables = {}) => {
+const cartReducer = (actionType, client, variables) => {
   const state = client.readQuery({ query: CART_QUERY })
-  const { cartOpen, cartCount, cartItems, cartTotal } = state
-  const { product, userId } = variables || {}
+  const {
+    cartItems: allCartItems,
+    cartOpen,
+    cartCount,
+    cartTotal,
+    cartOwnerId
+  } = state
+  const { user, product, quantity } = variables || {}
 
   switch (actionType) {
     case TOGGLE_CART:
@@ -28,18 +34,28 @@ const cartReducer = (actionType, client, variables = {}) => {
         data: {
           ...state,
           cartOpen: true,
-          cartCount: cartCount - product.quantity,
-          cartItems: cartItems.filter(p => p.id !== product.id),
-          cartTotal: cartTotal - product.price * product.quantity
+          cartCount: cartCount - quantity,
+          cartItems: allCartItems.filter(
+            item => item.product.id !== product.id
+          ),
+          cartTotal: cartTotal - product.price * quantity
         }
       })
 
     case ADD_CART_ITEM:
-      const foundProduct = cartItems.find(p => p.id === product.id)
-      const cartWithNewProduct = [...cartItems, { ...product, __typename: 'Product' }]
-      const cartWithPlus1ProductQty = cartItems.map(p => ({
-        ...p,
-        quantity: p.id === (foundProduct || {}).id ? p.quantity + 1 : p.quantity
+      const foundCartItem = allCartItems.find(
+        cartItem => cartItem.product.id === product.id
+      )
+      const cartWithNewItem = [
+        ...allCartItems,
+        { user, product, quantity: 1, __typename: 'CartItem' }
+      ]
+      const cartItemsWithUpdatedItem = allCartItems.map(cartItem => ({
+        ...cartItem,
+        quantity:
+          cartItem.product.id === foundCartItem?.product.id
+            ? cartItem.quantity + 1
+            : cartItem.quantity
       }))
 
       return client.writeData({
@@ -47,8 +63,8 @@ const cartReducer = (actionType, client, variables = {}) => {
           cartOpen: true,
           cartCount: cartCount + 1,
           cartTotal: cartTotal + product.price,
-          cartItems: foundProduct ? cartWithPlus1ProductQty : cartWithNewProduct,
-          cartOwnerId: userId
+          cartItems: foundCartItem ? cartItemsWithUpdatedItem : cartWithNewItem,
+          cartOwnerId: cartOwnerId || (user && user.id)
         }
       })
   }

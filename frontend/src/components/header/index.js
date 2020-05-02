@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useApolloClient } from '@apollo/react-hooks'
 import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
 
@@ -10,15 +11,23 @@ import {
   useSignoutMutation
 } from '../../graphql/user/hooks'
 import { toast } from '../toast'
+import { CART_QUERY } from '../../graphql/cart/queries'
 
 const HeaderComponent = () => {
   const { data } = useCurrentUserQuery()
   const [signout, { data: signoutData }] = useSignoutMutation()
+  const client = useApolloClient()
   const me = data && data.me
-
+  
   useEffect(() => {
     if (signoutData) toast(signoutData.signout.message)
   }, [signoutData])
+  
+  const handleSignout = () => {
+    client.writeData({ data: { cartOwnerId: null } })
+    signout()
+    const cartQuery = client.readQuery({ query: CART_QUERY })
+  }
 
   const goToAccountPage = () => {
     navigate('/account')
@@ -38,7 +47,7 @@ const HeaderComponent = () => {
         </Header.NavItem>
         {me && (
           <Header.NavItem>
-            <A onClick={signout}>SIGNOUT</A>
+            <A onClick={handleSignout}>SIGNOUT</A>
           </Header.NavItem>
         )}
         {!me && (

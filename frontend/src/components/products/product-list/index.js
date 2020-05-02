@@ -8,7 +8,7 @@ import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
 const ProductListComponent = ({ products }) => {
-  const [addCartItem, { error: cartError }] = useAddCartItemMutation()
+  const [addCartItem, { error: cartError, data: addCartItemData }] = useAddCartItemMutation()
   const { data, error: meError } = useCurrentUserQuery()
 
   return (

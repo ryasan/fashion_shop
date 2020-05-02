@@ -47,11 +47,15 @@ const CartComponent = () => {
           <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>
         )}
         <Cart.List>
-          {cartItems.map(p => (
-            <CartItem key={p.id} product={p} />
+          {cartItems.map((item, i) => (
+            <CartItem
+              key={item.product.id}
+              product={item.product}
+              quantity={item.quantity}
+            />
           ))}
         </Cart.List>
-        <CartFooter cartTotal={cartTotal} />
+        <CartFooter cartTotal={cartTotal} cartItems={cartItems} />
       </Cart.Content>
     </Cart>
   )

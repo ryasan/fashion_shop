@@ -1,18 +1,26 @@
 import React from 'react'
 
 import CartFooter from './cart-footer.styles'
+import { toast } from '../../toast'
 import { Span, Button } from '../../../elements'
 import { formatPrice } from '../../../utils'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
-import { toast } from '../../toast'
+import { useUpsertCartItemMutation } from '../../../graphql/cart/hooks'
 
-const CartFooterComponent = ({ cartTotal }) => {
+const CartFooterComponent = ({ cartTotal, cartItems }) => {
   const { data } = useCurrentUserQuery()
+  const [ upsertCartItem, { data: upsertData, loading, error } ] = useUpsertCartItemMutation() // prettier-ignore
   const me = data && data.me
 
   const handleCheckout = () => {
     if (!me) {
-      toast('You must be signed in to checkout')
+      toast('You must be signed in to purchase')
+    } else if (!cartItems.length) {
+      toast('There are no items to purchase')
+    } else {
+      cartItems.forEach(item => {
+        // upsertCartItem({})
+      })
     }
   }
 

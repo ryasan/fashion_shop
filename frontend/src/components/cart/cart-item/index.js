@@ -7,7 +7,7 @@ import { useRemoveCartItemMutation } from '../../../graphql/cart/hooks'
 import { formatPrice } from '../../../utils'
 import { Image, Span } from '../../../elements'
 
-const CartItemComponent = ({ product }) => {
+const CartItemComponent = ({ product, quantity, cartOwnerId }) => {
   const [removeCartItem] = useRemoveCartItemMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
   const availableSizes = product.availableSizes.join(' | ')
@@ -21,7 +21,7 @@ const CartItemComponent = ({ product }) => {
   }
 
   const handleRemoveCartItem = () => {
-    removeCartItem({ variables: { product } })
+    removeCartItem({ variables: { product, quantity } })
   }
 
   return (
@@ -33,7 +33,7 @@ const CartItemComponent = ({ product }) => {
           <Span modifiers={['gray_color', 'font_size_s']}>
             {`${availableSizes} | ${product.style}`}
             <br/>
-            Quantity: <Span modifiers="off_white_color">{product.quantity}</Span>
+            Quantity: <Span modifiers="off_white_color">{quantity}</Span>
           </Span>
         </CartItem.Details>
         <CartItem.Price>

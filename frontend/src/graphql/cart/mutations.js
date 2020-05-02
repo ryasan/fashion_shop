@@ -9,11 +9,12 @@ export const TOGGLE_CART_MUTATION = gql`
 `
 
 export const ADD_CART_ITEM_MUTATION = gql`
-  mutation($product: Product!, $userId: ID!) {
-    addCartItem(product: $product, userId: $userId) @client {
+  mutation($user: User, $product: Product) {
+    addCartItem(user: $user, product: $product) @client {
+      user
+      quantity
       product {
-        ...Product
-        quantity
+        ...ProductFragment
       }
     }
   }
@@ -21,11 +22,27 @@ export const ADD_CART_ITEM_MUTATION = gql`
 `
 
 export const REMOVE_CART_ITEM_MUTATION = gql`
-  mutation($product: Product!) {
-    removeCartItem(product: $product) @client {
-      ...Product
+  mutation($product: Product!, $quantity: Int!) {
+    removeCartItem(product: $product, quantity: $quantity) @client {
+      user
       quantity
+      product {
+        ...ProductFragment
+        quantity
+      }
     }
   }
   ${PRODUCT_FRAGMENT}
+`
+
+export const UPSERT_CART_ITEM_MUTATION = gql`
+  mutation(
+    $where: CartItemWhereUniqueInput!
+    $create: CartItemCreateInput!
+    $update: CartItemUpdateInput!
+  ) {
+    upsertCartItem(where: $where, create: $create, update: $update) {
+      id
+    }
+  }
 `
