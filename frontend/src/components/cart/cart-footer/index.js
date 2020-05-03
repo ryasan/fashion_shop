@@ -18,9 +18,7 @@ const CartFooterComponent = ({ cartTotal, cartItems }) => {
     } else if (!cartItems.length) {
       toast('There are no items to purchase')
     } else {
-      cartItems.forEach(item => {
-        // upsertCartItem({})
-      })
+      // go to stripe checkout
     }
   }
 

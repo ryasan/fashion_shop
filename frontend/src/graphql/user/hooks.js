@@ -20,22 +20,22 @@ export const useDeleteMeMutation = () => {
   })
 }
 
-export const useSigninMutation = () => {
-  const [signin, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
-    refetchQueries: [{ query: CURRENT_USER_QUERY }]
-  })
-  return { authorize: signin, data, error, loading }
-}
-
 export const useSignoutMutation = () => {
   return useMutation(SIGNOUT_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }]
   })
 }
 
+export const useSigninMutation = () => {
+  const [signin, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }]
+  })
+  return { letMeIn: signin, data, error, loading }
+}
+
 export const useSignupMutation = () => {
   const [signup, { data, error, loading }] = useMutation(SIGNUP_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }]
   })
-  return { authorize: signup, data, error, loading }
+  return { letMeIn: signup, data, error, loading }
 }

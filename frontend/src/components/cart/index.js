@@ -18,7 +18,8 @@ const CartComponent = () => {
     if (
       !cartRef.current.contains(e.target) &&
       !e.target.classList.contains('buy-btn') &&
-      !e.target.classList.contains('del-btn')
+      !e.target.classList.contains('del-btn') &&
+      !e.target.parentElement.classList.contains('del-btn')
     ) {
       toggleCart()
     }
@@ -47,12 +48,8 @@ const CartComponent = () => {
           <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>
         )}
         <Cart.List>
-          {cartItems.map((item, i) => (
-            <CartItem
-              key={item.product.id}
-              product={item.product}
-              quantity={item.quantity}
-            />
+          {cartItems.map(item => (
+            <CartItem key={item.product.id} cartItem={item} />
           ))}
         </Cart.List>
         <CartFooter cartTotal={cartTotal} cartItems={cartItems} />

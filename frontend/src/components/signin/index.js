@@ -8,6 +8,8 @@ import gql from 'graphql-tag'
 import Signin, { Fieldset, Field, Header } from './signin.styles'
 import Form from '../form'
 import Icon from '../icons'
+import { syncCartItems } from '../../utils'
+import { useCartQuery } from '../../graphql/cart/hooks';
 import { Input, Span, Button, Small, A } from '../../elements'
 import { useSigninMutation, useSignupMutation } from '../../graphql/user/hooks'
 import {
@@ -36,10 +38,7 @@ const validateFields = ({ password, confirm, email, username }) => {
 
 const createNewState = ({ state, type, payload }) => {
   const target = type.toLowerCase()
-  const formIsValid = validateFields({
-    ...state,
-    [target]: payload
-  })
+  const formIsValid = validateFields({ ...state, [target]: payload })
 
   return {
     ...state,
@@ -82,8 +81,9 @@ const SigninPage = ({ className }) => {
   const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
   const [state, dispatch] = useReducer(reducer, initialState)
   const { isSignin, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
-  const usePromiseMutation = isSignin ? useSigninMutation : useSignupMutation
-  const { authorize, data, loading, error } = usePromiseMutation()
+  const useLetMeInMutation = isSignin ? useSigninMutation : useSignupMutation
+  const { letMeIn, data, loading, error } = useLetMeInMutation()
+  const { data: cartData } = useCartQuery()
   const signinText = isSignin
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
@@ -106,6 +106,7 @@ const SigninPage = ({ className }) => {
   useEffect(() => {
     if (data) {
       const routes = ['/', '/shop', '/account']
+      syncCartItems
       navigate(routes.includes(previousPage) ? -1 : '/') // go back a page or go home
     }
   }, [data])
@@ -145,7 +146,7 @@ const SigninPage = ({ className }) => {
       })
     } else {
       dispatch({ type: RESET_FIELDS })
-      authorize({
+      letMeIn({
         variables: { email, username, password }
       })
     }

@@ -9,11 +9,6 @@ export const CART_QUERY = gql`
       product {
         ...ProductFragment
       }
-      user {
-        id
-        email
-        username
-      }
     }
     cartCount
     cartTotal

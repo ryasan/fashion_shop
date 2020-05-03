@@ -29,13 +29,9 @@ CartItem.Content = styled.div`
 CartItem.Details = styled.div`
   flex: 1;
   margin: 0 2rem;
-  span {
-    margin-bottom: 1rem;
-    display: inline-block;
-    span {
-      margin-top: 1rem;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 CartItem.Price = styled.div`

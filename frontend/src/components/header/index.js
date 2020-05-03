@@ -14,19 +14,20 @@ import { toast } from '../toast'
 import { CART_QUERY } from '../../graphql/cart/queries'
 
 const HeaderComponent = () => {
-  const { data } = useCurrentUserQuery()
+  const { data: userData } = useCurrentUserQuery()
   const [signout, { data: signoutData }] = useSignoutMutation()
   const client = useApolloClient()
-  const me = data && data.me
-  
+  const me = userData && userData.me
+
   useEffect(() => {
     if (signoutData) toast(signoutData.signout.message)
   }, [signoutData])
-  
+
   const handleSignout = () => {
-    client.writeData({ data: { cartOwnerId: null } })
+    // client.writeData({ data: { cartOwnerId: null } })
+    // client.resetStore()
+    console.log(client.readQuery({ query: CART_QUERY }))
     signout()
-    const cartQuery = client.readQuery({ query: CART_QUERY })
   }
 
   const goToAccountPage = () => {
@@ -52,12 +53,12 @@ const HeaderComponent = () => {
         )}
         {!me && (
           <Header.NavItem>
-            <Link to="/signin">SIGNIN</Link>{' '}
+            <Link to="/signin">SIGNIN</Link>
           </Header.NavItem>
         )}
         {me && (
           <Header.NavItem>
-            <Icon name="account-circle" onClick={goToAccountPage} />{' '}
+            <Icon name="account-circle" onClick={goToAccountPage} />
           </Header.NavItem>
         )}
       </Header.Nav>

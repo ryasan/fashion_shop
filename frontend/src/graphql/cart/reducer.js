@@ -11,14 +11,8 @@ export const cartInitialState = {
 
 const cartReducer = (actionType, client, variables) => {
   const state = client.readQuery({ query: CART_QUERY })
-  const {
-    cartItems: allCartItems,
-    cartOpen,
-    cartCount,
-    cartTotal,
-    cartOwnerId
-  } = state
-  const { user, product, quantity } = variables || {}
+  const { cartItems: allCartItems, cartOpen, cartCount, cartTotal } = state
+  const { cartItem } = variables || {}
 
   switch (actionType) {
     case TOGGLE_CART:
@@ -34,23 +28,23 @@ const cartReducer = (actionType, client, variables) => {
         data: {
           ...state,
           cartOpen: true,
-          cartCount: cartCount - quantity,
+          cartCount: cartCount - cartItem.quantity,
+          cartTotal: cartTotal - cartItem.product.price * cartItem.quantity,
           cartItems: allCartItems.filter(
-            item => item.product.id !== product.id
-          ),
-          cartTotal: cartTotal - product.price * quantity
+            item => item.product.id !== cartItem.product.id
+          )
         }
       })
 
     case ADD_CART_ITEM:
       const foundCartItem = allCartItems.find(
-        cartItem => cartItem.product.id === product.id
+        c => c.product.id === cartItem.product.id
       )
       const cartWithNewItem = [
         ...allCartItems,
-        { user, product, quantity: 1, __typename: 'CartItem' }
+        { product: cartItem.product, quantity: 1, __typename: 'CartItem' }
       ]
-      const cartItemsWithUpdatedItem = allCartItems.map(cartItem => ({
+      const cartWithUpdatedItem = allCartItems.map(cartItem => ({
         ...cartItem,
         quantity:
           cartItem.product.id === foundCartItem?.product.id
@@ -62,9 +56,8 @@ const cartReducer = (actionType, client, variables) => {
         data: {
           cartOpen: true,
           cartCount: cartCount + 1,
-          cartTotal: cartTotal + product.price,
-          cartItems: foundCartItem ? cartItemsWithUpdatedItem : cartWithNewItem,
-          cartOwnerId: cartOwnerId || (user && user.id)
+          cartTotal: cartTotal + cartItem.product.price,
+          cartItems: foundCartItem ? cartWithUpdatedItem : cartWithNewItem
         }
       })
   }

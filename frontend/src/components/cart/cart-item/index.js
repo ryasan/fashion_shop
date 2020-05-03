@@ -7,7 +7,8 @@ import { useRemoveCartItemMutation } from '../../../graphql/cart/hooks'
 import { formatPrice } from '../../../utils'
 import { Image, Span } from '../../../elements'
 
-const CartItemComponent = ({ product, quantity, cartOwnerId }) => {
+const CartItemComponent = ({ cartItem }) => {
+  const { product, quantity } = cartItem
   const [removeCartItem] = useRemoveCartItemMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
   const availableSizes = product.availableSizes.join(' | ')
@@ -21,7 +22,7 @@ const CartItemComponent = ({ product, quantity, cartOwnerId }) => {
   }
 
   const handleRemoveCartItem = () => {
-    removeCartItem({ variables: { product, quantity } })
+    removeCartItem({ variables: { cartItem } })
   }
 
   return (
@@ -29,10 +30,11 @@ const CartItemComponent = ({ product, quantity, cartOwnerId }) => {
       <CartItem.Content>
         <Image src={require(`../../../images/products/${product.sku}_2.jpg`)} />
         <CartItem.Details>
-          <Span modifiers="font_size_m">{product.title}</Span>
+          <Span modifiers={['font_size_m']}>{product.title}</Span>
           <Span modifiers={['gray_color', 'font_size_s']}>
             {`${availableSizes} | ${product.style}`}
-            <br/>
+          </Span>
+          <Span modifiers="gray_color">
             Quantity: <Span modifiers="off_white_color">{quantity}</Span>
           </Span>
         </CartItem.Details>
@@ -54,7 +56,10 @@ const CartItemComponent = ({ product, quantity, cartOwnerId }) => {
 }
 
 CartItemComponent.propTypes = {
-  product: PropTypes.object.isRequired
+  cartItem: PropTypes.shape({
+    quantity: PropTypes.number.isRequired,
+    product: PropTypes.object.isRequired
+  })
 }
 
 export default CartItemComponent
