@@ -5,6 +5,38 @@ const { throwError, createCookie } = require('../utils')
 
 const Mutation = {
   createProduct: forwardTo('db'),
+  updateProduct: forwardTo('db'),
+  deleteProduct: forwardTo('db'),
+  createCartItem: forwardTo('db'),
+  syncUserCart: async (parent, args, ctx, info) => {
+    const allCartItems = args.data
+    const userId = ctx.request.userId
+    // check if cart item with user id exists
+
+    for (const c of allCartItems) {
+      const cartItemExists = await ctx.db.exists.CartItem({
+        AND: [{ user: { id: userId } }, { product: { id: c.productId } }]
+      })
+
+      // if cart item does not exist then create it with user id
+      if (!cartItemExists) {
+        const cartItem = await ctx.db.mutation.createCartItem({
+          data: {
+            quantity: c.quantity,
+            product: { connect: { id: c.productId } },
+            user: { connect: { id: userId } }
+          },
+          info
+        })
+        console.log(cartItem)
+      }
+      // if cart item does exist check if the quantity is different
+      // if quantity is different update the cart item quantity
+      // if quantity is the same then do nothing
+    }
+
+    return []
+  },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
       where: { id: ctx.request.userId }
@@ -13,7 +45,6 @@ const Mutation = {
 
     return { message: 'Your account has successfully been removed' }
   },
-  deleteProduct: forwardTo('db'),
   signin: async (parent, { email, password }, ctx, info) => {
     const user = await ctx.db.query.user({ where: { email } })
     if (!user) {
@@ -57,8 +88,7 @@ const Mutation = {
 
     createCookie({ ctx, userId: user.id })
     return user
-  },
-  updateProduct: forwardTo('db')
+  }
 }
 
 module.exports = Mutation

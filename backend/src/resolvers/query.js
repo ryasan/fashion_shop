@@ -19,7 +19,7 @@ const Query = {
     const inStock = edges.filter(({ node }) => {
       return isInStock(node.availableSizes, sizeFilters)
     })
-    const productIds = inStock.map((product) => product.node.id)
+    const productIds = inStock.map(({ node }) => node.id)
 
     const where = {
       AND: [
