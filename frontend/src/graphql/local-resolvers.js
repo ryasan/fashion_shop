@@ -7,9 +7,9 @@ import {
   ADD_SIZE_FILTER,
   REMOVE_SIZE_FILTER,
   SET_FREE_SHIPPING_SELECTED
-} from './product/action-types'
+} from './filters/action-types'
 import cartReducer from './cart/reducer'
-import filtersReducer from './product/reducer'
+import filtersReducer from './filters/reducer'
 
 // local data
 export const Mutation = {

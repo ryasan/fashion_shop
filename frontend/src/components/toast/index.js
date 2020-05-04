@@ -16,13 +16,14 @@ const options = {
   autoClose: 5000
 }
 
+const CloseButton = ({ closeToast }) => {
+  return <Icon onClick={closeToast} name="close" className="close-button" />
+}
+
 export const ToastComponent = () => {
   return (
     <Toast>
-      <ToastContainer
-        {...options}
-        closeButton={<Icon name="close" className="close-button" />}
-      />
+      <ToastContainer {...options} closeButton={<CloseButton />} />
     </Toast>
   )
 }

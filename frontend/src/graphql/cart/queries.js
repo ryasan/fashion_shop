@@ -13,7 +13,6 @@ export const CART_QUERY = gql`
     cartCount
     cartTotal
     cartOpen
-    cartOwnerId
   }
   ${PRODUCT_FRAGMENT}
 `

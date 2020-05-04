@@ -9,9 +9,7 @@ import {
 import { CURRENT_USER_QUERY } from './queries'
 
 export const useCurrentUserQuery = () => {
-  return useQuery(CURRENT_USER_QUERY, {
-    fetchPolicy: 'cache-first'
-  })
+  return useQuery(CURRENT_USER_QUERY)
 }
 
 export const useDeleteMeMutation = () => {

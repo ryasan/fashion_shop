@@ -3,16 +3,15 @@ import React, { useEffect, useRef } from 'react'
 import Cart from './cart.styles'
 import CartItem from './cart-item'
 import Icon from '../icons'
+import CartFooter from './cart-footer/index'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 import { H4 } from '../../elements'
-import CartFooter from './cart-footer/index'
 
 const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
   const cartRef = useRef(null)
-  const {
-    data: { cartItems, cartOpen, cartTotal, cartCount }
-  } = useCartQuery()
+  const { data } = useCartQuery()
+  const { cartOpen, cartCount, cartItems, cartTotal } = data
 
   const _toggleCart = e => {
     if (

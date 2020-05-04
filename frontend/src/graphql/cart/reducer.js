@@ -5,8 +5,7 @@ export const cartInitialState = {
   cartOpen: false,
   cartItems: [],
   cartCount: 0,
-  cartTotal: 0,
-  cartOwnerId: null
+  cartTotal: 0
 }
 
 const cartReducer = (actionType, client, variables) => {

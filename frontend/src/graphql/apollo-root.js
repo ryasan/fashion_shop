@@ -9,7 +9,7 @@ import { persistCache } from 'apollo-cache-persist'
 import LoaderComponent from '../components/loader'
 import { Mutation } from './local-resolvers'
 import { cartInitialState } from './cart/reducer'
-import { filtersInitialState } from './product/reducer'
+import { filtersInitialState } from './filters/reducer'
 
 const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fashion-shop-prod.herokuapp.com'
@@ -24,7 +24,7 @@ const PersistApolloProvider = ({ children }) => {
 
   useEffect(() => {
     const cache = new InMemoryCache()
-    const client = new ApolloClient({
+    const _client = new ApolloClient({
       uri: process.env.NODE_ENV === 'development' ? devEndpoint : prodEndpoint,
       clientState: {
         resolvers: { Mutation },
@@ -40,7 +40,7 @@ const PersistApolloProvider = ({ children }) => {
     })
 
     persistCache({ cache, storage: window.localStorage }).then(() => {
-      setClient(client)
+      setClient(_client)
     })
 
     return () => {}

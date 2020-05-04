@@ -3,7 +3,7 @@ import {
   REMOVE_SIZE_FILTER,
   SET_FREE_SHIPPING_SELECTED
 } from './action-types'
-import { FILTERS_QUERY } from './queries'
+import { FILTERS_QUERY } from '../product/queries'
 
 export const filtersInitialState = {
   sizeFilters: [],
@@ -21,6 +21,7 @@ const filtersReducer = (actionType, client, variables) => {
           sizeFilters: [...sizeFilters, variables.size]
         }
       })
+
     case REMOVE_SIZE_FILTER:
       return client.writeData({
         data: {
@@ -28,6 +29,7 @@ const filtersReducer = (actionType, client, variables) => {
           sizeFilters: sizeFilters.filter(s => s !== variables.size)
         }
       })
+
     case SET_FREE_SHIPPING_SELECTED:
       return client.writeData({
         data: {

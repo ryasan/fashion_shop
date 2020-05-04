@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
 import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
+import { cartInitialState } from '../../graphql/cart/reducer'
 
 import Header from './header.styles'
 import Icon from '../icons'
@@ -11,7 +12,6 @@ import {
   useSignoutMutation
 } from '../../graphql/user/hooks'
 import { toast } from '../toast'
-import { CART_QUERY } from '../../graphql/cart/queries'
 
 const HeaderComponent = () => {
   const { data: userData } = useCurrentUserQuery()
@@ -24,10 +24,8 @@ const HeaderComponent = () => {
   }, [signoutData])
 
   const handleSignout = () => {
-    // client.writeData({ data: { cartOwnerId: null } })
-    // client.resetStore()
-    console.log(client.readQuery({ query: CART_QUERY }))
     signout()
+    client.writeData({ data: cartInitialState })
   }
 
   const goToAccountPage = () => {
