@@ -5,11 +5,9 @@ import { toast } from '../../toast'
 import { Span, Button } from '../../../elements'
 import { formatPrice } from '../../../utils'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
-import { useUpsertCartItemMutation } from '../../../graphql/cart/hooks'
 
 const CartFooterComponent = ({ cartTotal, cartItems }) => {
   const { data } = useCurrentUserQuery()
-  const [ upsertCartItem, { data: upsertData, loading, error } ] = useUpsertCartItemMutation() // prettier-ignore
   const me = data && data.me
 
   const handleCheckout = () => {

@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react'
-import { useApolloClient } from '@apollo/react-hooks'
 import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
-import { cartInitialState } from '../../graphql/cart/reducer'
 
 import Header from './header.styles'
 import Icon from '../icons'
+import useAuth from '../auth'
 import { A } from '../../elements'
-import {
-  useCurrentUserQuery,
-  useSignoutMutation
-} from '../../graphql/user/hooks'
+import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
 
 const HeaderComponent = () => {
   const { data: userData } = useCurrentUserQuery()
-  const [signout, { data: signoutData }] = useSignoutMutation()
-  const client = useApolloClient()
+  const [{ doSignout }, { data: signoutData }] = useAuth()
   const me = userData && userData.me
 
   useEffect(() => {
@@ -24,8 +19,7 @@ const HeaderComponent = () => {
   }, [signoutData])
 
   const handleSignout = () => {
-    signout()
-    client.writeData({ data: cartInitialState })
+    doSignout()
   }
 
   const goToAccountPage = () => {

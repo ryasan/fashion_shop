@@ -8,10 +8,8 @@ import gql from 'graphql-tag'
 import Signin, { Fieldset, Field, Header } from './signin.styles'
 import Form from '../form'
 import Icon from '../icons'
-import { syncCartItems } from '../../utils'
-import { useCartQuery } from '../../graphql/cart/hooks';
+import useAuth from '../auth'
 import { Input, Span, Button, Small, A } from '../../elements'
-import { useSigninMutation, useSignupMutation } from '../../graphql/user/hooks'
 import {
   EMAIL,
   USERNAME,
@@ -78,12 +76,15 @@ const PREVIOUS_PAGE_QUERY = gql`
 `
 
 const SigninPage = ({ className }) => {
-  const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
   const [state, dispatch] = useReducer(reducer, initialState)
+  const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
   const { isSignin, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
-  const useLetMeInMutation = isSignin ? useSigninMutation : useSignupMutation
-  const { letMeIn, data, loading, error } = useLetMeInMutation()
-  const { data: cartData } = useCartQuery()
+  const [{ doSignin, doSignup }, { loading, data, error }] = useAuth({
+    email,
+    username,
+    password
+  })
+  const letMeIn = isSignin ? doSignin : doSignup
   const signinText = isSignin
     ? 'Already have an account?'
     : 'Need to sign up for an account?'
@@ -106,7 +107,6 @@ const SigninPage = ({ className }) => {
   useEffect(() => {
     if (data) {
       const routes = ['/', '/shop', '/account']
-      syncCartItems
       navigate(routes.includes(previousPage) ? -1 : '/') // go back a page or go home
     }
   }, [data])
@@ -145,11 +145,25 @@ const SigninPage = ({ className }) => {
         payload: 'Passwords do not match'
       })
     } else {
+      letMeIn({ variables: { email, username, password } })
       dispatch({ type: RESET_FIELDS })
-      letMeIn({
-        variables: { email, username, password }
-      })
     }
+  }
+
+  const filterFields = field => {
+    return isSignin && field.hideWhenSignin ? null : field
+  }
+
+  const renderLinks = () => {
+    return isSignin ? (
+      <A modifiers="red_color" onClick={toggleSignup}>
+        Signup
+      </A>
+    ) : (
+      <A modifiers="red_color" onClick={toggleSignup}>
+        Signin
+      </A>
+    )
   }
 
   const fields = [
@@ -182,22 +196,6 @@ const SigninPage = ({ className }) => {
       hideWhenSignin: true
     }
   ]
-
-  const filterFields = field => {
-    return isSignin && field.hideWhenSignin ? null : field
-  }
-
-  const renderLinks = () => {
-    return isSignin ? (
-      <A modifiers="red_color" onClick={toggleSignup}>
-        Signup
-      </A>
-    ) : (
-      <A modifiers="red_color" onClick={toggleSignup}>
-        Signin
-      </A>
-    )
-  }
 
   return (
     <Signin>

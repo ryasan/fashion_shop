@@ -25,15 +25,13 @@ export const useSignoutMutation = () => {
 }
 
 export const useSigninMutation = () => {
-  const [signin, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
+  return useMutation(SIGNIN_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }]
   })
-  return { letMeIn: signin, data, error, loading }
 }
 
 export const useSignupMutation = () => {
-  const [signup, { data, error, loading }] = useMutation(SIGNUP_MUTATION, {
+  return useMutation(SIGNUP_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }]
   })
-  return { letMeIn: signup, data, error, loading }
 }

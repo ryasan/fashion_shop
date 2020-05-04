@@ -32,14 +32,15 @@ export const REMOVE_CART_ITEM_MUTATION = gql`
   ${PRODUCT_FRAGMENT}
 `
 
-export const UPSERT_CART_ITEM_MUTATION = gql`
-  mutation(
-    $where: CartItemWhereUniqueInput!
-    $create: CartItemCreateInput!
-    $update: CartItemUpdateInput!
-  ) {
-    upsertCartItem(where: $where, create: $create, update: $update) {
+export const SYNC_USER_CART_MUTATION = gql`
+  mutation($data: [SyncUserCartInput!]!) {
+    syncUserCart(data: $data) {
       id
+      quantity
+      product {
+        id
+        title
+      }
     }
   }
 `
