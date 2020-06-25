@@ -14,7 +14,7 @@ type Mutation {
   createProduct(data: ProductCreateInput): Product!
   deleteProduct(where: ProductWhereUniqueInput!): Product
   createCartItem(data: CartItemCreateInput!): CartItem!
-  syncUserCart(data: [SyncUserCartInput!]!): [CartItem]
+  useSyncUserCartWithRemote(data: [SyncUserCartInput!]!): [CartItem]
   deleteMe: SuccessMessage
   deleteUser(where: UserWhereUniqueInput!): User
   signin(email: String!, password: String!): User!
