@@ -5,7 +5,7 @@ import {
   TOGGLE_CART_MUTATION,
   ADD_CART_ITEM_MUTATION,
   REMOVE_CART_ITEM_MUTATION,
-  SYNC_USER_CART_MUTATION
+  SYNC_USER_CART_WITH_REMOTE_MUTATION
 } from './mutations'
 
 export const useCartQuery = () => {
@@ -24,6 +24,6 @@ export const useRemoveCartItemMutation = () => {
   return useMutation(REMOVE_CART_ITEM_MUTATION)
 }
 
-export const useSyncUserCart = () => {
-  return useMutation(SYNC_USER_CART_MUTATION)
+export const useSyncUserCartWithRemote = () => {
+  return useMutation(SYNC_USER_CART_WITH_REMOTE_MUTATION)
 }

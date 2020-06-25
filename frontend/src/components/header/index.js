@@ -18,10 +18,6 @@ const HeaderComponent = () => {
     if (signoutData) toast(signoutData.signout.message)
   }, [signoutData])
 
-  const handleSignout = () => {
-    doSignout()
-  }
-
   const goToAccountPage = () => {
     navigate('/account')
   }
@@ -40,7 +36,7 @@ const HeaderComponent = () => {
         </Header.NavItem>
         {me && (
           <Header.NavItem>
-            <A onClick={handleSignout}>SIGNOUT</A>
+            <A onClick={doSignout}>SIGNOUT</A>
           </Header.NavItem>
         )}
         {!me && (

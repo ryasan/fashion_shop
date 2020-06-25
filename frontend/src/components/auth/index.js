@@ -3,10 +3,13 @@ import { useApolloClient } from '@apollo/react-hooks'
 import {
   useSigninMutation,
   useSignupMutation,
-  useSignoutMutation,
-  useCurrentUserQuery
+  useSignoutMutation
+  // useCurrentUserQuery
 } from '../../graphql/user/hooks'
-import { useCartQuery, useSyncUserCart } from '../../graphql/cart/hooks'
+import {
+  useCartQuery,
+  useSyncUserCartWithRemote
+} from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 
 /*
@@ -17,23 +20,26 @@ import { cartInitialState } from '../../graphql/cart/reducer'
 
 const useAuth = variables => {
   const client = useApolloClient()
-  const { data: userData } = useCurrentUserQuery()
+  // const { data: userData } = useCurrentUserQuery()
   const { data: cartData } = useCartQuery()
-  const [signin, signinStatus] = useSigninMutation()
-  const [signup, signupStatus] = useSignupMutation()
-  const [signout, signoutStatus] = useSignoutMutation()
-  const [syncUserCart] = useSyncUserCart()
-  // sign in
-  const doSignin = () => {
-    signin({ variables })
-  }
+  const [signin, signinInfo] = useSigninMutation()
+  const [signup, signupInfo] = useSignupMutation()
+  const [signout, signoutInfo] = useSignoutMutation()
+  const [syncUserCartWithRemote] = useSyncUserCartWithRemote()
+
   // sign up
   const doSignup = () => {
     signup({ variables })
   }
+
+  // sign in
+  const doSignin = () => {
+    signin({ variables })
+  }
+
   // sign out
   const doSignout = () => {
-    syncUserCart({
+    syncUserCartWithRemote({
       variables: {
         data: cartData.cartItems.map(c => ({
           productId: c.product.id,
@@ -41,16 +47,16 @@ const useAuth = variables => {
         }))
       }
     })
-    // signout()
-    // client.writeData({ data: cartInitialState })
+    signout()
+    client.writeData({ data: cartInitialState })
   }
 
   return [
     { doSignin, doSignup, doSignout },
     {
-      data: signinStatus.data || signupStatus.data || signoutStatus.data,
-      loading: signinStatus.loading || signupStatus.loading || signoutStatus.loading, // prettier-ignore
-      error: signinStatus.error || signupStatus.error || signoutStatus.error
+      data: signinInfo.data || signupInfo.data || signoutInfo.data,
+      loading: signinInfo.loading || signupInfo.loading || signoutInfo.loading, // prettier-ignore
+      error: signinInfo.error || signupInfo.error || signoutInfo.error
     }
   ]
 }
