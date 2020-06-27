@@ -6,9 +6,9 @@ const isInStock = (sizes, filters) => {
 }
 
 const Query = {
-  me: (parent, args, ctx, info) => {
+  me: async (parent, args, ctx, info) => {
     if (!ctx.request.userId) return null
-
+    console.log(await ctx.db.query.user({ where: { id: ctx.request.userId } }, info))
     return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
   },
   products: forwardTo('db'),

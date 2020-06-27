@@ -34,13 +34,8 @@ export const REMOVE_CART_ITEM_MUTATION = gql`
 
 export const SYNC_USER_CART_WITH_REMOTE_MUTATION = gql`
   mutation($data: [SyncUserCartInput!]!) {
-    useSyncUserCartWithRemote(data: $data) {
+    syncUserCartWithRemote(data: $data) {
       id
-      quantity
-      product {
-        id
-        title
-      }
     }
   }
 `

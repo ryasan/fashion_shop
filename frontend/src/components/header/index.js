@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
+import { useApolloClient } from '@apollo/react-hooks'
 
 import Header from './header.styles'
 import Icon from '../icons'
@@ -8,10 +9,18 @@ import useAuth from '../auth'
 import { A } from '../../elements'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
+import {
+  useCartQuery,
+  useSyncUserCartWithRemote
+} from '../../graphql/cart/hooks'
+import { cartInitialState } from '../../graphql/cart/reducer'
 
 const HeaderComponent = () => {
+  const client = useApolloClient()
+  const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
   const [{ doSignout }, { data: signoutData }] = useAuth()
+  const [syncUserCartWithRemote] = useSyncUserCartWithRemote()
   const me = userData && userData.me
 
   useEffect(() => {
@@ -20,6 +29,19 @@ const HeaderComponent = () => {
 
   const goToAccountPage = () => {
     navigate('/account')
+  }
+
+  const handleSignout = () => {
+    doSignout()
+    syncUserCartWithRemote({
+      variables: {
+        data: cartData.cartItems.map(c => ({
+          productId: c.product.id,
+          quantity: c.quantity
+        }))
+      }
+    })
+    client.writeData({ data: cartInitialState })
   }
 
   return (
@@ -36,7 +58,7 @@ const HeaderComponent = () => {
         </Header.NavItem>
         {me && (
           <Header.NavItem>
-            <A onClick={doSignout}>SIGNOUT</A>
+            <A onClick={handleSignout}>SIGNOUT</A>
           </Header.NavItem>
         )}
         {!me && (

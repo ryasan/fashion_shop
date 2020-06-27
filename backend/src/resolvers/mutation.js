@@ -8,17 +8,16 @@ const Mutation = {
   updateProduct: forwardTo('db'),
   deleteProduct: forwardTo('db'),
   createCartItem: forwardTo('db'),
-  useSyncUserCartWithRemote: async (parent, args, ctx, info) => {
+  syncUserCartWithRemote: async (parent, args, ctx, info) => {
     const allCartItems = args.data
     const userId = ctx.request.userId
 
-    // check if cart item with user id exists
     for (const c of allCartItems) {
       const cartItemExists = await ctx.db.exists.CartItem({
         AND: [{ user: { id: userId } }, { product: { id: c.productId } }]
       })
 
-      // if cart item does exist update quantity
+      // if cart item exists update quantity
       if (cartItemExists) {
         const [{ id: cartItemId }] = await ctx.db.query.cartItems({
           where: { product: { id: c.productId } }
@@ -30,7 +29,7 @@ const Mutation = {
         })
       }
 
-      // if cart item does not exist create it with user id
+      // if cart item does not exist create users new cart item
       if (!cartItemExists) {
         await ctx.db.mutation.createCartItem({
           data: {
