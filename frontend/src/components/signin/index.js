@@ -79,7 +79,7 @@ const SigninPage = ({ className }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
   const { isSignin, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
-  const [{ doSignin, doSignup }, { loading, data, error }] = useAuth({
+  const [{ doSignin, doSignup }, { loading, data: authData, error }] = useAuth({
     email,
     username,
     password
@@ -105,11 +105,11 @@ const SigninPage = ({ className }) => {
   }, [error])
 
   useEffect(() => {
-    if (data) {
+    if (authData) {
       const routes = ['/', '/shop', '/account']
       navigate(routes.includes(previousPage) ? -1 : '/') // go back a page or go home
     }
-  }, [data])
+  }, [authData])
 
   const toggleSignup = () => {
     dispatch({ type: TOGGLE_SIGNUP })

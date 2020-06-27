@@ -11,7 +11,7 @@ type User {
   username: String! @unique
   email: String! @unique
   password: String!
-  cart: [CartItem!]! @relation(name: "CartItemOfUser", onDelete: CASCADE)
+  cart: [CartItem!] @relation(name: "CartItemOfUser", onDelete: CASCADE)
   resetToken: String
   resetTokenExpiry: Float
 }

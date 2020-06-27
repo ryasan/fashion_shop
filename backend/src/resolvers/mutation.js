@@ -90,7 +90,6 @@ const Mutation = {
       },
       info
     })
-
     createCookie({ ctx, userId: user.id })
     return user
   }
