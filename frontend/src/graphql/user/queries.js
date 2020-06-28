@@ -7,7 +7,18 @@ export const CURRENT_USER_QUERY = gql`
       email
       username
       cart {
-        id
+        quantity
+        product {
+          description
+          isFreeShipping
+          isFeatured
+          isAvailable
+          price
+          sku
+          style
+          title
+          availableSizes
+        }
       }
     }
   }
