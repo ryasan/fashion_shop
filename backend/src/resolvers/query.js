@@ -6,17 +6,11 @@ const isInStock = (sizes, filters) => {
 }
 
 const Query = {
-  me: async (parent, args, ctx, info) => {
-    if (!ctx.request.userId) return null
-    const user = await ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
-    return user
-  },
-  user: async (parent, args, ctx, info) => {
-    if (!args.id) return null
-    const user = await ctx.db.query.user({ where: { id: args.id } }, info)
-    return user
-  },
   products: forwardTo('db'),
+  me: (parent, args, ctx, info) => {
+    if (!ctx.request.userId) return null
+    return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
+  },
   productsConnection: async (parent, args, ctx, info) => {
     const { sizeFilters, freeShippingSelected } = args
     const { edges } = await ctx.db.query.productsConnection({}, info)

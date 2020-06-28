@@ -22,25 +22,31 @@ const Mutation = {
         const [{ id: cartItemId }] = await ctx.db.query.cartItems({
           where: { product: { id: c.productId } }
         })
-        await ctx.db.mutation.updateCartItem({
-          data: { quantity: c.quantity },
-          where: { id: cartItemId },
+        await ctx.db.mutation.updateCartItem(
+          {
+            data: { quantity: c.quantity },
+            where: { id: cartItemId }
+          },
           info
-        })
+        )
       }
 
       // if cart item does not exist create users new cart item
       if (!cartItemExists) {
-        await ctx.db.mutation.createCartItem({
-          data: {
-            quantity: c.quantity,
-            product: { connect: { id: c.productId } },
-            user: { connect: { id: userId } }
+        await ctx.db.mutation.createCartItem(
+          {
+            data: {
+              quantity: c.quantity,
+              product: { connect: { id: c.productId } },
+              user: { connect: { id: userId } }
+            }
           },
           info
-        })
+        )
       }
     }
+
+    return ctx.db.query.cartItems({ where: { user: { id: userId } } })
   },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
@@ -51,7 +57,7 @@ const Mutation = {
     return { message: 'Your account has successfully been removed' }
   },
   signin: async (parent, { email, password }, ctx, info) => {
-    const user = await ctx.db.query.user({ where: { email } })
+    const user = await ctx.db.query.user({ where: { email }, info })
     if (!user) {
       throwError(`Oops: No such user found for email: ${email}`)
     }

@@ -2,7 +2,6 @@
 
 type Query {
   me: User
-  user(id: ID!): User
   products: [Product!]
   productsConnection(
     freeShippingSelected: Boolean

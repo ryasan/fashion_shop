@@ -44,6 +44,10 @@ const HeaderComponent = () => {
     client.writeData({ data: cartInitialState })
   }
 
+  useEffect(() => {
+    console.log(userData)
+  }, [userData])
+
   return (
     <Header>
       <Header.LogoContainer to="/">

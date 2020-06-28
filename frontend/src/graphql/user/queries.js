@@ -6,6 +6,9 @@ export const CURRENT_USER_QUERY = gql`
       id
       email
       username
+      cart {
+        id
+      }
     }
   }
 `
