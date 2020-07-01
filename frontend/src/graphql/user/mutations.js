@@ -14,9 +14,6 @@ export const SIGNIN_MUTATION = gql`
       id
       email
       username
-      cart {
-        id
-      }
     }
   }
 `
