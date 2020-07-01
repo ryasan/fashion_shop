@@ -21,17 +21,11 @@ const HeaderComponent = () => {
   const { data: userData } = useCurrentUserQuery()
   const [{ doSignout }, { data: signoutData }] = useAuth()
   const [syncUserCartWithRemote] = useSyncUserCartWithRemote()
-  const me = userData?.me
-  const myCart = me?.cart
+  const me = userData && userData.me
 
   useEffect(() => {
     if (signoutData) toast(signoutData.signout.message)
   }, [signoutData])
-
-  useEffect(() => {
-    console.log('A--->', myCart)
-    console.log('B--->', cartData.cartItems)
-  }, [myCart])
 
   const goToAccountPage = () => {
     navigate('/account')
