@@ -33,7 +33,7 @@ export const REMOVE_CART_ITEM_MUTATION = gql`
 `
 
 export const CART_UPLOAD_MUTATION = gql`
-  mutation($data: [SyncUserCartInput!]!) {
+  mutation($data: [CartUploadInput!]!) {
     uploadCart(data: $data) {
       id
     }

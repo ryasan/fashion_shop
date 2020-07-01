@@ -12,7 +12,6 @@ export const CURRENT_USER_QUERY = gql`
           description
           isFreeShipping
           isFeatured
-          isAvailable
           price
           sku
           style
