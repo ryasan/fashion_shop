@@ -11,7 +11,7 @@ import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
 import {
   useCartQuery,
-  useSyncUserCartWithRemote
+  useUploadCart
 } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 
@@ -20,7 +20,7 @@ const HeaderComponent = () => {
   const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
   const [{ doSignout }, { data: signoutData }] = useAuth()
-  const [syncUserCartWithRemote] = useSyncUserCartWithRemote()
+  const [uploadCart] = useUploadCart()
   const me = userData && userData.me
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const HeaderComponent = () => {
 
   const handleSignout = () => {
     doSignout()
-    syncUserCartWithRemote({
+    uploadCart({
       variables: {
         data: cartData.cartItems.map(c => ({
           productId: c.product.id,

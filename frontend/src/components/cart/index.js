@@ -4,12 +4,14 @@ import Cart from './cart.styles'
 import CartItem from './cart-item'
 import Icon from '../icons'
 import CartFooter from './cart-footer/index'
+import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 import { H4 } from '../../elements'
 
 const CartComponent = () => {
   const [toggleCart] = useToggleCartMutation()
   const cartRef = useRef(null)
+  const { data: userData } = useCurrentUserQuery()
   const { data } = useCartQuery()
   const { cartOpen, cartCount, cartItems, cartTotal } = data
 
@@ -23,6 +25,11 @@ const CartComponent = () => {
       toggleCart()
     }
   }
+
+  useEffect(() => {
+    console.log('local cart:', cartItems)
+    console.log('remote cart:', userData?.me?.cart)
+  }, [userData, cartItems])
 
   useEffect(() => {
     if (cartOpen) document.addEventListener('click', _toggleCart)

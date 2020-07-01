@@ -32,9 +32,9 @@ export const REMOVE_CART_ITEM_MUTATION = gql`
   ${PRODUCT_FRAGMENT}
 `
 
-export const SYNC_USER_CART_WITH_REMOTE_MUTATION = gql`
+export const CART_UPLOAD_MUTATION = gql`
   mutation($data: [SyncUserCartInput!]!) {
-    syncUserCartWithRemote(data: $data) {
+    uploadCart(data: $data) {
       id
     }
   }
