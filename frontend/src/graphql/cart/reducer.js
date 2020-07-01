@@ -1,4 +1,4 @@
-import { CART_QUERY } from './queries'
+import { CART_LOCAL_QUERY } from './queries'
 import { TOGGLE_CART, REMOVE_CART_ITEM, ADD_CART_ITEM } from './action-types'
 
 export const cartInitialState = {
@@ -9,7 +9,7 @@ export const cartInitialState = {
 }
 
 const cartReducer = (actionType, client, variables) => {
-  const state = client.readQuery({ query: CART_QUERY })
+  const state = client.readQuery({ query: CART_LOCAL_QUERY })
   const { cartItems: allCartItems, cartOpen, cartCount, cartTotal } = state
   const { cartItem } = variables || {}
 

@@ -2,11 +2,12 @@ import gql from 'graphql-tag'
 
 export const PRODUCT_FRAGMENT = gql`
   fragment ProductFragment on Product {
-    availableSizes
     id
+    availableSizes
     description
     isFreeShipping
     isFeatured
+    isAvailable
     price
     sku
     style

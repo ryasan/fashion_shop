@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
-import { CART_QUERY } from './queries'
+import { CART_LOCAL_QUERY } from './queries'
 import {
   TOGGLE_CART_MUTATION,
   ADD_CART_ITEM_MUTATION,
@@ -9,7 +9,7 @@ import {
 } from './mutations'
 
 export const useCartQuery = () => {
-  return useQuery(CART_QUERY)
+  return useQuery(CART_LOCAL_QUERY)
 }
 
 export const useToggleCartMutation = () => {
