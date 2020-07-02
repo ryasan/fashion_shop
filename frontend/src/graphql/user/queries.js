@@ -9,6 +9,7 @@ export const CURRENT_USER_QUERY = gql`
       cart {
         quantity
         product {
+          id
           description
           isFreeShipping
           isFeatured
