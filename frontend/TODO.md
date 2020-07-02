@@ -5,3 +5,4 @@
 3. Use gatsby image for product images.
 4. Speed up mutation by updating the store manually instead of refetchQueries.
 5. Change loader
+6. Fix order by border radius
