@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Carousel from '../components/carousel/index'
 import Home, { TextList, Icons, MaxWidth } from '../styles/home-page.styles'
@@ -8,7 +7,7 @@ import { H1, Span, P, H2 } from '../elements'
 import Icon from '../components/icons'
 
 const HomePage = () => (
-  <Layout>
+  <>
     <SEO title="Home" />
     <Home>
       <Carousel />
@@ -81,7 +80,7 @@ const HomePage = () => (
         </Home.SectionTwo>
       </Home.Content>
     </Home>
-  </Layout>
+  </>
 )
 
 export default HomePage

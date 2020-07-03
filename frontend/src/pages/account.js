@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Account, { Details } from '../styles/account-page.styles'
 import ErrorBoundary from '../components/error-boundary'
@@ -48,7 +47,7 @@ const AccountPage = props => {
   const me = data && data.me
 
   return (
-    <Layout>
+    <>
       <SEO title="My Account" />
       <Account>
         <PleaseSignin>
@@ -61,7 +60,7 @@ const AccountPage = props => {
           </ErrorBoundary>
         </PleaseSignin>
       </Account>
-    </Layout>
+    </>
   )
 }
 

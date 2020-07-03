@@ -1,3 +1,5 @@
+require('react')
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -36,6 +38,12 @@ module.exports = {
           theme: false
         }
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve('./src/components/layout/index.js')
+      },
+    },
   ]
 }
