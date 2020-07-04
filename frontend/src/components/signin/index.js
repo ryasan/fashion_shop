@@ -2,14 +2,13 @@ import React, { useReducer, useEffect } from 'react'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 
 import Signin, { Fieldset, Field, Header } from './signin.styles'
 import Form from '../form'
 import Icon from '../icons'
 import useAuth from '../auth'
 import { Input, Span, Button, Small, A } from '../../elements'
+import { useAddCartItemMutation } from '../../graphql/cart/hooks'
 import {
   EMAIL,
   USERNAME,
@@ -69,15 +68,9 @@ const reducer = (state, action) => {
   }
 }
 
-const PREVIOUS_PAGE_QUERY = gql`
-  query @client {
-    previousPage
-  }
-`
-
 const SigninPage = ({ className }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { data: { previousPage } } = useQuery(PREVIOUS_PAGE_QUERY) // prettier-ignore
+  const [addCartItem] = useAddCartItemMutation()
   const { isSignin, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
   const [{ doSignin, doSignup }, { loading, data: authData, error }] = useAuth({
     email,
@@ -105,9 +98,17 @@ const SigninPage = ({ className }) => {
   }, [error])
 
   useEffect(() => {
+    // cache user's cart to local storage
+    if (authData && isSignin) {
+      authData.signin.cart.forEach(({ product, quantity }) =>
+        addCartItem({
+          variables: { cartItem: { product, quantity } }
+        })
+      )
+    }
+
     if (authData) {
-      const routes = ['/', '/shop', '/account']
-      navigate(routes.includes(previousPage) ? -1 : '/') // go back a page or go home
+      navigate('/shop')
     }
   }, [authData])
 

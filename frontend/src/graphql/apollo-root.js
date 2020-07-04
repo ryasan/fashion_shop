@@ -30,8 +30,7 @@ const PersistApolloProvider = ({ children }) => {
         resolvers: { Mutation },
         defaults: {
           ...cartInitialState,
-          ...filtersInitialState,
-          previousPage: null
+          ...filtersInitialState
         }
       },
       credentials: 'include',
@@ -45,7 +44,7 @@ const PersistApolloProvider = ({ children }) => {
 
     return () => {}
   }, [])
-  
+
   if (!client) return <Loader color="dark" />
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
