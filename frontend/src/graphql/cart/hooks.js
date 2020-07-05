@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
-import { CART_QUERY, CART_COUNT_QUERY } from './queries'
+import { CART_QUERY } from './queries'
 import {
   TOGGLE_CART_MUTATION,
   ADD_CART_ITEM_MUTATION,
@@ -31,8 +31,4 @@ export const useUploadCart = () => {
 
 export const useMergeRemoteCartItemsMutation = () => {
   return useMutation(MERGE_REMOTE_CART_ITEMS_MUTATION)
-}
-
-export const useCartCountQuery = () => {
-  return useQuery(CART_COUNT_QUERY)
 }
