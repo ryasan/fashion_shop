@@ -10,8 +10,6 @@ export const CART_QUERY = gql`
         ...ProductFragment
       }
     }
-    cartCount
-    cartTotal
     cartOpen
   }
   ${PRODUCT_FRAGMENT}

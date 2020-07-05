@@ -10,7 +10,7 @@ const ProductDetailsComponent = ({ product }) => {
   const { image, ...p } = product
 
   const handleAddCartItem = () => {
-    addCartItem({ variables: { product: p } })
+    addCartItem({ variables: { product: p, quantity: 1 } })
   }
 
   return (

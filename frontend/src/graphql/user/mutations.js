@@ -1,5 +1,7 @@
 import gql from 'graphql-tag'
 
+import { PRODUCT_FRAGMENT } from '../product/fragments'
+
 export const DELETE_ME = gql`
   mutation {
     deleteMe {
@@ -14,8 +16,15 @@ export const SIGNIN_MUTATION = gql`
       id
       email
       username
+      cart {
+        quantity
+        product {
+          ...ProductFragment
+        }
+      }
     }
   }
+  ${PRODUCT_FRAGMENT}
 `
 
 export const SIGNOUT_MUTATION = gql`

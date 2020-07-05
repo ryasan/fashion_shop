@@ -16,7 +16,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
   const detailsPage = '/shop/' + product.id
 
   const handleAddCartItem = () => {
-    addCartItem({ variables: { cartItem: { product } } })
+    addCartItem({ variables: { cartItem: { product, quantity: 1 } } })
   }
 
   return (

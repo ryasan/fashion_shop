@@ -4,6 +4,7 @@ const OrderBy = styled.div`
   select {
     margin-left: 1rem;
     height: 3rem;
+    border-radius: 5px;
     background: var(--off-white);
     cursor: pointer;
   }

@@ -1,41 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
+import { sumBy } from 'lodash'
 
 import Cart from './cart.styles'
 import CartItem from './cart-item'
 import Icon from '../icons'
 import CartFooter from './cart-footer/index'
 import { H4 } from '../../elements'
-import { useCurrentUserQuery } from '../../graphql/user/hooks'
-import {
-  useCartQuery,
-  useToggleCartMutation,
-  useAddCartItemMutation
-} from '../../graphql/cart/hooks'
+import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 
 const CartComponent = () => {
   const cartRef = useRef(null)
-  const [cart, setCart] = useState()
   const [toggleCart] = useToggleCartMutation()
-  const [addCartItem] = useAddCartItemMutation()
-  const { data: userInfo } = useCurrentUserQuery()
-  const { data: cartInfo } = useCartQuery()
-  const { cartOpen, cartCount, cartItems, cartTotal } = cartInfo
-  const remoteCart = userInfo?.me?.cart
-
-  useEffect(() => {
-    console.log('HELLO')
-    // console.log(userInfo.me)
-    // console.log('remoteCart', remoteCart)
-    // if (userInfo) {
-    //   console.log(userInfo)
-    //   // console.log('triggered')
-    //   // remoteCart.forEach(c =>
-    //   //   addCartItem({
-    //   //     variables: { cartItem: { product: c.product } }
-    //   //   })
-    //   // )
-    // }
-  }, [])
+  const { data: { cartOpen, cartItems } } = useCartQuery()
+  const cartCount = sumBy(cartItems, c => c.quantity)
+  const cartTotal = sumBy(cartItems, c => c.product.price * c.quantity)
 
   const _toggleCart = e => {
     if (

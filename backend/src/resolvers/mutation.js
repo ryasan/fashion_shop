@@ -54,8 +54,7 @@ const Mutation = {
     }
 
     createCookie({ ctx, userId: user.id })
-
-    return user
+    return ctx.db.query.user({ where: { email } }, info)
   },
   signout: async (parent, args, ctx, info) => {
     ctx.response.clearCookie('token')

@@ -8,7 +8,7 @@ import Form from '../form'
 import Icon from '../icons'
 import useAuth from '../auth'
 import { Input, Span, Button, Small, A } from '../../elements'
-import { useAddCartItemMutation } from '../../graphql/cart/hooks'
+import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
 import {
   EMAIL,
   USERNAME,
@@ -70,7 +70,7 @@ const reducer = (state, action) => {
 
 const SigninPage = ({ className }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [addCartItem] = useAddCartItemMutation()
+  const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
   const { isSignin, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
   const [{ doSignin, doSignup }, { loading, data: authData, error }] = useAuth({
     email,
@@ -98,18 +98,13 @@ const SigninPage = ({ className }) => {
   }, [error])
 
   useEffect(() => {
-    // cache user's cart to local storage
     if (authData && isSignin) {
-      authData.signin.cart.forEach(({ product, quantity }) =>
-        addCartItem({
-          variables: { cartItem: { product, quantity } }
-        })
-      )
+      mergeRemoteCartItems({
+        variables: { remoteCartItems: authData.signin.cart }
+      })
     }
 
-    if (authData) {
-      navigate('/shop')
-    }
+    if (authData) navigate('/shop')
   }, [authData])
 
   const toggleSignup = () => {

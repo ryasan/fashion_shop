@@ -39,3 +39,15 @@ export const CART_UPLOAD_MUTATION = gql`
     }
   }
 `
+
+export const MERGE_REMOTE_CART_ITEMS_MUTATION = gql`
+  mutation($remoteCartItems: [CartItem!]!) {
+    mergeRemoteCartItems(remoteCartItems: $remoteCartItems) @client {
+      quantity
+      product {
+        ...ProductFragment
+      }
+    }
+  }
+  ${PRODUCT_FRAGMENT}
+`
