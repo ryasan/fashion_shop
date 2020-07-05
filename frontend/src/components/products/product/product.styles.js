@@ -34,6 +34,7 @@ Product.Special = styled.div`
 Product.Image = styled.div`
   text-align: center;
   overflow: hidden;
+  border-radius: 2px;
   img {
     width: 100%;
     height: 100%;
@@ -81,6 +82,7 @@ Product.Button = styled.div`
   width: 100%;
   button {
     ${redButton};
+    border-radius: 2px;
     padding: 1.5rem 0;
     width: 100%;
   }
