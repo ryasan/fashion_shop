@@ -1,5 +1,6 @@
 import {
   TOGGLE_CART,
+  ADD_CART_ITEM,
   REMOVE_CART_ITEM,
   INCREASE_CART_ITEM_QUANTITY,
   DECREASE_CART_ITEM_QUANTITY,
@@ -23,6 +24,8 @@ export const Mutation = {
     cartReducer(DECREASE_CART_ITEM_QUANTITY, client, variables),
   mergeRemoteCartItems: (_, variables, { client }) =>
     cartReducer(MERGE_REMOTE_CART_ITEMS, client, variables),
+  addCartItem: (_, variables, { client }) =>
+    cartReducer(ADD_CART_ITEM, client, variables),
   removeCartItem: (_, variables, { client }) =>
     cartReducer(REMOVE_CART_ITEM, client, variables),
   addSizeFilter: (_, variables, { client }) =>

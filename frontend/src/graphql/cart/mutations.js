@@ -37,12 +37,22 @@ export const INCREASE_CART_ITEM_QUANTITY_MUTATION = gql`
       }
     }
   }
-  ${PRODUCT_FRAGMENT}
 `
 
 export const DECREASE_CART_ITEM_QUANTITY_MUTATION = gql`
   mutation($productId: ID!) {
     decreaseCartItemQuantity(productId: $productId) @client {
+      quantity
+      product {
+        id
+      }
+    }
+  }
+`
+
+export const ADD_CART_ITEM_MUTATION = gql`
+  mutation($product: Product!) {
+    addCartItem(product: $product) @client {
       quantity
       product {
         id
@@ -60,5 +70,4 @@ export const REMOVE_CART_ITEM_MUTATION = gql`
       }
     }
   }
-  ${PRODUCT_FRAGMENT}
 `

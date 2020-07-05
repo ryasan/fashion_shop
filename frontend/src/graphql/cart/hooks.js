@@ -7,7 +7,8 @@ import {
   DECREASE_CART_ITEM_QUANTITY_MUTATION,
   REMOVE_CART_ITEM_MUTATION,
   CART_UPLOAD_MUTATION,
-  MERGE_REMOTE_CART_ITEMS_MUTATION
+  MERGE_REMOTE_CART_ITEMS_MUTATION,
+  ADD_CART_ITEM_MUTATION
 } from './mutations'
 
 export const useCartQuery = () => {
@@ -24,6 +25,10 @@ export const useIncreaseCartItemQuantityMutation = () => {
 
 export const useDecreaseCartItemQuantityMutation = () => {
   return useMutation(DECREASE_CART_ITEM_QUANTITY_MUTATION)
+}
+
+export const useAddCartItemMutation = () => {
+  return useMutation(ADD_CART_ITEM_MUTATION)
 }
 
 export const useRemoveCartItemMutation = () => {

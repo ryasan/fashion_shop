@@ -5,10 +5,10 @@ import { Link } from 'gatsby'
 import Product, { Price } from './product.styles'
 import { formatPrice } from '../../../utils'
 import { Button, Image, Span, Small, Hr as Divider, B } from '../../../elements'
-import { useIncreaseCartItemQuantityMutation } from '../../../graphql/cart/hooks'
+import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
 const ProductComponent = ({ product, sizeFilters }) => {
-  const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
+  const [addCartItem] = useAddCartItemMutation()
   const image = require(`../../../images/products/${product.sku}_1.jpg`)
   const formattedPrice = formatPrice(product.price)
   const dollars = formattedPrice.slice(0, -3)
@@ -16,7 +16,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
   const detailsPage = '/shop/' + product.id
 
   const handleAddCartItem = () => {
-    increaseCartItemQuantity({ variables: { cartItem: { product } } })
+    addCartItem({ variables: { product } })
   }
 
   return (
