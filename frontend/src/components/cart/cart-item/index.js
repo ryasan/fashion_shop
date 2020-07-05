@@ -3,15 +3,33 @@ import PropTypes from 'prop-types'
 
 import Icon from '../../icons'
 import CartItem from './cart-item.styles'
-import { useRemoveCartItemMutation } from '../../../graphql/cart/hooks'
+import { Image, Span, Button } from '../../../elements'
 import { formatPrice } from '../../../utils'
-import { Image, Span } from '../../../elements'
+import {
+  useRemoveCartItemMutation,
+  useIncreaseCartItemQuantityMutation,
+  useDecreaseCartItemQuantityMutation
+} from '../../../graphql/cart/hooks'
 
 const CartItemComponent = ({ cartItem }) => {
   const { product, quantity } = cartItem
   const [removeCartItem] = useRemoveCartItemMutation()
+  const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
+  const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
   const availableSizes = product.availableSizes.join(' | ')
+
+  const handleRemoveCartItem = () => {
+    removeCartItem({ variables: { productId: product.id } })
+  }
+
+  const handleIncreaseQty = () => {
+    increaseCartItemQuantity({ variables: { productId: product.id } })
+  }
+
+  const handleDecreaseQty = () => {
+    decreaseCartItemQuantity({ variables: { productId: product.id } })
+  }
 
   const handleMouseOver = () => {
     setIsMouseOver(true)
@@ -21,22 +39,14 @@ const CartItemComponent = ({ cartItem }) => {
     setIsMouseOver(false)
   }
 
-  const handleRemoveCartItem = () => {
-    removeCartItem({ variables: { cartItem } })
-  }
-
   return (
     <CartItem isMouseOver={isMouseOver}>
       <CartItem.Content>
         <Image src={require(`../../../images/products/${product.sku}_2.jpg`)} />
         <CartItem.Details>
           <Span modifiers={['font_size_m']}>{product.title}</Span>
-          <Span modifiers={['gray_color', 'font_size_s']}>
-            {`${availableSizes} | ${product.style}`}
-          </Span>
-          <Span modifiers="gray_color">
-            Quantity: <Span modifiers="off_white_color">{quantity}</Span>
-          </Span>
+          <Span modifiers={['gray_color', 'font_size_s']}>{`${availableSizes} | ${product.style}`}</Span>
+          <Span modifiers="gray_color">Quantity: <Span modifiers="off_white_color">{quantity}</Span></Span>
         </CartItem.Details>
         <CartItem.Price>
           <Icon
@@ -46,9 +56,11 @@ const CartItemComponent = ({ cartItem }) => {
             onMouseOver={handleMouseOver}
             onClick={handleRemoveCartItem}
           />
-          <Span modifiers={['font_size_m', 'red_color']}>
-            {formatPrice(product.price)}
-          </Span>
+          <Span modifiers={['font_size_m', 'red_color']}>{formatPrice(product.price)}</Span>
+          <div>
+            <Button onClick={handleDecreaseQty} disabled={quantity === 1}>-</Button>
+            <Button onClick={handleIncreaseQty}>+</Button>
+          </div>
         </CartItem.Price>
       </CartItem.Content>
     </CartItem>

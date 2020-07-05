@@ -3,14 +3,14 @@ import React from 'react'
 import ProductDetails from './product-details.styles'
 import { H3, Image, Span, Button } from '../../../elements'
 import { formatPrice } from '../../../utils/format-price'
-import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
+import { useIncreaseCartItemQuantityMutation } from '../../../graphql/cart/hooks'
 
 const ProductDetailsComponent = ({ product }) => {
-  const [addCartItem] = useAddCartItemMutation()
+  const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
   const { image, ...p } = product
 
   const handleAddCartItem = () => {
-    addCartItem({ variables: { product: p, quantity: 1 } })
+    increaseCartItemQuantity({ variables: { product: p, quantity: 1 } })
   }
 
   return (

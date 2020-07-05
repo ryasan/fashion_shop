@@ -1,7 +1,8 @@
 import {
   TOGGLE_CART,
   REMOVE_CART_ITEM,
-  ADD_CART_ITEM,
+  INCREASE_CART_ITEM_QUANTITY,
+  DECREASE_CART_ITEM_QUANTITY,
   MERGE_REMOTE_CART_ITEMS
 } from './cart/action-types'
 import {
@@ -16,8 +17,10 @@ import filtersReducer from './filters/reducer'
 export const Mutation = {
   toggleCart: (_, variables, { client }) =>
     cartReducer(TOGGLE_CART, client, variables),
-  addCartItem: (_, variables, { client }) =>
-    cartReducer(ADD_CART_ITEM, client, variables),
+  increaseCartItemQuantity: (_, variables, { client }) =>
+    cartReducer(INCREASE_CART_ITEM_QUANTITY, client, variables),
+  decreaseCartItemQuantity: (_, variables, { client }) =>
+    cartReducer(DECREASE_CART_ITEM_QUANTITY, client, variables),
   mergeRemoteCartItems: (_, variables, { client }) =>
     cartReducer(MERGE_REMOTE_CART_ITEMS, client, variables),
   removeCartItem: (_, variables, { client }) =>

@@ -11,7 +11,7 @@ import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
 import {
   useCartQuery,
-  useUploadCart
+  useUploadCartMutation
 } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 
@@ -20,7 +20,7 @@ const HeaderComponent = () => {
   const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
   const [{ doSignout }, { data: signoutData }] = useAuth()
-  const [uploadCart] = useUploadCart()
+  const [uploadCart] = useUploadCartMutation()
   const me = userData && userData.me
 
   useEffect(() => {

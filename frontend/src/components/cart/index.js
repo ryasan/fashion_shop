@@ -45,9 +45,7 @@ const CartComponent = () => {
             <Cart.BagOpen>{cartCount}</Cart.BagOpen>
           </Cart.BagContainer>
         </Cart.Header>
-        {!cartItems.length && (
-          <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>
-        )}
+        {!cartItems.length && <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>}
         <Cart.List>
           {cartItems.map(item => (
             <CartItem key={item.product.id} cartItem={item} />

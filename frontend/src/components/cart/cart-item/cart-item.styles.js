@@ -36,18 +36,34 @@ CartItem.Details = styled.div`
 
 CartItem.Price = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   svg {
     width: 1.5rem;
     height: 1.5rem;
-    position: absolute;
-    top: -0.3rem;
-    right: 0;
     cursor: pointer;
     fill: black;
     &:hover {
       fill: var(--off-white);
+    }
+  }
+
+  div {
+    display: flex;
+    button {
+      border-radius: 0;
+      height: 2.5rem;
+      width: 2rem;
+      background: var(--darker);
+      color: var(--off-white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:disabled {
+        background: var(--dark);
+      }
     }
   }
 `
