@@ -11,14 +11,6 @@ const CartFooter = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  button {
-    background: var(--darker);
-    color: var(--off-white);
-    font-size: var(--font_size_lg);
-    padding: 1.5rem 0;
-    width: 100%;
-    outline-color: var(--red);
-  }
 `
 
 CartFooter.SubTotal = styled.div`

@@ -28,8 +28,8 @@ const Cart = styled.div`
 `
 
 Cart.Bag = styled.div`
-  min-width: 2rem;
-  min-height: 2rem;
+  min-width: 3rem;
+  min-height: 3rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
