@@ -31,7 +31,6 @@ const cartReducer = (actionType, client, variables) => {
 
       return client.writeData({
         data: {
-          cartOpen: true,
           cartItems: cartItemExists ? cartWithUpdatedItem : cartWithNewItem
         }
       })

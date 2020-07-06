@@ -28,8 +28,8 @@ const Cart = styled.div`
 `
 
 Cart.Bag = styled.div`
-  width: 2rem;
-  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -37,17 +37,11 @@ Cart.Bag = styled.div`
   color: var(--off-white);
   position: absolute;
   background: var(--red);
-  font-size: var(--font-size-s);
-`
-
-Cart.BagOpen = styled(Cart.Bag)`
-  right: -0.5rem;
-  bottom: -0.5rem;
-`
-
-Cart.BagClose = styled(Cart.Bag)`
-  bottom: 1rem;
-  right: 1.2rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
 `
 
 Cart.Button = styled.div`
