@@ -8,7 +8,7 @@ const CartCount = styled.div`
   line-height: 2rem;
   min-width: 3rem;
   margin-left: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 100;
   font-feature-settings: 'tnum';
   font-variant-numeric: tabular-nums;

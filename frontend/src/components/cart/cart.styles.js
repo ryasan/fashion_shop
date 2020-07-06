@@ -102,11 +102,13 @@ Cart.Header = styled.div`
 
 Cart.BagContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   svg {
     width: 4rem;
     height: 4rem;
     display: inline-block;
-    margin-left: 1.5rem;
     fill: var(--off-white);
   }
 `

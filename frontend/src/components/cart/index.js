@@ -43,7 +43,7 @@ const CartComponent = () => {
           <H4>Cart</H4>
           <Cart.BagContainer>
             <Icon name="cart" />
-            <Cart.Bag>{cartCount}</Cart.Bag>
+            <CartCount>{cartCount}</CartCount>
           </Cart.BagContainer>
         </Cart.Header>
         {!cartItems.length && <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>}
@@ -52,7 +52,11 @@ const CartComponent = () => {
             <CartItem key={item.product.id} cartItem={item} />
           ))}
         </Cart.List>
-        <CartFooter cartTotal={cartTotal} cartItems={cartItems} />
+        <CartFooter
+          cartTotal={cartTotal}
+          cartItems={cartItems}
+          cartCount={cartCount}
+        />      
       </Cart.Content>
     </Cart>
   )
