@@ -61,8 +61,12 @@ CartItem.Price = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-left: 2px;
       &:disabled {
         background: var(--dark);
+      }
+      &:focus {
+        outline-color: transparent;
       }
     }
   }

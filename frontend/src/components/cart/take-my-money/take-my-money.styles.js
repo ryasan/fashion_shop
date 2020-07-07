@@ -7,7 +7,9 @@ const TakeMyMoney = styled.span`
     font-size: var(--font_size_lg);
     padding: 1.5rem 0;
     width: 100%;
-    outline-color: var(--red);
+    &:focus {
+      outline-color: transparent;
+    }
   }
 `
 

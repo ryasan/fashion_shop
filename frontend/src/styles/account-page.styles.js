@@ -6,7 +6,7 @@ const Account = styled.div`
   display: flex;
   justify-content: center;
   padding: 5rem;
-˝`
+`
 
 const Details = styled.div`
   max-width: var(--max-width);
