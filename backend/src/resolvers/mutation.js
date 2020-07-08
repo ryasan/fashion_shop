@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const { forwardTo } = require('prisma-binding')
 
 const { throwError, createCookie } = require('../utils')
+const stripe = require('../stripe')
 
 const Mutation = {
   createProduct: forwardTo('db'),
@@ -87,6 +88,51 @@ const Mutation = {
     })
     createCookie({ ctx, userId: user.id })
     return user
+  },
+  createOrder: async (parent, args, ctx, info) => {
+    // 1. query the current user and make sure they are signed in
+    const { userId } = ctx.request
+    if (!userId) throwError('You must be signed in to complete this order')
+    const user = await ctx.db.query.user(
+      { where: { id: userId } },
+      '{ id email username cart { id quantity product { title price id description } } }'
+    )
+    // 2. recalculate total price
+    const amount = user.cart.reduce(
+      (tally, cartItem) => tally + cartItem.product.price * cartItem.quantity,
+      0
+    )
+    // 3. create the stripe charge (turn token into $$$)
+    const charge = await stripe.charges.create({
+      amount,
+      currency: 'USD',
+      source: args.token
+    })
+    // 4. create the order
+    const order = await ctx.db.mutation.createOrder({
+      data: {
+        chargeId: charge.id,
+        total: amount,
+        user: { connect: { id: userId } }
+      }
+    })
+    // 5. convert the cart items to order items
+    for (const c of user.cart) {
+      await ctx.db.mutation.createOrderItem({
+        data: {
+          quantity: c.quantity,
+          product: { connect: { id: c.product.id } },
+          user: { connect: { id: userId } },
+          order: { connect: { id: order.id } }
+        }
+      })
+    }
+    // 6. clean up - clear users cart, delete cart items
+    await ctx.db.mutation.deleteManyCartItems({
+      where: { user: { id: userId } }
+    })
+    // 7. return the order to the client
+    return order
   }
 }
 

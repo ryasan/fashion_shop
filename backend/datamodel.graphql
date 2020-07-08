@@ -40,15 +40,16 @@ type OrderItem {
   id: ID! @unique @id
   quantity: Int! @default(value: 1)
   user: User
-  product: Product
+  product: Product!
+  order: Order!
 }
 
 type Order {
   id: ID! @unique @id
-  items: [OrderItem!]!
+  orderItems: [OrderItem!]!
   total: Int!
   user: User!
-  charge: String!
+  chargeId: String!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

@@ -246,10 +246,10 @@ interface Node {
 
 type Order {
   id: ID!
-  items(where: OrderItemWhereInput, orderBy: OrderItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [OrderItem!]
+  orderItems(where: OrderItemWhereInput, orderBy: OrderItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [OrderItem!]
   total: Int!
   user: User!
-  charge: String!
+  chargeId: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -262,10 +262,22 @@ type OrderConnection {
 
 input OrderCreateInput {
   id: ID
-  items: OrderItemCreateManyInput
+  orderItems: OrderItemCreateManyWithoutOrderInput
   total: Int!
   user: UserCreateOneInput!
-  charge: String!
+  chargeId: String!
+}
+
+input OrderCreateOneWithoutOrderItemsInput {
+  create: OrderCreateWithoutOrderItemsInput
+  connect: OrderWhereUniqueInput
+}
+
+input OrderCreateWithoutOrderItemsInput {
+  id: ID
+  total: Int!
+  user: UserCreateOneInput!
+  chargeId: String!
 }
 
 type OrderEdge {
@@ -277,7 +289,8 @@ type OrderItem {
   id: ID!
   quantity: Int!
   user: User
-  product: Product
+  product: Product!
+  order: Order!
 }
 
 type OrderItemConnection {
@@ -290,12 +303,20 @@ input OrderItemCreateInput {
   id: ID
   quantity: Int
   user: UserCreateOneInput
-  product: ProductCreateOneInput
+  product: ProductCreateOneInput!
+  order: OrderCreateOneWithoutOrderItemsInput!
 }
 
-input OrderItemCreateManyInput {
-  create: [OrderItemCreateInput!]
+input OrderItemCreateManyWithoutOrderInput {
+  create: [OrderItemCreateWithoutOrderInput!]
   connect: [OrderItemWhereUniqueInput!]
+}
+
+input OrderItemCreateWithoutOrderInput {
+  id: ID
+  quantity: Int
+  user: UserCreateOneInput
+  product: ProductCreateOneInput!
 }
 
 type OrderItemEdge {
@@ -361,36 +382,31 @@ input OrderItemSubscriptionWhereInput {
   NOT: [OrderItemSubscriptionWhereInput!]
 }
 
-input OrderItemUpdateDataInput {
-  quantity: Int
-  user: UserUpdateOneInput
-  product: ProductUpdateOneInput
-}
-
 input OrderItemUpdateInput {
   quantity: Int
   user: UserUpdateOneInput
-  product: ProductUpdateOneInput
+  product: ProductUpdateOneRequiredInput
+  order: OrderUpdateOneRequiredWithoutOrderItemsInput
 }
 
 input OrderItemUpdateManyDataInput {
   quantity: Int
 }
 
-input OrderItemUpdateManyInput {
-  create: [OrderItemCreateInput!]
-  update: [OrderItemUpdateWithWhereUniqueNestedInput!]
-  upsert: [OrderItemUpsertWithWhereUniqueNestedInput!]
+input OrderItemUpdateManyMutationInput {
+  quantity: Int
+}
+
+input OrderItemUpdateManyWithoutOrderInput {
+  create: [OrderItemCreateWithoutOrderInput!]
   delete: [OrderItemWhereUniqueInput!]
   connect: [OrderItemWhereUniqueInput!]
   set: [OrderItemWhereUniqueInput!]
   disconnect: [OrderItemWhereUniqueInput!]
+  update: [OrderItemUpdateWithWhereUniqueWithoutOrderInput!]
+  upsert: [OrderItemUpsertWithWhereUniqueWithoutOrderInput!]
   deleteMany: [OrderItemScalarWhereInput!]
   updateMany: [OrderItemUpdateManyWithWhereNestedInput!]
-}
-
-input OrderItemUpdateManyMutationInput {
-  quantity: Int
 }
 
 input OrderItemUpdateManyWithWhereNestedInput {
@@ -398,15 +414,21 @@ input OrderItemUpdateManyWithWhereNestedInput {
   data: OrderItemUpdateManyDataInput!
 }
 
-input OrderItemUpdateWithWhereUniqueNestedInput {
-  where: OrderItemWhereUniqueInput!
-  data: OrderItemUpdateDataInput!
+input OrderItemUpdateWithoutOrderDataInput {
+  quantity: Int
+  user: UserUpdateOneInput
+  product: ProductUpdateOneRequiredInput
 }
 
-input OrderItemUpsertWithWhereUniqueNestedInput {
+input OrderItemUpdateWithWhereUniqueWithoutOrderInput {
   where: OrderItemWhereUniqueInput!
-  update: OrderItemUpdateDataInput!
-  create: OrderItemCreateInput!
+  data: OrderItemUpdateWithoutOrderDataInput!
+}
+
+input OrderItemUpsertWithWhereUniqueWithoutOrderInput {
+  where: OrderItemWhereUniqueInput!
+  update: OrderItemUpdateWithoutOrderDataInput!
+  create: OrderItemCreateWithoutOrderInput!
 }
 
 input OrderItemWhereInput {
@@ -434,6 +456,7 @@ input OrderItemWhereInput {
   quantity_gte: Int
   user: UserWhereInput
   product: ProductWhereInput
+  order: OrderWhereInput
   AND: [OrderItemWhereInput!]
   OR: [OrderItemWhereInput!]
   NOT: [OrderItemWhereInput!]
@@ -448,8 +471,8 @@ enum OrderOrderByInput {
   id_DESC
   total_ASC
   total_DESC
-  charge_ASC
-  charge_DESC
+  chargeId_ASC
+  chargeId_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -459,7 +482,7 @@ enum OrderOrderByInput {
 type OrderPreviousValues {
   id: ID!
   total: Int!
-  charge: String!
+  chargeId: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -483,15 +506,33 @@ input OrderSubscriptionWhereInput {
 }
 
 input OrderUpdateInput {
-  items: OrderItemUpdateManyInput
+  orderItems: OrderItemUpdateManyWithoutOrderInput
   total: Int
   user: UserUpdateOneRequiredInput
-  charge: String
+  chargeId: String
 }
 
 input OrderUpdateManyMutationInput {
   total: Int
-  charge: String
+  chargeId: String
+}
+
+input OrderUpdateOneRequiredWithoutOrderItemsInput {
+  create: OrderCreateWithoutOrderItemsInput
+  update: OrderUpdateWithoutOrderItemsDataInput
+  upsert: OrderUpsertWithoutOrderItemsInput
+  connect: OrderWhereUniqueInput
+}
+
+input OrderUpdateWithoutOrderItemsDataInput {
+  total: Int
+  user: UserUpdateOneRequiredInput
+  chargeId: String
+}
+
+input OrderUpsertWithoutOrderItemsInput {
+  update: OrderUpdateWithoutOrderItemsDataInput!
+  create: OrderCreateWithoutOrderItemsInput!
 }
 
 input OrderWhereInput {
@@ -509,9 +550,9 @@ input OrderWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  items_every: OrderItemWhereInput
-  items_some: OrderItemWhereInput
-  items_none: OrderItemWhereInput
+  orderItems_every: OrderItemWhereInput
+  orderItems_some: OrderItemWhereInput
+  orderItems_none: OrderItemWhereInput
   total: Int
   total_not: Int
   total_in: [Int!]
@@ -521,20 +562,20 @@ input OrderWhereInput {
   total_gt: Int
   total_gte: Int
   user: UserWhereInput
-  charge: String
-  charge_not: String
-  charge_in: [String!]
-  charge_not_in: [String!]
-  charge_lt: String
-  charge_lte: String
-  charge_gt: String
-  charge_gte: String
-  charge_contains: String
-  charge_not_contains: String
-  charge_starts_with: String
-  charge_not_starts_with: String
-  charge_ends_with: String
-  charge_not_ends_with: String
+  chargeId: String
+  chargeId_not: String
+  chargeId_in: [String!]
+  chargeId_not_in: [String!]
+  chargeId_lt: String
+  chargeId_lte: String
+  chargeId_gt: String
+  chargeId_gte: String
+  chargeId_contains: String
+  chargeId_not_contains: String
+  chargeId_starts_with: String
+  chargeId_not_starts_with: String
+  chargeId_ends_with: String
+  chargeId_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -703,15 +744,6 @@ input ProductUpdateManyMutationInput {
   style: String
   title: String
   availableSizes: ProductUpdateavailableSizesInput
-}
-
-input ProductUpdateOneInput {
-  create: ProductCreateInput
-  update: ProductUpdateDataInput
-  upsert: ProductUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: ProductWhereUniqueInput
 }
 
 input ProductUpdateOneRequiredInput {

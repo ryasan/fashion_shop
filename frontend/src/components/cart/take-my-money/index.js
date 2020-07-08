@@ -10,6 +10,7 @@ import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { getImage } from '../../../utils'
 import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
+import { cartInitialState } from '../../../graphql/cart/reducer'
 
 const stripeKey = `pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2`
 
@@ -40,8 +41,8 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
       }
     })
     await createOrder({ variables: { token: res.id } })
-    client.writeData({ data: { cartItems: [] } })
-    toast("You're order is being processed")
+    client.writeData({ data: cartInitialState })
+    toast('Thank you! Your order is being processed')
   }
 
   return (
