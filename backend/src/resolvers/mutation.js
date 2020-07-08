@@ -95,7 +95,7 @@ const Mutation = {
     if (!userId) throwError('You must be signed in to complete this order')
     const user = await ctx.db.query.user(
       { where: { id: userId } },
-      '{ id email username cart { id quantity product { title price id description } } }'
+      '{ id email username cart { id quantity product { title price id description sku } } }'
     )
     // 2. recalculate total price
     const amount = user.cart.reduce(
@@ -108,25 +108,25 @@ const Mutation = {
       currency: 'USD',
       source: args.token
     })
-    // 4. create the order
+    // 4. convert the cart items to order items
+    const orderItems = user.cart.map(cartItem => {
+      const orderItem = {
+        ...cartItem.product,
+        quantity: cartItem.quantity,
+        user: { connect: { id: userId } }
+      }
+      delete orderItem.id
+      return orderItem
+    })
+    // 5. create the order
     const order = await ctx.db.mutation.createOrder({
       data: {
+        total: charge.amount,
         chargeId: charge.id,
-        total: amount,
+        orderItems: { create: orderItems },
         user: { connect: { id: userId } }
       }
     })
-    // 5. convert the cart items to order items
-    for (const c of user.cart) {
-      await ctx.db.mutation.createOrderItem({
-        data: {
-          quantity: c.quantity,
-          product: { connect: { id: c.product.id } },
-          user: { connect: { id: userId } },
-          order: { connect: { id: order.id } }
-        }
-      })
-    }
     // 6. clean up - clear users cart, delete cart items
     await ctx.db.mutation.deleteManyCartItems({
       where: { user: { id: userId } }

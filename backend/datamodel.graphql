@@ -39,9 +39,11 @@ type Product {
 type OrderItem {
   id: ID! @unique @id
   quantity: Int! @default(value: 1)
+  title: String!
+  description: String!
+  sku: String!
+  price: Int!
   user: User
-  product: Product!
-  order: Order!
 }
 
 type Order {
