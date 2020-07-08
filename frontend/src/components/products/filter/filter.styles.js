@@ -30,7 +30,6 @@ const filterBtnStyles = isSelected => css`
 `
 
 Filter.FreeShipping = styled(Button)`
-  border-radius: 5px;
   height: 3.5rem;
   ${props => filterBtnStyles(props.isSelected)};
 `

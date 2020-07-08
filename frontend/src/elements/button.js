@@ -6,7 +6,6 @@ export const Button = buildStyledComponent({
   baseStyles: css`
     border: none;
     padding: 1rem;
-    border-radius: 2px;
     font-size: var(--font-size-m);
     cursor: pointer;
     &:disabled {

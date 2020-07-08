@@ -5,8 +5,8 @@ const CartCount = styled.div`
   color: white;
   border-radius: 50%;
   padding: 0.5rem;
-  line-height: 2rem;
-  min-width: 3rem;
+  line-height: 1rem;
+  min-width: 2rem;
   margin-left: 1rem;
   font-size: 1.5rem;
   font-weight: 100;

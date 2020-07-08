@@ -9,7 +9,6 @@ const Product = styled.div`
   flex-direction: column;
   position: relative;
   background: white;
-  border-radius: 3px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 1);
   a {
     text-decoration: none;
@@ -25,8 +24,7 @@ Product.Special = styled.div`
   right: 0;
   transform: rotate(10deg) translate(1rem, -1rem);
   z-index: 1;
-  border-radius: 2px;
-  background: red;
+  background: var(--red);
   font-size: var(--font-size-s);
   color: var(--off-white);
 `
@@ -60,7 +58,6 @@ Product.Details = styled.div`
     color: var(--off-white);
     transform: skew(-10deg) translateY(-1.5rem);
     width: 80%;
-    border-radius: 3px;
     align-self: center;
     display: flex;
     align-items: center;
@@ -86,7 +83,6 @@ Product.Button = styled.div`
   width: 100%;
   button {
     ${redButton};
-    border-radius: 2px;
     padding: 1.5rem 0;
     width: 100%;
   }
