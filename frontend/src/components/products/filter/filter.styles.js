@@ -9,23 +9,20 @@ const Filter = styled.div`
 `
 
 const filterBtnStyles = isSelected => css`
-  background: ${isSelected ? 'black' : 'var(--off-white)'};
-  color: ${isSelected ? 'var(--off-white)' : 'black'};
+  background: ${isSelected ? 'var(--red)' : 'var(--dark)'};
+  color: ${isSelected ? 'white' : 'white'};
   display: flex;
   justify-content: center;
   align-items: center;
   border-width: 1px;
   border-style: solid;
-  border-color: ${isSelected ? 'var(--off-white)' : 'black'};
+  border-color: ${isSelected ? 'var(--red)' : 'white'};
   margin-left: 1rem;
   font-size: var(--font-size-s);
   outline: none;
   cursor: pointer;
   &:hover {
-    background: ${isSelected ? 'var(--dark)' : '#dfdfdf'};
-  }
-  &:active {
-    box-shadow: 0 0 1pt 1pt var(--off-white);
+    background: ${isSelected ? '#dd0000' : 'var(--darker)'};
   }
 `
 

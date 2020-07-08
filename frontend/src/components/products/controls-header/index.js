@@ -2,7 +2,7 @@ import React from 'react'
 
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
-import OrderBy from '../orderBy'
+import OrderBy from '../order-by'
 import { Span } from '../../../elements'
 
 const Count = ({ count }) => (

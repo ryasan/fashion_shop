@@ -1,6 +1,6 @@
 import React from 'react'
 
-import OrderBy from './orderBy.styles'
+import OrderBy from './order-by.styles'
 import { Label, Select, Option } from '../../../elements'
 
 const options = [
