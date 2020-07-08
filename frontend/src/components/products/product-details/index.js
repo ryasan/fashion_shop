@@ -4,11 +4,11 @@ import ProductDetails from './product-details.styles'
 import { H3, Image, Span, Button } from '../../../elements'
 import { formatPrice } from '../../../utils/format-price'
 import { useIncreaseCartItemQuantityMutation } from '../../../graphql/cart/hooks'
-import { getImage } from '../../../utils';
+import { getLargeImg } from '../../../utils';
 
 const ProductDetailsComponent = ({ product }) => {
   const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
-  const image = getImage(product.sku)
+  const image = getLargeImg(product.sku)
 
   const handleAddCartItem = () => {
     increaseCartItemQuantity({ variables: { product, quantity: 1 } })

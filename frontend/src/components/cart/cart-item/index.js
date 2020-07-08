@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Icon from '../../icons'
 import CartItem from './cart-item.styles'
 import { Image, Span, Button } from '../../../elements'
-import { formatPrice } from '../../../utils'
+import { formatPrice, getSmallImg } from '../../../utils'
 import {
   useRemoveCartItemMutation,
   useIncreaseCartItemQuantityMutation,
@@ -18,6 +18,7 @@ const CartItemComponent = ({ cartItem }) => {
   const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
   const availableSizes = product.availableSizes.join(' | ')
+  const image = getSmallImg(product.sku)
 
   const handleRemoveCartItem = () => {
     removeCartItem({ variables: { productId: product.id } })
@@ -42,7 +43,7 @@ const CartItemComponent = ({ cartItem }) => {
   return (
     <CartItem isMouseOver={isMouseOver}>
       <CartItem.Content>
-        <Image src={require(`../../../images/products/${product.sku}_2.jpg`)} />
+        <Image src={image} />
         <CartItem.Details>
           <Span modifiers={['font_size_m']}>{product.title}</Span>
           <Span modifiers={['gray_color', 'font_size_s']}>{`${availableSizes} | ${product.style}`}</Span>

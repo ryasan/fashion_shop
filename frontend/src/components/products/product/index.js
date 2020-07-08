@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 import Product, { Price } from './product.styles'
-import { formatPrice, getImage } from '../../../utils'
+import { formatPrice, getLargeImg } from '../../../utils'
 import { Button, Image, Span, Small, Hr as Divider, B } from '../../../elements'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
-  const image = getImage(product.sku)
+  const image = getLargeImg(product.sku)
   const formattedPrice = formatPrice(product.price)
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)

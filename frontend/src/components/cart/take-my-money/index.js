@@ -7,7 +7,7 @@ import ErrorBoundary from '../../error-boundary'
 import { toast } from '../../toast'
 import { Button } from '../../../elements'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
-import { getImage } from '../../../utils'
+import { getSmallImg } from '../../../utils'
 import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
 import { cartInitialState } from '../../../graphql/cart/reducer'
@@ -21,7 +21,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const [uploadCart, { error: uploadError }] = useUploadCartMutation()
   const me = data && data.me
   const isReady = me && cartItems.length > 0
-  const image = getImage(cartItems[0]?.product.sku)
+  const image = getSmallImg(cartItems[0]?.product.sku)
 
   const handleToastMessage = () => {
     if (!me) {
