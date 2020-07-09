@@ -44,9 +44,9 @@ CartItem.Price = styled.div`
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
-    fill: black;
+    fill: white;
     &:hover {
-      fill: var(--off-white);
+      fill: var(--red);
     }
   }
 

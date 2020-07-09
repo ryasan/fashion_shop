@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Layout from './layout.styles'
-import Header from '../header'
-import Footer from '../footer'
-import Cart from '../cart'
-import Toast from '../toast'
+import Layout from './global-layout.styles'
+import Header from '../components/header'
+import Footer from '../components/footer'
+import Cart from '../components/cart'
+import Toast from '../components/toast'
 
 const LayoutComponent = ({ children }) => (
   <Layout>

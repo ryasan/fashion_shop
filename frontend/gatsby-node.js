@@ -9,5 +9,11 @@ exports.onCreatePage = async ({ page, actions }) => {
         matchPath: '/shop/*',
         component: path.resolve('src/pages/shop.js')
       })
+    case '/account/orders/':
+      return createPage({
+        path: '/account/orders',
+        matchPath: '/account/orders/*',
+        component: path.resolve('src/pages/account/orders.js')
+      })
   }
 }

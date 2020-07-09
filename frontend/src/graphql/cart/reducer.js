@@ -26,6 +26,7 @@ const cartReducer = (actionType, client, variables) => {
       const cartWithNewItem = [...localCartItems, { product, quantity: 1, __typename: 'CartItem' }]
       const cartWithUpdatedItem = localCartItems.map(c => ({
         ...c,
+        cartOpen: true,
         quantity: c.product.id === product.id ? c.quantity + 1 : c.quantity
       }))
 
