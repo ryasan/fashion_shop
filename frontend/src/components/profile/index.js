@@ -30,7 +30,7 @@ const ProfileComponent = () => {
 
   return (
     <Profile>
-      <SEO title="Profile" />
+      <SEO title={`Profile | ${me.username}`} />
       <ErrorBoundary error={userError || delError}>
         <P modifiers="white_color">email: {me.email}</P>
         <P modifiers="white_color">username: {me.username}</P>
