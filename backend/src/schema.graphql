@@ -8,6 +8,7 @@ type Query {
     sizeFilters: [String]
     orderBy: ProductOrderByInput
   ): ProductConnection!
+  orders(where: OrderWhereInput, orderBy: OrderOrderByInput): [Order]!
 }
 
 type Mutation {
