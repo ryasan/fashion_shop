@@ -1,9 +1,9 @@
 import React from 'react'
 import { Router } from '@reach/router'
 
-import AccountLayout from '../../layouts/account-layout'
 import OrderListComponent from '../../components/orders/order-list'
 import OrderDetailsComponent from '../../components/orders/order-details'
+import AccountLayout from '../../layouts/account-layout'
 import SEO from '../../components/seo'
 
 const OrderDetails = props => {
@@ -16,10 +16,10 @@ const OrderDetails = props => {
   )
 }
 
-const OrderList = () => (
+const OrderList = ({ location }) => (
   <AccountLayout>
     <SEO title="Orders" />
-    <OrderListComponent />
+    <OrderListComponent me={location?.state?.me} />
   </AccountLayout>
 )
 
@@ -29,5 +29,4 @@ const OrdersPage = () => (
     <OrderDetails path="/account/orders/:id" />
   </Router>
 )
-
 export default OrdersPage
