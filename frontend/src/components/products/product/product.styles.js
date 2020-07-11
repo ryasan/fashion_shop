@@ -1,92 +1,95 @@
 import styled from 'styled-components'
 
-import { redButton } from '../../../elements'
-import { device } from '../../../utils'
-
 const Product = styled.div`
-  transition: all 0.5s ease-out;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
   position: relative;
-  background: white;
-  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 1);
   a {
     text-decoration: none;
-  }
-  @media ${device.mobileL} {
-    margin-bottom: 5rem;
+    color: white;
   }
 `
 
 Product.Special = styled.div`
   position: absolute;
   padding: 0.5rem;
-  right: 0;
-  transform: rotate(10deg) translate(1rem, -1rem);
-  z-index: 1;
+  right: -2rem;
+  transform: rotate(15deg) translate(1rem, -1rem);
+  z-index: 3;
   background: var(--red);
   font-size: var(--font-size-s);
   color: var(--off-white);
 `
 
-Product.Image = styled.div`
-  text-align: center;
-  overflow: hidden;
-  border-radius: 2px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.3s;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`
-
-Product.Details = styled.div`
+Product.Header = styled.div`
+  height: 12.5rem;
+  background: var(--red);
+  background-size: cover;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   position: relative;
-  text-align: center;
-  width: 100%;
-  span {
-    font-size: 2rem;
-    padding: 1rem 2rem;
-    background: var(--red);
-    color: var(--off-white);
-    transform: skew(-10deg) translateY(-1.5rem);
-    width: 80%;
-    align-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &:after {
+    content: '';
     position: absolute;
-    top: -2rem;
+    z-index: 1;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--dark);
+  }
+  img {
+    width: 22rem;
+    height: 40rem;
+    object-fit: cover;
+    position: relative;
+    bottom: -1.5rem;
+    border: 1rem solid var(--dark);
+    z-index: 2;
+  }
+`
+
+Product.Offset = styled.div`
+  height: 29rem;
+`
+
+Product.Body = styled.div`
+  text-align: center;
+  h3 {
+    width: 100%;
+    height: 11rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
   }
   hr {
-    width: 3rem;
     background: red;
-    margin-top: 5rem;
+    width: 2rem;
   }
-`
-
-const Price = styled.div`
-  margin: 1rem 0;
-  font-size: 2rem;
-  width: 100%;
-  color: black;
-`
-
-Product.Button = styled.div`
-  width: 100%;
-  button {
-    ${redButton};
-    padding: 1.5rem 0;
+  div {
+    height: 5rem;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  b {
+    font-size: 2.5rem;
+  }
+  small {
+    font-size: 1.5rem;
   }
 `
 
-export { Price }
+Product.Footer = styled.div`
+  height: 5rem;
+  button {
+    height: 100%;
+    width: 100%;
+    background: var(--red);
+    color: white;
+  }
+`
+
 export default Product

@@ -34,7 +34,7 @@ Cart.Bag = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--off-white);
+  color: white;
   position: absolute;
   background: var(--red);
   font-size: 1.5rem;
@@ -51,7 +51,7 @@ Cart.Button = styled.div`
   left: -7rem;
   outline: 0;
   background: var(--dark);
-  fill: var(--off-white);
+  fill: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +85,7 @@ Cart.Button = styled.div`
 `
 
 Cart.Content = styled.div`
-  color: var(--off-white);
+  color: white;
   height: 70%;
   display: flex;
   flex-direction: column;
@@ -109,7 +109,7 @@ Cart.BagContainer = styled.div`
     width: 4rem;
     height: 4rem;
     display: inline-block;
-    fill: var(--off-white);
+    fill: white;
   }
 `
 

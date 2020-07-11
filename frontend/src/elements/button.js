@@ -16,7 +16,7 @@ export const Button = buildStyledComponent({
 
 export const redButton = css`
   background: var(--red);
-  color: var(--off-white);
+  color: white;
   border: 2px solid var(--red);
   outline-color: var(--red);
   font-size: var(--font-size-m);

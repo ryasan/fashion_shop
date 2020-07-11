@@ -73,9 +73,6 @@ const config = {
     green_color: () => css`
       color: var(--green);
     `,
-    off_white_color: () => css`
-      color: var(--off-white);
-    `,
     red: () => css`
       background-color: var(--red);
     `,
@@ -96,6 +93,9 @@ const config = {
     `,
     transparent: () => css`
       background-color: transparent;
+    `,
+    white: () => css`
+      background-color: white;
     `,
     white_color: () => css`
       color: white;
@@ -123,7 +123,7 @@ const config = {
       font-weight: bold;
     `,
     font_size_lg: () => css`
-      font-size: var(--font_size_lg);
+      font-size: var(--font-size-lg);
     `,
     font_size_m: () => css`
       font-size: var(--font-size-m);

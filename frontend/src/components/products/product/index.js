@@ -2,10 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
-import Product, { Price } from './product.styles'
+import Product from './product.styles'
 import { formatPrice, getLargeImg } from '../../../utils'
-import { Button, Image, Span, Small, Hr as Divider, B } from '../../../elements'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
+import {
+  Button,
+  Image,
+  Small,
+  B,
+  Div as Price,
+  Hr as Divider,
+  H3 as Title
+} from '../../../elements'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
@@ -21,25 +29,28 @@ const ProductComponent = ({ product, sizeFilters }) => {
 
   return (
     <Product>
+      {product.isFreeShipping && (
+        <Product.Special>Free Shipping</Product.Special>
+      )}
       <Link to={detailsPage} state={{ product }}>
-        <Product.Image>
-          {product.isFreeShipping && <Product.Special>Free shipping</Product.Special>}
-          <Image src={image} alt={product.title} />
-        </Product.Image>
-        <Product.Details>
-          <Span>{product.title}</Span>
+        <Product.Header>
+          <Image src={image} />
+        </Product.Header>
+        <Product.Offset />
+        <Product.Body>
+          <Title>{product.title}</Title>
           <Divider />
           <Price>
             <B>{dollars}</B>
             <Small>{cents}</Small>
           </Price>
-        </Product.Details>
+        </Product.Body>
       </Link>
-      <Product.Button>
+      <Product.Footer>
         <Button className="buy-btn" onClick={handleAddCartItem}>
           Add to cart
         </Button>
-      </Product.Button>
+      </Product.Footer>
     </Product>
   )
 }
@@ -55,7 +66,7 @@ Product.ProductComponent = {
     title: PropTypes.string.isRequired,
     featured: PropTypes.bool.isRequired,
     availableSizes: PropTypes.array.isRequired
-  })
+  }).isRequired
 }
 
 export default ProductComponent

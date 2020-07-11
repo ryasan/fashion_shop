@@ -50,7 +50,7 @@ const Field = styled.div`
     height: 100%;
     width: 3.5rem;
     background: var(--red);
-    fill: var(--off-white);
+    fill: white;
     position: absolute;
     top: 50%;
     padding: 0.7rem;

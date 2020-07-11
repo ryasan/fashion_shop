@@ -6,7 +6,7 @@ import OrderBy from '../order-by'
 import { Span } from '../../../elements'
 
 const Count = ({ count }) => (
-  <Span modifiers={['off_white_color', 'font_size_m']}>
+  <Span modifiers={['white_color', 'font_size_m']}>
     {`Found ${count} product${count > 1 ? 's' : ''}`}
   </Span>
 )

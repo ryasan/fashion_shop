@@ -7,7 +7,7 @@ const Toast = styled.div`
   .toast {
     background: var(--dark);
     font-size: var(--font-size-m);
-    color: var(--off-white);
+    color: white;
     overflow: initial;
     position: relative;
     padding: 0 3rem;
@@ -25,7 +25,7 @@ const Toast = styled.div`
       border-right: 0;
     }
     .close-button {
-      fill: var(--off-white);
+      fill: white;
       position: absolute;
       right: 0;
       padding: 0.5rem;

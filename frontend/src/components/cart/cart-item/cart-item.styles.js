@@ -57,7 +57,7 @@ CartItem.Price = styled.div`
       height: 2.5rem;
       width: 2rem;
       background: var(--darker);
-      color: var(--off-white);
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;

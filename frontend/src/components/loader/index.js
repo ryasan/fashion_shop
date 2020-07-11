@@ -7,7 +7,7 @@ const selectedColor = color => {
     case 'red':
       return 'var(--red)'
     case 'white':
-      return 'var(--off-white)'
+      return 'white'
     case 'dark':
     default:
       return 'var(--dark)'

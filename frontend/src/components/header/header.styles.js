@@ -36,7 +36,7 @@ Header.NavItem = styled.li`
   align-items: center;
   cursor: pointer;
   position: relative;
-  color: var(--off-white);
+  color: white;
   width: 10rem;
   &:after {
     content: '';
@@ -73,7 +73,7 @@ Header.NavItem = styled.li`
     transition: color 0.2s;
   }
   svg {
-    fill: var(--off-white);
+    fill: white;
     transition: fill 0.2s;
   }
 `

@@ -17,7 +17,7 @@ const StyledRoot = css`
     --font-size-xs: 0.8rem;
     --font-size-s : 1.2rem;
     --font-size-m : 1.6rem;
-    --font_size_lg: 2rem;
+    --font-size-lg: 2rem;
     --max-width   : 118rem;
   }
 
@@ -36,7 +36,7 @@ const StyledHtml = css`
     margin: 0;
     box-sizing: border-box;
     font-size: 10px;
-    color: var(--off-white);
+    color: white;
   }
 
   @media ${device.mobileL} {

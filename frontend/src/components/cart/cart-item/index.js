@@ -47,7 +47,7 @@ const CartItemComponent = ({ cartItem }) => {
         <CartItem.Details>
           <Span modifiers={['font_size_m']}>{product.title}</Span>
           <Span modifiers={['gray_color', 'font_size_s']}>{`${availableSizes} | ${product.style}`}</Span>
-          <Span modifiers="gray_color">Quantity: <Span modifiers="off_white_color">{quantity}</Span></Span>
+          <Span modifiers="gray_color">Quantity: <Span modifiers="white_color">{quantity}</Span></Span>
         </CartItem.Details>
         <CartItem.Price>
           <Icon
