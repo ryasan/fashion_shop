@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { persistCache } from 'apollo-cache-persist'
 
-import LoaderComponent from '../components/loader'
+import Loader from '../components/loader'
 import { Mutation } from './local-resolvers'
 import { cartInitialState } from './cart/reducer'
 import { filtersInitialState } from './filters/reducer'
@@ -14,9 +14,9 @@ import { filtersInitialState } from './filters/reducer'
 const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fashion-shop-prod.herokuapp.com'
 
-const Loader = styled(LoaderComponent)`
-  width: 100%;
+const LoaderContainer = styled.div`
   margin-top: 15vh;
+  background: white;
 `
 
 const PersistApolloProvider = ({ children }) => {
@@ -45,7 +45,13 @@ const PersistApolloProvider = ({ children }) => {
     return () => {}
   }, [])
 
-  if (!client) return <Loader color="dark" />
+  if (!client) {
+    return (
+      <LoaderContainer>
+        <Loader color="dark" />
+      </LoaderContainer>
+    )
+  }
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 

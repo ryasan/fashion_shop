@@ -5,15 +5,7 @@ import { Link } from 'gatsby'
 import Product from './product.styles'
 import { formatPrice, getLargeImg } from '../../../utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
-import {
-  Button,
-  Image,
-  Small,
-  B,
-  Div as Price,
-  Hr as Divider,
-  H3 as Title
-} from '../../../elements'
+import { Button, Image, Small, B, Div as Price, Hr as Divider, H3 as Title } from '../../../elements'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
@@ -29,9 +21,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
 
   return (
     <Product>
-      {product.isFreeShipping && (
-        <Product.Special>Free Shipping</Product.Special>
-      )}
+      {product.isFreeShipping && <Product.Special>Free Shipping</Product.Special>}
       <Link to={detailsPage} state={{ product }}>
         <Product.Header>
           <Image src={image} />

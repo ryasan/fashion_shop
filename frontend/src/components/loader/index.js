@@ -1,32 +1,20 @@
 import React from 'react'
 
-import Loader, { Space, Planet, Circle, Satellite, Text } from './loader.styles'
+import Loader from './loader.styles'
 
-const selectedColor = color => {
+const selectColors = color => {
   switch (color) {
-    case 'red':
-      return 'var(--red)'
     case 'white':
-      return 'white'
+      return { borderOne: 'white', borderTwo: 'var(--dark)' }
     case 'dark':
     default:
-      return 'var(--dark)'
+      return { borderOne: 'var(--dark)', borderTwo: 'white' }
   }
 }
 
 const LoaderComponent = ({ className, color }) => {
-  const _color = selectedColor(color)
-  return (
-    <Loader className={className}>
-      <Space color={_color}>
-        <Planet>
-          <Circle color={_color} />
-        </Planet>
-        <Satellite color={_color} />
-      </Space>
-      <Text color={_color}>loading</Text>
-    </Loader>
-  )
+  const colors = selectColors(color)
+  return <Loader {...colors} className={className} />
 }
 
 export default LoaderComponent

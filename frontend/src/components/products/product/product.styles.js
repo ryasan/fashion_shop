@@ -4,7 +4,7 @@ const Product = styled.div`
   width: 100%;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
   position: relative;
-  a {
+  > a {
     text-decoration: none;
     color: white;
   }
@@ -22,7 +22,7 @@ Product.Special = styled.div`
 `
 
 Product.Header = styled.div`
-  height: 12.5rem;
+  height: 15.5rem;
   background: var(--red);
   background-size: cover;
   display: flex;
@@ -38,7 +38,7 @@ Product.Header = styled.div`
     background: var(--dark);
   }
   img {
-    width: 22rem;
+    width: 28rem;
     height: 40rem;
     object-fit: cover;
     position: relative;
@@ -49,7 +49,7 @@ Product.Header = styled.div`
 `
 
 Product.Offset = styled.div`
-  height: 29rem;
+  height: 25rem;
 `
 
 Product.Body = styled.div`
@@ -67,18 +67,18 @@ Product.Body = styled.div`
     background: red;
     width: 2rem;
   }
-  div {
+  > div {
     height: 5rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  b {
-    font-size: 2.5rem;
-  }
-  small {
-    font-size: 1.5rem;
+    b {
+      font-size: 2.5rem;
+    }
+    small {
+      font-size: 1.5rem;
+    }
   }
 `
 

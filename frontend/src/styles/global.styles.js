@@ -18,7 +18,7 @@ const StyledRoot = css`
     --font-size-s : 1.2rem;
     --font-size-m : 1.6rem;
     --font-size-lg: 2rem;
-    --max-width   : 118rem;
+    --max-width   : 140rem;
   }
 
   *,
