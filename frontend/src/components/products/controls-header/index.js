@@ -2,7 +2,7 @@ import React from 'react'
 
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
-import OrderBy from '../order-by'
+import OrderBy from '../../order-by'
 import { Span } from '../../../elements'
 
 const Count = ({ count }) => (
@@ -11,11 +11,19 @@ const Count = ({ count }) => (
   </Span>
 )
 
+const options = [
+  { name: 'Choose...', value: 'id_ASC' },
+  { name: 'Lowest to highest', value: 'price_ASC' },
+  { name: 'Highest to lowest', value: 'price_DESC' },
+  { name: 'Title ascending', value: 'title_ASC' },
+  { name: 'Title to descending', value: 'title_DESC' }
+]
+
 const ControlsHeaderComponent = ({ count, setOrderBy }) => (
   <ControlsHeader>
     <Filter />
     {typeof count === 'number' && <Count count={count} />}
-    <OrderBy setOrderBy={setOrderBy} />
+    <OrderBy setOrderBy={setOrderBy} options={options} />
   </ControlsHeader>
 )
 
