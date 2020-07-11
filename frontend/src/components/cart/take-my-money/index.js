@@ -5,6 +5,7 @@ import { navigate } from '@reach/router'
 
 import TakeMyMoney from './take-my-money.styles'
 import ErrorBoundary from '../../error-boundary'
+import Loader from '../../loader'
 import { toast } from '../../toast'
 import { Button } from '../../../elements'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
@@ -18,7 +19,7 @@ const stripeKey = `pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6d
 const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const client = useApolloClient()
   const { data: userData } = useCurrentUserQuery()
-  const [createOrder, { data: orderData, error: orderError }] = useCreateOrderMutation()
+  const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation()
   const [uploadCart, { error: uploadError }] = useUploadCartMutation()
   const me = userData && userData.me
   const isReady = me && cartItems.length > 0
@@ -43,7 +44,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
     })
     await createOrder({ variables: { token: res.id } })
   }
-  
+
   useEffect(() => {
     const order = orderData?.createOrder
     if (order) {
@@ -52,6 +53,8 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
       navigate(`/account/orders/${order.id}`, { state: { order } })
     }
   }, [orderData])
+
+  if (loading) return <Loader />
 
   return (
     <ErrorBoundary error={orderError || uploadError}>

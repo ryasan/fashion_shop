@@ -4,11 +4,11 @@ import Loader from './loader.styles'
 
 const selectColors = color => {
   switch (color) {
-    case 'white':
-      return { borderOne: 'white', borderTwo: 'var(--dark)' }
     case 'dark':
-    default:
       return { borderOne: 'var(--dark)', borderTwo: 'white' }
+    case 'white':
+    default:
+      return { borderOne: 'white', borderTwo: 'var(--dark)' }
   }
 }
 

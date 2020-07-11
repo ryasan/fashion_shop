@@ -11,7 +11,7 @@ import {
 } from '../../graphql/product/hooks'
 const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
-  const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
+  const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery()
   const { data, error, loading } = useProductsConnectionQuery({
     sizeFilters,
     freeShippingSelected,
