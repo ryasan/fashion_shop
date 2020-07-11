@@ -90,25 +90,25 @@ const Mutation = {
     return user
   },
   createOrder: async (parent, args, ctx, info) => {
-    // 1. query the current user and make sure they are signed in
     const { userId } = ctx.request
     if (!userId) throwError('You must be signed in to complete this order')
+
     const user = await ctx.db.query.user(
       { where: { id: userId } },
       '{ id email username cart { id quantity product { title price id description sku } } }'
     )
-    // 2. recalculate total price
+
     const amount = user.cart.reduce(
       (tally, cartItem) => tally + cartItem.product.price * cartItem.quantity,
       0
     )
-    // 3. create the stripe charge (turn token into $$$)
+
     const charge = await stripe.charges.create({
       amount,
       currency: 'USD',
       source: args.token
     })
-    // 4. convert the cart items to order items
+
     const orderItems = user.cart.map(cartItem => {
       const orderItem = {
         ...cartItem.product,
@@ -118,7 +118,7 @@ const Mutation = {
       delete orderItem.id
       return orderItem
     })
-    // 5. create the order
+
     const order = await ctx.db.mutation.createOrder({
       data: {
         total: charge.amount,
@@ -127,11 +127,11 @@ const Mutation = {
         user: { connect: { id: userId } }
       }
     })
-    // 6. clean up - clear users cart, delete cart items
+
     await ctx.db.mutation.deleteManyCartItems({
       where: { user: { id: userId } }
     })
-    // 7. return the order to the client
+
     return order
   }
 }
