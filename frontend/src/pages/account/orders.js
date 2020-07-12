@@ -21,7 +21,7 @@ OrderDetails.propTypes = {
   location: PropTypes.object
 }
 
-const OrderList = ({ location }) => console.log(location) || (
+const OrderList = ({ location }) => (
   <AccountLayout>
     <SEO title="Orders" />
     <OrderListComponent me={location?.state?.me} />

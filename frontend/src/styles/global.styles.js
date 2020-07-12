@@ -58,6 +58,7 @@ const StyledHtml = css`
   h3 { font-size: 3rem; }
   h4 { font-size: 2rem; }
   p  { font-size: var(--font-size-m); }
+  a  { text-decoration: none; }
   button { border: none; }
 
   ::-webkit-scrollbar {
