@@ -126,7 +126,7 @@ const Mutation = {
         orderItems: { create: orderItems },
         user: { connect: { id: userId } }
       }
-    })
+    }, info)
 
     await ctx.db.mutation.deleteManyCartItems({
       where: { user: { id: userId } }

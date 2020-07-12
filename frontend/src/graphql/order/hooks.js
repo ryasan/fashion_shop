@@ -11,5 +11,5 @@ export const useCreateOrderMutation = () => {
 }
 
 export const useOrdersQuery = ({ variables }) => {
-  return useQuery(ORDERS_QUERY, { variables })
+  return useQuery(ORDERS_QUERY, { variables, fetchPolicy: 'network-only' })
 }

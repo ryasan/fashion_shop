@@ -17,7 +17,7 @@ const options = [
 ]
 
 const OrderListComponent = ({ me }) => {
-  const [orderBy, setOrderBy] = useState(null)
+  const [orderBy, setOrderBy] = useState('createdAt_DESC')
 
   const variables = {
     where: { user: { id: me.id } },

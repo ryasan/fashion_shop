@@ -46,7 +46,7 @@ const OrderDetailsComponent = ({ order }) => {
 OrderDetailsComponent.propTypes = {
   order: PropTypes.shape({
     chargeId: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
+    createdAt: PropTypes.string,
     updatedAt: PropTypes.string,
     id: PropTypes.string.isRequired,
     orderItems: PropTypes.arrayOf(PropTypes.object).isRequired,

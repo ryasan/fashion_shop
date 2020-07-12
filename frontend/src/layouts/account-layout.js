@@ -11,6 +11,10 @@ const AccountLayout = ({ children }) => {
   const { data, loading, error } = useCurrentUserQuery()
   const me = data?.me
 
+  const isActive = ({ isPartiallyCurrent }) => {
+    return isPartiallyCurrent ? { className: 'active' } : {}
+  }
+
   return (
     <Account>
       <Account.Inner>
@@ -24,7 +28,11 @@ const AccountLayout = ({ children }) => {
                   <Link to="/account/" activeClassName="active">
                     Profile
                   </Link>
-                  <Link to="/account/orders/" state={{ me }} activeClassName="active">
+                  <Link
+                    to="/account/orders/"
+                    state={{ me }}
+                    activeClassName="active"
+                    getProps={isActive}>
                     Orders
                   </Link>
                 </Tabs.Links>
