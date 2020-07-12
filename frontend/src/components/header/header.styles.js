@@ -38,6 +38,10 @@ Header.NavItem = styled.li`
   position: relative;
   color: white;
   width: 10rem;
+  @media ${device.mobileL} {
+    width: 100%;
+    margin: 0;
+  }
   &:after {
     content: '';
     position: absolute;
@@ -56,10 +60,6 @@ Header.NavItem = styled.li`
     &:after {
       width: 100%;
     }
-  }
-  @media ${device.mobileL} {
-    width: 100%;
-    margin: 0;
   }
   a {
     width: 100%;

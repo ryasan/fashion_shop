@@ -67,8 +67,8 @@ const HeaderComponent = () => {
           </Header.NavItem>
         )}
         {me && (
-          <Header.NavItem className="account">
-            <Icon name="account-circle" onClick={goToAccountPage} />
+          <Header.NavItem onClick={goToAccountPage}>
+            <Icon name="account-circle" />
           </Header.NavItem>
         )}
       </Header.Nav>
