@@ -5,16 +5,20 @@ import Loader from './loader.styles'
 const selectColors = color => {
   switch (color) {
     case 'dark':
-      return { borderOne: 'var(--dark)', borderTwo: 'white' }
+      return { primary: 'var(--dark)', secondary: 'white' }
     case 'white':
     default:
-      return { borderOne: 'white', borderTwo: 'var(--dark)' }
+      return { primary: 'white', secondary: 'var(--dark)' }
   }
 }
 
 const LoaderComponent = ({ className, color }) => {
   const colors = selectColors(color)
-  return <Loader {...colors} className={className} />
+  return (
+    <Loader {...colors} className={className}>
+      <Loader.Dot />
+    </Loader>
+  )
 }
 
 export default LoaderComponent
