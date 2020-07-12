@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Product = styled.div`
   width: 100%;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
+  box-shadow: var(--box-shadow);
   position: relative;
   > a {
     text-decoration: none;

@@ -7,7 +7,7 @@ const Order = styled.li`
   width: 100%;
   height: 32rem;
   margin-bottom: 4.7rem;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shadow);
   cursor: pointer;
 `
 

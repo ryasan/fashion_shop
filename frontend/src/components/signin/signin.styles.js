@@ -10,7 +10,7 @@ const Signin = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 3em;
-  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shadow);
   small {
     font-size: var(--font-size-s);
     width: 100%;
