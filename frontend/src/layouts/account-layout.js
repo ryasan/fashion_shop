@@ -21,10 +21,10 @@ const AccountLayout = ({ children }) => {
             ) : (
               <Tabs>
                 <Tabs.Links>
-                  <Link to="/account" activeClassName="active">
+                  <Link to="/account/" activeClassName="active">
                     Profile
                   </Link>
-                  <Link to="/account/orders" state={{ me }} activeClassName="active">
+                  <Link to="/account/orders/" state={{ me }} activeClassName="active">
                     Orders
                   </Link>
                 </Tabs.Links>

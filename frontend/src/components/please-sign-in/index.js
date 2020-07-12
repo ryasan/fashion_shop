@@ -16,7 +16,7 @@ const PleaseSigninComponent = ({ children }) => {
         <P modifiers={['white_color', 'font_size_m']}>
           Please sign in before continuing
         </P>
-        <Button onClick={() => navigate('/signin')}>Signin</Button>
+        <Button onClick={() => navigate('/signin/')}>Signin</Button>
       </PleaseSignin>
     )
   }

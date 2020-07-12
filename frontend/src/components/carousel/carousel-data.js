@@ -17,7 +17,7 @@ const carouselSlides = [
     element: {
       tag: 'button',
       text: 'SHOP',
-      to: 'shop',
+      to: '/shop/',
       icon: 'shopping-bag',
       modifiers: [redButton, transparentButton]
     }

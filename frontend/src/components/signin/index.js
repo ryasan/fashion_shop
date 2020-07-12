@@ -104,7 +104,7 @@ const SigninPage = ({ className }) => {
       })
     }
 
-    if (authData) navigate('/shop')
+    if (authData) navigate('/shop/')
   }, [authData])
 
   const toggleSignup = () => {

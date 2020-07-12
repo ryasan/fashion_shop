@@ -50,7 +50,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
     if (order) {
       client.writeData({ data: cartInitialState })
       toast('Thank you! Your order is being processed')
-      navigate(`/account/orders/${order.id}`, { state: { order } })
+      navigate(`/account/orders/${order.id}/`, { state: { order } })
     }
   }, [orderData])
 

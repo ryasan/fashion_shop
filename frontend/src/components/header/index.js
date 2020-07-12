@@ -28,7 +28,7 @@ const HeaderComponent = () => {
   }, [signoutData])
 
   const goToAccountPage = () => {
-    navigate('/account')
+    navigate('/account/')
   }
 
   const handleSignout = () => {
@@ -54,7 +54,7 @@ const HeaderComponent = () => {
           <Link to="/">HOME</Link>
         </Header.NavItem>
         <Header.NavItem>
-          <Link to="/shop">SHOP</Link>
+          <Link to="/shop/">SHOP</Link>
         </Header.NavItem>
         {me && (
           <Header.NavItem>
@@ -63,7 +63,7 @@ const HeaderComponent = () => {
         )}
         {!me && (
           <Header.NavItem>
-            <Link to="/signin">SIGNIN</Link>
+            <Link to="/signin/">SIGNIN</Link>
           </Header.NavItem>
         )}
         {me && (
