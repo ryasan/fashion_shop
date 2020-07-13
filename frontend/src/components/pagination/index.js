@@ -47,8 +47,8 @@ const PaginationComponent = ({
 
 PaginationComponent.propTypes = {
   children: PropTypes.object.isRequired,
-  productsCount: PropTypes.object.isRequired,
-  productsConnection: PropTypes.object.isRequired,
+  count: PropTypes.number.isRequired,
+  pageInfo: PropTypes.object.isRequired,
   setSkip: PropTypes.func.isRequired
 }
 

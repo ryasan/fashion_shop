@@ -8,7 +8,7 @@ const Orders = styled.div`
 `
 
 Orders.List = styled.ul`
-  margin-top: 2rem;
+  margin-top: 5rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 25.7rem);

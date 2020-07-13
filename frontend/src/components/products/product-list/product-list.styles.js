@@ -8,7 +8,7 @@ const ProductList = styled.ul`
   justify-content: center;
   align-items: center;
   flex: 1;
-  margin: 3rem 0;
+  margin: 5rem 0;
 `
 
 export default ProductList

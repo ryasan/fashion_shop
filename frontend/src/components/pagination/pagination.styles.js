@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const Pagination = styled.div`
   width: 100%;
   font-size: var(--font-size-lg);
+  margin: 5rem 0;
 `
 
 Pagination.PageControls = styled.div`

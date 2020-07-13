@@ -8,7 +8,6 @@ const ControlsHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5rem;
   @media ${device.laptop} {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;

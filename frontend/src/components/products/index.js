@@ -25,9 +25,9 @@ const ProductsComponent = () => {
     first: perPage
   })
 
-  const count = data?.productsCount?.aggregate?.count
+  const count = data?.productsCount.aggregate.count
   const products = data?.productsConnection.edges.map(e => e.node)
-  console.log(data)
+
   return (
     <Products>
       <ControlsHeader count={count} setOrderBy={setOrderBy} />
@@ -37,7 +37,6 @@ const ProductsComponent = () => {
             <Loader color="white" />
           ) : (
             <Pagination
-              {...data}
               pageInfo={data.productsConnection.pageInfo}
               count={count}
               skip={skip}
