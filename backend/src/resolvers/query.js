@@ -7,8 +7,8 @@ const isInStock = (sizes, filters) => {
 
 const Query = {
   orders: forwardTo('db'),
+  ordersConnection: forwardTo('db'),
   products: forwardTo('db'),
-  // productsConnection: forwardTo('db'),
   productsConnection: async (parent, args, ctx, info) => {
     const { sizeFilters, freeShippingSelected } = args
     const { edges } = await ctx.db.query.productsConnection({}, info)

@@ -11,6 +11,12 @@ type Query {
     skip: Int
   ): ProductConnection!
   orders(where: OrderWhereInput, orderBy: OrderOrderByInput): [Order]!
+  ordersConnection(
+    where: OrderWhereInput
+    orderBy: OrderOrderByInput
+    skip: Int
+    first: Int
+  ): OrderConnection!
 }
 
 type Mutation {
