@@ -8,13 +8,15 @@ const isInStock = (sizes, filters) => {
 const Query = {
   orders: forwardTo('db'),
   products: forwardTo('db'),
+  // productsConnection: forwardTo('db'),
   productsConnection: async (parent, args, ctx, info) => {
     const { sizeFilters, freeShippingSelected } = args
     const { edges } = await ctx.db.query.productsConnection({}, info)
 
-    const inStock = edges.filter(({ node }) => {
+    const inStock = (edges || []).filter(({ node }) => {
       return isInStock(node.availableSizes, sizeFilters)
     })
+
     const inStockProductIds = inStock.map(({ node }) => node.id)
 
     const where = {
