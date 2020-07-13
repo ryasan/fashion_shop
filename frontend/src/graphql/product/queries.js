@@ -15,25 +15,29 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
     $freeShippingSelected: Boolean
     $sizeFilters: [String]
     $orderBy: ProductOrderByInput
+    $first: Int
+    $skip: Int
   ) {
     productsConnection(
       freeShippingSelected: $freeShippingSelected
       sizeFilters: $sizeFilters
       orderBy: $orderBy
+      first: $first
+      skip: $skip
     ) {
       edges {
         node {
           ...ProductFragment
         }
       }
-      aggregate {
-        count
-      }
       pageInfo {
         hasNextPage
         hasPreviousPage
-        startCursor
-        endCursor
+      }
+    }
+    productsCount: productsConnection {
+      aggregate {
+        count
       }
     }
   }

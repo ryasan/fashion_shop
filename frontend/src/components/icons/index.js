@@ -39,7 +39,7 @@ const Icon = props => {
     case 'close':
       return <Close {...props} />
     case 'key':
-      return <Key />
+      return <Key {...props} />
   }
 }
 

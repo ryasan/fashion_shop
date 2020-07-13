@@ -18,13 +18,15 @@ const arrowStyles = css`
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transform: translateY(-50%);
-  fill: var(--darker);
   padding: 0.7rem;
   opacity: ${props => (props.isHovering ? 1 : 0)};
   transition: all 0.3s;
   cursor: pointer;
   svg {
     position: relative;
+    width: 100%;
+    height: 100%;
+    color: var(--dark);
   }
 `
 
@@ -32,7 +34,7 @@ const PrevButton = styled.div`
   ${arrowStyles};
   left: ${props => (props.isHovering ? '3.5rem' : '-3.5rem')};
   svg {
-    right: 2px;
+    right: 0.2rem;
   }
 `
 
@@ -40,7 +42,7 @@ const NextButton = styled.div`
   ${arrowStyles};
   right: ${props => (props.isHovering ? '3.5rem' : '-3.5rem')};
   svg {
-    left: 2px;
+    left: 0.2rem;
   }
 `
 

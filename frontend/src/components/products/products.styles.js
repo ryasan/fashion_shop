@@ -5,13 +5,11 @@ const Products = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `
 
 Products.Container = styled.div`
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 `
 
 export default Products
