@@ -3,8 +3,16 @@ import styled from 'styled-components'
 const Orders = styled.div`
   padding-top: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  flex-grow: 1;
+`
+
+Orders.Inner = styled.div`
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 Orders.List = styled.ul`

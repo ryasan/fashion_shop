@@ -4,6 +4,7 @@ const Account = styled.div`
   display: flex;
   justify-content: center;
   padding: 5rem;
+  flex-grow: 1;
 `
 
 Account.Inner = styled.div`
@@ -11,7 +12,11 @@ Account.Inner = styled.div`
   width: 100%;
 `
 
-const Tabs = styled.div``
+const Tabs = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`
 
 Tabs.Links = styled.div`
   border-bottom: 1px solid white;
@@ -34,7 +39,11 @@ Tabs.Links = styled.div`
   }
 `
 
-Tabs.Content = styled.div``
+Tabs.Content = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+`
 
 export { Tabs }
 export default Account

@@ -33,7 +33,7 @@ OrderList.propTypes = {
 }
 
 const OrdersPage = () => (
-  <Router>
+  <Router style={{ flexGrow: 1, display: 'flex' }}>
     <OrderList path="/account/orders/" />
     <OrderDetails path="/account/orders/:id" />
   </Router>

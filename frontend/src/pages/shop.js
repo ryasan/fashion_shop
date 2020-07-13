@@ -31,7 +31,7 @@ const ShopProducts = () => {
 
 const ShopPage = () => {
   return (
-    <Router>
+    <Router style={{ flexGrow: 1, display: 'flex' }}>
       <ShopProducts path="/shop" />
       <ShopProductDetails path="/shop/:id" />
     </Router>

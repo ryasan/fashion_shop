@@ -29,7 +29,7 @@ const PaginationComponent = ({
       <PageButton disabled={currentPage === 1} onClick={handlePrevClick}>
         <Icon name="left-arrow" />
       </PageButton>
-      page: {currentPage} / {pages}
+      {currentPage} / {pages} pages
       <PageButton disabled={!hasNextPage} onClick={handleNextClick}>
         <Icon name="right-arrow" />
       </PageButton>

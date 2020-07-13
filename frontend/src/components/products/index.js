@@ -24,7 +24,6 @@ const ProductsComponent = () => {
     skip,
     first: perPage
   })
-
   const count = data?.productsCount.aggregate.count
   const products = data?.productsConnection.edges.map(e => e.node)
 
