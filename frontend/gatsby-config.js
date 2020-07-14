@@ -38,12 +38,12 @@ module.exports = {
           theme: false
         }
       }
-    },
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve('./src/layouts/global-layout.js')
-      },
-    },
+    }
+    // {
+    //   resolve: `gatsby-plugin-layout`,
+    //   options: {
+    //     component: require.resolve('./src/layouts/global-layout.js')
+    //   },
+    // },
   ]
 }

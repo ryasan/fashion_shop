@@ -1,36 +1,61 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
+import Layout from '../layouts/global-layout'
 import SEO from '../components/seo'
-import Home, { BgImage } from '../styles/home-page.styles'
+import Icon from '../components/icons'
+import Home, { Foreground, BgImage, Links } from '../styles/home-page.styles'
+import { Link, scrollSpy } from 'react-scroll'
+import { H1 } from '../elements'
 
-const HomePage = () => (
-  <>
-    <SEO title="Home" />
-    <Home>
-      <div className="mouse"></div>
-      <Home.App>
-        <BgImage>
-          <BgImage.Img1 className="app__bgimg-image app__bgimg-image--1"></BgImage.Img1>
-          <BgImage.Img2 className="app__bgimg-image app__bgimg-image--2"></BgImage.Img2>
-        </BgImage>
-        <div className="app__img">
-          <img
-            // onmousedown="return false"
-            src={require('../images/white-test-4.png')}
-            alt="city"
-          />
-        </div>
-      </Home.App>
-      <div className="pages">
-        <ul className="pages__list">
-          <li
-            data-target="1"
-            className="pages__item pages__item--1 page__item-active"></li>
-          <li data-target="2" className="pages__item pages__item--2"></li>
-        </ul>
-      </div>
-    </Home>
-  </>
-)
+const PageLinks = () => {
+  return (
+    <Links>
+      <Link
+        to="top"
+        activeClass="active"
+        className="scroll-link one"
+        smooth
+        spy>
+        1
+      </Link>
+      <Link
+        to="section-2"
+        activeClass="active"
+        className="scroll-link two"
+        smooth
+        spy>
+        2
+      </Link>
+    </Links>
+  )
+}
+
+const HomePage = () => {
+  useEffect(() => {
+    scrollSpy.update()
+  }, [])
+
+  return (
+    <Layout id="top">
+      <Home>
+        <SEO title="Home" />
+        <Foreground>
+          <Foreground.Img src={require('../images/foreground-img.svg')} />
+        </Foreground>
+        <Home.Section id="section-1" />
+        {/* <Home.Section id="section-fill" /> */}
+        <Home.Section id="section-2" />
+        <Home.Text1>
+          <div className="app__text-line app__text-line--1">
+            <Icon name="logo-royal" />
+          </div>
+          <H1 className="app__text-line app__text-line--4">Lorem Ipsum</H1>
+          <div className="app__text-line app__text-line--3">Shop</div>
+        </Home.Text1>
+        <PageLinks />
+      </Home>
+    </Layout>
+  )
+}
 
 export default HomePage

@@ -7,8 +7,8 @@ import Footer from '../components/footer'
 import Cart from '../components/cart'
 import Toast from '../components/toast'
 
-const LayoutComponent = ({ children }) => (
-  <Layout>
+const LayoutComponent = ({ children, id }) => (
+  <Layout id={id}>
     <Toast />
     <Header />
     <Layout.Main>{children}</Layout.Main>
