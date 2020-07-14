@@ -4,7 +4,7 @@ import { device } from '../../../utils'
 import { redButton, redInput } from '../../../elements'
 
 const Slide = styled.div`
-  height: 50rem;
+  height: calc(100vh - 12.3rem);
   display: flex;
   align-items: center;
   @media ${device.mobileL} {
@@ -51,6 +51,7 @@ Element.InputInner = styled.div`
 Element.ButtonInner = styled.div`
   display: flex;
   justify-content: flex-end;
+  transform: translateX(5rem);
   button {
     ${redButton};
     padding: 1rem 3rem;
@@ -58,6 +59,7 @@ Element.ButtonInner = styled.div`
     align-items: center;
     svg {
       position: relative;
+      fill: white;
     }
   }
 `

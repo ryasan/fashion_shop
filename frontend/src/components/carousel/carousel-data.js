@@ -1,14 +1,15 @@
-import { redButton, transparentButton, redInput } from '../../elements'
+import { redButton, transparentButton } from '../../elements'
 
 const carouselSlides = [
   {
     title: 'Lorem Ipsum 1',
     image: require('../../images/logo-royal-banner.svg'),
     element: {
-      tag: 'input',
-      text: 'Search for an item',
-      icon: 'magnifier',
-      modifiers: redInput
+      tag: 'button',
+      text: 'SIGN IN',
+      to: '/signin/',
+      icon: 'account-circle',
+      modifiers: [redButton, transparentButton]
     }
   },
   {

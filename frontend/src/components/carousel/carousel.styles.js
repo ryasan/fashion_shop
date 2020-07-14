@@ -5,6 +5,7 @@ import Icon from '../icons'
 
 const Carousel = styled.div`
   overflow-x: hidden;
+  flex: 1;
 `
 
 Carousel.Slider = Slider
