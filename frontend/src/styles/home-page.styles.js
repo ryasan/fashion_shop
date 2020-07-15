@@ -1,73 +1,144 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
+import { device } from '../utils'
 
 const Home = styled.div`
-  flex-grow: 1;
-  outline: 1px solid red;
-  * {
-    outline: 1px solid red;
-  }
-  position: relative;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
   height: 100vh;
-  background-image: -webkit-gradient(
-    linear,
-    right top,
-    left bottom,
-    from(#f2e3c6),
-    to(#a7a1a5)
-  );
-  background-image: linear-gradient(to left bottom, #f2e3c6 0%, #a7a1a5 100%);
-  overflow: hidden;
 `
 
-Home.App = styled.div`
-  position: relative;
-  min-width: 850px;
-  height: 540px;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-`
-
-const BgImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: -2.5%;
-  width: 105%;
+const MotionBgImage = styled(motion.div)`
   height: 100%;
-  -webkit-transition: -webkit-transform 3.5s 770ms;
-  transition: -webkit-transform 3.5s 770ms;
-  transition: transform 3.5s 770ms;
-  transition: transform 3.5s 770ms, -webkit-transform 3.5s 770ms;
-`
-
-BgImage.Img = styled.div`
-  position: absolute;
   width: 100%;
+  background: url(${require('../images/home-bg.svg')}) center center no-repeat;
+  background-size: cover;
+  position: absolute;
+  filter: grayscale(1);
+  @media ${device.mobileL} {
+    background-image: url(${require('../images/logo-jersey-banner.svg')});
+    background-position-y: top;
+    background-size: 200%;
+    filter: initial;
+  }
+`
+
+const Foreground = styled(motion.div)`
   height: 100%;
-  top: 0;
-  left: 0;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: #16141a;
+  }
+  @media ${device.mobileL} {
+    opacity: 0;
+  }
 `
 
-BgImage.Img1 = styled(BgImage.Img)`
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/537051/city22222.jpg')
-    center center no-repeat;
-  background-size: cover;
+Foreground.One = styled.div`
+  height: 100%;
+  width: 100%;
+  background: url(${require('../images/foreground-img-1.svg')}) center
+    center/cover no-repeat;
 `
 
-BgImage.Img2 = styled(BgImage.Img)`
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/537051/forest.jpg')
-    center center no-repeat;
-  background-size: cover;
-  opacity: 0;
-  -webkit-transition: opacity 0ms 1300ms;
-  transition: opacity 0ms 1300ms;
-  will-change: opacity;
+Foreground.Two = styled.div`
+  height: 100%;
+  background: url(${require('../images/foreground-img-2.svg')}) center
+    center/cover no-repeat;
 `
 
-export { BgImage }
+const Overlay = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 0, 0, 0.5);
+  @media ${device.mobileL} {
+    opacity: 0;
+  }
+`
+
+const Sidebar = styled(motion.div)`
+  width: 40rem;
+  height: 100%;
+  background: var(--red);
+  position: absolute;
+  z-index: 10;
+  padding: 12% 5%;
+  overflow: hidden;
+  @media ${device.mobileL} {
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+  }
+`
+
+Sidebar.List = styled.ul`
+  a {
+    text-decoration: none;
+    color: white;
+  }
+`
+
+Sidebar.Text = styled.p`
+  position: absolute;
+  bottom: 25%;
+  left: 4rem;
+  padding-right: 7%;
+  font-size: var(--font-size-lg);
+`
+
+const MotionListItem = styled(motion.li)`
+  margin-bottom: 5rem;
+  font-size: 3rem;
+  border-bottom: 0.2rem solid white;
+  position: relative;
+  padding-left: 1rem;
+  cursor: pointer;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: white;
+    -webkit-backface-visibility: hidden;
+  }
+  &:before {
+    transform: rotate(-25deg);
+    bottom: -2rem;
+    right: -0.5rem;
+    height: 2rem;
+    width: 0.2rem;
+  }
+  &:after {
+    bottom: -2rem;
+    right: -0.9rem;
+    height: 0.2rem;
+    width: 2rem;
+  }
+`
+
+const MotionLogo = styled(motion.div)`
+  width: 50rem;
+  height: 50rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`
+
+export {
+  Foreground,
+  Overlay,
+  Sidebar,
+  MotionBgImage,
+  MotionListItem,
+  MotionLogo
+}
 export default Home

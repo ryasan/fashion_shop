@@ -5,7 +5,7 @@ const OrderBy = styled.div`
     margin-left: 1rem;
     height: 3rem;
     cursor: pointer;
-    border: 1px solid white;
+    border: 0.1rem solid white;
     background: var(--dark);
     color: white;
     outline-color: transparent;

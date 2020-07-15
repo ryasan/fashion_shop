@@ -12,7 +12,7 @@ export const Input = buildStyledComponent({
 
 export const redInput = css`
   font-size: var(--font-size-m);
-  border: 1px solid var(--red);
+  border: 0.1rem solid var(--red);
   outline-color: var(--red);
   padding: 1rem 1rem 1rem 4.5rem;
   &:disabled {

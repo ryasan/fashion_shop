@@ -26,7 +26,7 @@ Tabs.Links = styled.div`
     padding: 1rem;
     color: white;
     background: var(--dark);
-    border: 1px solid white;
+    border: 0.1rem solid white;
     border-left: none;
     display: inline-block;
     transform: translateY(1px);
