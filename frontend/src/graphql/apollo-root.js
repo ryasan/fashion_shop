@@ -15,7 +15,10 @@ const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fashion-shop-prod.herokuapp.com'
 
 const LoaderContainer = styled.div`
-  margin-top: 15vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: white;
 `
 
