@@ -9,18 +9,25 @@ const Home = styled.div`
 `
 
 const MotionBgImage = styled(motion.div)`
-  height: 90.5%;
-  width: 90.5%;
+  height: 100%;
+  width: 100%;
   background: url(${require('../images/home-bg.svg')}) center center no-repeat;
-  background-color: rgb(224,228,231);
+  background-color: rgb(224, 228, 231);
   position: absolute;
-  right: 4.5%;
-  filter: grayscale(1);
+  overflow: hidden;
   @media ${device.mobileL} {
     background-image: url(${require('../images/logo-jersey-banner.svg')});
     background-position-y: top;
     background-size: 200%;
     filter: initial;
+  }
+`
+
+MotionBgImage.Img = styled(motion.img)`
+  width: 100%;
+  filter: grayscale(1);
+  @media ${device.mobileL} {
+    opacity: 0;
   }
 `
 
@@ -85,7 +92,7 @@ Sidebar.List = styled.ul`
   }
 `
 
-Sidebar.Text = styled.p`
+Sidebar.Text = styled(motion.p)`
   position: absolute;
   bottom: 25%;
   left: 4rem;
@@ -100,25 +107,25 @@ const MotionListItem = styled(motion.li)`
   position: relative;
   padding-left: 1rem;
   cursor: pointer;
-  &:before,
-  &:after {
+  width: 80%;
+  transition: width 0.1s;
+  transition-delay: 0.1s;
+  &:before {
     content: '';
     position: absolute;
     background: white;
     -webkit-backface-visibility: hidden;
-  }
-  &:before {
-    transform: rotate(-25deg);
-    bottom: -2rem;
-    right: -0.5rem;
-    height: 2rem;
+    bottom: 0;
+    right: 0;
     width: 0.2rem;
+    height: 1rem;
+    transition: height 0.1s;
   }
-  &:after {
-    bottom: -2rem;
-    right: -0.9rem;
-    height: 0.2rem;
-    width: 2rem;
+  &:hover {
+    width: 60%;
+    &:before {
+      height: 0;
+    }
   }
 `
 
@@ -126,14 +133,46 @@ const MotionLogo = styled(motion.div)`
   width: 50rem;
   height: 50rem;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 20%;
+  left: 40%;
   transform: translate(-50%, -50%);
   z-index: 1;
   svg {
     width: 100%;
     height: 100%;
   }
+  @media ${device.laptop} {
+    left: 50rem;
+  }
+`
+
+const SocialMedia = styled(motion.div)`
+  position: absolute;
+  bottom: 5rem;
+  right: 30rem;
+`
+
+const MotionIcon = styled(motion.div)`
+  color: var(--red);
+  display: inline-block;
+  svg {
+    height: 5rem;
+    width: 5rem;
+    cursor: pointer;
+    margin-left: 2rem;
+  }
+`
+
+const SpecialOffer = styled(motion.div)`
+  background: var(--red);
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-s);
+  border-radius: 5rem;
 `
 
 export {
@@ -142,6 +181,9 @@ export {
   Sidebar,
   MotionBgImage,
   MotionListItem,
-  MotionLogo
+  MotionLogo,
+  SocialMedia,
+  MotionIcon,
+  SpecialOffer
 }
 export default Home

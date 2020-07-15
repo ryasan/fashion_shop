@@ -12,6 +12,9 @@ import ShoppingBag from './shopping-bag'
 import Close from './close'
 import Account from './account'
 import Key from './key'
+import Twitter from './twitter'
+import Instagram from './instagram'
+import Facebook from './facebook'
 
 const Icon = props => {
   switch (props.name) {
@@ -40,6 +43,12 @@ const Icon = props => {
       return <Close {...props} />
     case 'key':
       return <Key {...props} />
+    case 'facebook':
+      return <Facebook {...props} />
+    case 'twitter':
+      return <Twitter />
+    case 'instagram':
+      return <Instagram />
   }
 }
 
