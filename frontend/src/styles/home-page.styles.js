@@ -4,14 +4,17 @@ import { device } from '../utils'
 
 const Home = styled.div`
   height: 100vh;
+  background: #dee2e5;
+  overflow: hidden;
 `
 
 const MotionBgImage = styled(motion.div)`
-  height: 100%;
-  width: 100%;
+  height: 90.5%;
+  width: 90.5%;
   background: url(${require('../images/home-bg.svg')}) center center no-repeat;
-  background-size: cover;
+  background-color: rgb(224,228,231);
   position: absolute;
+  right: 4.5%;
   filter: grayscale(1);
   @media ${device.mobileL} {
     background-image: url(${require('../images/logo-jersey-banner.svg')});

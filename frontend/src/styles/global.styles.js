@@ -39,7 +39,6 @@ const StyledHtml = css`
     box-sizing: border-box;
     font-size: 10px;
     color: white;
-    overflow: hidden;
   }
 
   @media ${device.mobileL} {
