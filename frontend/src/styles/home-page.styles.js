@@ -19,13 +19,11 @@ const MotionBgImage = styled(motion.div)`
     background-image: url(${require('../images/logo-jersey-banner.svg')});
     background-position-y: top;
     background-size: 200%;
-    filter: initial;
   }
 `
 
 MotionBgImage.Img = styled(motion.img)`
   width: 100%;
-  filter: grayscale(1);
   @media ${device.mobileL} {
     opacity: 0;
   }
@@ -172,7 +170,9 @@ const SpecialOffer = styled(motion.div)`
   transform: translateX(-50%);
   padding: 0.5rem 1rem;
   font-size: var(--font-size-s);
-  border-radius: 5rem;
+  border-radius: 0.3rem;
+  width: 100%;
+  text-align: center;
 `
 
 export {

@@ -50,10 +50,10 @@ const SidebarComponent = () => (
   <Sidebar {...slideInLeft}>
     <Sidebar.List>
       <Link to="/shop/">
-        <MotionListItem>Shop</MotionListItem>
+        <MotionListItem {...fadeInUp}>Shop</MotionListItem>
       </Link>
       <Link to="/signin/">
-        <MotionListItem {...fadeInUp2}>Signin</MotionListItem>
+        <MotionListItem {...fadeInUp2}>Sign in</MotionListItem>
       </Link>
     </Sidebar.List>
     <Sidebar.Text {...slideInLeft} transition={{ delay: 1.9 }}>
@@ -67,7 +67,7 @@ const socials = ['facebook', 'instagram', 'twitter']
 const SocialMediaIcons = () => (
   <SocialMedia>
     {socials.map((social, i) => (
-      <MotionIcon key={i} {...fadeInUp} transition={{ delay: i / 3 + 1.9 }}>
+      <MotionIcon key={i} {...fadeInUp} transition={{ delay: i / 3 + 2.2 }}>
         <Icon name={social} />
       </MotionIcon>
     ))}
@@ -94,7 +94,7 @@ const HomePage = () => {
             <B>SPECIAL OFFER:</B> Get 50% Off + FREE Shipping - Offer Ends
             Tomorrow ({tomorrow})
           </SpecialOffer>
-          <MotionLogo {...fadeInUp}>
+          <MotionLogo {...fadeInUp} transition={{ delay: 1 }}>
             <Icon name="logo-jersey" />
           </MotionLogo>
           <SocialMediaIcons />
