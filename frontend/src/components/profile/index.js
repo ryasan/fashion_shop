@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import SEO from '../../components/seo'
 import ErrorBoundary from '../../components/error-boundary'
-import Loader from '../../components/loader/loader.styles'
+import Loader from '../../components/loader'
 import Profile from './profile.styles'
 import { useDeleteMeMutation, useCurrentUserQuery } from '../../graphql/user/hooks'
 import { P, Button } from '../../elements'
@@ -24,18 +24,18 @@ const ProfileComponent = () => {
     if (delData) toast(delData.deleteMe.message)
   }, [delData])
 
-  if (userLoading || delLoading) {
-    return <Loader color="white" />
-  }
-
   return (
     <Profile>
-      <SEO title={`Profile | ${me.username}`} />
-      <ErrorBoundary error={userError || delError}>
-        <P modifiers="white_color">email: {me.email}</P>
-        <P modifiers="white_color">username: {me.username}</P>
-        <Button onClick={handleDelete}>Delete Account</Button>
-      </ErrorBoundary>
+      <SEO title={`Profile | ${me?.username || 'Loading...'}`} />
+      {userLoading || delLoading ? (
+        <Loader color="white" />
+      ) : (
+        <ErrorBoundary error={userError || delError}>
+          <P modifiers="white_color">email: {me.email}</P>
+          <P modifiers="white_color">username: {me.username}</P>
+          <Button onClick={handleDelete}>Delete Account</Button>
+        </ErrorBoundary>
+      )}
     </Profile>
   )
 }
