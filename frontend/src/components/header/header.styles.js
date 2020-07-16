@@ -44,19 +44,19 @@ Header.NavItem = styled.li`
   }
   &:after {
     content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
+    height: 0.2rem;
     background: var(--red);
+    width: 0;
+    position: absolute;
+    left: 50%;
     bottom: 0;
-    left: 0;
-    transition: width 0.2s ease-out;
+    transform: translateX(-50%);
+    transition: width 0.4s;
+    transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
   }
-  &:hover {
-    color: var(--red);
-    svg {
-      fill: var(--red);
-    }
+  &:hover,
+  &:focus {
+    outline: none;
     &:after {
       width: 100%;
     }
