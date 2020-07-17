@@ -34,6 +34,8 @@ type Mutation {
     where: ProductWhereUniqueInput!
   ): Product
   createOrder(token: String!): Order!
+  requestReset(email: String!): SuccessMessage
+  resetPassword(resetToken: String!, password: String!): User!
 }
 
 type User {
@@ -42,6 +44,7 @@ type User {
   username: String!
   password: String!
   cart: [CartItem!]
+  orders: [OrderItem]
 }
 
 type CartItem {

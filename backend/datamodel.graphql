@@ -12,6 +12,7 @@ type User {
   email: String! @unique
   password: String!
   cart: [CartItem!] @relation(name: "CartItemOfUser", onDelete: CASCADE)
+  orders: [Order] @relation(name: "OrderOfUser", onDelete: CASCADE)
   resetToken: String
   resetTokenExpiry: Float
 }
@@ -50,7 +51,7 @@ type Order {
   id: ID! @unique @id
   orderItems: [OrderItem!]!
   total: Int!
-  user: User!
+  user: User! @relation(name: "OrderOfUser", onDelete: CASCADE)
   chargeId: String!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

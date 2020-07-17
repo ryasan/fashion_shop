@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs')
 const { forwardTo } = require('prisma-binding')
+const { randomBytes } = require('crypto')
+const { promisify } = require('util')
 
 const { throwError, createCookie } = require('../utils')
 const stripe = require('../stripe')
@@ -109,7 +111,7 @@ const Mutation = {
       source: args.token
     })
 
-    const orderItems = user.cart.map(cartItem => {
+    const orderItems = user.cart.map((cartItem) => {
       const orderItem = {
         ...cartItem.product,
         quantity: cartItem.quantity,
@@ -119,21 +121,42 @@ const Mutation = {
       return orderItem
     })
 
-    const order = await ctx.db.mutation.createOrder({
-      data: {
-        total: charge.amount,
-        chargeId: charge.id,
-        orderItems: { create: orderItems },
-        user: { connect: { id: userId } }
-      }
-    }, info)
+    const order = await ctx.db.mutation.createOrder(
+      {
+        data: {
+          total: charge.amount,
+          chargeId: charge.id,
+          orderItems: { create: orderItems },
+          user: { connect: { id: userId } }
+        }
+      },
+      info
+    )
 
     await ctx.db.mutation.deleteManyCartItems({
       where: { user: { id: userId } }
     })
 
     return order
-  }
+  },
+  requestReset: async (parent, args, ctx, info) => {
+    const user = await ctx.db.query.user({ where: { email: args.email } })
+    if (!user) {
+      throwError(`Oops: No such user found for email: ${args.email}`)
+    }
+
+    const randomBytesPromisified = promisify(randomBytes)
+    const resetToken = (await randomBytesPromisified(20)).toString('hex')
+    const resetTokenExpiry = Date.now() + 3600000
+
+    await ctx.db.mutation.updateUser({
+      where: { email: args.email },
+      data: { resetToken, resetTokenExpiry }
+    })
+
+    return { message: "Thanks. You're request has been processed." }
+  },
+  resetPassword: async (parent, args, ctx, info) => {}
 }
 
 module.exports = Mutation
