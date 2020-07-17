@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
+import { useCycle } from 'framer-motion'
 import moment from 'moment'
 
 import Home, {
@@ -16,6 +17,11 @@ import Home, {
 import SEO from '../components/seo'
 import Icon from '../components/icons'
 import { B } from '../elements'
+
+const changeColor = {
+  transition: { duration: 0.2 },
+  whileHover: { color: '#000', borderColor: '#000' }
+}
 
 const fadeInUp = {
   initial: { y: '20rem', opacity: 0 },
@@ -46,15 +52,46 @@ const slowZoomIn = {
   transition: { duration: 5 }
 }
 
+const MenuOption = ({ name, to, idx, animationsProp }) => {
+  const [isHovered, setIsHovered] = useState(false)
+  const [animations, cycleAnimations] = useCycle(...animationsProp)
+
+  useEffect(cycleAnimations, [])
+
+  return (
+    <MotionListItem
+      {...animations}
+      isHovered={isHovered}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}>
+      <Link to={to}>{name}</Link>
+    </MotionListItem>
+  )
+}
+
+const menuOptions = [
+  {
+    name: 'Shop',
+    to: '/shop/',
+    animationsProp: [fadeInUp, changeColor],
+    idx: 0
+  },
+  {
+    name: 'Signin',
+    to: '/signin/',
+    animationsProp: [
+      { ...fadeInUp2, transition: { duration: 0.5, delay: 1.6 } },
+      changeColor
+    ],
+    idx: 1
+  }
+]
+
 const SidebarComponent = () => (
   <Sidebar {...slideInLeft}>
     <Sidebar.List>
-      <Link to="/shop/">
-        <MotionListItem {...fadeInUp}>Shop</MotionListItem>
-      </Link>
-      <Link to="/signin/">
-        <MotionListItem {...fadeInUp2}>Sign in</MotionListItem>
-      </Link>
+      <MenuOption {...menuOptions[0]} />
+      <MenuOption {...menuOptions[1]} />
     </Sidebar.List>
     <Sidebar.Text {...slideInLeft} transition={{ delay: 1.9 }}>
       Men’s clothing to keep you dressed your best 365 days a year.

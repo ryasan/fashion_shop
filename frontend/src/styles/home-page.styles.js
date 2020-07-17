@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 import { motion } from 'framer-motion'
 import { device } from '../utils'
 
@@ -98,31 +98,41 @@ Sidebar.Text = styled(motion.p)`
   font-size: var(--font-size-lg);
 `
 
+const fillRight = keyframes`
+    0% { width: 0; } 
+  100% { width: 100%; opacity: 1; }
+`
+
 const MotionListItem = styled(motion.li)`
   margin-bottom: 5rem;
-  font-size: 3rem;
-  border-bottom: 0.2rem solid white;
   position: relative;
-  padding-left: 1rem;
   cursor: pointer;
-  width: 80%;
-  transition: width 0.1s;
-  transition-delay: 0.1s;
-  &:before {
-    content: '';
-    position: absolute;
-    background: white;
-    -webkit-backface-visibility: hidden;
-    bottom: 0;
-    right: 0;
-    width: 0.2rem;
-    height: 1rem;
-    transition: height 0.1s;
-  }
-  &:hover {
-    width: 60%;
-    &:before {
-      height: 0;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+  border: 0.3rem solid white;
+  color: white;
+  a {
+    font-weight: bolder;
+    display: block;
+    font-size: 3rem;
+    padding: 1rem;
+    text-align: center;
+    color: inherit;
+    z-index: 1;
+    &:after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      width: 0;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      background: white;
+      ${props =>
+        props.isHovered &&
+        css`
+          animation: ${fillRight} 0.2s linear forwards;
+        `};
     }
   }
 `
@@ -173,6 +183,7 @@ const SpecialOffer = styled(motion.div)`
   border-radius: 0.3rem;
   width: 100%;
   text-align: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
 `
 
 export {
