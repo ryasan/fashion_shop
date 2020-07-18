@@ -44,6 +44,7 @@ const MotionListItem = styled(motion.li)`
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   border: 0.3rem solid white;
   color: white;
+  background: var(--dark);
   a {
     font-weight: bolder;
     display: block;
@@ -51,7 +52,8 @@ const MotionListItem = styled(motion.li)`
     padding: 1rem;
     text-align: center;
     color: inherit;
-    z-index: 1;
+    position: relative;
+    z-index: 10;
     &:after {
       content: '';
       z-index: -1;
