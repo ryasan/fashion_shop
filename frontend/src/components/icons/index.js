@@ -15,6 +15,9 @@ import Key from './key'
 import Twitter from './twitter'
 import Instagram from './instagram'
 import Facebook from './facebook'
+import HomeIcon from './home'
+import StoreIcon from './store'
+import ExitIcon from './exit'
 
 const Icon = props => {
   switch (props.name) {
@@ -46,9 +49,15 @@ const Icon = props => {
     case 'facebook':
       return <Facebook {...props} />
     case 'twitter':
-      return <Twitter />
+      return <Twitter {...props} />
     case 'instagram':
-      return <Instagram />
+      return <Instagram {...props} />
+    case 'home':
+      return <HomeIcon {...props} />
+    case 'store':
+      return <StoreIcon {...props} />
+    case 'exit':
+      return <ExitIcon {...props} />
   }
 }
 

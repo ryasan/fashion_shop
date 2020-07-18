@@ -20,7 +20,7 @@ Header.LogoContainer = styled(Link)`
 
 Header.Nav = styled.ul`
   display: flex;
-  margin-right: 6rem;
+  margin-right: 9rem;
   z-index: 10;
   @media ${device.mobileL} {
     width: 100%;
@@ -37,7 +37,7 @@ Header.NavItem = styled.li`
   cursor: pointer;
   position: relative;
   color: white;
-  width: 10rem;
+  width: 9rem;
   @media ${device.mobileL} {
     width: 100%;
     margin: 0;
@@ -57,6 +57,7 @@ Header.NavItem = styled.li`
   &:hover,
   &:focus {
     outline: none;
+    color: var(--red);
     &:after {
       width: 100%;
     }
@@ -65,16 +66,18 @@ Header.NavItem = styled.li`
     width: 100%;
     height: 7rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
     text-decoration: none;
     color: inherit;
-    transition: color 0.2s;
   }
   svg {
     fill: white;
     transition: fill 0.2s;
+    width: 3rem;
+    height: 3rem;
   }
 `
 

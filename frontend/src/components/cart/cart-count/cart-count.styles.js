@@ -17,7 +17,8 @@ const CartCount = styled.div`
 `
 
 CartCount.AnimationStyles = styled.span`
-  position: relative;
+  position: absolute;
+  right: 0;
   .count {
     display: block;
     position: relative;

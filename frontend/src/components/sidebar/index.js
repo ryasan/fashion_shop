@@ -6,7 +6,7 @@ import Sidebar, { MotionListItem } from './sidebar.styles'
 
 const changeColor = {
   transition: { duration: 0.2 },
-  whileHover: { color: '#000', borderColor: '#000' }
+  whileHover: { scale: 1.02 }
 }
 
 const fadeInUp = {

@@ -34,10 +34,11 @@ const CartComponent = () => {
 
   return (
     <Cart cartOpen={cartOpen} ref={cartRef}>
-      <Cart.Button cartOpen={cartOpen} onClick={toggleCart}>
+      <Cart.ToggleButton cartOpen={cartOpen} onClick={toggleCart}>
         <Icon name={cartOpen ? 'close' : 'cart'} />
+        {!cartOpen && 'CART'}
         {!cartOpen && <CartCount>{cartCount}</CartCount>}
-      </Cart.Button>
+      </Cart.ToggleButton>
       <Cart.Content>
         <Cart.Header>
           <H4>Cart</H4>

@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react'
-import { navigate } from '@reach/router'
-import { Link } from 'gatsby'
 import { useApolloClient } from '@apollo/react-hooks'
+import { Link } from 'gatsby'
 
 import Header from './header.styles'
-import Icon from '../icons'
 import useAuth from '../auth'
+import Cart from '../cart'
+import Icon from '../icons'
 import { A } from '../../elements'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
-import {
-  useCartQuery,
-  useUploadCartMutation
-} from '../../graphql/cart/hooks'
+import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 
 const HeaderComponent = () => {
@@ -22,14 +19,6 @@ const HeaderComponent = () => {
   const [{ doSignout }, { data: signoutData }] = useAuth()
   const [uploadCart] = useUploadCartMutation()
   const me = userData && userData.me
-
-  useEffect(() => {
-    if (signoutData) toast(signoutData.signout.message)
-  }, [signoutData])
-
-  const goToAccountPage = () => {
-    navigate('/account/')
-  }
 
   const handleSignout = () => {
     doSignout()
@@ -44,34 +33,54 @@ const HeaderComponent = () => {
     client.writeData({ data: cartInitialState })
   }
 
+  useEffect(() => {
+    if (signoutData) toast(signoutData.signout.message)
+  }, [signoutData])
+
   return (
     <Header>
       <Header.LogoContainer to="/">
-        <Icon name="logo-royal" />
+        <Icon name="logo-royal" className="icon" />
       </Header.LogoContainer>
       <Header.Nav>
         <Header.NavItem>
-          <Link to="/">HOME</Link>
+          <Link to="/">
+            <Icon name="home" className="icon" />
+            HOME
+          </Link>
         </Header.NavItem>
         <Header.NavItem>
-          <Link to="/shop/">SHOP</Link>
+          <Link to="/shop/">
+            <Icon name="store" className="icon" />
+            SHOP
+          </Link>
         </Header.NavItem>
         {me && (
           <Header.NavItem>
-            <A onClick={handleSignout}>SIGNOUT</A>
+            <A onClick={handleSignout}>
+              <Icon name="exit" className="icon" />
+              SIGNOUT
+            </A>
           </Header.NavItem>
         )}
         {!me && (
           <Header.NavItem>
-            <Link to="/signin/">SIGNIN</Link>
+            <Link to="/signin/">
+              <Icon name="key" className="icon" />
+              SIGNIN
+            </Link>
           </Header.NavItem>
         )}
         {me && (
-          <Header.NavItem onClick={goToAccountPage}>
-            <Icon name="account-circle" />
+          <Header.NavItem>
+            <Link to="/account/">
+              <Icon name="account-circle" className="icon" />
+              ACCOUNT
+            </Link>
           </Header.NavItem>
         )}
       </Header.Nav>
+      <Cart />
     </Header>
   )
 }

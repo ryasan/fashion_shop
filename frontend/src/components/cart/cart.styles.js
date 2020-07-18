@@ -8,6 +8,7 @@ const Cart = styled.div`
   height: 100%;
   width: 45rem;
   right: ${props => (props.cartOpen ? '0' : '-45rem')};
+  bottom: 0;
   transition: right 0.2s;
   background: var(--dark);
   &:after {
@@ -27,36 +28,21 @@ const Cart = styled.div`
   }
 `
 
-Cart.Bag = styled.div`
-  min-width: 3rem;
-  min-height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+Cart.ToggleButton = styled.div`
   position: absolute;
-  background: var(--red);
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  right: -3rem;
-  top: 50%;
-  transform: translateY(-50%);
-`
-
-Cart.Button = styled.div`
-  position: absolute;
-  width: 7rem;
+  width: 9rem;
   height: 7rem;
-  left: -7rem;
+  left: -9rem;
   outline: 0;
   background: var(--dark);
   fill: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: fill 0.2s;
   cursor: pointer;
+  font-size: var(--font-size-s);
   &:before {
     content: '';
     position: absolute;
@@ -80,7 +66,7 @@ Cart.Button = styled.div`
     width: ${props => (props.cartOpen ? '100%' : '0')};
   }
   &:hover {
-    fill: var(--red);
+    color: var(--red);
   }
 `
 
@@ -96,8 +82,12 @@ Cart.Header = styled.div`
   text-align: center;
   padding: 4rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  h4 {
+    margin: 0;
+  }
 `
 
 Cart.BagContainer = styled.div`
@@ -105,12 +95,8 @@ Cart.BagContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  svg {
-    width: 4rem;
-    height: 4rem;
-    display: inline-block;
-    fill: white;
-  }
+  width: 9rem;
+  height: 7rem;
 `
 
 Cart.List = styled.ul`

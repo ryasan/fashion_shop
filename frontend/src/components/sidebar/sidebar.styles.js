@@ -1,6 +1,5 @@
 import styled, { keyframes, css } from 'styled-components'
 import { motion } from 'framer-motion'
-import { device } from '../../utils'
 
 const fillRight = keyframes`
     0% { width: 0; } 
@@ -11,15 +10,9 @@ const Sidebar = styled(motion.div)`
   width: 40rem;
   height: 100%;
   background: var(--red);
-  position: absolute;
+  position: relative;
   z-index: 10;
   padding: 12% 5%;
-  overflow: hidden;
-  @media ${device.mobileL} {
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-  }
 `
 
 Sidebar.List = styled.ul`
@@ -63,7 +56,7 @@ const MotionListItem = styled(motion.li)`
       top: 0;
       left: 0;
       opacity: 0;
-      background: white;
+      background: black;
       ${props =>
         props.isHovered &&
         css`

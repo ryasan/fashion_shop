@@ -1,94 +1,71 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { motion } from 'framer-motion'
+
 import { device } from '../utils'
 
 const Home = styled.div`
   height: 100vh;
-  background: #dee2e5;
+  background: var(--dark);
   overflow: hidden;
+  display: flex;
 `
 
-const MotionBgImage = styled(motion.div)`
+const grow = keyframes`
+  0% { width: 60rem; height: 60rem; }
+100% { width: 80rem; height: 80rem; }
+`
+
+const grow2 = keyframes`
+  0% { width: 40rem; height: 40rem; }
+100% { width: 50rem; height: 50rem; }
+`
+
+const Foreground = styled.div`
   height: 100%;
-  width: 100%;
-  background: url(${require('../images/home-bg.svg')}) center center no-repeat;
-  background-color: rgb(224, 228, 231);
-  position: absolute;
-  overflow: hidden;
-  @media ${device.mobileL} {
-    background-image: url(${require('../images/logo-jersey-banner.svg')});
-    background-position-y: top;
-    background-size: 200%;
-  }
-`
-
-MotionBgImage.Img = styled(motion.img)`
-  width: 100%;
-  @media ${device.mobileL} {
-    opacity: 0;
-  }
-`
-
-const Foreground = styled(motion.div)`
-  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   &:before {
     content: '';
+    width: 50rem;
+    height: 50rem;
+    background: var(--red);
     position: absolute;
-    bottom: -1px;
-    width: 100%;
-    height: 2px;
-    background: #16141a;
+    border-radius: 50%;
+    opacity: 0.1;
+    transform: translate(25rem, -10rem);
+    animation: ${grow} 7s linear forwards;
   }
-  @media ${device.mobileL} {
-    opacity: 0;
-  }
-`
-
-Foreground.One = styled.div`
-  height: 100%;
-  width: 100%;
-  background: url(${require('../images/foreground-img-1.svg')}) center
-    center/cover no-repeat;
-`
-
-Foreground.Two = styled.div`
-  height: 100%;
-  background: url(${require('../images/foreground-img-2.svg')}) center
-    center/cover no-repeat;
-`
-
-const Overlay = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 0, 0, 0.5);
-  @media ${device.mobileL} {
-    opacity: 0;
+  &:after {
+    content: '';
+    width: 30rem;
+    height: 30rem;
+    background: white;
+    position: absolute;
+    opacity: 0.03;
+    border-radius: 50%;
+    transform: translate(-40rem, 25rem);
+    animation: ${grow2} 7s linear forwards;
   }
 `
 
 const MotionLogo = styled(motion.div)`
-  width: 50rem;
-  height: 50rem;
-  position: absolute;
-  top: 20%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  position: relative;
+  z-index: 100;
+  width: 70rem;
+  height: 70rem;
   svg {
     width: 100%;
     height: 100%;
-  }
-  @media ${device.laptop} {
-    left: 50rem;
   }
 `
 
 const SocialMedia = styled(motion.div)`
   position: absolute;
   bottom: 5rem;
-  right: 30rem;
+  right: 5rem;
 `
 
 const MotionIcon = styled(motion.div)`
@@ -104,7 +81,7 @@ const MotionIcon = styled(motion.div)`
 
 const SpecialOffer = styled(motion.div)`
   background: var(--red);
-  position: absolute;
+  position: fixed;
   z-index: 100;
   top: 0;
   left: 50%;
@@ -115,15 +92,10 @@ const SpecialOffer = styled(motion.div)`
   width: 100%;
   text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+  @media ${device.tablet} {
+    position: relative;
+  }
 `
 
-export {
-  Foreground,
-  Overlay,
-  MotionBgImage,
-  MotionLogo,
-  SocialMedia,
-  MotionIcon,
-  SpecialOffer
-}
+export { Foreground, MotionLogo, SocialMedia, MotionIcon, SpecialOffer }
 export default Home
