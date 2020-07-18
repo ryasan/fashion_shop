@@ -54,10 +54,10 @@ const HomePage = () => {
     <Home>
       <SEO title="Home" />
       <Sidebar />
-      <MotionBgImage>
+      {/* <MotionBgImage>
         <MotionBgImage.Img src={bg} {...slowZoomIn} />
       </MotionBgImage>
-      <Overlay />
+      <Overlay /> */}
       <Foreground {...slideInDown}>
         <Foreground.One>
           <SpecialOffer>

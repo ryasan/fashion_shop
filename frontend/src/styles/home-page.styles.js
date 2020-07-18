@@ -11,8 +11,8 @@ const Home = styled.div`
 const MotionBgImage = styled(motion.div)`
   height: 100%;
   width: 100%;
-  background: url(${require('../images/home-bg.svg')}) center center no-repeat;
-  background-color: rgb(224, 228, 231);
+  /* background: url(${require('../images/home-bg.svg')}) center center no-repeat;
+  background-color: rgb(224, 228, 231); */
   position: absolute;
   overflow: hidden;
   @media ${device.mobileL} {
@@ -45,17 +45,40 @@ const Foreground = styled(motion.div)`
   }
 `
 
+/* background: url(${require('../images/foreground-img-1.2.svg')}) center
+    center/cover no-repeat; */
 Foreground.One = styled.div`
   height: 100%;
   width: 100%;
-  background: url(${require('../images/foreground-img-1.svg')}) center
-    center/cover no-repeat;
+  position: relative;
+  background-color: #16141a;  
+  &:before {
+    content: '';
+    background: url(${require('../images/cool-guy-1.svg')}) center center no-repeat;
+    top: 0;
+    right: -5rem;
+    position: absolute;
+    width: 30rem;
+    height: 30rem;
+    display: block;
+    border-radius: 50%;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 10rem;
+    right: 20rem;
+    width: 30rem;
+    height: 30rem;
+    background: var(--red);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
 `
 
 Foreground.Two = styled.div`
   height: 100%;
-  background: url(${require('../images/foreground-img-2.svg')}) center
-    center/cover no-repeat;
+  background: #16141a;
 `
 
 const Overlay = styled.div`
