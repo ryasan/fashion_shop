@@ -73,7 +73,7 @@ const reducer = (state, action) => {
   }
 }
 
-const FooterText = ({ isSignin, setAuthType }) => {
+const FooterText = ({ isSignin, setAuthType, isResetPassword }) => {
   const handleSetAuthType = e => {
     setAuthType(e.target.getAttribute('data-auth-type'))
   }
@@ -118,22 +118,21 @@ FooterText.propTypes = {
   setAuthType: PropTypes.func.isRequired
 }
 
-const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
+const SigninComponent = ({
+  chosenFields,
+  setAuthType,
+  authType,
+  resetToken
+}) => {
+  const isResetPassword = !!resetToken
+  if (isResetPassword) setAuthType(RESET_PASSWORD)
   const [state, dispatch] = useReducer(reducer, initialState)
   const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
   const { email, password, confirm, message, formIsValid, username } = state // prettier-ignore
-  const [authMutation, { loading, data, error }] = useAuth({
-    variables: { email, username, password, authType }
-  })
+  const [authMutation, { loading, data, error }] = useAuth()
   const isSignin = authType === SIGNIN
   const isSigningUp = authType === SIGNUP
   const isRequestReset = authType === REQUEST_RESET
-  const computedColors = [
-    formIsValid ? 'green_color' : 'red_color',
-    'width_100',
-    'text_align_center',
-    'font_size_s'
-  ]
 
   useEffect(() => {
     if (error) {
@@ -156,18 +155,10 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
     }
     if (data?.requestReset) {
       toast(data.requestReset.message)
-      setAuthType(RESET_PASSWORD)
     }
     if (data?.resetPassword) {
       toast('Your password has successfully been changed.')
-      authMutation({
-        variables: {
-          authType: SIGNIN,
-          email: data.resetPassword.email,
-          password
-        }
-      })
-      navigate('/signin/')
+      navigate('/shop/')
     }
   }, [data])
 
@@ -180,7 +171,7 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
 
   const handleOnSubmit = e => {
     e.preventDefault()
-    if (!validate(email)) {
+    if (!validate(email) && !isResetPassword) {
       return dispatch({
         type: MESSAGE,
         payload: 'Email is not valid'
@@ -201,7 +192,9 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
         payload: 'Passwords do not match'
       })
     } else {
-      authMutation({ variables: { email, username, password, authType } })
+      authMutation({
+        variables: { email, username, password, confirm, authType, resetToken }
+      })
       dispatch({ type: RESET_FIELDS })
     }
   }
@@ -241,6 +234,13 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
     })
   }
 
+  const messageColors = [
+    formIsValid ? 'green_color' : 'red_color',
+    'width_100',
+    'text_align_center',
+    'font_size_s'
+  ]
+
   return (
     <Signin>
       <Header />
@@ -248,6 +248,9 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
         <Fieldset>
           {isRequestReset && (
             <P modifier="white_color">Enter the account email address</P>
+          )}
+          {isResetPassword && (
+            <P modifier="white_color">Enter a new password</P>
           )}
           {Object.values(fields).map((f, i) => (
             <Field key={i}>
@@ -262,7 +265,7 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
               />
             </Field>
           ))}
-          <Span modifiers={computedColors}>{message}</Span>
+          <Span modifiers={messageColors}>{message}</Span>
           <Field>
             <Button type="submit" disabled={loading}>
               Submit{loading ? 'ting...' : ''}
@@ -278,7 +281,8 @@ const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
 SigninComponent.propTypes = {
   chosenFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   setAuthType: PropTypes.func.isRequired,
-  authType: PropTypes.string.isRequired
+  authType: PropTypes.string.isRequired,
+  resetToken: PropTypes.string
 }
 
 export default SigninComponent

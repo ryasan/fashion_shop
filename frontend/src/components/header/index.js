@@ -17,14 +17,14 @@ const HeaderComponent = () => {
   const client = useApolloClient()
   const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
-  const [signout, { data: signoutData }] = useAuth({
-    variables: { authType: SIGNOUT }
-  })
+  const [signout, { data: signoutData }] = useAuth()
   const [uploadCart] = useUploadCartMutation()
   const me = userData && userData.me
 
   const handleSignout = () => {
-    signout()
+    signout({
+      variables: { authType: SIGNOUT }
+    })
     uploadCart({
       variables: {
         data: cartData.cartItems.map(c => ({

@@ -13,21 +13,24 @@ import {
   RESET_PASSWORD
 } from '../signin/form-types'
 
-const useAuth = ({ variables = {} }) => {
+const useAuth = () => {
   const [signin, signinInfo] = useSigninMutation()
   const [signup, signupInfo] = useSignupMutation()
   const [signout, signoutInfo] = useSignoutMutation()
   const [requestReset, successMessage] = useRequestPasswordResetMutation()
   const [resetPassword, resetPasswordInfo] = useResetPasswordMutation()
-  const { email, username, password, resetToken, authType } = variables
-  const trimmedVariables = {
-    ...(email && { email }),
-    ...(password && { password }),
-    ...(username && { username }),
-    ...(resetToken && { resetToken })
-  }
 
-  const authMutation = () => {
+  const authMutation = ({ variables }) => {
+    const { email, username, password, confirm, resetToken, authType } = variables
+
+    const trimmedVariables = {
+      ...(email && { email }),
+      ...(password && { password }),
+      ...(confirm && { confirm }),
+      ...(username && { username }),
+      ...(resetToken && { resetToken })
+    }
+
     switch (authType) {
       case SIGNOUT:
         return signout()
@@ -41,6 +44,7 @@ const useAuth = ({ variables = {} }) => {
         return resetPassword({ variables: trimmedVariables })
     }
   }
+
 
   return [
     authMutation,
