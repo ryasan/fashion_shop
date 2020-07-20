@@ -43,5 +43,7 @@ export const useRequestPasswordResetMutation = () => {
 }
 
 export const useResetPasswordMutation = () => {
-  return useMutation(RESET_PASSWORD_MUTATION)
+  return useMutation(RESET_PASSWORD_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }]
+  })
 }

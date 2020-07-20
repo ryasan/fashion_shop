@@ -21,5 +21,11 @@ exports.onCreatePage = async ({ page, actions }) => {
         matchPath: '/signin/reset/*',
         component: path.resolve('src/pages/signin/reset.js')
       })
+    case '/signin/request-reset/':
+      return createPage({
+        path: '/signin/request-reset',
+        matchPath: '/signin/request-reset/*',
+        component: path.resolve('src/pages/signin/request-reset.js')
+      })
   }
 }

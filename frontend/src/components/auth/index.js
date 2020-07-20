@@ -10,7 +10,7 @@ import {
   REQUEST_RESET,
   SIGNUP,
   SIGNOUT,
-  RESET_PASSWORD
+  PASSWORD_RESET
 } from '../signin/form-types'
 
 const useAuth = () => {
@@ -40,12 +40,10 @@ const useAuth = () => {
         return signup({ variables: trimmedVariables })
       case REQUEST_RESET:
         return requestReset({ variables: trimmedVariables })
-      case RESET_PASSWORD:
+      case PASSWORD_RESET:
         return resetPassword({ variables: trimmedVariables })
     }
   }
-
-
   return [
     authMutation,
     {

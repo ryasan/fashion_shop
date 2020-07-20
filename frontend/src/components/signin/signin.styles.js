@@ -31,7 +31,7 @@ const Header = styled.div`
   background: url(${require('../../images/logo-royal.svg')}) center 30%;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 25rem;
+  height: 12rem;
   width: 60%;
 `
 
