@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
@@ -7,7 +8,7 @@ import Signin, { Fieldset, Field, Header } from './signin.styles'
 import Form from '../form'
 import Icon from '../icons'
 import useAuth from '../auth'
-import { Input, Span, Button, Small, A } from '../../elements'
+import { Input, Span, Button, Small, A as Link, P } from '../../elements'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
 import {
   EMAIL,
@@ -16,8 +17,11 @@ import {
   CONFIRM,
   TOGGLE_SIGNUP,
   MESSAGE,
-  RESET_FIELDS
+  RESET_FIELDS,
+  CHANGE_FORM_TYPE
 } from './action-types'
+import { SIGNIN, SIGNUP, REQUEST_RESET, RESET_PASSWORD } from './form-types'
+import { toast } from '../toast'
 
 const initialState = {
   email: '',
@@ -25,7 +29,6 @@ const initialState = {
   password: '',
   confirm: '',
   message: null,
-  isSignin: true,
   formIsValid: false
 }
 
@@ -57,6 +60,8 @@ const reducer = (state, action) => {
       return createNewState({ state, type, payload })
     case CONFIRM:
       return createNewState({ state, type, payload })
+    case CHANGE_FORM_TYPE:
+      return createNewState({ state, type, payload })
     case MESSAGE:
       return { ...state, message: payload }
     case RESET_FIELDS:
@@ -68,19 +73,61 @@ const reducer = (state, action) => {
   }
 }
 
-const SigninPage = ({ className }) => {
+const FooterText = ({ isSignin, setAuthType }) => {
+  const handleSetAuthType = e => {
+    setAuthType(e.target.getAttribute('data-auth-type'))
+  }
+
+  if (isSignin) {
+    return (
+      <Small modifiers="white_color">
+        Forgot your password?
+        <Link
+          modifiers="red_color"
+          data-auth-type={REQUEST_RESET}
+          onClick={handleSetAuthType}>
+          &nbsp;reset
+        </Link>
+        <br />
+        Need to sign up for an account?
+        <Link
+          modifiers="red_color"
+          data-auth-type={SIGNUP}
+          onClick={handleSetAuthType}>
+          &nbsp;signup
+        </Link>
+      </Small>
+    )
+  }
+
+  return (
+    <Small modifiers="white_color">
+      {isSignin ? 'Already have an account?' : 'Go to '}
+      <Link
+        modifiers="red_color"
+        data-auth-type={SIGNIN}
+        onClick={handleSetAuthType}>
+        &nbsp;signin
+      </Link>
+    </Small>
+  )
+}
+
+FooterText.propTypes = {
+  isSignin: PropTypes.bool.isRequired,
+  setAuthType: PropTypes.func.isRequired
+}
+
+const SigninComponent = ({ chosenFields, setAuthType, authType }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
-  const { isSignin, email, password, confirm, message, formIsValid, username } = state // prettier-ignore
-  const [{ doSignin, doSignup }, { loading, data: authData, error }] = useAuth({
-    email,
-    username,
-    password
+  const { email, password, confirm, message, formIsValid, username } = state // prettier-ignore
+  const [authMutation, { loading, data, error }] = useAuth({
+    variables: { email, username, password, authType }
   })
-  const letMeIn = isSignin ? doSignin : doSignup
-  const signinText = isSignin
-    ? 'Already have an account?'
-    : 'Need to sign up for an account?'
+  const isSignin = authType === SIGNIN
+  const isSigningUp = authType === SIGNUP
+  const isRequestReset = authType === REQUEST_RESET
   const computedColors = [
     formIsValid ? 'green_color' : 'red_color',
     'width_100',
@@ -98,18 +145,31 @@ const SigninPage = ({ className }) => {
   }, [error])
 
   useEffect(() => {
-    if (authData && isSignin) {
+    if (data?.signin) {
       mergeRemoteCartItems({
-        variables: { remoteCartItems: authData.signin.cart }
+        variables: { remoteCartItems: data.signin.cart }
       })
+      navigate('/shop/')
     }
-
-    if (authData) navigate('/shop/')
-  }, [authData])
-
-  const toggleSignup = () => {
-    dispatch({ type: TOGGLE_SIGNUP })
-  }
+    if (data?.signup) {
+      navigate('/shop/')
+    }
+    if (data?.requestReset) {
+      toast(data.requestReset.message)
+      setAuthType(RESET_PASSWORD)
+    }
+    if (data?.resetPassword) {
+      toast('Your password has successfully been changed.')
+      authMutation({
+        variables: {
+          authType: SIGNIN,
+          email: data.resetPassword.email,
+          password
+        }
+      })
+      navigate('/signin/')
+    }
+  }, [data])
 
   const handleOnChange = async e => {
     dispatch({
@@ -125,80 +185,71 @@ const SigninPage = ({ className }) => {
         type: MESSAGE,
         payload: 'Email is not valid'
       })
-    } else if (!password) {
+    } else if (!password && !isRequestReset) {
       return dispatch({
         type: MESSAGE,
         payload: 'Please enter a password'
       })
-    } else if (!isSignin && !username) {
+    } else if (isSigningUp && !username) {
       return dispatch({
         type: MESSAGE,
         payload: 'Please enter a username'
       })
-    } else if (!isSignin && password !== confirm) {
+    } else if (!isSignin && !isRequestReset && password !== confirm) {
       return dispatch({
         type: MESSAGE,
         payload: 'Passwords do not match'
       })
     } else {
-      letMeIn({ variables: { email, username, password } })
+      authMutation({ variables: { email, username, password, authType } })
       dispatch({ type: RESET_FIELDS })
     }
   }
 
-  const filterFields = field => {
-    return isSignin && field.hideWhenSignin ? null : field
+  const fields = {
+    ...(chosenFields.includes(EMAIL) && {
+      email: {
+        icon: 'account-circle',
+        type: 'text',
+        value: email,
+        name: 'email'
+      }
+    }),
+    ...(chosenFields.includes(USERNAME) && {
+      username: {
+        icon: 'account-box',
+        type: 'text',
+        value: username,
+        name: 'username'
+      }
+    }),
+    ...(chosenFields.includes(PASSWORD) && {
+      password: {
+        icon: 'key',
+        type: 'password',
+        value: password,
+        name: 'password'
+      }
+    }),
+    ...(chosenFields.includes(CONFIRM) && {
+      confirm: {
+        icon: 'key',
+        type: 'password',
+        value: confirm,
+        name: 'confirm'
+      }
+    })
   }
-
-  const renderLinks = () => {
-    return isSignin ? (
-      <A modifiers="red_color" onClick={toggleSignup}>
-        Signup
-      </A>
-    ) : (
-      <A modifiers="red_color" onClick={toggleSignup}>
-        Signin
-      </A>
-    )
-  }
-
-  const fields = [
-    {
-      icon: 'account-circle',
-      type: 'text',
-      name: 'email',
-      value: email,
-      hideWhenSignin: false
-    },
-    {
-      icon: 'account-box',
-      type: 'text',
-      name: 'username',
-      value: username,
-      hideWhenSignin: true
-    },
-    {
-      icon: 'key',
-      type: 'password',
-      name: 'password',
-      value: password,
-      hideWhenSignin: false
-    },
-    {
-      icon: 'key',
-      type: 'password',
-      name: 'confirm',
-      value: confirm,
-      hideWhenSignin: true
-    }
-  ]
 
   return (
     <Signin>
       <Header />
       <Form method="post" onSubmit={handleOnSubmit}>
         <Fieldset>
-          {fields.filter(filterFields).map((f, i) => (
+          {isRequestReset && (
+            <P modifier="white_color">Enter the account email address</P>
+          )}
+          {Object.values(fields).map((f, i) => (
             <Field key={i}>
               <Icon name={f.icon} />
               <Input
@@ -219,11 +270,15 @@ const SigninPage = ({ className }) => {
           </Field>
         </Fieldset>
       </Form>
-      <Small modifiers="white_color">
-        {signinText} {renderLinks()}
-      </Small>
+      <FooterText setAuthType={setAuthType} isSignin={isSignin} />
     </Signin>
   )
 }
 
-export default SigninPage
+SigninComponent.propTypes = {
+  chosenFields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setAuthType: PropTypes.func.isRequired,
+  authType: PropTypes.string.isRequired
+}
+
+export default SigninComponent

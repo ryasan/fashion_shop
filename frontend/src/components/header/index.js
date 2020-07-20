@@ -11,17 +11,20 @@ import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
 import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
+import { SIGNOUT } from '../signin/form-types'
 
 const HeaderComponent = () => {
   const client = useApolloClient()
   const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
-  const [{ doSignout }, { data: signoutData }] = useAuth()
+  const [signout, { data: signoutData }] = useAuth({
+    variables: { authType: SIGNOUT }
+  })
   const [uploadCart] = useUploadCartMutation()
   const me = userData && userData.me
 
   const handleSignout = () => {
-    doSignout()
+    signout()
     uploadCart({
       variables: {
         data: cartData.cartItems.map(c => ({
@@ -40,25 +43,25 @@ const HeaderComponent = () => {
   return (
     <Header>
       <Header.LogoContainer to="/">
-        <Icon name="logo-royal" className="icon" />
+        <Icon name="logo-royal" />
       </Header.LogoContainer>
       <Header.Nav>
         <Header.NavItem>
           <Link to="/">
-            <Icon name="home" className="icon" />
+            <Icon name="home" />
             HOME
           </Link>
         </Header.NavItem>
         <Header.NavItem>
           <Link to="/shop/">
-            <Icon name="store" className="icon" />
+            <Icon name="store" />
             SHOP
           </Link>
         </Header.NavItem>
         {me && (
           <Header.NavItem>
             <A onClick={handleSignout}>
-              <Icon name="exit" className="icon" />
+              <Icon name="exit" />
               SIGNOUT
             </A>
           </Header.NavItem>
@@ -66,7 +69,7 @@ const HeaderComponent = () => {
         {!me && (
           <Header.NavItem>
             <Link to="/signin/">
-              <Icon name="key" className="icon" />
+              <Icon name="key" />
               SIGNIN
             </Link>
           </Header.NavItem>
@@ -74,7 +77,7 @@ const HeaderComponent = () => {
         {me && (
           <Header.NavItem>
             <Link to="/account/">
-              <Icon name="account-circle" className="icon" />
+              <Icon name="account-circle" />
               ACCOUNT
             </Link>
           </Header.NavItem>

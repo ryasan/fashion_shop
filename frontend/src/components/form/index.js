@@ -9,17 +9,15 @@ const Form = styled.form`
     padding: 2rem;
     width: 100%;
   }
-  input,
+  input:not([type='submit']) {
+    ${redInput};
+    width: 100%;
+  }
+
   button {
-    &:not([type='submit']) {
-      ${redInput};
-      width: 100%;
-    }
-    &[type='submit'] {
-      ${redButton}
-      height: 100%;
-      width: 100%;
-    }
+    ${redButton}
+    height: 100%;
+    width: 100%;
   }
 `
 

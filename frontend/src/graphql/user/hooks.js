@@ -4,7 +4,9 @@ import {
   SIGNUP_MUTATION,
   SIGNIN_MUTATION,
   SIGNOUT_MUTATION,
-  DELETE_ME
+  DELETE_ME,
+  REQUEST_PASSWORD_RESET_MUTATION,
+  RESET_PASSWORD_MUTATION
 } from './mutations'
 import { CURRENT_USER_QUERY } from './queries'
 
@@ -34,4 +36,12 @@ export const useSignupMutation = () => {
   return useMutation(SIGNUP_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }]
   })
+}
+
+export const useRequestPasswordResetMutation = () => {
+  return useMutation(REQUEST_PASSWORD_RESET_MUTATION)
+}
+
+export const useResetPasswordMutation = () => {
+  return useMutation(RESET_PASSWORD_MUTATION)
 }
