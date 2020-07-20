@@ -6,6 +6,7 @@ const isInStock = (sizes, filters) => {
 }
 
 const Query = {
+  users: forwardTo('db'),
   orders: forwardTo('db'),
   ordersConnection: forwardTo('db'),
   products: forwardTo('db'),

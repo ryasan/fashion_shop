@@ -20,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "ms": "^2.1.2",
+    "nodemailer": "^6.4.10",
     "prisma-binding": "^2.3.16",
     "stripe": "^8.69.0"
   },

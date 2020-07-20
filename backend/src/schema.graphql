@@ -2,6 +2,7 @@
 
 type Query {
   me: User
+  users(where: UserWhereInput): [User]!
   products: [Product!]
   productsConnection(
     freeShippingSelected: Boolean
@@ -35,7 +36,7 @@ type Mutation {
   ): Product
   createOrder(token: String!): Order!
   requestReset(email: String!): SuccessMessage
-  resetPassword(resetToken: String!, password: String!): User!
+  resetPassword(resetToken: String!, password: String!, confirm: String!): User!
 }
 
 type User {

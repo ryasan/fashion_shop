@@ -5,6 +5,7 @@ const { promisify } = require('util')
 
 const { throwError, createCookie } = require('../utils')
 const stripe = require('../stripe')
+const { transport, makeANiceEmail } = require('../mail')
 
 const Mutation = {
   createProduct: forwardTo('db'),
@@ -154,9 +155,46 @@ const Mutation = {
       data: { resetToken, resetTokenExpiry }
     })
 
-    return { message: "Thanks. You're request has been processed." }
+    await transport.sendMail({
+      from: 'ryansantos86@gmail.com',
+      to: user.email,
+      subject: 'Your password reset token',
+      html: makeANiceEmail(
+        `Your password token is here!\n\n
+        <a href="${process.env.DEV_FRONTEND_URL}/signin/reset/?resetToken=${resetToken}">
+          Click here to reset
+        </a>`
+      )
+    })
+
+    return {
+      message: 'Thanks. Please check your email for further instructions.'
+    }
   },
-  resetPassword: async (parent, args, ctx, info) => {}
+  resetPassword: async (parent, args, ctx, info) => {
+    if (args.password !== args.confirm) {
+      throwError('Passwords do not match')
+    }
+
+    const [user] = await ctx.db.query.users({
+      where: {
+        resetToken: args.resetToken,
+        resetTokenExpiry_gte: Date.now() - 3600000
+      }
+    })
+    if (!user) {
+      throwError('This token is invalid or expired.')
+    }
+
+    const password = await bcrypt.hash(args.password, 10)
+    const updatedUser = await ctx.db.mutation.updateUser({
+      where: { email: user.email },
+      data: { password, resetToken: null, resetTokenExpiry: null }
+    })
+
+    createCookie({ ctx, userId: updatedUser.id })
+    return updatedUser
+  }
 }
 
 module.exports = Mutation
