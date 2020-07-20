@@ -4,10 +4,12 @@ import { Link } from 'gatsby'
 import { device } from '../../utils'
 
 const Header = styled.header`
+  position: relative;
   background: var(--dark);
   display: flex;
   justify-content: space-between;
   height: 7rem;
+  z-index: 1000;
 `
 
 Header.LogoContainer = styled(Link)`

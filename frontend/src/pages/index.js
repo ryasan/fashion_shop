@@ -15,6 +15,7 @@ import Sidebar from '../components/sidebar'
 import Layout from '../layouts/global-layout'
 import { B } from '../elements'
 import { size } from '../utils'
+import SearchComponent from '../components/search'
 
 const fadeInUp = {
   initial: { y: '20rem', opacity: 0, scale: 0.1 },
@@ -50,8 +51,9 @@ const HomePage = () => {
         <B>SPECIAL OFFER:</B> Get 50% Off + FREE Shipping - Offer Ends Tomorrow
         ({tomorrow})
       </SpecialOffer>
-      {!isMobileLgScreen &&<Sidebar />}
+      {!isMobileLgScreen && <Sidebar />}
       <Foreground>
+        <SearchComponent />
         <MotionLogo {...fadeInUp} transition={{ delay: 1 }}>
           <Icon name="logo-jersey" />
         </MotionLogo>

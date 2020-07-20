@@ -11,6 +11,7 @@
     "apollo-cache-persist": "^0.1.1",
     "babel-plugin-styled-components": "^1.10.7",
     "change-case": "^4.1.1",
+    "downshift": "^5.4.7",
     "email-validator": "^2.0.4",
     "framer-motion": "^1.11.1",
     "gatsby": "^2.19.45",
