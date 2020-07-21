@@ -6,8 +6,8 @@ const spin = keyframes`
 `
 
 const Loader = styled.div`
-  width: 10rem;
-  height: 10rem;
+  width: ${props => props.size.loader};
+  height: ${props => props.size.loader};
   border-radius: 100%;
   position: relative;
   margin: 0 auto;
@@ -22,7 +22,7 @@ const Loader = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    border: 1rem solid transparent;
+    border: ${props => props.size.border} solid transparent;
     border-top-color: ${props => props.primary};
     border-bottom-color: ${props => props.primary};
   }
@@ -33,7 +33,7 @@ const Loader = styled.div`
   }
 
   &:after {
-    border: 1rem solid ${props => props.secondary};
+    border: ${props => props.size.border} solid ${props => props.secondary};
   }
 
   > div {
@@ -42,8 +42,8 @@ const Loader = styled.div`
 `
 
 Loader.Dot = styled.div`
-  width: 1rem;
-  height: 1rem;
+  width: ${props => props.size.dot};
+  height: ${props => props.size.dot};
   border-radius: 50%;
 `
 

@@ -3,7 +3,7 @@
 type Query {
   me: User
   users(where: UserWhereInput): [User]!
-  products: [Product!]
+  products(where: ProductWhereInput): [Product]!
   productsConnection(
     freeShippingSelected: Boolean
     sizeFilters: [String]

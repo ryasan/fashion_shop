@@ -13,8 +13,8 @@ import {
   REMOVE_SIZE_FILTER_MUTATION
 } from './mutation'
 
-export const useProductsQuery = () => {
-  return useQuery(PRODUCTS_QUERY)
+export const useProductsQuery = ({ variables }) => {
+  return useQuery(PRODUCTS_QUERY, { variables })
 }
 
 export const useProductsConnectionQuery = filters => {

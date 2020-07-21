@@ -2,8 +2,8 @@ import gql from 'graphql-tag'
 import { PRODUCT_FRAGMENT } from './fragments'
 
 export const PRODUCTS_QUERY = gql`
-  query {
-    products {
+  query($where: ProductWhereInput) {
+    products(where: $where) {
       ...ProductFragment
     }
   }
