@@ -5,7 +5,7 @@ import { navigate } from '@reach/router'
 
 import OrderDetails, { OrderItem } from './order-details.styles'
 import { P, Span, Image } from '../../../elements'
-import { formatPrice, getSmallImg } from '../../../utils'
+import { formatPrice, getFrontImage } from '../../../utils'
 
 const OrderDetailsComponent = ({ order }) => {
   const goToProductDetails = item => {
@@ -25,7 +25,7 @@ const OrderDetailsComponent = ({ order }) => {
         {order.orderItems.map(item => (
           <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
              <OrderItem.Image>
-                <Image src={getSmallImg(item.sku)} />
+                <Image src={getFrontImage(item.sku)} />
               </OrderItem.Image>
               <OrderItem.Cost>
                 <P><Span>price:</Span>{formatPrice(item.price)}</P>

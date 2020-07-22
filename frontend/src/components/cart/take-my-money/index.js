@@ -9,7 +9,7 @@ import Loader from '../../loader'
 import { toast } from '../../toast'
 import { Button } from '../../../elements'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
-import { getSmallImg } from '../../../utils'
+import { getFrontImage } from '../../../utils'
 import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
 import { cartInitialState } from '../../../graphql/cart/reducer'
@@ -23,7 +23,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const [uploadCart, { error: uploadError }] = useUploadCartMutation()
   const me = userData && userData.me
   const isReady = me && cartItems.length > 0
-  const image = getSmallImg(cartItems[0]?.product.sku)
+  const image = getFrontImage(cartItems[0]?.product.sku)
 
   const handleToastMessage = () => {
     if (!me) {

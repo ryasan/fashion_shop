@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Icon from '../../icons'
 import CartItem from './cart-item.styles'
 import { Image, Span, Button } from '../../../elements'
-import { formatPrice, getSmallImg } from '../../../utils'
+import { formatPrice, getFrontImage } from '../../../utils'
 import {
   useRemoveCartItemMutation,
   useIncreaseCartItemQuantityMutation,
@@ -18,7 +18,7 @@ const CartItemComponent = ({ cartItem }) => {
   const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
   const availableSizes = product.availableSizes.join(' | ')
-  const image = getSmallImg(product.sku)
+  const image = getFrontImage(product.sku)
 
   const handleRemoveCartItem = () => {
     removeCartItem({ variables: { productId: product.id } })

@@ -9,7 +9,7 @@ import Icon from '../icons'
 import ErrorBoundary from '../error-boundary/index'
 import Loader from '../loader/index'
 import { useProductsQuery } from '../../graphql/product/hooks'
-import { getSmallImg } from '../../utils'
+import { getFrontImage } from '../../utils'
 import { Span } from '../../elements/span'
 
 const fadeInUp = {
@@ -69,7 +69,7 @@ const SearchComponent = () => {
             search &&
             data.products.map(p => (
               <Search.Item key={p.id}>
-                <Search.ItemImage src={getSmallImg(p.sku)} />
+                <Search.ItemImage src={getFrontImage(p.sku)} />
                 <Span modifiers="font_size_m">{p.title}</Span>
               </Search.Item>
             ))}

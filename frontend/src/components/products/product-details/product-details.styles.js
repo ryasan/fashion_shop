@@ -8,11 +8,11 @@ const ProductDetails = styled.div`
 `
 
 ProductDetails.Image = styled.div`
-  background: red;
   display: flex;
-  image {
-    display: flex;
-    height: 100%;
+  width: 55rem;
+  img {
+    object-fit: contain;
+    width: 100%;
   }
 `
 

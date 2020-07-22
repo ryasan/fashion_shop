@@ -1,18 +1,24 @@
 import React from 'react'
 import { useCreateProductMutation } from '../graphql/product/hooks'
+import { shuffle } from 'lodash'
+import mockProducts from '../mocks/products.json'
 
-import { products as mockProducts } from '../mocks/products.json'
-
+const products = shuffle(mockProducts)
 export const withSeedProducts = Component => props => {
   const [createProduct] = useCreateProductMutation()
 
   const seedProducts = () => {
-    for (const p of mockProducts) {
+    for (const p of products) {
       createProduct({
         variables: {
           data: {
             ...p,
-            availableSizes: { set: p.availableSizes }
+            ...(p.availableSizes && {
+              availableSizes: { set: [] }
+            }),
+            ...(p.photos && {
+              photos: { set: p.photos }
+            })
           }
         }
       })
