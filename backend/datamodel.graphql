@@ -6,6 +6,15 @@ enum Size {
   XXL
 }
 
+enum Category {
+  SHIRT
+  SHORTS
+  LONG_SLEEVE
+  HOODIE
+  BEANIE
+  ACCESSORY
+}
+
 type User {
   id: ID! @unique @id
   username: String! @unique
@@ -31,10 +40,12 @@ type Product {
   isFeatured: Boolean!
   isAvailable: Boolean
   price: Int!
-  sku: String!
+  sku: String! @unique
   style: String!
   title: String!
+  category: Category!
   availableSizes: [Size!] @scalarList(strategy: RELATION)
+  photos: [String!] @scalarList(strategy: RELATION)
 }
 
 type OrderItem {
