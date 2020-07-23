@@ -60,6 +60,7 @@ const StyledHtml = css`
   p  { font-size: var(--font-size-m); }
   a  { text-decoration: none; }
   button { border: none; }
+  input, button { cursor: pointer; }
 
   ::-webkit-scrollbar {
     width: 0.5rem;

@@ -3,7 +3,12 @@ const { forwardTo } = require('prisma-binding')
 const { randomBytes } = require('crypto')
 const { promisify } = require('util')
 
-const { throwError, createCookie } = require('../utils')
+const {
+  throwError,
+  createCookie,
+  isLoggedIn,
+  hasPermission
+} = require('../utils')
 const stripe = require('../stripe')
 const { transport, makeANiceEmail } = require('../mail')
 
@@ -13,6 +18,7 @@ const Mutation = {
   deleteProduct: forwardTo('db'),
   createCartItem: forwardTo('db'),
   uploadCart: async (parent, args, ctx, info) => {
+    if (!isLoggedIn(ctx)) throwError('You must be signed in to upload cart.')
     const allCartItems = args.data
     const userId = ctx.request.userId
 
@@ -85,7 +91,8 @@ const Mutation = {
       data: {
         email: args.email.toLowerCase(),
         username: args.username,
-        password: password
+        password: password,
+        permissions: { set: ['USER'] }
       },
       info
     })
@@ -93,8 +100,10 @@ const Mutation = {
     return user
   },
   createOrder: async (parent, args, ctx, info) => {
+    if (!isLoggedIn(ctx)) {
+      throwError('You must be signed in to complete this order')
+    }
     const { userId } = ctx.request
-    if (!userId) throwError('You must be signed in to complete this order')
 
     const user = await ctx.db.query.user(
       { where: { id: userId } },
@@ -194,6 +203,27 @@ const Mutation = {
 
     createCookie({ ctx, userId: updatedUser.id })
     return updatedUser
+  },
+  updatePermissions: async (parent, args, ctx, info) => {
+    if (!isLoggedIn(ctx)) {
+      throwError('You must be logged in to perform this action.')
+    }
+    const currentUser = await ctx.db.query.user(
+      {
+        where: { id: ctx.request.userId }
+      },
+      info
+    )
+
+    hasPermission(currentUser, ['ADMIN', 'PERMISSION_UPDATE'])
+
+    return ctx.db.mutation.updateUser(
+      {
+        where: { id: args.userId },
+        data: { permissions: { set: args.permissions } }
+      },
+      info
+    )
   }
 }
 

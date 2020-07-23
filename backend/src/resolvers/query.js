@@ -1,12 +1,12 @@
 const { intersection, isEmpty } = require('lodash')
 const { forwardTo } = require('prisma-binding')
+const { isLoggedIn, throwError, hasPermission } = require('../utils.js')
 
 const isInStock = (sizes, filters) => {
   return intersection(sizes, filters).length > 0
 }
 
 const Query = {
-  users: forwardTo('db'),
   orders: forwardTo('db'),
   ordersConnection: forwardTo('db'),
   products: forwardTo('db'),
@@ -31,8 +31,17 @@ const Query = {
     return ctx.db.query.productsConnection({ where }, info)
   },
   me: (parent, args, ctx, info) => {
-    if (!ctx.request.userId) return null
+    if (!isLoggedIn(ctx)) return null
     return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
+  },
+  users: (parent, args, ctx, info) => {
+    if (!isLoggedIn(ctx)) {
+      throwError('You must be signed in to perform this action.')
+    }
+
+    hasPermission(ctx.request.user, ['ADMIN', 'PERMISSION_UPDATE'])
+
+    return ctx.db.query.users({}, info)
   }
 }
 

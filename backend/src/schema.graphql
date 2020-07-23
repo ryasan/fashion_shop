@@ -27,6 +27,7 @@ type Mutation {
   uploadCart(data: [CartUploadInput!]!): [CartItem]
   deleteMe: SuccessMessage
   deleteUser(where: UserWhereUniqueInput!): User
+  updatePermissions(permissions: [Permission!]!, userId: ID!): User
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
   signup(email: String!, username: String!, password: String!): User!
@@ -46,6 +47,7 @@ type User {
   password: String!
   cart: [CartItem!]
   orders: [OrderItem]
+  permissions: [Permission!]!
 }
 
 type CartItem {
@@ -66,6 +68,8 @@ type Product {
   style: String!
   title: String!
   availableSizes: [Size!]
+  category: Category!
+  photos: [String!]
 }
 
 type SuccessMessage {

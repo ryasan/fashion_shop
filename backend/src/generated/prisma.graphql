@@ -816,6 +816,15 @@ type PageInfo {
   endCursor: String
 }
 
+enum Permission {
+  ADMIN
+  USER
+  ITEM_CREATE
+  ITEM_UPDATE
+  ITEM_DELETE
+  PERMISSION_UPDATE
+}
+
 type Product {
   id: ID!
   description: String!
@@ -1131,6 +1140,7 @@ type User {
   orders(where: OrderWhereInput, orderBy: OrderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Order!]
   resetToken: String
   resetTokenExpiry: Float
+  permissions: [Permission!]!
 }
 
 type UserConnection {
@@ -1148,6 +1158,7 @@ input UserCreateInput {
   orders: OrderCreateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
 }
 
 input UserCreateOneInput {
@@ -1165,6 +1176,10 @@ input UserCreateOneWithoutOrdersInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
 input UserCreateWithoutCartInput {
   id: ID
   username: String!
@@ -1173,6 +1188,7 @@ input UserCreateWithoutCartInput {
   orders: OrderCreateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
 }
 
 input UserCreateWithoutOrdersInput {
@@ -1183,6 +1199,7 @@ input UserCreateWithoutOrdersInput {
   cart: CartItemCreateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
 }
 
 type UserEdge {
@@ -1212,6 +1229,7 @@ type UserPreviousValues {
   password: String!
   resetToken: String
   resetTokenExpiry: Float
+  permissions: [Permission!]!
 }
 
 type UserSubscriptionPayload {
@@ -1240,6 +1258,7 @@ input UserUpdateDataInput {
   orders: OrderUpdateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateInput {
@@ -1250,6 +1269,7 @@ input UserUpdateInput {
   orders: OrderUpdateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateManyMutationInput {
@@ -1258,6 +1278,7 @@ input UserUpdateManyMutationInput {
   password: String
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateOneInput {
@@ -1283,6 +1304,10 @@ input UserUpdateOneRequiredWithoutOrdersInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
 input UserUpdateWithoutCartDataInput {
   username: String
   email: String
@@ -1290,6 +1315,7 @@ input UserUpdateWithoutCartDataInput {
   orders: OrderUpdateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateWithoutOrdersDataInput {
@@ -1299,6 +1325,7 @@ input UserUpdateWithoutOrdersDataInput {
   cart: CartItemUpdateManyWithoutUserInput
   resetToken: String
   resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpsertNestedInput {

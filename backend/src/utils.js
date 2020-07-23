@@ -14,6 +14,10 @@ const formatError = ({ message }) => {
   }
 }
 
+const isLoggedIn = (ctx) => {
+  return ctx.request.userId
+}
+
 // set the jwt as a cookie on the response
 const createCookie = ({ ctx, userId }) => {
   const token = jwt.sign({ userId }, process.env.APP_SECRET)
@@ -24,4 +28,26 @@ const createCookie = ({ ctx, userId }) => {
   })
 }
 
-module.exports = { createCookie, throwError, formatError }
+const hasPermission = (user, permissionsNeeded) => {
+  const matchedPermissions = user.permissions.filter((permissionTheyHave) =>
+    permissionsNeeded.includes(permissionTheyHave)
+  )
+  if (!matchedPermissions.length) {
+    throw new Error(`You do not have sufficient permissions
+
+      : ${permissionsNeeded}
+
+      You Have:
+
+      ${user.permissions}
+      `)
+  }
+}
+
+module.exports = {
+  createCookie,
+  throwError,
+  formatError,
+  isLoggedIn,
+  hasPermission
+}

@@ -35,20 +35,23 @@ export const buildStyledComponent = ({
 
 const config = {
   borders: {
+    border_1: () => css`
+      border-width: 0.1rem;
+    `,
     border_2px: () => css`
-      border-width: 2px;
+      border-width: 0.2rem;
     `,
     border_3px: () => css`
-      border-width: 3px;
+      border-width: 0.3rem;
     `,
     border_none: () => css`
       border: none;
     `,
-    border_radius_2px: () => css`
-      border-radius: 2px;
+    border_radius_2: () => css`
+      border-radius: 2rem;
     `,
-    border_radius_3px: () => css`
-      border-radius: 3px;
+    border_radius_3: () => css`
+      border-radius: 3rem;
     `,
     solid_border: () => css`
       border-style: solid;

@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
 
 import { PRODUCT_FRAGMENT } from '../product/fragments'
+import { USER_FRAGMENT } from './fragments'
 
 export const DELETE_ME = gql`
   mutation {
@@ -54,7 +55,7 @@ export const REQUEST_PASSWORD_RESET_MUTATION = gql`
 `
 
 export const RESET_PASSWORD_MUTATION = gql`
-  mutation($password: String!, $confirm: String!,$resetToken: String!) {
+  mutation($password: String!, $confirm: String!, $resetToken: String!) {
     resetPassword(
       password: $password
       confirm: $confirm
@@ -65,4 +66,13 @@ export const RESET_PASSWORD_MUTATION = gql`
       email
     }
   }
+`
+
+export const UPDATE_PERMISSIONS_MUTATION = gql`
+  mutation($permissions: [Permission!]!, $userId: ID!) {
+    updatePermissions(permissions: $permissions, userId: $userId) {
+      ...UserFragment
+    }
+  }
+  ${USER_FRAGMENT}
 `

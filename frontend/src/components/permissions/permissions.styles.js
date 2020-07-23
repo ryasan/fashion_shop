@@ -1,15 +1,17 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { device } from '../../utils'
+import { Th } from '../../elements'
 
-const Users = styled.div`
+const Permissions = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: center;
 `
 
 const Table = styled.table`
-  width: 100%;
   max-width: var(--max-width);
   margin-top: 2rem;
+  background: var(--darker);
 `
 
 Table.Head = styled.thead`
@@ -17,42 +19,57 @@ Table.Head = styled.thead`
 `
 
 Table.Row = styled.tr`
-  display: flex;
   width: 100%;
-  th,
-  td {
-    width: 15.5rem;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    height: 4.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 0.1rem solid white;
-    @media ${device.laptop} {
-      width: 11.5rem;
-    }
+  display: flex;
+  justify-content: center;
+`
+
+Table.Body = styled.tbody`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+`
+
+const baseStyles = css`
+  width: 16rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid white;
+  &:nth-child(n + 3):not(:last-child) {
+    border-left: 0;
+    border-right: 0;
   }
-  th {
-    border: 0.1rem solid white;
-    color: var(--salmon);
+  &:nth-child(n + 3):not(:last-child) {
+    width: 12rem;
   }
-  td:last-child {
-    
-    padding: 0.5rem;
+`
+
+const HeaderCell = styled(Th)`
+  ${baseStyles};
+  color: ${props => (props.active ? 'var(--red)' : 'var(--salmon)')};
+  border: 0.1rem solid white;
+`
+
+const _Cell = styled.td`
+  ${baseStyles};
+  &:last-child {
+    border-left: 0;
   }
   button {
     width: 100%;
     background: var(--salmon);
     &:hover {
       background: var(--red);
+      color: white;
     }
   }
 `
 
-Table.Body = styled.tbody``
-
-export { Table }
-export default Users
+export { Table, _Cell, HeaderCell }
+export default Permissions
