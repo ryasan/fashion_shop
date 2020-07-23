@@ -10,10 +10,11 @@ import {
   useProductsConnectionQuery,
   useFiltersQuery
 } from '../../graphql/product/hooks'
+import { withSeedProducts } from '../../utils'
 
 const perPage = 8
 
-const ProductsComponent = () => {
+const ProductsComponent = ({ seedProducts }) => {
   const [orderBy, setOrderBy] = useState(null)
   const [skip, setSkip] = useState(0)
   const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery()
@@ -29,6 +30,7 @@ const ProductsComponent = () => {
 
   return (
     <Products>
+      <button onClick={seedProducts}>seed</button>
       <ControlsHeader count={count} setOrderBy={setOrderBy} />
       <Products.Container>
         <ErrorBoundary error={error}>
@@ -50,4 +52,4 @@ const ProductsComponent = () => {
   )
 }
 
-export default ProductsComponent
+export default withSeedProducts(ProductsComponent)

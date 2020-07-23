@@ -64,7 +64,7 @@ const SearchComponent = () => {
           onBlur={handleBlur}
         />
         <Search.Dropdown>
-          {loading && <Loader color="white" size="small" />}
+          {search && loading && <Loader color="white" size="small" />}
           {!loading &&
             search &&
             data.products.map(p => (
