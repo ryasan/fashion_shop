@@ -15,7 +15,10 @@ const Query = {
     const { edges } = await ctx.db.query.productsConnection({}, info)
 
     const inStock = (edges || []).filter(({ node }) => {
-      return isInStock(node.availableSizes, sizeFilters)
+      return (
+        ['HOODIES', 'SHIRT', 'LONG_SLEEVE'].includes(node.category) &&
+        isInStock(node.availableSizes, sizeFilters)
+      )
     })
 
     const inStockProductIds = inStock.map(({ node }) => node.id)
