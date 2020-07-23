@@ -35,6 +35,9 @@ const AccountLayout = ({ children }) => {
                     getProps={isActive}>
                     Orders
                   </Link>
+                  <Link to="/account/permissions" activeClassName="active">
+                    Permissions
+                  </Link>
                 </Tabs.Links>
                 <Tabs.Content>{children}</Tabs.Content>
               </Tabs>

@@ -7,7 +7,6 @@ import { DebounceInput } from 'react-debounce-input'
 import Search from './search.styles'
 import Icon from '../icons'
 import ErrorBoundary from '../error-boundary/index'
-import Loader from '../loader/index'
 import { useProductsQuery } from '../../graphql/product/hooks'
 import { getFrontImage } from '../../utils'
 import { Span } from '../../elements/span'
@@ -64,7 +63,6 @@ const SearchComponent = () => {
           onBlur={handleBlur}
         />
         <Search.Dropdown>
-          {search && loading && <Loader color="white" size="small" />}
           {!loading &&
             search &&
             data.products.map(p => (
@@ -74,6 +72,7 @@ const SearchComponent = () => {
               </Search.Item>
             ))}
         </Search.Dropdown>
+        {search && loading && <Search.Loader>Searching...</Search.Loader>}
       </Search>
     </ErrorBoundary>
   )

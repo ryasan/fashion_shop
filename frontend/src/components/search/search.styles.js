@@ -39,6 +39,14 @@ Search.Dropdown = styled.ul`
   position: relative;
   bottom: -0.3rem;
   border-radius: 0.3rem;
+  text-align: center;
+`
+
+Search.Loader = styled.div`
+position: absolute;
+top: -1.7rem;
+left: 50%;
+transform: translateX(-50%);
 `
 
 Search.Item = styled.li`

@@ -21,6 +21,8 @@ const Tabs = styled.div`
 Tabs.Links = styled.div`
   border-bottom: 1px solid white;
   a {
+    width: 11.7rem;
+    text-align: center;
     font-size: var(--font-size-m);
     text-decoration: none;
     padding: 1rem;

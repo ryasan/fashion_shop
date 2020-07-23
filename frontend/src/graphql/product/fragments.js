@@ -11,5 +11,7 @@ export const PRODUCT_FRAGMENT = gql`
     sku
     style
     title
+    category
+    photos
   }
 `

@@ -8,10 +8,14 @@ import {
   REQUEST_PASSWORD_RESET_MUTATION,
   RESET_PASSWORD_MUTATION
 } from './mutations'
-import { CURRENT_USER_QUERY } from './queries'
+import { CURRENT_USER_QUERY, USERS_QUERY } from './queries'
 
 export const useCurrentUserQuery = () => {
   return useQuery(CURRENT_USER_QUERY)
+}
+
+export const useUsersQuery = () => {
+  return useQuery(USERS_QUERY)
 }
 
 export const useDeleteMeMutation = () => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Loader from './loader.styles'
 
@@ -22,14 +23,22 @@ const setSize = size => {
   }
 }
 
-const LoaderComponent = ({ className, color, size }) => {
+const LoaderComponent = ({ className, color, size = 'medium' }) => {
   const colors = setColors(color)
   const _size = setSize(size)
+  const classNames = className ? `loader ${className}` : 'loader'
+
   return (
-    <Loader {...colors} size={_size} className={className}>
+    <Loader {...colors} size={_size} className={classNames}>
       <Loader.Dot size={_size} />
     </Loader>
   )
+}
+
+LoaderComponent.propTypes = {
+  color: PropTypes.string,
+  size: PropTypes.string,
+  className: PropTypes.string
 }
 
 export default LoaderComponent

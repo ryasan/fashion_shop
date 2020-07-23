@@ -6,14 +6,17 @@ const spin = keyframes`
 `
 
 const Loader = styled.div`
-  width: ${props => props.size.loader};
-  height: ${props => props.size.loader};
+  width: ${props => props.size?.loader};
+  height: ${props => props.size?.loader};
   border-radius: 100%;
-  position: relative;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   &:before,
   &:after {
@@ -22,7 +25,7 @@ const Loader = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    border: ${props => props.size.border} solid transparent;
+    border: ${props => props.size?.border} solid transparent;
     border-top-color: ${props => props.primary};
     border-bottom-color: ${props => props.primary};
   }
@@ -33,7 +36,7 @@ const Loader = styled.div`
   }
 
   &:after {
-    border: ${props => props.size.border} solid ${props => props.secondary};
+    border: ${props => props.size?.border} solid ${props => props.secondary};
   }
 
   > div {
@@ -42,8 +45,8 @@ const Loader = styled.div`
 `
 
 Loader.Dot = styled.div`
-  width: ${props => props.size.dot};
-  height: ${props => props.size.dot};
+  width: ${props => props.size?.dot};
+  height: ${props => props.size?.dot};
   border-radius: 50%;
 `
 

@@ -43,6 +43,10 @@ Cart.ToggleButton = styled.div`
   transition: fill 0.2s;
   cursor: pointer;
   font-size: var(--font-size-s);
+  svg {
+    width: 3rem;
+    height: 3rem;
+  }
   &:before {
     content: '';
     position: absolute;

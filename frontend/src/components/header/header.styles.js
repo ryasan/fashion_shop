@@ -8,6 +8,7 @@ const Header = styled.header`
   background: var(--dark);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 7rem;
   z-index: 1000;
 `
@@ -22,8 +23,9 @@ Header.LogoContainer = styled(Link)`
 
 Header.Nav = styled.ul`
   display: flex;
-  margin-right: 9rem;
   z-index: 10;
+  position: relative;
+  width: ${({ me }) => `calc((${me ? 4 : 3} + 1) * 9rem)`};
   @media ${device.mobileL} {
     width: 100%;
     position: fixed;

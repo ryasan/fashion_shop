@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
 import { Link } from 'gatsby'
 
@@ -12,15 +12,16 @@ import { toast } from '../toast'
 import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 import { SIGNOUT } from '../signin/form-types'
+import LoaderComponent from '../loader'
 
-const HeaderComponent = () => {
+const HeaderComponent = props => {
   const client = useApolloClient()
   const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
-  const [signout, { data: signoutData }] = useAuth()
+  const [signout, { data: signoutData, loading }] = useAuth()
   const [uploadCart] = useUploadCartMutation()
+  const navRef = useRef(null)
   const me = userData && userData.me
-
   const handleSignout = () => {
     signout({
       variables: { authType: SIGNOUT }
@@ -45,42 +46,48 @@ const HeaderComponent = () => {
       <Header.LogoContainer to="/">
         <Icon name="logo-royal" />
       </Header.LogoContainer>
-      <Header.Nav>
-        <Header.NavItem>
-          <Link to="/">
-            <Icon name="home" />
-            HOME
-          </Link>
-        </Header.NavItem>
-        <Header.NavItem>
-          <Link to="/shop/">
-            <Icon name="store" />
-            SHOP
-          </Link>
-        </Header.NavItem>
-        {me && (
-          <Header.NavItem>
-            <A onClick={handleSignout}>
-              <Icon name="exit" />
-              SIGNOUT
-            </A>
-          </Header.NavItem>
-        )}
-        {!me && (
-          <Header.NavItem>
-            <Link to="/signin/">
-              <Icon name="key" />
-              SIGNIN
-            </Link>
-          </Header.NavItem>
-        )}
-        {me && (
-          <Header.NavItem>
-            <Link to="/account/">
-              <Icon name="account-circle" />
-              ACCOUNT
-            </Link>
-          </Header.NavItem>
+      <Header.Nav ref={navRef} me={me}>
+        {loading ? (
+          <LoaderComponent size="small" />
+        ) : (
+          <>
+            <Header.NavItem>
+              <Link to="/">
+                <Icon name="home" />
+                HOME
+              </Link>
+            </Header.NavItem>
+            <Header.NavItem>
+              <Link to="/shop/">
+                <Icon name="store" />
+                SHOP
+              </Link>
+            </Header.NavItem>
+            {me && (
+              <Header.NavItem>
+                <A onClick={handleSignout}>
+                  <Icon name="exit" />
+                  SIGNOUT
+                </A>
+              </Header.NavItem>
+            )}
+            {!me && (
+              <Header.NavItem>
+                <Link to="/signin/">
+                  <Icon name="key" />
+                  SIGNIN
+                </Link>
+              </Header.NavItem>
+            )}
+            {me && (
+              <Header.NavItem>
+                <Link to="/account/">
+                  <Icon name="account-circle" />
+                  ACCOUNT
+                </Link>
+              </Header.NavItem>
+            )}
+          </>
         )}
       </Header.Nav>
       <Cart />
