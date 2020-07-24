@@ -5,7 +5,6 @@ import { parse } from 'query-string'
 import SEO from '../../components/seo'
 import Signin from '../../components/signin'
 import { PASSWORD, CONFIRM } from '../../components/signin/action-types'
-import { PASSWORD_RESET } from '../../components/signin/form-types'
 
 const PasswordResetPage = props => {
   const { resetToken } = parse(location.search)
@@ -17,7 +16,7 @@ const PasswordResetPage = props => {
         {...props}
         chosenFields={[PASSWORD, CONFIRM]}
         resetToken={resetToken}
-        isPasswordReset={PASSWORD_RESET}
+        isPasswordReset
       />
     </Layout>
   )

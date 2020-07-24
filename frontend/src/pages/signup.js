@@ -10,7 +10,6 @@ import {
   USERNAME,
   CONFIRM
 } from '../components/signin/action-types'
-import { SIGNUP } from '../components/signin/form-types'
 
 const SignupPage = props => {
   return (
@@ -19,7 +18,7 @@ const SignupPage = props => {
       <Signin
         {...props}
         chosenFields={[EMAIL, USERNAME, PASSWORD, CONFIRM]}
-        isSignup={SIGNUP}
+        isSignup
       />
     </Layout>
   )

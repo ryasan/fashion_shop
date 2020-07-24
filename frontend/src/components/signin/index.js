@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
-import { Link } from 'gatsby'
 
-import Signin, { Fieldset, Field, Header } from './signin.styles'
+import Signin, { Fieldset, Header } from './signin.styles'
+import Field from './input-fields/input-fields.styles'
 import Form from '../form'
-import Icon from '../icons'
 import useAuth from '../auth'
-import { Input, Span, Button, Small } from '../../elements'
+import InputFields from './input-fields'
+import { Span, Button } from '../../elements'
+import FooterText from './footer-text'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
 import {
   EMAIL,
@@ -22,6 +23,7 @@ import {
   CHANGE_FORM_TYPE
 } from './action-types'
 import { toast } from '../toast'
+import { SIGNUP, SIGNIN, REQUEST_RESET, PASSWORD_RESET } from './form-types'
 
 const initialState = {
   email: '',
@@ -73,47 +75,6 @@ const reducer = (state, action) => {
   }
 }
 
-const FooterText = ({
-  isSignin,
-  isSignup,
-  isRequestReset,
-  isPasswordReset
-}) => {
-  const contents = [
-    isSignin && {
-      text: 'Forgot your password?',
-      to: '/signin/request-reset/',
-      link: 'Reset'
-    },
-    isSignin && {
-      text: 'Need to sign up for an account?',
-      to: '/signup/',
-      link: 'Signup'
-    },
-    isSignup && {
-      text: 'Already have an account? Back to signin.',
-      to: '/signin/',
-      link: 'Signin'
-    }
-  ]
-
-  return contents.filter(Boolean).map((c, i) => (
-    <Small key={i}>
-      {c.text}{' '}
-      <Link to={c.to} style={{ color: 'var(--red)' }}>
-        {c.link}
-      </Link>
-    </Small>
-  ))
-}
-
-FooterText.propTypes = {
-  isSignin: PropTypes.string,
-  isSignup: PropTypes.string,
-  isRequestReset: PropTypes.string,
-  isPasswordReset: PropTypes.string
-}
-
 const SigninComponent = ({
   chosenFields,
   resetToken,
@@ -124,12 +85,16 @@ const SigninComponent = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
-  const { email, password, confirm, message, formIsValid, username } = state // prettier-ignore
+  const { email, password, confirm, message, formIsValid, username } = state
   const [authMutation, { loading, data, error }] = useAuth()
-  const showsEmailField = chosenFields.includes(EMAIL)
-  const showsUsernameField = chosenFields.includes(USERNAME)
-  const showsPasswordField = chosenFields.includes(PASSWORD)
-  const showsConfirmField = chosenFields.includes(CONFIRM)
+  const showsEmailField = () => chosenFields.includes(EMAIL)
+  const showsUsernameField = () => chosenFields.includes(USERNAME)
+  const showsPasswordField = () => chosenFields.includes(PASSWORD)
+  const showsConfirmField = () => chosenFields.includes(CONFIRM)
+  const emailIsNotValid = () => showsEmailField() && !validate(email)
+  const passwordIsNotValid = () => showsPasswordField() && !password
+  const usernameIsNotValid = () => showsUsernameField() && !username
+  const confirmPasswordIsNotValid = () => showsConfirmField() && password !== confirm
 
   useEffect(() => {
     if (error) {
@@ -159,41 +124,34 @@ const SigninComponent = ({
     }
   }, [data])
 
-  const handleOnChange = async e => {
-    dispatch({
-      type: constantCase(e.target.name),
-      payload: e.target.value
-    })
-  }
-
   const handleOnSubmit = e => {
     e.preventDefault()
-    if (showsEmailField && !validate(email)) {
+    if (emailIsNotValid()) {
       return dispatch({
         type: MESSAGE,
         payload: 'Email is not valid'
       })
-    } else if (showsPasswordField && !password) {
+    } else if (passwordIsNotValid()) {
       return dispatch({
         type: MESSAGE,
         payload: 'Please enter a password'
       })
-    } else if (showsUsernameField && !username) {
+    } else if (usernameIsNotValid()) {
       return dispatch({
         type: MESSAGE,
         payload: 'Please enter a username'
       })
-    } else if (showsConfirmField && password !== confirm) {
+    } else if (confirmPasswordIsNotValid()) {
       return dispatch({
         type: MESSAGE,
         payload: 'Passwords do not match'
       })
     } else {
       const [authType] = [
-        isSignup,
-        isSignin,
-        isRequestReset,
-        isPasswordReset
+        isSignup && SIGNUP,
+        isSignin && SIGNIN,
+        isRequestReset && REQUEST_RESET,
+        isPasswordReset && PASSWORD_RESET
       ].filter(Boolean)
 
       authMutation({
@@ -203,8 +161,15 @@ const SigninComponent = ({
     }
   }
 
+  const handleOnChange = async e => {
+    dispatch({
+      type: constantCase(e.target.name),
+      payload: e.target.value
+    })
+  }
+
   const fields = {
-    ...(showsEmailField && {
+    ...(showsEmailField() && {
       email: {
         icon: 'account-circle',
         type: 'text',
@@ -212,7 +177,7 @@ const SigninComponent = ({
         name: 'email'
       }
     }),
-    ...(showsUsernameField && {
+    ...(showsUsernameField() && {
       username: {
         icon: 'account-box',
         type: 'text',
@@ -220,7 +185,7 @@ const SigninComponent = ({
         name: 'username'
       }
     }),
-    ...(showsPasswordField && {
+    ...(showsPasswordField() && {
       password: {
         icon: 'key',
         type: 'password',
@@ -228,7 +193,7 @@ const SigninComponent = ({
         name: 'password'
       }
     }),
-    ...(showsConfirmField && {
+    ...(showsConfirmField() && {
       confirm: {
         icon: 'key',
         type: 'password',
@@ -262,19 +227,11 @@ const SigninComponent = ({
               {headerText}
             </Span>
           )}
-          {Object.values(fields).map((f, i) => (
-            <Field key={i}>
-              <Icon name={f.icon} />
-              <Input
-                placeholder={f.name}
-                type={f.type}
-                name={f.name}
-                value={f.value}
-                disabled={loading}
-                onChange={handleOnChange}
-              />
-            </Field>
-          ))}
+          <InputFields
+            loading={loading}
+            fields={Object.values(fields)}
+            handleOnChange={handleOnChange}
+          />
           <Span modifiers={messageColors}>{message}</Span>
           <Field>
             <Button type="submit" disabled={loading}>
@@ -294,7 +251,11 @@ const SigninComponent = ({
 }
 
 SigninComponent.propTypes = {
-  chosenFields: PropTypes.arrayOf(PropTypes.string).isRequired
+  chosenFields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isRequestReset: PropTypes.bool,
+  isPasswordReset: PropTypes.bool,
+  isSignin: PropTypes.bool,
+  isSignup: PropTypes.bool
 }
 
 export default SigninComponent
