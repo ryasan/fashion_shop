@@ -20,20 +20,3 @@ export const UPDATE_PRODUCT_MUTATION = gql`
   ${PRODUCT_FRAGMENT}
 `
 
-export const ADD_SIZE_FILTER_MUTATION = gql`
-  mutation($size: String!) {
-    addSizeFilter(size: $size) @client
-  }
-`
-
-export const REMOVE_SIZE_FILTER_MUTATION = gql`
-  mutation($size: String!) {
-    removeSizeFilter(size: $size) @client
-  }
-`
-
-export const SET_FREE_SHIPPING_SELECTED_MUTATION = gql`
-  mutation($isSelected: Boolean!) {
-    setFreeShippingSelected(isSelected: $isSelected) @client
-  }
-`

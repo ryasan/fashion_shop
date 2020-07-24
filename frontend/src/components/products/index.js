@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Products from './products.styles'
 import ProductList from './product-list'
@@ -6,26 +6,30 @@ import ControlsHeader from './controls-header/index'
 import ErrorBoundary from '../error-boundary'
 import Pagination from '../pagination'
 import Loader from '../loader'
-import {
-  useProductsConnectionQuery,
-  useFiltersQuery
-} from '../../graphql/product/hooks'
+import { useProductsConnectionQuery } from '../../graphql/product/hooks'
+import { useFiltersQuery } from '../../graphql/filter/hooks'
 
 const perPage = 8
 
-const ProductsComponent = ({ seedProducts }) => {
+const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
   const [skip, setSkip] = useState(0)
-  const { data: { sizeFilters, freeShippingSelected } } = useFiltersQuery()
+  const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery()
   const { data, error, loading } = useProductsConnectionQuery({
     sizeFilters,
+    categoryFilters,
     freeShippingSelected,
     orderBy,
     skip,
     first: perPage
   })
+
   const count = data?.productsCount.aggregate.count
   const products = data?.productsConnection.edges.map(e => e.node)
+
+  useEffect(() => {
+    setSkip(0)
+  }, [sizeFilters.length, categoryFilters.length, freeShippingSelected])
 
   return (
     <Products>

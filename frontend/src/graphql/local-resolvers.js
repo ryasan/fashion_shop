@@ -9,10 +9,12 @@ import {
 import {
   ADD_SIZE_FILTER,
   REMOVE_SIZE_FILTER,
-  SET_FREE_SHIPPING_SELECTED
-} from './filters/action-types'
+  SET_FREE_SHIPPING_SELECTED,
+  ADD_CATEGORY_FILTER,
+  REMOVE_CATEGORY_FILTER
+} from './filter/action-types'
 import cartReducer from './cart/reducer'
-import filtersReducer from './filters/reducer'
+import filtersReducer from './filter/reducer'
 
 // local data
 export const Mutation = {
@@ -32,6 +34,10 @@ export const Mutation = {
     filtersReducer(ADD_SIZE_FILTER, client, variables),
   removeSizeFilter: (_, variables, { client }) =>
     filtersReducer(REMOVE_SIZE_FILTER, client, variables),
+  addCategoryFilter: (_, variables, { client }) =>
+    filtersReducer(ADD_CATEGORY_FILTER, client, variables),
+  removeCategoryFilter: (_, variables, { client }) =>
+    filtersReducer(REMOVE_CATEGORY_FILTER, client, variables),
   setFreeShippingSelected: (_, variables, { client }) =>
     filtersReducer(SET_FREE_SHIPPING_SELECTED, client, variables)
 }

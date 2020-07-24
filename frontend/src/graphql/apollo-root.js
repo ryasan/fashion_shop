@@ -9,7 +9,7 @@ import { persistCache } from 'apollo-cache-persist'
 import Loader from '../components/loader'
 import { Mutation } from './local-resolvers'
 import { cartInitialState } from './cart/reducer'
-import { filtersInitialState } from './filters/reducer'
+import { filtersInitialState } from './filter/reducer'
 
 const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fashion-shop-prod.herokuapp.com'

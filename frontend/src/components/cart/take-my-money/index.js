@@ -59,7 +59,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
     <ErrorBoundary error={orderError || uploadError}>
       <TakeMyMoney className="close-btn">
         {loading && <Loader />}
-        {isReady && (
+        {isReady && !loading &&  (
           <StripeCheckout
             currency="USD"
             name="Fashion Shop"

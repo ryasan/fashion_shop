@@ -6,7 +6,8 @@ type Query {
   products(where: ProductWhereInput): [Product]!
   productsConnection(
     freeShippingSelected: Boolean
-    sizeFilters: [String]
+    sizeFilters: [Size]
+    categoryFilters: [Category]
     orderBy: ProductOrderByInput
     first: Int
     skip: Int

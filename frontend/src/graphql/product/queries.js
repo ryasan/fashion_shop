@@ -13,7 +13,8 @@ export const PRODUCTS_QUERY = gql`
 export const PRODUCTS_CONNECTION_QUERY = gql`
   query(
     $freeShippingSelected: Boolean
-    $sizeFilters: [String]
+    $sizeFilters: [Size]
+    $categoryFilters: [Category]
     $orderBy: ProductOrderByInput
     $first: Int
     $skip: Int
@@ -21,6 +22,7 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
     productsConnection(
       freeShippingSelected: $freeShippingSelected
       sizeFilters: $sizeFilters
+      categoryFilters: $categoryFilters
       orderBy: $orderBy
       first: $first
       skip: $skip
@@ -35,7 +37,16 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
         hasPreviousPage
       }
     }
-    productsCount: productsConnection {
+    productsCount: productsConnection(
+      freeShippingSelected: $freeShippingSelected
+      sizeFilters: $sizeFilters
+      categoryFilters: $categoryFilters
+    ) {
+      edges {
+        node {
+          ...ProductFragment
+        }
+      }
       aggregate {
         count
       }
@@ -47,6 +58,7 @@ export const PRODUCTS_CONNECTION_QUERY = gql`
 export const FILTERS_QUERY = gql`
   query {
     sizeFilters @client
+    categoryFilters @client
     freeShippingSelected @client
   }
 `

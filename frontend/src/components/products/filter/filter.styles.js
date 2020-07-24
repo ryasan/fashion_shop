@@ -26,16 +26,28 @@ const filterBtnStyles = isSelected => css`
   }
 `
 
-Filter.FreeShipping = styled(Button)`
+Filter.ButtonGroup = styled.div`
+  position: initial;
+`
+
+const WideBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+`
+
+WideBox.Button = styled(Button)`
   height: 3.5rem;
+  width: 7rem;
   ${props => filterBtnStyles(props.isSelected)};
 `
 
-Filter.Sizes = styled.ul`
+const Round = styled.div`
   display: flex;
+  justify-content: center;
 `
 
-Filter.OneSize = styled(Button)`
+Round.Button = styled(Button)`
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -45,4 +57,5 @@ Filter.OneSize = styled(Button)`
 
 Filter.Title = P
 
+export { Round, WideBox }
 export default Filter
