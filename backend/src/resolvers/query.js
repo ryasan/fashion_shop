@@ -36,7 +36,6 @@ const Query = {
     return ctx.db.query.productsConnection({ where }, info)
   },
   me: (parent, args, ctx, info) => {
-    console.log('USER ID FROM ME QUERY: ', ctx.request.userId)
     if (!isLoggedIn(ctx)) return null
     return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
   },
