@@ -67,8 +67,6 @@ const Mutation = {
     // createCookie({ ctx, userId: user.id })
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
     await ctx.response.cookie('token', token, {
-      secure: true,
-      httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     })
 
