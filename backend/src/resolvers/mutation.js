@@ -52,7 +52,13 @@ const Mutation = {
     return { message: 'Your account has successfully been removed' }
   },
   signin: async (parent, { email, password }, ctx, info) => {
-    const user = await ctx.db.query.user({ where: { email } })
+    const user = await ctx.db.query.user(
+      { where: { email } },
+      `{ id email username password cart { id quantity product { 
+        id description isFreeShipping isFeatured isAvailable price sku title category availableSizes photos
+       } } }`
+    )
+    console.log('asdkaksdada!!!', user)
 
     if (!user) {
       throwError(`Oops: No such user found for email: ${email}`)
@@ -66,12 +72,12 @@ const Mutation = {
 
     // createCookie({ ctx, userId: user.id })
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
-    await ctx.response.cookie('token', token, {
+    ctx.response.cookie('token', token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     })
 
-    return ctx.db.query.user({ where: { email } }, info)
+    return user
   },
   signout: async (parent, args, ctx, info) => {
     ctx.response.clearCookie('token')

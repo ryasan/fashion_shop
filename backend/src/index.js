@@ -46,7 +46,11 @@ server.express.use(async (req, res, next) => {
 const options = {
   cors: {
     credentials: true,
-    origin: '*'
+    origin: [
+      process.env.NODE_ENV === 'development'
+        ? DEV_FRONTEND_URL
+        : PROD_FRONTEND_URL
+    ]
   },
   endpoint: '/',
   playground: '/playground',
