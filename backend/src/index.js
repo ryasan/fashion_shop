@@ -22,7 +22,8 @@ const { DEV_FRONTEND_URL, PROD_FRONTEND_URL, APP_SECRET } = process.env
 
 // put user on each request
 server.express.use((req, res, next) => {
-  // console.log('MIDDLEWARE CHECKING REQ COOKIES: ', req.cookies)
+  console.log('Cookies: ', req.cookies)
+  console.log('Signed Cookies: ', req.signedCookies)
   const { token } = req.cookies
   if (token) {
     const { userId } = jwt.verify(token, APP_SECRET)
