@@ -22,7 +22,7 @@ const { DEV_FRONTEND_URL, PROD_FRONTEND_URL, APP_SECRET } = process.env
 
 // put user on each request
 server.express.use((req, res, next) => {
-  console.log('REQUEST COOKIES FROM DECODE JWT: ', req.cookies)
+  console.log('REQ FROM MIDDLEWARE CHECKING JWT TOKEN: ', req)
   const { token } = req.cookies
   if (token) {
     const { userId } = jwt.verify(token, APP_SECRET)
@@ -32,7 +32,7 @@ server.express.use((req, res, next) => {
 })
 
 server.express.use(async (req, res, next) => {
-  console.log('USER FROM POPULATE USER: ', req.userId)
+  console.log('REQ FROM MIDDLEWARE ATTACHING USER: ', req.userId)
   if (!req.userId) return next()
   const user = await db.query.user(
     { where: { id: req.userId } },
