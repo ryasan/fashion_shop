@@ -21,8 +21,7 @@ const isLoggedIn = (ctx) => {
 // set the jwt as a cookie on the response
 const createCookie = ({ ctx, userId }) => {
   const token = jwt.sign({ userId }, process.env.APP_SECRET)
-  console.log('USER ID FROM CREATE COOKIE: ', userId)
-  console.log('TOKEN FROM CREATE COOKIE: ', token)
+  console.log('CTX RESPONSE COOKIE FROM CREATE COOKIE: ', ctx.response.cookie)
   ctx.response.cookie('token', token, {
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
