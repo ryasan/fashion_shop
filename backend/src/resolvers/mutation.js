@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const { forwardTo } = require('prisma-binding')
 const { randomBytes } = require('crypto')
 const { promisify } = require('util')
@@ -63,7 +64,12 @@ const Mutation = {
       throwError('Oops: Incorrect Password')
     }
 
-    createCookie({ ctx, userId: user.id })
+    // createCookie({ ctx, userId: user.id })
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
+    ctx.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+    })
     return ctx.db.query.user({ where: { email } }, info)
   },
   signout: async (parent, args, ctx, info) => {
