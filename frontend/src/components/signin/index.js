@@ -110,7 +110,7 @@ const SigninComponent = ({
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
-      navigate('/shop/')
+      // navigate('/shop/')
     }
     if (data?.signup) {
       navigate('/shop/')
