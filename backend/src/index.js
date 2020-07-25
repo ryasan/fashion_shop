@@ -25,6 +25,7 @@ server.express.use((req, res, next) => {
   const { token } = req.cookies
   if (token) {
     const { userId } = jwt.verify(token, APP_SECRET)
+    console.log('USER ID FROM DECODE JWT: ', userId)
     req.userId = userId
   }
   next()
@@ -34,9 +35,9 @@ server.express.use(async (req, res, next) => {
   if (!req.userId) return next()
   const user = await db.query.user(
     { where: { id: req.userId } },
-    '{ id, email, username, permissions }'
+    '{ id email username permissions }'
   )
-
+  console.log('USER FROM POPULATE USER: ', user)
   req.user = user
   next()
 })
