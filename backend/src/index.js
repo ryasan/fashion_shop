@@ -22,22 +22,22 @@ const { DEV_FRONTEND_URL, PROD_FRONTEND_URL, APP_SECRET } = process.env
 
 // put user on each request
 server.express.use((req, res, next) => {
+  console.log('REQUEST COOKIES FROM DECODE JWT: ', req.cookies)
   const { token } = req.cookies
   if (token) {
     const { userId } = jwt.verify(token, APP_SECRET)
-    console.log('USER ID FROM DECODE JWT: ', userId)
     req.userId = userId
   }
   next()
 })
 
 server.express.use(async (req, res, next) => {
+  console.log('USER FROM POPULATE USER: ', req.userId)
   if (!req.userId) return next()
   const user = await db.query.user(
     { where: { id: req.userId } },
     '{ id email username permissions }'
   )
-  console.log('USER FROM POPULATE USER: ', user)
   req.user = user
   next()
 })
