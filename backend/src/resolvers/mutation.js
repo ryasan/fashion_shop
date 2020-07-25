@@ -67,8 +67,8 @@ const Mutation = {
     // createCookie({ ctx, userId: user.id })
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
     await ctx.response.cookie('token', token, {
-      // httpOnly: true,
-      // maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     })
 
     return ctx.db.query.user({ where: { email } }, info)
