@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
+import Cookies from 'js-cookie'
 
 import Signin, { Fieldset, Header } from './signin.styles'
 import Field from './input-fields/input-fields.styles'
@@ -106,8 +107,8 @@ const SigninComponent = ({
   }, [error])
 
   useEffect(() => {
+    console.log(Cookies.get())
     if (data?.signin) {
-      console.log(data)
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
