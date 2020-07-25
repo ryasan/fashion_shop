@@ -106,11 +106,11 @@ const SigninComponent = ({
   }, [error])
 
   useEffect(() => {
+    console.log('test')
     if (data?.signin) {
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
-      console.log('test')
       // navigate('/shop/')
     }
     if (data?.signup) {
