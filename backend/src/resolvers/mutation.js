@@ -71,10 +71,9 @@ const Mutation = {
     delete user.password
     // createCookie({ ctx, userId: user.id })
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
-    console.log('response.cookie: ', ctx.response.cookie)
     ctx.response.cookie('token', token, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+      // httpOnly: true,
+      // maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     })
 
     return user
