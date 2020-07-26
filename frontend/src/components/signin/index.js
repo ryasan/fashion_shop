@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
-import Cookies from 'js-cookie'
 
 import Signin, { Fieldset, Header } from './signin.styles'
 import Field from './input-fields/input-fields.styles'
@@ -95,7 +94,7 @@ const SigninComponent = ({
   const emailIsNotValid = () => showsEmailField() && !validate(email)
   const passwordIsNotValid = () => showsPasswordField() && !password
   const usernameIsNotValid = () => showsUsernameField() && !username
-  const confirmPasswordIsNotValid = () => showsConfirmField() && password !== confirm
+  const confirmPasswordIsNotValid = () => showsConfirmField() && password !== confirm // prettier-ignore
 
   useEffect(() => {
     if (error) {
@@ -107,13 +106,11 @@ const SigninComponent = ({
   }, [error])
 
   useEffect(() => {
-    console.log('cookies: ', Cookies.get())
-    console.log('user: ', data)
     if (data?.signin) {
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
-      // navigate('/shop/')
+      navigate('/shop/')
     }
     if (data?.signup) {
       navigate('/shop/')
@@ -212,7 +209,9 @@ const SigninComponent = ({
     (isRequestReset && 'Enter the account email address.') ||
     (isPasswordReset && 'Enter your new password.')
 
-  const messageColors = [
+  const headerTextColors = ['white_color', 'font_size_lg', 'text_align_center']
+
+  const authValidationColors = [
     formIsValid ? 'green_color' : 'red_color',
     'width_100',
     'text_align_center',
@@ -224,18 +223,13 @@ const SigninComponent = ({
       <Header />
       <Form method="post" onSubmit={handleOnSubmit}>
         <Fieldset>
-          {headerText && (
-            <Span
-              modifiers={['white_color', 'font_size_lg', 'text_align_center']}>
-              {headerText}
-            </Span>
-          )}
+          {headerText && <Span modifiers={headerTextColors}>{headerText}</Span>}
           <InputFields
             loading={loading}
             fields={Object.values(fields)}
             handleOnChange={handleOnChange}
           />
-          <Span modifiers={messageColors}>{message}</Span>
+          <Span modifiers={authValidationColors}>{message}</Span>
           <Field>
             <Button type="submit" disabled={loading}>
               Submit{loading ? 'ting...' : ''}
