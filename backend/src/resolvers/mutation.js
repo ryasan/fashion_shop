@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const { forwardTo } = require('prisma-binding')
 const { randomBytes } = require('crypto')
 const { promisify } = require('util')
