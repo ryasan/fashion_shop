@@ -9,7 +9,7 @@ dotenv.config({
 })
 const createServer = require('./create-server')
 const db = require('./db')
-// const { formatError } = require('./utils')
+const { formatError } = require('./utils')
 
 const server = createServer()
 
@@ -52,10 +52,10 @@ const options = {
         ? DEV_FRONTEND_URL
         : PROD_FRONTEND_URL
     ]
-  }
-  // endpoint: '/',
-  // playground: '/playground',
-  // formatError: formatError
+  },
+  endpoint: '/',
+  playground: '/playground',
+  formatError: formatError
 }
 
 server.start(options, (deets) =>
