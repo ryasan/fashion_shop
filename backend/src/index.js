@@ -22,9 +22,9 @@ const { DEV_FRONTEND_URL, PROD_FRONTEND_URL, APP_SECRET } = process.env
 
 // put user on each request
 server.express.use((req, res, next) => {
-  console.log('Cookies: ', req.cookies)
-  console.log('Signed Cookies: ', req.signedCookies)
-  console.log('Session: ', req.session)
+  // console.log('Cookies: ', req.cookies)
+  // console.log('Signed Cookies: ', req.signedCookies)
+  // console.log('Session: ', req.session)
   const { token } = req.cookies
   if (token) {
     const { userId } = jwt.verify(token, APP_SECRET)
@@ -34,7 +34,7 @@ server.express.use((req, res, next) => {
 })
 
 server.express.use(async (req, res, next) => {
-  console.log('User Id: ', req.userId)
+  // console.log('User Id: ', req.userId)
   if (!req.userId) return next()
   const user = await db.query.user(
     { where: { id: req.userId } },
