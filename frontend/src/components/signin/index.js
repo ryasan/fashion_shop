@@ -108,6 +108,7 @@ const SigninComponent = ({
 
   useEffect(() => {
     console.log('cookies: ', Cookies.get())
+    console.log('user: ', data)
     if (data?.signin) {
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }

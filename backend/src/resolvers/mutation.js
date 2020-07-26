@@ -58,7 +58,6 @@ const Mutation = {
         id description isFreeShipping isFeatured isAvailable price sku title category availableSizes photos
        } } }`
     )
-    console.log('asdkaksdada!!!', user)
 
     if (!user) {
       throwError(`Oops: No such user found for email: ${email}`)
@@ -69,7 +68,7 @@ const Mutation = {
     if (!passwordIsValid) {
       throwError('Oops: Incorrect Password')
     }
-
+    delete user.password
     // createCookie({ ctx, userId: user.id })
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
     ctx.response.cookie('token', token, {

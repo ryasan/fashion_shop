@@ -1,6 +1,6 @@
-const express = require('express')
+// const express = require('express')
 const cookieParser = require('cookie-parser')
-const logger = require('morgan')
+// const logger = require('morgan')
 const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken')
 
@@ -9,13 +9,13 @@ dotenv.config({
 })
 const createServer = require('./create-server')
 const db = require('./db')
-const { formatError } = require('./utils')
+// const { formatError } = require('./utils')
 
 const server = createServer()
 
-server.express.use(logger('dev'))
-server.express.use(express.json())
-server.express.use(express.urlencoded({ extended: false }))
+// server.express.use(logger('dev'))
+// server.express.use(express.json())
+// server.express.use(express.urlencoded({ extended: false }))
 server.express.use(cookieParser())
 
 const { DEV_FRONTEND_URL, PROD_FRONTEND_URL, APP_SECRET } = process.env
@@ -24,6 +24,7 @@ const { DEV_FRONTEND_URL, PROD_FRONTEND_URL, APP_SECRET } = process.env
 server.express.use((req, res, next) => {
   console.log('Cookies: ', req.cookies)
   console.log('Signed Cookies: ', req.signedCookies)
+  console.log('Session: ', req.session)
   const { token } = req.cookies
   if (token) {
     const { userId } = jwt.verify(token, APP_SECRET)
@@ -33,7 +34,7 @@ server.express.use((req, res, next) => {
 })
 
 server.express.use(async (req, res, next) => {
-  // console.log('MIDDLEWARE ATTACHING USER CHECKING ID: ', req.userId)
+  console.log('User Id: ', req.userId)
   if (!req.userId) return next()
   const user = await db.query.user(
     { where: { id: req.userId } },
@@ -51,10 +52,10 @@ const options = {
         ? DEV_FRONTEND_URL
         : PROD_FRONTEND_URL
     ]
-  },
-  endpoint: '/',
-  playground: '/playground',
-  formatError: formatError
+  }
+  // endpoint: '/',
+  // playground: '/playground',
+  // formatError: formatError
 }
 
 server.start(options, (deets) =>
