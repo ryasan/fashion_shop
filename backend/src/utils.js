@@ -14,7 +14,7 @@ const formatError = ({ message }) => {
   }
 }
 
-const isLoggedIn = (ctx) => {
+const isLoggedIn = ctx => {
   return ctx.request.userId
 }
 
@@ -23,12 +23,14 @@ const createCookie = ({ ctx, userId }) => {
   const token = jwt.sign({ userId }, process.env.APP_SECRET)
   ctx.response.cookie('token', token, {
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+    maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+    samesite: true,
+    secure: true
   })
 }
 
 const hasPermission = (user, permissionsNeeded) => {
-  const matchedPermissions = user.permissions.filter((permissionTheyHave) =>
+  const matchedPermissions = user.permissions.filter(permissionTheyHave =>
     permissionsNeeded.includes(permissionTheyHave)
   )
   if (!matchedPermissions.length) {
