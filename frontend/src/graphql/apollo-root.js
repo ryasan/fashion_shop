@@ -12,7 +12,7 @@ import { cartInitialState } from './cart/reducer'
 import { filtersInitialState } from './filter/reducer'
 
 const devEndpoint = 'http://localhost:5000'
-const prodEndpoint = 'https://fashion-shop-prod.herokuapp.com'
+const prodEndpoint = 'https://fs-backend-staging.herokuapp.com'
 
 const LoaderContainer = styled.div`
   height: 100vh;
