@@ -10,7 +10,7 @@ const Search = styled(motion.div)`
   z-index: 200;
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  width: 50rem;
   input {
     border-radius: 5rem;
     padding: 1rem 1rem 1rem 5rem;
@@ -34,42 +34,11 @@ const Search = styled(motion.div)`
   }
 `
 
-Search.Dropdown = styled.ul`
-  background: var(--dark);
-  position: relative;
-  bottom: -0.3rem;
-  border-radius: 0.3rem;
-  text-align: center;
-`
-
 Search.Loader = styled.div`
-position: absolute;
-top: -1.7rem;
-left: 50%;
-transform: translateX(-50%);
+  position: absolute;
+  top: -1.7rem;
+  left: 50%;
+  transform: translateX(-50%);
 `
 
-Search.Item = styled.li`
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border: 0.2rem solid white;
-  border-top: 0;
-  border-left: 0.5rem solid var(--gray);
-  &:first-child {
-    border-top: 0.2rem solid white;
-    border-radius: 0.3rem 0.3rem 0 0;
-  }
-  &:last-child {
-    border-radius: 0 0 0.3rem 0.3rem;
-  }
-  span {
-    padding: 1rem;
-  }
-`
-
-Search.ItemImage = styled.img`
-  height: 5rem;
-`
 export default Search
