@@ -51,7 +51,7 @@ const PersistApolloProvider = ({ children }) => {
   if (!client) {
     return (
       <LoaderContainer>
-        <Loader color="dark" />
+        <Loader color='dark' />
       </LoaderContainer>
     )
   }

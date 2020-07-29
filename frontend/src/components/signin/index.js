@@ -221,7 +221,7 @@ const SigninComponent = ({
   return (
     <Signin>
       <Header />
-      <Form method="post" onSubmit={handleOnSubmit}>
+      <Form method='post' onSubmit={handleOnSubmit}>
         <Fieldset>
           {headerText && <Span modifiers={headerTextColors}>{headerText}</Span>}
           <InputFields
@@ -231,7 +231,7 @@ const SigninComponent = ({
           />
           <Span modifiers={authValidationColors}>{message}</Span>
           <Field>
-            <Button type="submit" disabled={loading}>
+            <Button type='submit' disabled={loading}>
               Submit{loading ? 'ting...' : ''}
             </Button>
           </Field>
