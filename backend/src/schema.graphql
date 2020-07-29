@@ -3,6 +3,7 @@
 type Query {
   me: User
   users(where: UserWhereInput): [User]!
+  product(where: ProductWhereUniqueInput): Product
   products(where: ProductWhereInput): [Product]!
   productsConnection(
     freeShippingSelected: Boolean

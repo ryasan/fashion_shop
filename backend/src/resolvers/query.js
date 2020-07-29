@@ -13,6 +13,7 @@ const itemsAreAvailable = (itemIds) => {
 const Query = {
   orders: forwardTo('db'),
   ordersConnection: forwardTo('db'),
+  product: forwardTo('db'),
   products: forwardTo('db'),
   productsConnection: async (parent, args, ctx, info) => {
     const { sizeFilters, categoryFilters, freeShippingSelected } = args
