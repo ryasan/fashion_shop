@@ -11,7 +11,7 @@ const PasswordResetPage = props => {
 
   return (
     <Layout>
-      <SEO title="Signup" />
+      <SEO title='Signup' />
       <Signin
         {...props}
         chosenFields={[PASSWORD, CONFIRM]}

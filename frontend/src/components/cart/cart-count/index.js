@@ -10,10 +10,11 @@ const CartCountComponent = ({ children }) => {
       <TransitionGroup>
         <CSSTransition
           unmountOnExit
-          className="count"
-          classNames="count"
+          className='count'
+          classNames='count'
           key={children}
-          timeout={{ enter: 500, exit: 500 }}>
+          timeout={{ enter: 500, exit: 500 }}
+        >
           <CartCount>{children}</CartCount>
         </CSSTransition>
       </TransitionGroup>

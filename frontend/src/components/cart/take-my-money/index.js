@@ -14,7 +14,7 @@ import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
 import { cartInitialState } from '../../../graphql/cart/reducer'
 
-const stripeKey = `pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2`
+const stripeKey = 'pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2'
 
 const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const client = useApolloClient()
@@ -54,15 +54,14 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
     }
   }, [orderData])
 
-
   return (
     <ErrorBoundary error={orderError || uploadError}>
-      <TakeMyMoney className="close-btn">
+      <TakeMyMoney className='close-btn'>
         {loading && <Loader />}
-        {isReady && !loading &&  (
+        {isReady && !loading && (
           <StripeCheckout
-            currency="USD"
-            name="Fashion Shop"
+            currency='USD'
+            name='Fashion Shop'
             description={`Order of ${cartCount} items`}
             stripeKey={stripeKey}
             amount={cartTotal}

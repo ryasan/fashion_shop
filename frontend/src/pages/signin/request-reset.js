@@ -8,12 +8,8 @@ import { EMAIL } from '../../components/signin/action-types'
 const RequestResetPage = props => {
   return (
     <Layout>
-      <SEO title="Request Password Reset" />
-      <Signin
-        {...props}
-        chosenFields={[EMAIL]}
-        isRequestReset
-      />
+      <SEO title='Request Password Reset' />
+      <Signin {...props} chosenFields={[EMAIL]} isRequestReset />
     </Layout>
   )
 }

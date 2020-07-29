@@ -37,14 +37,15 @@ const ProductsComponent = () => {
       <Products.Container>
         <ErrorBoundary error={error}>
           {loading ? (
-            <Loader color="white" />
+            <Loader color='white' />
           ) : (
             <Pagination
               pageInfo={data.productsConnection.pageInfo}
               count={count}
               skip={skip}
               setSkip={setSkip}
-              perPage={perPage}>
+              perPage={perPage}
+            >
               <ProductList products={products} />
             </Pagination>
           )}

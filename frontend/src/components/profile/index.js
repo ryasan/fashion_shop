@@ -5,7 +5,10 @@ import SEO from '../../components/seo'
 import ErrorBoundary from '../../components/error-boundary'
 import Loader from '../../components/loader'
 import Profile from './profile.styles'
-import { useDeleteMeMutation, useCurrentUserQuery } from '../../graphql/user/hooks'
+import {
+  useDeleteMeMutation,
+  useCurrentUserQuery
+} from '../../graphql/user/hooks'
 import { P, Button } from '../../elements'
 import { toast } from '../../components/toast'
 
@@ -28,11 +31,11 @@ const ProfileComponent = () => {
     <Profile>
       <SEO title={`Profile | ${me?.username || 'Loading...'}`} />
       {userLoading || delLoading ? (
-        <Loader color="white" />
+        <Loader color='white' />
       ) : (
         <ErrorBoundary error={userError || delError}>
-          <P modifiers="white_color">email: {me.email}</P>
-          <P modifiers="white_color">username: {me.username}</P>
+          <P modifiers='white_color'>email: {me.email}</P>
+          <P modifiers='white_color'>username: {me.username}</P>
           <Button onClick={handleDelete}>Delete Account</Button>
         </ErrorBoundary>
       )}

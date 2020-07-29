@@ -27,11 +27,11 @@ const PaginationComponent = ({
   const renderControls = () => (
     <Pagination.PageControls>
       <PageButton disabled={currentPage === 1} onClick={handlePrevClick}>
-        <Icon name="left-arrow" />
+        <Icon name='left-arrow' />
       </PageButton>
       {pages > 0 ? `${currentPage} / ${pages} pages` : 'No results'}
       <PageButton disabled={!hasNextPage} onClick={handleNextClick}>
-        <Icon name="right-arrow" />
+        <Icon name='right-arrow' />
       </PageButton>
     </Pagination.PageControls>
   )

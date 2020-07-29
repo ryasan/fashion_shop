@@ -43,46 +43,46 @@ const HeaderComponent = props => {
 
   return (
     <Header>
-      <Header.LogoContainer to="/">
-        <Icon name="logo-royal" />
+      <Header.LogoContainer to='/'>
+        <Icon name='logo-royal' />
       </Header.LogoContainer>
       <Header.Nav ref={navRef} me={me}>
         {loading ? (
-          <LoaderComponent size="small" />
+          <LoaderComponent size='small' />
         ) : (
           <>
             <Header.NavItem>
-              <Link to="/">
-                <Icon name="home" />
+              <Link to='/'>
+                <Icon name='home' />
                 HOME
               </Link>
             </Header.NavItem>
             <Header.NavItem>
-              <Link to="/shop/">
-                <Icon name="store" />
+              <Link to='/shop/'>
+                <Icon name='store' />
                 SHOP
               </Link>
             </Header.NavItem>
             {me && (
               <Header.NavItem>
                 <A onClick={handleSignout}>
-                  <Icon name="exit" />
+                  <Icon name='exit' />
                   SIGNOUT
                 </A>
               </Header.NavItem>
             )}
             {!me && (
               <Header.NavItem>
-                <Link to="/signin/">
-                  <Icon name="key" />
+                <Link to='/signin/'>
+                  <Icon name='key' />
                   SIGNIN
                 </Link>
               </Header.NavItem>
             )}
             {me && (
               <Header.NavItem>
-                <Link to="/account/">
-                  <Icon name="account-circle" />
+                <Link to='/account/'>
+                  <Icon name='account-circle' />
                   ACCOUNT
                 </Link>
               </Header.NavItem>

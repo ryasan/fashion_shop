@@ -14,7 +14,7 @@ import {
 const SignupPage = props => {
   return (
     <Layout>
-      <SEO title="Signup" />
+      <SEO title='Signup' />
       <Signin
         {...props}
         chosenFields={[EMAIL, USERNAME, PASSWORD, CONFIRM]}

@@ -21,21 +21,22 @@ const AccountLayout = ({ children }) => {
         <PleaseSignin>
           <ErrorBoundary error={error}>
             {loading || !me ? (
-              <Loader color="white" />
+              <Loader color='white' />
             ) : (
               <Tabs>
                 <Tabs.Links>
-                  <Link to="/account/" activeClassName="active">
+                  <Link to='/account/' activeClassName='active'>
                     Profile
                   </Link>
                   <Link
-                    to="/account/orders/"
+                    to='/account/orders/'
                     state={{ me }}
-                    activeClassName="active"
-                    getProps={isActive}>
+                    activeClassName='active'
+                    getProps={isActive}
+                  >
                     Orders
                   </Link>
-                  <Link to="/account/permissions" activeClassName="active">
+                  <Link to='/account/permissions' activeClassName='active'>
                     Permissions
                   </Link>
                 </Tabs.Links>

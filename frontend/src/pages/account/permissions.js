@@ -9,7 +9,7 @@ const PermissionsPage = () => {
   return (
     <Layout>
       <AccountLayout>
-        <SEO title="Permissions" />
+        <SEO title='Permissions' />
         <PermissionsComponent />
       </AccountLayout>
     </Layout>

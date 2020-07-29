@@ -38,7 +38,8 @@ const MenuOption = ({ name, to, idx, animationsProp }) => {
       {...animations}
       isHovered={isHovered}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <Link to={to}>{name}</Link>
     </MotionListItem>
   )

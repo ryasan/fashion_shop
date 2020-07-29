@@ -27,7 +27,7 @@ OrderDetails.propTypes = {
 const OrderList = ({ location }) => (
   <Layout>
     <AccountLayout>
-      <SEO title="Orders" />
+      <SEO title='Orders' />
       <OrderListComponent me={location?.state?.me} />
     </AccountLayout>
   </Layout>
@@ -39,8 +39,8 @@ OrderList.propTypes = {
 
 const OrdersPage = () => (
   <Router style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-    <OrderList path="/account/orders/" />
-    <OrderDetails path="/account/orders/:id" />
+    <OrderList path='/account/orders/' />
+    <OrderDetails path='/account/orders/:id' />
   </Router>
 )
 export default OrdersPage

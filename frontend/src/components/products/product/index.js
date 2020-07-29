@@ -37,7 +37,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
         </Product.Body>
       </Link>
       <Product.Footer>
-        <Button className="buy-btn" onClick={handleAddCartItem}>
+        <Button className='buy-btn' onClick={handleAddCartItem}>
           Add to cart
         </Button>
       </Product.Footer>

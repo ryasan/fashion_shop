@@ -17,7 +17,7 @@ const options = {
 }
 
 const CloseButton = ({ closeToast }) => {
-  return <Icon onClick={closeToast} name="close" className="close-button" />
+  return <Icon onClick={closeToast} name='close' className='close-button' />
 }
 
 export const ToastComponent = () => {

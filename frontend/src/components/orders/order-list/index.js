@@ -40,14 +40,15 @@ const OrderListComponent = ({ me }) => {
       <Orders.Inner>
         <ErrorBoundary error={error}>
           {loading ? (
-            <Loader color="white" />
+            <Loader color='white' />
           ) : (
             <Pagination
               pageInfo={data.ordersConnection.pageInfo}
               count={count}
               skip={skip}
               setSkip={setSkip}
-              perPage={perPage}>
+              perPage={perPage}
+            >
               <Orders.List>
                 {orders.map(order => (
                   <Order key={order.id} order={order} />

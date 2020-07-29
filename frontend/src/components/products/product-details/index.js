@@ -16,7 +16,7 @@ const ProductDetailsComponent = ({ product }) => {
 
   return (
     <ProductDetails>
-      <H3 modifiers="red_color">{product.title}</H3>
+      <H3 modifiers='red_color'>{product.title}</H3>
       <ProductDetails.Content>
         <ProductDetails.Image>
           <Image src={image} alt={product.title} />
@@ -25,9 +25,9 @@ const ProductDetailsComponent = ({ product }) => {
           <Span modifiers={['font_size_lg']}>{product.style}</Span>
           <Span modifiers={['font_size_lg', 'red_color']}>{formatPrice(product.price)}</Span>
           <Span modifiers={['font_size_s', 'gray_color']}>sku: {product.sku}</Span>
-          {product.isFreeShipping && <Span modifiers={['font_size_s']}>{'Free shipping available'}</Span>}
+          {product.isFreeShipping && <Span modifiers={['font_size_s']}>Free shipping available</Span>}
           <Span modifiers={['font_size_m']}>description: {product.description}</Span>
-          <Button className="buy-btn" onClick={handleAddCartItem}>Add to cart</Button>
+          <Button className='buy-btn' onClick={handleAddCartItem}>Add to cart</Button>
         </ProductDetails.Text>
       </ProductDetails.Content>
     </ProductDetails>

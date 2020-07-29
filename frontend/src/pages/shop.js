@@ -5,13 +5,13 @@ import Shop from '../styles/shop-page.styles'
 import SEO from '../components/seo/index'
 import Products from '../components/products'
 import ProductDetails from '../components/products/product-details'
-import Layout from '../layouts/global-layout';
+import Layout from '../layouts/global-layout'
 
 const ShopProductDetails = props => {
   const product = props.location.state.product
   return (
     <Layout>
-      <SEO title={`${product.title}`} />
+      <SEO title={product.title} />
       <Shop>
         <ProductDetails product={product}>Product Details</ProductDetails>
       </Shop>
@@ -22,7 +22,7 @@ const ShopProductDetails = props => {
 const ShopProducts = () => {
   return (
     <Layout>
-      <SEO title="Shop" />
+      <SEO title='Shop' />
       <Shop>
         <Products />
       </Shop>
@@ -33,8 +33,8 @@ const ShopProducts = () => {
 const ShopPage = () => {
   return (
     <Router style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-      <ShopProducts path="/shop" />
-      <ShopProductDetails path="/shop/:id" />
+      <ShopProducts path='/shop' />
+      <ShopProductDetails path='/shop/:id' />
     </Router>
   )
 }

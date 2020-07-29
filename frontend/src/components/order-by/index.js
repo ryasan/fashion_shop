@@ -8,8 +8,8 @@ const OrderByComponent = ({ setOrderBy, options }) => {
 
   return (
     <OrderBy>
-      <Label modifiers="font_size_m">Order by:</Label>
-      <Select modifiers="font_size_s" onChange={handleOnChange}>
+      <Label modifiers='font_size_m'>Order by:</Label>
+      <Select modifiers='font_size_s' onChange={handleOnChange}>
         {options.map((opt, i) => (
           <Option key={i} value={opt.value}>
             {opt.name}

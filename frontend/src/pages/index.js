@@ -46,7 +46,7 @@ const HomePage = () => {
 
   return (
     <HomeLayout>
-      <SEO title="Home" />
+      <SEO title='Home' />
       <SpecialOffer>
         <B>SPECIAL OFFER:</B> Get 50% Off + FREE Shipping - Offer Ends Tomorrow
         ({tomorrow})
@@ -55,7 +55,7 @@ const HomePage = () => {
       <Foreground>
         <SearchComponent />
         <MotionLogo {...fadeInUp} transition={{ delay: 1 }}>
-          <Icon name="logo-jersey" />
+          <Icon name='logo-jersey' />
         </MotionLogo>
         <SocialMediaIcons />
       </Foreground>

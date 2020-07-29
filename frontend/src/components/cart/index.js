@@ -43,11 +43,13 @@ const CartComponent = () => {
         <Cart.Header>
           <H4>Cart</H4>
           <Cart.BagContainer>
-            <Icon name="cart" />
+            <Icon name='cart' />
             <CartCount>{cartCount}</CartCount>
           </Cart.BagContainer>
         </Cart.Header>
-        {!cartItems.length && <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>}
+        {!cartItems.length && (
+          <Cart.EmptyDisplay>Cart is empty</Cart.EmptyDisplay>
+        )}
         <Cart.List>
           {cartItems.map(item => (
             <CartItem key={item.product.id} cartItem={item} />
@@ -57,7 +59,7 @@ const CartComponent = () => {
           cartTotal={cartTotal}
           cartItems={cartItems}
           cartCount={cartCount}
-        />      
+        />
       </Cart.Content>
     </Cart>
   )

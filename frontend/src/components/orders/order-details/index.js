@@ -24,18 +24,18 @@ const OrderDetailsComponent = ({ order }) => {
       <OrderDetails.Items>
         {order.orderItems.map(item => (
           <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
-             <OrderItem.Image>
-                <Image src={getFrontImage(item.sku)} />
-              </OrderItem.Image>
-              <OrderItem.Cost>
-                <P><Span>price:</Span>{formatPrice(item.price)}</P>
-                <P><Span>qty:</Span>{item.quantity}</P>
-                <P><Span>total:</Span>{(formatPrice(item.price * item.quantity))}</P>
-              </OrderItem.Cost>
-              <OrderItem.Info>
-                <P>{item.title}</P>
-                <P>{item.description}</P>
-              </OrderItem.Info>
+            <OrderItem.Image>
+              <Image src={getFrontImage(item.sku)} />
+            </OrderItem.Image>
+            <OrderItem.Cost>
+              <P><Span>price:</Span>{formatPrice(item.price)}</P>
+              <P><Span>qty:</Span>{item.quantity}</P>
+              <P><Span>total:</Span>{(formatPrice(item.price * item.quantity))}</P>
+            </OrderItem.Cost>
+            <OrderItem.Info>
+              <P>{item.title}</P>
+              <P>{item.description}</P>
+            </OrderItem.Info>
           </OrderItem>
         ))}
       </OrderDetails.Items>

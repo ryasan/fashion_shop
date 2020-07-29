@@ -75,7 +75,7 @@ const UserPermissions = ({ user, setActiveIdx }) => {
       {possiblePermissions.map((p, idx) => (
         <Cell key={idx} data-index={idx} setActiveIdx={setActiveIdx}>
           <Checkbox
-            type="checkbox"
+            type='checkbox'
             value={p}
             checked={permissions.includes(p)}
             onChange={handlePermissionChange}
@@ -106,7 +106,7 @@ const PermissionsComponent = () => {
     <Permissions>
       <ErrorBoundary error={error}>
         {loading ? (
-          <Loader color="white" size="medium" />
+          <Loader color='white' size='medium' />
         ) : (
           <Table>
             <Table.Head>
@@ -119,7 +119,7 @@ const PermissionsComponent = () => {
                   </HeaderCell>
                 ))}
                 <HeaderCell>
-                  <Icon name="key" />
+                  <Icon name='key' />
                 </HeaderCell>
               </Table.Row>
             </Table.Head>

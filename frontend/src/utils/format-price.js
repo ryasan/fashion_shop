@@ -1,7 +1,7 @@
 export const formatPrice = (amount, currencyId) => {
   const options = {
     style: 'currency',
-    currency: currencyId ||'USD',
+    currency: currencyId || 'USD',
     minimumFractionDigits: 2
   }
 

@@ -88,7 +88,8 @@ const FilterComponent = () => {
           ))}
           <WideBox.Button
             onClick={toggleFreeShippingSelected}
-            isSelected={isSelected}>
+            isSelected={isSelected}
+          >
             Free shipping
           </WideBox.Button>
         </WideBox>

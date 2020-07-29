@@ -8,7 +8,7 @@ import { EMAIL, PASSWORD } from '../../components/signin/action-types'
 const SigninPage = props => {
   return (
     <Layout>
-      <SEO title="Signin" />
+      <SEO title='Signin' />
       <Signin {...props} chosenFields={[EMAIL, PASSWORD]} isSignin />
     </Layout>
   )
