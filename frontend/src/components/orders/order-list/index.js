@@ -5,7 +5,7 @@ import Orders from './order-list.styles'
 import Order from '../order'
 import ErrorBoundary from '../../error-boundary'
 import Loader from '../../loader'
-import OrderBy from '../../order-by'
+import Select from '../../select'
 import Pagination from '../../pagination'
 import { useOrdersConnectionQuery } from '../../../graphql/order/hooks'
 
@@ -36,7 +36,7 @@ const OrderListComponent = ({ me }) => {
 
   return (
     <Orders>
-      <OrderBy options={options} setOrderBy={setOrderBy} />
+      <Select options={options} onChange={setOrderBy} label='Order by' />
       <Orders.Inner>
         <ErrorBoundary error={error}>
           {loading ? (

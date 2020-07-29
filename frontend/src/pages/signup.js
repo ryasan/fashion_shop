@@ -4,12 +4,7 @@ import SEO from '../components/seo'
 import Signin from '../components/signin'
 import Layout from '../layouts/global-layout'
 
-import {
-  EMAIL,
-  PASSWORD,
-  USERNAME,
-  CONFIRM
-} from '../components/signin/action-types'
+import { EMAIL, PASSWORD, USERNAME, CONFIRM } from '../types/auth-field-types'
 
 const SignupPage = props => {
   return (

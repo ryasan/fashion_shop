@@ -29,8 +29,8 @@ export const MERGE_REMOTE_CART_ITEMS_MUTATION = gql`
 `
 
 export const INCREASE_CART_ITEM_QUANTITY_MUTATION = gql`
-  mutation($productId: ID!) {
-    increaseCartItemQuantity(productId: $productId) @client {
+  mutation($product: Product!) {
+    increaseCartItemQuantity(product: $product) @client {
       quantity
       product {
         id
@@ -40,8 +40,8 @@ export const INCREASE_CART_ITEM_QUANTITY_MUTATION = gql`
 `
 
 export const DECREASE_CART_ITEM_QUANTITY_MUTATION = gql`
-  mutation($productId: ID!) {
-    decreaseCartItemQuantity(productId: $productId) @client {
+  mutation($product: Product!) {
+    decreaseCartItemQuantity(product: $product) @client {
       quantity
       product {
         id
@@ -62,8 +62,8 @@ export const ADD_CART_ITEM_MUTATION = gql`
 `
 
 export const REMOVE_CART_ITEM_MUTATION = gql`
-  mutation($productId: ID!) {
-    removeCartItem(productId: $productId) @client {
+  mutation($product: Product!) {
+    removeCartItem(product: $product) @client {
       quantity
       product {
         id

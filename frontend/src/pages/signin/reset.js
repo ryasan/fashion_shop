@@ -4,7 +4,7 @@ import { parse } from 'query-string'
 
 import SEO from '../../components/seo'
 import Signin from '../../components/signin'
-import { PASSWORD, CONFIRM } from '../../components/signin/action-types'
+import { PASSWORD, CONFIRM } from '../../types/auth-field-types'
 
 const PasswordResetPage = props => {
   const { resetToken } = parse(location.search)

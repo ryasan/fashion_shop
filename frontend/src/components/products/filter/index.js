@@ -9,16 +9,24 @@ import {
   useAddCategoryFilterMutation,
   useRemoveCategoryFilterMutation
 } from '../../../graphql/filter/hooks'
+import {
+  ACCESSORY,
+  BEANIE,
+  HOODIE,
+  LONG_SLEEVE,
+  SHIRT,
+  SHORTS
+} from '../../../types/category-types.js'
+import {
+  SMALL,
+  MEDIUM,
+  LARGE,
+  X_LARGE,
+  XXL_LARGE
+} from '../../../types/size-types.js'
 
-const sizeFilters = ['S', 'M', 'L', 'XL', 'XXL']
-const categoryFilters = [
-  'ACCESSORY',
-  'BEANIE',
-  'HOODIE',
-  'LONG_SLEEVE',
-  'SHIRT',
-  'SHORTS'
-]
+const sizeFilters = [SMALL, MEDIUM, LARGE, X_LARGE, XXL_LARGE]
+const categoryFilters = [ACCESSORY, BEANIE, HOODIE, LONG_SLEEVE, SHIRT, SHORTS]
 
 const RoundButton = ({ size }) => {
   const [isSelected, setIsSelected] = useState(false)

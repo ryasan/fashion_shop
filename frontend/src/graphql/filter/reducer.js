@@ -20,7 +20,6 @@ const filtersReducer = (actionType, client, variables) => {
     case ADD_CATEGORY_FILTER:
       return client.writeData({
         data: {
-          ...state,
           categoryFilters: [...categoryFilters, variables.category]
         }
       })
@@ -28,7 +27,6 @@ const filtersReducer = (actionType, client, variables) => {
     case REMOVE_CATEGORY_FILTER:
       return client.writeData({
         data: {
-          ...state,
           categoryFilters: categoryFilters.filter(c => c !== variables.category)
         }
       })
@@ -36,7 +34,6 @@ const filtersReducer = (actionType, client, variables) => {
     case ADD_SIZE_FILTER:
       return client.writeData({
         data: {
-          ...state,
           sizeFilters: [...sizeFilters, variables.size]
         }
       })
@@ -44,7 +41,6 @@ const filtersReducer = (actionType, client, variables) => {
     case REMOVE_SIZE_FILTER:
       return client.writeData({
         data: {
-          ...state,
           sizeFilters: sizeFilters.filter(s => s !== variables.size)
         }
       })
@@ -52,7 +48,6 @@ const filtersReducer = (actionType, client, variables) => {
     case SET_FREE_SHIPPING_SELECTED:
       return client.writeData({
         data: {
-          ...state,
           freeShippingSelected: variables.isSelected
         }
       })

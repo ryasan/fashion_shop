@@ -11,7 +11,7 @@ import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
 import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
-import { SIGNOUT } from '../signin/form-types'
+import { SIGNOUT } from '../../types/auth-form-types'
 import LoaderComponent from '../loader'
 
 const HeaderComponent = props => {

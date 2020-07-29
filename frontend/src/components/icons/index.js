@@ -1,63 +1,76 @@
 import React from 'react'
 
-import Cart from './cart'
-import LeftArrow from './left-arrow'
-import RightArrow from './right-arrow'
-import Magnifier from './magnifier'
-import Envelope from './envelope'
-import LogoRoyal from './logo-royal'
-import LogoJersey from './logo-jersey'
-import LogoDiamond from './logo-diamond'
-import ShoppingBag from './shopping-bag'
-import Close from './close'
-import Account from './account'
-import Key from './key'
-import Twitter from './twitter'
-import Instagram from './instagram'
-import Facebook from './facebook'
+import CartIcon from './cart'
+import LeftArrowIcon from './left-arrow'
+import RightArrowIcon from './right-arrow'
+import MagnifierIcon from './magnifier'
+import EnvelopeIcon from './envelope'
+import LogoRoyalIcon from './logo-royal'
+import LogoJerseyIcon from './logo-jersey'
+import LogoDiamondIcon from './logo-diamond'
+import ShoppingBagIcon from './shopping-bag'
+import CloseIcon from './close'
+import AccountIcon from './account'
+import KeyIcon from './key'
+import TwitterIcon from './twitter'
+import InstagramIcon from './instagram'
+import FacebookIcon from './facebook'
 import HomeIcon from './home'
 import StoreIcon from './store'
 import ExitIcon from './exit'
+import DocumentIcon from './document'
+import TitleIcon from './title'
+import MoneyIcon from './money'
+import FingerprintIcon from './fingerprint'
 
 const Icon = props => {
   switch (props.name) {
     case 'account-circle':
     case 'account-box':
-      return <Account {...props} />
+      return <AccountIcon {...props} />
     case 'cart':
-      return <Cart {...props} />
+      return <CartIcon {...props} />
     case 'left-arrow':
-      return <LeftArrow {...props} />
+      return <LeftArrowIcon {...props} />
     case 'right-arrow':
-      return <RightArrow {...props} />
+      return <RightArrowIcon {...props} />
     case 'magnifier':
-      return <Magnifier {...props} />
+      return <MagnifierIcon {...props} />
     case 'envelope':
-      return <Envelope {...props} />
+      return <EnvelopeIcon {...props} />
     case 'logo-royal':
-      return <LogoRoyal {...props} />
+      return <LogoRoyalIcon {...props} />
     case 'logo-jersey':
-      return <LogoJersey {...props} />
+      return <LogoJerseyIcon {...props} />
     case 'logo-diamond':
-      return <LogoDiamond {...props} />
+      return <LogoDiamondIcon {...props} />
     case 'shopping-bag':
-      return <ShoppingBag {...props} />
+      return <ShoppingBagIcon {...props} />
     case 'close':
-      return <Close {...props} />
+      return <CloseIcon {...props} />
     case 'key':
-      return <Key {...props} />
+      return <KeyIcon {...props} />
     case 'facebook':
-      return <Facebook {...props} />
+      return <FacebookIcon {...props} />
     case 'twitter':
-      return <Twitter {...props} />
+      return <TwitterIcon {...props} />
     case 'instagram':
-      return <Instagram {...props} />
+      return <InstagramIcon {...props} />
     case 'home':
       return <HomeIcon {...props} />
     case 'store':
       return <StoreIcon {...props} />
     case 'exit':
       return <ExitIcon {...props} />
+    case 'title':
+      return <TitleIcon {...props} />
+    case 'money':
+      return <MoneyIcon {...props} />
+    case 'fingerprint':
+      return <FingerprintIcon {...props} />
+    case 'document':
+    default:
+      return <DocumentIcon {...props} />
   }
 }
 

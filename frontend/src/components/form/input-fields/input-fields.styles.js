@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const InputField = styled.div`
+const Field = styled.div`
   height: 4rem;
   position: relative;
   margin-bottom: 2rem;
@@ -17,4 +17,4 @@ const InputField = styled.div`
   }
 `
 
-export default InputField
+export default Field

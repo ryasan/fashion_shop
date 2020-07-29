@@ -1,7 +1,15 @@
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
-import { PRODUCTS_QUERY, PRODUCTS_CONNECTION_QUERY } from './queries'
 import { CREATE_PRODUCT_MUTATION, UPDATE_PRODUCT_MUTATION } from './mutations'
+import {
+  PRODUCTS_QUERY,
+  PRODUCTS_CONNECTION_QUERY,
+  PRODUCT_QUERY
+} from './queries'
+
+export const useProductQuery = ({ variables }) => {
+  return useQuery(PRODUCT_QUERY, { variables })
+}
 
 export const useProductsQuery = ({ variables }) => {
   return useQuery(PRODUCTS_QUERY, { variables })

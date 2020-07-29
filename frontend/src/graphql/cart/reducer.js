@@ -8,18 +8,35 @@ import {
   DECREASE_CART_ITEM_QUANTITY
 } from './action-types'
 
-const cartItemExists = (cartItems, product) => {
-  return cartItems.find(cartItem => cartItem.product.id === product.id)
+const itemAlreadyInCart = (cartItems, product) => {
+  return !!cartItems.find(cartItem => cartItem.product.id === product.id)
 }
 
 const createNewCartItem = (cartItems, product) => {
   return [...cartItems, { product, quantity: 1, __typename: 'CartItem' }]
 }
 
-const updateCartItemQty = (cartItems, product) => {
+const removeCartItem = (cartItems, product) => {
+  return cartItems.filter(item => item.product.id !== product.id)
+}
+
+const increaseCartItemQty = (cartItems, product) => {
   return cartItems.map(cartItem => ({
     ...cartItem,
-    quantity: cartItem.product.id === product.id ? cartItem.quantity + 1 : cartItem.quantity
+    quantity:
+      cartItem.product.id === product.id
+        ? cartItem.quantity + 1
+        : cartItem.quantity
+  }))
+}
+
+const decreaseCartItemQty = (cartItems, product) => {
+  return cartItems.map(cartItem => ({
+    ...cartItem,
+    quantity:
+      cartItem.product.id === product.id
+        ? cartItem.quantity - 1
+        : cartItem.quantity
   }))
 }
 
@@ -41,8 +58,8 @@ export const cartInitialState = { cartOpen: false, cartItems: [] }
 
 const cartReducer = (actionType, client, variables) => {
   const state = client.readQuery({ query: CART_QUERY })
-  const { cartItems: localCartItems, cartOpen } = state
-  const { product, remoteCartItems, productId } = variables || {}
+  const { cartItems, cartOpen } = state
+  const { product, remoteCartItems } = variables || {}
 
   switch (actionType) {
     case TOGGLE_CART:
@@ -54,38 +71,30 @@ const cartReducer = (actionType, client, variables) => {
       return client.writeData({
         data: {
           cartOpen: true,
-          cartItems: cartItemExists(localCartItems, product)
-            ? updateCartItemQty(localCartItems, product)
-            : createNewCartItem(localCartItems, product)
+          cartItems: itemAlreadyInCart(cartItems, product)
+            ? increaseCartItemQty(cartItems, product)
+            : createNewCartItem(cartItems, product)
         }
       })
 
     case REMOVE_CART_ITEM:
       return client.writeData({
         data: {
-          cartItems: localCartItems.filter(
-            item => item.product.id !== productId
-          )
+          cartItems: removeCartItem(cartItems, product)
         }
       })
 
     case INCREASE_CART_ITEM_QUANTITY:
       return client.writeData({
         data: {
-          cartItems: localCartItems.map(c => ({
-            ...c,
-            quantity: c.product.id === productId ? c.quantity + 1 : c.quantity
-          }))
+          cartItems: increaseCartItemQty(cartItems, product)
         }
       })
 
     case DECREASE_CART_ITEM_QUANTITY:
       return client.writeData({
         data: {
-          cartItems: localCartItems.map(c => ({
-            ...c,
-            quantity: c.product.id === productId ? c.quantity - 1 : c.quantity
-          }))
+          cartItems: decreaseCartItemQty(cartItems, product)
         }
       })
 
@@ -93,7 +102,7 @@ const cartReducer = (actionType, client, variables) => {
       return client.writeData({
         data: {
           cartItems: Object.entries(
-            mergeRemoteWithLocalCartItems(localCartItems, remoteCartItems)
+            mergeRemoteWithLocalCartItems(cartItems, remoteCartItems)
           ).map(([, value]) => ({
             ...value
           }))

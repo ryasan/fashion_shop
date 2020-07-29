@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const OrderBy = styled.div`
+const Select = styled.div`
   select {
     margin-left: 1rem;
     height: 3rem;
@@ -15,4 +15,4 @@ const OrderBy = styled.div`
   justify-content: flex-end;
 `
 
-export default OrderBy
+export default Select

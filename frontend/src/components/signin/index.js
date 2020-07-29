@@ -4,26 +4,28 @@ import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
 
-import Signin, { Fieldset, Header } from './signin.styles'
-import Field from './input-fields/input-fields.styles'
+import Signin, { Header } from './signin.styles'
 import Form from '../form'
 import useAuth from '../auth'
-import InputFields from './input-fields'
-import { Span, Button } from '../../elements'
+import InputFields from '../form/input-fields'
 import FooterText from './footer-text'
+import { Span, Button } from '../../elements'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
+import { toast } from '../toast'
 import {
   EMAIL,
   USERNAME,
   PASSWORD,
   CONFIRM,
-  TOGGLE_SIGNUP,
   MESSAGE,
-  RESET_FIELDS,
-  CHANGE_FORM_TYPE
-} from './action-types'
-import { toast } from '../toast'
-import { SIGNUP, SIGNIN, REQUEST_RESET, PASSWORD_RESET } from './form-types'
+  RESET_FIELDS
+} from '../../types/auth-field-types'
+import {
+  SIGNUP,
+  SIGNIN,
+  REQUEST_RESET,
+  PASSWORD_RESET
+} from '../../types/auth-form-types'
 
 const initialState = {
   email: '',
@@ -62,14 +64,10 @@ const reducer = (state, action) => {
       return createNewState({ state, type, payload })
     case CONFIRM:
       return createNewState({ state, type, payload })
-    case CHANGE_FORM_TYPE:
-      return createNewState({ state, type, payload })
     case MESSAGE:
       return { ...state, message: payload }
     case RESET_FIELDS:
       return { ...initialState, isSignin: state.isSignin }
-    case TOGGLE_SIGNUP:
-      return { ...initialState, isSignin: !state.isSignin }
     default:
       return state
   }
@@ -222,20 +220,18 @@ const SigninComponent = ({
     <Signin>
       <Header />
       <Form method='post' onSubmit={handleOnSubmit}>
-        <Fieldset>
+        <Form.Fieldset>
           {headerText && <Span modifiers={headerTextColors}>{headerText}</Span>}
           <InputFields
             loading={loading}
             fields={Object.values(fields)}
-            handleOnChange={handleOnChange}
+            onChange={handleOnChange}
           />
           <Span modifiers={authValidationColors}>{message}</Span>
-          <Field>
-            <Button type='submit' disabled={loading}>
-              Submit{loading ? 'ting...' : ''}
-            </Button>
-          </Field>
-        </Fieldset>
+          <Button type='submit' disabled={loading}>
+            Submit{loading ? 'ting...' : ''}
+          </Button>
+        </Form.Fieldset>
       </Form>
       <FooterText
         isSignin={isSignin}

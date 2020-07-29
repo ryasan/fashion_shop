@@ -16,7 +16,7 @@ const fadeInUp = {
 }
 
 const routeToProduct = product => {
-  navigate(`/shop/${product.id}/`, { state: { product } })
+  navigate(`/shop/${product.id}/`, { state: { sku: product.sku } })
 }
 
 const SearchComponent = () => {

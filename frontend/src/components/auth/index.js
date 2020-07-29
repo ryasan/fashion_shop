@@ -11,7 +11,7 @@ import {
   SIGNUP,
   SIGNOUT,
   PASSWORD_RESET
-} from '../signin/form-types'
+} from '../../types/auth-form-types'
 
 const useAuth = () => {
   const [signin, signinInfo] = useSigninMutation()

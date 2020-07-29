@@ -21,15 +21,15 @@ const CartItemComponent = ({ cartItem }) => {
   const image = getFrontImage(product.sku)
 
   const handleRemoveCartItem = () => {
-    removeCartItem({ variables: { productId: product.id } })
+    removeCartItem({ variables: { product } })
   }
 
   const handleIncreaseQty = () => {
-    increaseCartItemQuantity({ variables: { productId: product.id } })
+    increaseCartItemQuantity({ variables: { product } })
   }
 
   const handleDecreaseQty = () => {
-    decreaseCartItemQuantity({ variables: { productId: product.id } })
+    decreaseCartItemQuantity({ variables: { product } })
   }
 
   const handleMouseOver = () => {

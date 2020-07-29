@@ -8,12 +8,11 @@ import ProductDetails from '../components/products/product-details'
 import Layout from '../layouts/global-layout'
 
 const ShopProductDetails = props => {
-  const product = props.location.state.product
+  const sku = props.location.state.sku
   return (
     <Layout>
-      <SEO title={product.title} />
       <Shop>
-        <ProductDetails product={product}>Product Details</ProductDetails>
+        <ProductDetails sku={sku}>Product Details</ProductDetails>
       </Shop>
     </Layout>
   )

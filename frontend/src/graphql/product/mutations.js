@@ -19,4 +19,3 @@ export const UPDATE_PRODUCT_MUTATION = gql`
   }
   ${PRODUCT_FRAGMENT}
 `
-

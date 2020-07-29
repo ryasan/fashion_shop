@@ -3,7 +3,7 @@ import Layout from '../../layouts/global-layout'
 
 import SEO from '../../components/seo'
 import Signin from '../../components/signin'
-import { EMAIL } from '../../components/signin/action-types'
+import { EMAIL } from '../../types/auth-field-types'
 
 const RequestResetPage = props => {
   return (

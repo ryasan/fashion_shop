@@ -2,8 +2,8 @@ import React from 'react'
 
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
-import OrderBy from '../../order-by'
 import { Span } from '../../../elements'
+import Select from '../../select'
 
 const Count = ({ count }) => (
   <Span modifiers={['white_color', 'font_size_m']}>
@@ -23,7 +23,7 @@ const ControlsHeaderComponent = ({ count, setOrderBy }) => (
   <ControlsHeader>
     <Filter />
     {typeof count === 'number' && <Count count={count} />}
-    <OrderBy setOrderBy={setOrderBy} options={options} />
+    <Select onChange={setOrderBy} options={options} label='Order by' />
   </ControlsHeader>
 )
 

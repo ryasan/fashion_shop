@@ -5,6 +5,7 @@ import { redButton } from '../../../elements'
 const ProductDetails = styled.div`
   width: 100%;
   max-width: var(--max-width);
+  padding: 0 4rem;
 `
 
 ProductDetails.Image = styled.div`

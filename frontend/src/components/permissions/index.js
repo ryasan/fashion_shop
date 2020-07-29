@@ -12,14 +12,22 @@ import {
 import { Input as Checkbox, Button } from '../../elements'
 import { capitalCase } from 'change-case'
 import { toast } from '../toast'
+import {
+  ADMIN,
+  USER,
+  ITEM_CREATE,
+  ITEM_UPDATE,
+  ITEM_DELETE,
+  PERMISSION_UPDATE
+} from '../../types/permission-types'
 
 const possiblePermissions = [
-  'ADMIN',
-  'USER',
-  'ITEM_CREATE',
-  'ITEM_UPDATE',
-  'ITEM_DELETE',
-  'PERMISSION_UPDATE'
+  ADMIN,
+  USER,
+  ITEM_CREATE,
+  ITEM_UPDATE,
+  ITEM_DELETE,
+  PERMISSION_UPDATE
 ]
 
 const getProps = props => {

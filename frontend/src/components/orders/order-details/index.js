@@ -9,7 +9,7 @@ import { formatPrice, getFrontImage } from '../../../utils'
 
 const OrderDetailsComponent = ({ order }) => {
   const goToProductDetails = item => {
-    navigate(`/shop/${item.id}`, { state: { product: item } })
+    navigate(`/shop/${item.id}/`, { state: { sku: item.sku } })
   }
 
   return (
@@ -22,7 +22,7 @@ const OrderDetailsComponent = ({ order }) => {
         <P><Span>updated:</Span>{moment(order.updatedAt).format('LL')}</P>
       </OrderDetails.Summary>
       <OrderDetails.Items>
-        {order.orderItems.map(item => (
+        {order.orderItems.map(item => console.log('item', item) || (
           <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
             <OrderItem.Image>
               <Image src={getFrontImage(item.sku)} />

@@ -17,6 +17,9 @@ const Signin = styled.div`
     justify-content: center;
     align-items: center;
   }
+  fieldset {
+    padding: 2rem 0;
+  }
 `
 
 const Header = styled.div`

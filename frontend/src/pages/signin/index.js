@@ -3,7 +3,7 @@ import React from 'react'
 import SEO from '../../components/seo'
 import Signin from '../../components/signin'
 import Layout from '../../layouts/global-layout'
-import { EMAIL, PASSWORD } from '../../components/signin/action-types'
+import { EMAIL, PASSWORD } from '../../types/auth-field-types'
 
 const SigninPage = props => {
   return (

@@ -22,7 +22,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
   return (
     <Product>
       {product.isFreeShipping && <Product.Special>Free Shipping</Product.Special>}
-      <Link to={detailsPage} state={{ product }}>
+      <Link to={detailsPage} state={{ sku: product.sku }}>
         <Product.Header>
           <Image src={image} />
         </Product.Header>
