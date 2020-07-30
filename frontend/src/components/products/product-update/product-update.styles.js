@@ -1,17 +1,19 @@
 import styled from 'styled-components'
 
 import FormStyles from '../../form'
-import { Button } from '../../../elements'
 
 const UpdateProduct = styled.div`
-  width: 100%;
-  margin-top: 4rem;
+  width: 80%;
+  max-width: var(--max-width);
+  margin: 2rem auto;
 `
 
 const Form = styled(FormStyles)`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
+  grid-gap: 3rem;
+  box-shadow: var(--box-shadow);
+  padding: 3rem;
 `
 
 Form.Fieldset = styled.fieldset`
@@ -20,14 +22,18 @@ Form.Fieldset = styled.fieldset`
 
 Form.MultipleChoice = styled.div`
   grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 `
 
 Form.SubmitButton = styled.div`
   grid-column: 1/3;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   button {
-    width: 40rem;
+    width: 20rem;
   }
 `
 

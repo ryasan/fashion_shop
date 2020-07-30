@@ -1,34 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { capitalCase } from 'change-case'
 import PropTypes from 'prop-types'
 
-import Permissions, { Table, _Cell, HeaderCell } from './permissions.styles'
-import Loader from '../loader'
-import ErrorBoundary from '../error-boundary'
+import Permissions from './permissions.styles'
+import Table from '../table'
 import Icon from '../icons'
+import possiblePermissions from '../../types/permission-types'
+import ErrorBoundary from '../error-boundary'
+import Loader from '../loader'
 import {
-  useUsersQuery,
-  useUpdatePermissionsMutation
+  useUpdatePermissionsMutation,
+  useUsersQuery
 } from '../../graphql/user/hooks'
-import { Input as Checkbox, Button } from '../../elements'
-import { capitalCase } from 'change-case'
+import { Button, Input } from '../../elements'
 import { toast } from '../toast'
-import {
-  ADMIN,
-  USER,
-  ITEM_CREATE,
-  ITEM_UPDATE,
-  ITEM_DELETE,
-  PERMISSION_UPDATE
-} from '../../types/permission-types'
-
-const possiblePermissions = [
-  ADMIN,
-  USER,
-  ITEM_CREATE,
-  ITEM_UPDATE,
-  ITEM_DELETE,
-  PERMISSION_UPDATE
-]
+import { TableRow, HeaderCell, Cell } from '../table/table.styles'
 
 const getProps = props => {
   const { setActiveIdx = () => ({}) } = props
@@ -47,11 +33,38 @@ const withExtraProps = Component => props => {
   return <Component {...props} {...getProps(props)} />
 }
 
-const Cell = withExtraProps(_Cell)
+const iconStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+}
 
-const UserPermissions = ({ user, setActiveIdx }) => {
+const UserPermissionsTableHead = () => {
+  const renderPossiblePermissions = () => {
+    return possiblePermissions.map((permission, i) => (
+      <HeaderCell key={i}>{capitalCase(permission)}</HeaderCell>
+    ))
+  }
+
+  return (
+    <TableRow>
+      <HeaderCell>Username</HeaderCell>
+      <HeaderCell>Email</HeaderCell>
+      {renderPossiblePermissions()}
+      <HeaderCell style={iconStyles}>
+        <Icon name='key' />
+      </HeaderCell>
+    </TableRow>
+  )
+}
+
+const UserPermissions = ({ user }) => {
   const [permissions, setPermissions] = useState(user.permissions)
   const [updateUser, { data, error }] = useUpdatePermissionsMutation()
+
+  const handleUpdateUser = () => {
+    updateUser({ variables: { permissions, userId: user.id } })
+  }
 
   const handlePermissionChange = e => {
     const checkbox = e.target
@@ -64,36 +77,26 @@ const UserPermissions = ({ user, setActiveIdx }) => {
     }
   }
 
-  const handleUpdateUser = () => {
-    updateUser({ variables: { permissions, userId: user.id } })
-  }
-
   useEffect(() => {
-    if (data) toast('Update successful.')
+    if (data && data.updatePermissions) toast('Update successful.')
   }, [data])
 
-  if (error) {
-    return null
-  }
-
   return (
-    <Table.Row>
-      <Cell>{user.username}</Cell>
-      <Cell>{user.email}</Cell>
-      {possiblePermissions.map((p, idx) => (
-        <Cell key={idx} data-index={idx} setActiveIdx={setActiveIdx}>
-          <Checkbox
+    <ErrorBoundary error={error}>
+      {possiblePermissions.map((permission, i) => (
+        <Cell key={i}>
+          <Input
             type='checkbox'
-            value={p}
-            checked={permissions.includes(p)}
+            value={permission}
             onChange={handlePermissionChange}
+            checked={permissions.includes(permission)}
           />
         </Cell>
       ))}
       <Cell>
         <Button onClick={handleUpdateUser}>Update</Button>
       </Cell>
-    </Table.Row>
+    </ErrorBoundary>
   )
 }
 
@@ -106,45 +109,30 @@ UserPermissions.propTypes = {
   }).isRequired
 }
 
+const UserPermissionsTableBody = ({ users }) => {
+  return users.map(user => (
+    <TableRow key={user.id}>
+      <Cell>{user.username}</Cell>
+      <Cell>{user.email}</Cell>
+      <UserPermissions user={user} />
+    </TableRow>
+  ))
+}
+
 const PermissionsComponent = () => {
   const { data, loading, error } = useUsersQuery()
-  const [activeIdx, setActiveIdx] = useState(null)
 
-  return (
-    <Permissions>
-      <ErrorBoundary error={error}>
-        {loading ? (
-          <Loader color='white' size='medium' />
-        ) : (
-          <Table>
-            <Table.Head>
-              <Table.Row>
-                <HeaderCell>Username</HeaderCell>
-                <HeaderCell>Email</HeaderCell>
-                {possiblePermissions.map((permission, i) => (
-                  <HeaderCell key={i} active={activeIdx === i}>
-                    {capitalCase(permission)}
-                  </HeaderCell>
-                ))}
-                <HeaderCell>
-                  <Icon name='key' />
-                </HeaderCell>
-              </Table.Row>
-            </Table.Head>
-            <Table.Body>
-              {data.users.map(user => (
-                <UserPermissions
-                  key={user.id}
-                  user={user}
-                  activeIdx={activeIdx}
-                  setActiveIdx={setActiveIdx}
-                />
-              ))}
-            </Table.Body>
-          </Table>
-        )}
-      </ErrorBoundary>
-    </Permissions>
+  return loading ? (
+    <Loader color='white' size='medium' />
+  ) : (
+    <ErrorBoundary error={error}>
+      <Permissions>
+        <Table
+          head={<UserPermissionsTableHead />}
+          body={<UserPermissionsTableBody users={data.users} />}
+        />
+      </Permissions>
+    </ErrorBoundary>
   )
 }
 

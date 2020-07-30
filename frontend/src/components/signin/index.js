@@ -105,6 +105,7 @@ const SigninComponent = ({
 
   useEffect(() => {
     if (data?.signin) {
+      // TODO: use me query instead of signin to validate user
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })

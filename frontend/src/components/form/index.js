@@ -7,6 +7,7 @@ const Form = styled.form`
   width: 100%;
   padding: 0;
   fieldset {
+    padding: 0;
     border: none;
     width: 100%;
   }

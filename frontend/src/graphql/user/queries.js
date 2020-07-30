@@ -4,9 +4,7 @@ import { USER_FRAGMENT } from './fragments'
 export const CURRENT_USER_QUERY = gql`
   query {
     me {
-      id
-      email
-      username
+      ...UserFragment
       cart {
         quantity
         product {
@@ -23,6 +21,7 @@ export const CURRENT_USER_QUERY = gql`
       }
     }
   }
+  ${USER_FRAGMENT}
 `
 
 export const USERS_QUERY = gql`

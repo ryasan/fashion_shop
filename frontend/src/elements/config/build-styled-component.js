@@ -47,6 +47,12 @@ const config = {
     border_none: () => css`
       border: none;
     `,
+    border_left_none: () => css`
+      border-left: none;
+    `,
+    border_right_none: () => css`
+      border-right: none;
+    `,
     border_radius_2: () => css`
       border-radius: 2rem;
     `,

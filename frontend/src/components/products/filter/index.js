@@ -9,24 +9,8 @@ import {
   useAddCategoryFilterMutation,
   useRemoveCategoryFilterMutation
 } from '../../../graphql/filter/hooks'
-import {
-  ACCESSORY,
-  BEANIE,
-  HOODIE,
-  LONG_SLEEVE,
-  SHIRT,
-  SHORTS
-} from '../../../types/category-types.js'
-import {
-  SMALL,
-  MEDIUM,
-  LARGE,
-  X_LARGE,
-  XXL_LARGE
-} from '../../../types/size-types.js'
-
-const sizeFilters = [SMALL, MEDIUM, LARGE, X_LARGE, XXL_LARGE]
-const categoryFilters = [ACCESSORY, BEANIE, HOODIE, LONG_SLEEVE, SHIRT, SHORTS]
+import CATEGORY_FILTERS from '../../../types/category-types.js'
+import SIZE_FILTERS from '../../../types/size-types.js'
 
 const RoundButton = ({ size }) => {
   const [isSelected, setIsSelected] = useState(false)
@@ -89,7 +73,7 @@ const FilterComponent = () => {
       <Filter.Title>Filters:</Filter.Title>
       <Filter.ButtonGroup>
         <WideBox>
-          {categoryFilters.map((category, i) => (
+          {CATEGORY_FILTERS.map((category, i) => (
             <WideButton key={i} category={category}>
               {capitalCase(category)}
             </WideButton>
@@ -102,7 +86,7 @@ const FilterComponent = () => {
           </WideBox.Button>
         </WideBox>
         <Round>
-          {sizeFilters.map((size, i) => (
+          {SIZE_FILTERS.map((size, i) => (
             <RoundButton key={i} size={size} />
           ))}
         </Round>

@@ -4,6 +4,7 @@ import UpdateProduct, { Form } from './product-update.styles'
 import ErrorBoundary from '../../error-boundary'
 import InputFields from '../../form/input-fields'
 import Select from '../../select'
+import AvailableSizesTable from './available-sizes-table'
 import { Button } from '../../../elements'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { hasPermission } from '../../../utils'
@@ -16,13 +17,6 @@ import {
   SHIRT,
   SHORTS
 } from '../../../types/category-types'
-import {
-  SMALL,
-  MEDIUM,
-  LARGE,
-  X_LARGE,
-  XXL_LARGE
-} from '../../../types/size-types'
 
 const categoryOptions = [
   { value: ACCESSORY, name: 'Accessory' },
@@ -47,7 +41,6 @@ const reducer = (state, action) => {
 }
 export const ProductUpdateComponent = ({ product }) => {
   const { data, loading, error } = useCurrentUserQuery()
-
   if (!data || loading) {
     return null
   }
@@ -100,7 +93,7 @@ export const ProductUpdateComponent = ({ product }) => {
     }
   ]
 
-  if (!hasPermission(data.me, [ADMIN, ITEM_UPDATE])) {
+  if (hasPermission(data.me, [ADMIN, ITEM_UPDATE])) {
     return (
       <UpdateProduct>
         <ErrorBoundary error={error}>
@@ -108,17 +101,18 @@ export const ProductUpdateComponent = ({ product }) => {
             <Form.Fieldset>
               <InputFields fields={fields} onChange={handleOnChange} loading />
             </Form.Fieldset>
+            {/* USE TABLE available sizes */}
             <Form.MultipleChoice>
               <Select
                 options={categoryOptions}
                 onChange={handleOnChange}
                 label='Choose category'
               />
-              {/* USE DROPDOWN category */}
-              {/* update photos */}
-              {/* USE TABLE available sizes */}
-              {/* USE TABLE - update product is - free shipping, available, featured */}
+              <AvailableSizesTable />
             </Form.MultipleChoice>
+            {/* USE DROPDOWN category */}
+            {/* update photos */}
+            {/* USE TABLE - update product is - free shipping, available, featured */}
             <Form.SubmitButton>
               <Button disabled={loading}>Submit</Button>
             </Form.SubmitButton>
