@@ -26,6 +26,6 @@ export const useCreateProductMutation = () => {
   return useMutation(CREATE_PRODUCT_MUTATION)
 }
 
-export const useUpdateProductMutation = () => {
+export const useUpdateProductMutation = variables => {
   return useMutation(UPDATE_PRODUCT_MUTATION)
 }

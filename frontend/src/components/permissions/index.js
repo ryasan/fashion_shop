@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { capitalCase } from 'change-case'
 import PropTypes from 'prop-types'
+import { capitalCase } from 'change-case'
 
 import Permissions from './permissions.styles'
 import Table from '../table'
 import Icon from '../icons'
-import possiblePermissions from '../../types/permission-types'
+import possiblePermissions, {
+  ADMIN,
+  USER,
+  ITEM_CREATE,
+  ITEM_UPDATE,
+  ITEM_DELETE,
+  PERMISSION_UPDATE
+} from '../../types/permission-types'
 import ErrorBoundary from '../error-boundary'
 import Loader from '../loader'
 import {
@@ -14,24 +21,7 @@ import {
 } from '../../graphql/user/hooks'
 import { Button, Input } from '../../elements'
 import { toast } from '../toast'
-import { TableRow, HeaderCell, Cell } from '../table/table.styles'
-
-const getProps = props => {
-  const { setActiveIdx = () => ({}) } = props
-
-  return {
-    onMouseEnter: () => {
-      setActiveIdx(props['data-index'])
-    },
-    onMouseLeave: () => {
-      setActiveIdx(null)
-    }
-  }
-}
-
-const withExtraProps = Component => props => {
-  return <Component {...props} {...getProps(props)} />
-}
+import { HeaderCell, Cell } from '../table/table.styles'
 
 const iconStyles = {
   display: 'flex',
@@ -39,24 +29,32 @@ const iconStyles = {
   justifyContent: 'center'
 }
 
-const UserPermissionsTableHead = () => {
-  const renderPossiblePermissions = () => {
-    return possiblePermissions.map((permission, i) => (
-      <HeaderCell key={i}>{capitalCase(permission)}</HeaderCell>
-    ))
-  }
+const KeyIcon = () => (
+  <HeaderCell styles={iconStyles}>
+    <Icon name='key' />
+  </HeaderCell>
+)
 
-  return (
-    <TableRow>
-      <HeaderCell>Username</HeaderCell>
-      <HeaderCell>Email</HeaderCell>
-      {renderPossiblePermissions()}
-      <HeaderCell style={iconStyles}>
-        <Icon name='key' />
-      </HeaderCell>
-    </TableRow>
-  )
-}
+const createPermissionsData = users => ({
+  headRow: [
+    { text: 'Username' },
+    { text: 'Email' },
+    { text: capitalCase(ADMIN) },
+    { text: capitalCase(USER) },
+    { text: capitalCase(ITEM_CREATE) },
+    { text: capitalCase(ITEM_UPDATE) },
+    { text: capitalCase(ITEM_DELETE) },
+    { text: capitalCase(PERMISSION_UPDATE) },
+    { Jsx: KeyIcon }
+  ],
+  bodyRows: [
+    ...users.map(user => [
+      { text: user.username },
+      { text: user.email },
+      { Jsx: UserPermissions, props: { user } }
+    ])
+  ]
+})
 
 const UserPermissions = ({ user }) => {
   const [permissions, setPermissions] = useState(user.permissions)
@@ -69,10 +67,10 @@ const UserPermissions = ({ user }) => {
   const handlePermissionChange = e => {
     const checkbox = e.target
     if (checkbox.checked) {
-      setPermissions(_permissions => [..._permissions, checkbox.value])
+      setPermissions(prevPermissions => [...prevPermissions, checkbox.value])
     } else {
-      setPermissions(_permissions =>
-        _permissions.filter(p => p !== checkbox.value)
+      setPermissions(prevPermissions =>
+        prevPermissions.filter(p => p !== checkbox.value)
       )
     }
   }
@@ -109,16 +107,6 @@ UserPermissions.propTypes = {
   }).isRequired
 }
 
-const UserPermissionsTableBody = ({ users }) => {
-  return users.map(user => (
-    <TableRow key={user.id}>
-      <Cell>{user.username}</Cell>
-      <Cell>{user.email}</Cell>
-      <UserPermissions user={user} />
-    </TableRow>
-  ))
-}
-
 const PermissionsComponent = () => {
   const { data, loading, error } = useUsersQuery()
 
@@ -127,10 +115,7 @@ const PermissionsComponent = () => {
   ) : (
     <ErrorBoundary error={error}>
       <Permissions>
-        <Table
-          head={<UserPermissionsTableHead />}
-          body={<UserPermissionsTableBody users={data.users} />}
-        />
+        <Table {...createPermissionsData(data.users)} />
       </Permissions>
     </ErrorBoundary>
   )

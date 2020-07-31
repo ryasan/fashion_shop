@@ -5,8 +5,12 @@ const Permissions = styled.div`
   margin-top: 3rem;
 
   button {
-    width: 90%;
+    width: 70%;
+    height: 3rem;
     background: var(--salmon);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover {
       background: var(--red);
       color: white;
@@ -26,7 +30,9 @@ const Permissions = styled.div`
       border-left: 0;
       border-right: 0;
       width: 12rem;
-      flex: initial;
+      & > [type='checkbox'] {
+        transform: translate(-1rem, -0.9rem);
+      }
     }
   }
   td {

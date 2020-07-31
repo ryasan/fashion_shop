@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Table from '../../table'
-import { TableRow, HeaderCell, Cell } from '../../table/table.styles'
-import { Input as Checkbox } from '../../../elements'
-import {
+import { Cell } from '../../table/table.styles'
+import { Input, Label, Div } from '../../../elements'
+import possibleSizes, {
   SMALL,
   MEDIUM,
   LARGE,
@@ -11,40 +12,40 @@ import {
   XXL_LARGE
 } from '../../../types/size-types'
 
-const AvailableSizesTableHead = () => {
-  const sizes = [SMALL, MEDIUM, LARGE, X_LARGE, XXL_LARGE]
-  return (
-    <TableRow>
-      {sizes.map((size, i) => (
-        <HeaderCell key={i}>{size}</HeaderCell>
-      ))}
-    </TableRow>
-  )
+const createSizesData = props => ({
+  headRow: [
+    { text: SMALL },
+    { text: MEDIUM },
+    { text: LARGE },
+    { text: X_LARGE },
+    { text: XXL_LARGE }
+  ],
+  bodyRows: [[{ Jsx: ProductSizes, props }]]
+})
+
+const ProductSizes = ({ availableSizes, onChange }) => {
+  return possibleSizes.map((size, i) => (
+    <Cell key={i}>
+      <Input
+        type='checkbox'
+        value={size}
+        onChange={onChange}
+        checked={availableSizes.includes(size)}
+      />
+    </Cell>
+  ))
 }
 
-const Checkboxes = Array.from({ length: 5 }, () => ({
-  content: <Checkbox type='checkbox' />
-}))
-
-const AvailableSizesTableBody = () => {
-  return (
-    <TableRow>
-      {Checkboxes.map((checkbox, i) => (
-        <Cell key={i}>
-          {checkbox.content}
-        </Cell>
-      ))}
-    </TableRow>
-  )
+ProductSizes.propTypes = {
+  availableSizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
-const AvailableSizesTable = () => {
-  return (
-    <Table
-      head={<AvailableSizesTableHead />}
-      body={<AvailableSizesTableBody />}
-    />
-  )
-}
+const AvailableSizesTableComponent = props => (
+  <Div>
+    <Label modifiers='font_size_m'>Available sizes:</Label>
+    <Table {...createSizesData(props)} />
+  </Div>
+)
 
-export default AvailableSizesTable
+export default AvailableSizesTableComponent

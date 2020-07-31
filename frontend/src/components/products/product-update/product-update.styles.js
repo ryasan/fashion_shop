@@ -6,6 +6,11 @@ const UpdateProduct = styled.div`
   width: 80%;
   max-width: var(--max-width);
   margin: 2rem auto;
+  min-height: 10rem;
+  position: relative;
+  h3 {
+    margin: 0;
+  }
 `
 
 const Form = styled(FormStyles)`

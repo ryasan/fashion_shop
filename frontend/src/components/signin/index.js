@@ -46,9 +46,9 @@ const createNewState = ({ state, type, payload }) => {
 
   return {
     ...state,
+    message: formIsValid ? 'Looks good!' : null,
     formIsValid,
-    [target]: payload,
-    message: formIsValid ? 'Looks good!' : null
+    [target]: payload
   }
 }
 
@@ -57,17 +57,13 @@ const reducer = (state, action) => {
 
   switch (type) {
     case EMAIL:
-      return createNewState({ state, type, payload })
     case USERNAME:
-      return createNewState({ state, type, payload })
     case PASSWORD:
-      return createNewState({ state, type, payload })
     case CONFIRM:
-      return createNewState({ state, type, payload })
     case MESSAGE:
-      return { ...state, message: payload }
+      return createNewState({ state, type, payload })
     case RESET_FIELDS:
-      return { ...initialState, isSignin: state.isSignin }
+      return initialState
     default:
       return state
   }
@@ -160,7 +156,7 @@ const SigninComponent = ({
     }
   }
 
-  const handleOnChange = async e => {
+  const handleOnChange = e => {
     dispatch({
       type: constantCase(e.target.name),
       payload: e.target.value

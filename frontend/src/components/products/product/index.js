@@ -13,7 +13,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
   const formattedPrice = formatPrice(product.price)
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
-  const detailsPage = '/shop/' + product.id
+  const detailsPage = `/shop/${product.id}/`
 
   const handleAddCartItem = () => {
     addCartItem({ variables: { product } })

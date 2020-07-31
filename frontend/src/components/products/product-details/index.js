@@ -12,10 +12,10 @@ import { useProductQuery } from '../../../graphql/product/hooks'
 import { formatPrice } from '../../../utils/format-price'
 import { getFrontImage } from '../../../utils'
 
-const ProductDetailsComponent = ({ sku }) => {
+const ProductDetailsComponent = ({ productId }) => {
   const [addCartItem] = useAddCartItemMutation()
   const { data, loading, error } = useProductQuery({
-    variables: { where: { sku } }
+    variables: { where: { id: productId } }
   })
 
   if (loading) {
@@ -39,11 +39,21 @@ const ProductDetailsComponent = ({ sku }) => {
           </ProductDetails.Image>
           <ProductDetails.Text>
             <Span modifiers={['font_size_lg']}>{product.style}</Span>
-            <Span modifiers={['font_size_lg', 'red_color']}>{formatPrice(product.price)}</Span>
-            <Span modifiers={['font_size_s', 'gray_color']}>sku: {product.sku}</Span>
-            {product.isFreeShipping && <Span modifiers={['font_size_s']}>Free shipping available</Span>}
-            <Span modifiers={['font_size_m']}>description: {product.description}</Span>
-            <Button className='buy-btn' onClick={handleAddCartItem}>Add to cart</Button>
+            <Span modifiers={['font_size_lg', 'red_color']}>
+              {formatPrice(product.price)}
+            </Span>
+            <Span modifiers={['font_size_s', 'gray_color']}>
+              sku: {product.sku}
+            </Span>
+            {product.isFreeShipping && (
+              <Span modifiers={['font_size_s']}>Free shipping available</Span>
+            )}
+            <Span modifiers={['font_size_m']}>
+              description: {product.description}
+            </Span>
+            <Button className='buy-btn' onClick={handleAddCartItem}>
+              Add to cart
+            </Button>
           </ProductDetails.Text>
         </ProductDetails.Content>
         <ProductUpdate product={product} />
@@ -53,7 +63,7 @@ const ProductDetailsComponent = ({ sku }) => {
 }
 
 ProductDetailsComponent.propTypes = {
-  sku: PropTypes.string.isRequired
+  productId: PropTypes.string.isRequired
 }
 
 export default ProductDetailsComponent

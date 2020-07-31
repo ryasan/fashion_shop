@@ -4,13 +4,45 @@ import moment from 'moment'
 import { navigate } from '@reach/router'
 
 import OrderDetails, { OrderItem } from './order-details.styles'
+import LoaderComponent from '../../loader'
 import { P, Span, Image } from '../../../elements'
 import { formatPrice, getFrontImage } from '../../../utils'
+import { useProductQuery } from '../../../graphql/product/hooks'
+import ErrorBoundary from '../../error-boundary/index'
+
+const OrderItemComponent = ({ item }) => {
+  const { data, loading, error } = useProductQuery({
+    variables: { where: { sku: item.sku } }
+  })
+
+  const goToProductDetails = item => {
+    navigate(`/shop/${data.product.id}/`)
+  }
+
+  if (loading) {
+    return <LoaderComponent size='small' />
+  }
+  return (
+    <ErrorBoundary error={error}>
+      <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
+        <OrderItem.Image>
+          <Image src={getFrontImage(item.sku)} />
+        </OrderItem.Image>
+        <OrderItem.Cost>
+          <P><Span>price:</Span>{formatPrice(item.price)}</P>
+          <P><Span>qty:</Span>{item.quantity}</P>
+          <P><Span>total:</Span>{(formatPrice(item.price * item.quantity))}</P>
+        </OrderItem.Cost>
+        <OrderItem.Info>
+          <P>{item.title}</P>
+          <P>{item.description}</P>
+        </OrderItem.Info>
+      </OrderItem>
+    </ErrorBoundary>
+  )
+}
 
 const OrderDetailsComponent = ({ order }) => {
-  const goToProductDetails = item => {
-    navigate(`/shop/${item.id}/`, { state: { sku: item.sku } })
-  }
 
   return (
     <OrderDetails>
@@ -22,21 +54,8 @@ const OrderDetailsComponent = ({ order }) => {
         <P><Span>updated:</Span>{moment(order.updatedAt).format('LL')}</P>
       </OrderDetails.Summary>
       <OrderDetails.Items>
-        {order.orderItems.map(item => console.log('item', item) || (
-          <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
-            <OrderItem.Image>
-              <Image src={getFrontImage(item.sku)} />
-            </OrderItem.Image>
-            <OrderItem.Cost>
-              <P><Span>price:</Span>{formatPrice(item.price)}</P>
-              <P><Span>qty:</Span>{item.quantity}</P>
-              <P><Span>total:</Span>{(formatPrice(item.price * item.quantity))}</P>
-            </OrderItem.Cost>
-            <OrderItem.Info>
-              <P>{item.title}</P>
-              <P>{item.description}</P>
-            </OrderItem.Info>
-          </OrderItem>
+        {order.orderItems.map(item => (
+          <OrderItemComponent key={item.id} item={item} />
         ))}
       </OrderDetails.Items>
     </OrderDetails>

@@ -8,11 +8,11 @@ import ProductDetails from '../components/products/product-details'
 import Layout from '../layouts/global-layout'
 
 const ShopProductDetails = props => {
-  const sku = props.location.state.sku
+  const [productId] = props.location.pathname.match(/\w+(?=\/?$)/)
   return (
     <Layout>
       <Shop>
-        <ProductDetails sku={sku}>Product Details</ProductDetails>
+        <ProductDetails productId={productId}>Product Details</ProductDetails>
       </Shop>
     </Layout>
   )

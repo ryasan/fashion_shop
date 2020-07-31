@@ -1,27 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TableWrap, { Table } from './table.styles'
+import TableWrap, { Table, HeaderCell, Cell } from './table.styles'
 
-const TableComponent = ({ head, body }) => {
-  return (
-    <TableWrap>
-      <Table cellPadding={0} cellSpacing={0}>
-        <Table.Head>{head}</Table.Head>
-        <Table.Body>{body}</Table.Body>
-      </Table>
-    </TableWrap>
-  )
-}
+const HeadRow = ({ headRow }) => (
+  <Table.Row>
+    {headRow.map(({ text, Jsx, props }, i) => {
+      if (text) return <HeaderCell key={i} title={text}>{text}</HeaderCell>
+      if (Jsx) return <Jsx key={i} {...props} />
+      return null
+    })}
+  </Table.Row>
+)
+
+const BodyRow = ({ bodyRow }) => (
+  <Table.Row>
+    {bodyRow.map(({ text, Jsx, props }, i) => {
+      if (text) return <Cell key={i} title={text}>{text}</Cell>
+      if (Jsx) return <Jsx key={i} {...props} />
+      return null
+    })}
+  </Table.Row>
+)
+
+const TableComponent = ({ headRow, bodyRows }) => (
+  <TableWrap>
+    <Table cellPadding={0} cellSpacing={0}>
+      <Table.Head>
+        <HeadRow headRow={headRow} />
+      </Table.Head>
+      <Table.Body>
+        {bodyRows.map((bodyRow, i) => (
+          <BodyRow key={i} bodyRow={bodyRow} />
+        ))}
+      </Table.Body>
+    </Table>
+  </TableWrap>
+)
 
 TableComponent.propTypes = {
-  head: PropTypes.node,
-  body: PropTypes.node
+  headRow: PropTypes.arrayOf(PropTypes.object).isRequired,
+  bodyRows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired
 }
 
 TableComponent.defaultProps = {
-  head: [],
-  body: {}
+  headRow: [],
+  bodyRows: []
 }
 
 export default TableComponent

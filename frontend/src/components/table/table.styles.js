@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Table as TableEl, Tr, Th, Td, Tbody, Thead } from '../../elements'
 
@@ -12,7 +12,6 @@ const Table = styled(TableEl)`
   th,
   td {
     flex: 1;
-    width: 100%;
     border: 0.1rem solid white;
     border-left: 0;
     border-bottom: 0;
@@ -20,8 +19,15 @@ const Table = styled(TableEl)`
     line-height: 4rem;
     font-size: var(--font-size-s);
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    & > * {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
     &:first-child {
       border-left: 0.1rem solid white;
     }
@@ -43,12 +49,12 @@ Table.Head = styled(Thead)`
 
 Table.Body = styled(Tbody)``
 
-const TableRow = styled(Tr)`
+Table.Row = styled(Tr)`
   display: flex;
 `
 
 const HeaderCell = styled(Th)`
-  color: var(--salmon);
+  color: ${props => (props.isActive ? 'var(--red)' : 'var(--salmon)')};
   border-top: 0.1rem solid white;
 `
 
@@ -56,5 +62,5 @@ const Cell = styled(Td)`
   text-align: center;
 `
 
-export { TableRow, Table, HeaderCell, Cell }
+export { Table, HeaderCell, Cell }
 export default TableWrap
