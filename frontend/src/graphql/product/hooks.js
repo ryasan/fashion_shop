@@ -21,8 +21,7 @@ export const useProductsQuery = ({ variables }) => {
 
 export const useProductsConnectionQuery = filters => {
   return useQuery(PRODUCTS_CONNECTION_QUERY, {
-    variables: filters,
-    fetchPolicy: 'network-only'
+    variables: filters
   })
 }
 
