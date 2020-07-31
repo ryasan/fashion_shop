@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Select from '../../select'
 
@@ -20,14 +21,20 @@ const categoryOptions = [
   { value: SHORTS, name: 'Shorts' }
 ]
 
-const CategorySelectComponent = ({ onChange }) => {
+const CategorySelectComponent = ({ onChange, selected }) => {
   return (
     <Select
+      selected={selected}
       options={categoryOptions}
       onChange={onChange}
       label='Choose category'
     />
   )
+}
+
+CategorySelectComponent.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  selected: PropTypes.string.isRequired
 }
 
 export default CategorySelectComponent

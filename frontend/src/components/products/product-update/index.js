@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import { constantCase, camelCase } from 'change-case'
 
 import UpdateProduct, { Form } from './product-update.styles'
@@ -8,7 +8,7 @@ import AvailableSizesTable from './available-sizes-table'
 import CategorySelect from './category-select'
 import Loader from '../../loader'
 import ExtraFlagsTable from './extra-flags-table'
-import { H3, Button } from '../../../elements'
+import { H3, Button, Span } from '../../../elements'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { hasPermission } from '../../../utils'
 import { ADMIN, ITEM_UPDATE } from '../../../types/permission-types'
@@ -24,7 +24,11 @@ import {
   IS_FREE_SHIPPING,
   IS_FEATURED
 } from '../../../types/product-update-types'
-import { useUpdateProductMutation } from '../../../graphql/product/hooks'
+import {
+  useUpdateProductMutation,
+  useDeleteProductMutation
+} from '../../../graphql/product/hooks'
+import { toast } from '../../toast'
 
 const reducer = (state, action) => {
   const { payload, type } = action
@@ -51,6 +55,8 @@ const ProductUpdateForm = ({
   product,
   updateProduct,
   updateProductData,
+  deleteProduct,
+  deleteProductData,
   loading,
   me
 }) => {
@@ -78,12 +84,15 @@ const ProductUpdateForm = ({
 
   const handleSizeChange = e => {
     const checkbox = e.target
+    const addedCheckbox = [...state.availableSizes, checkbox.value]
+    const removedCheckbox = state.availableSizes.filter(
+      p => p !== checkbox.value
+    )
 
-    const payload = checkbox.checked
-      ? [...state.availableSizes, checkbox.value]
-      : state.availableSizes.filter(p => p !== checkbox.value)
-
-    dispatch({ type: AVAILABLE_SIZES, payload })
+    dispatch({
+      type: AVAILABLE_SIZES,
+      payload: checkbox.checked ? addedCheckbox : removedCheckbox
+    })
   }
 
   const handleSubmit = e => {
@@ -99,6 +108,23 @@ const ProductUpdateForm = ({
       }
     })
   }
+
+  const handleDelete = () => {
+    const ok = confirm('Are you sure you want to remove this product?')
+    if (ok) deleteProduct({ variables: { where: { id } } })
+  }
+
+  useEffect(() => {
+    if (updateProductData) {
+      toast('Update successful.')
+    }
+  }, [updateProductData])
+
+  useEffect(() => {
+    if (deleteProductData) {
+      toast('Delete successful.')
+    }
+  }, [deleteProductData])
 
   const fields = [
     {
@@ -127,39 +153,44 @@ const ProductUpdateForm = ({
     }
   ]
 
-  // useEffect(() => {
-  //   console.log(state)
-  // }, [state])
+  const flagMap = {
+    isAvailable: state.isAvailable,
+    isFreeShipping: state.isFreeShipping,
+    isFeatured: state.isFeatured
+  }
 
   if (hasPermission(me, [ADMIN, ITEM_UPDATE])) {
     return (
       <Form method='post' onSubmit={handleSubmit}>
         <H3>Product Update</H3>
         <Form.Fieldset>
-          <InputFields
-            fields={fields}
-            onChange={handleTextChange}
-            loading={loading}
-          />
+          <Form.FieldsetInner>
+            <InputFields
+              fields={fields}
+              onChange={handleTextChange}
+              loading={loading}
+            />
+          </Form.FieldsetInner>
         </Form.Fieldset>
         <Form.MultipleChoice>
-          <CategorySelect onChange={handleCategoryChange} />
+          <CategorySelect
+            onChange={handleCategoryChange}
+            selected={state.category}
+          />
           <AvailableSizesTable
             availableSizes={state.availableSizes}
             onChange={handleSizeChange}
           />
-          <ExtraFlagsTable
-            flagMap={{
-              isAvailable: state.isAvailable,
-              isFreeShipping: state.isFreeShipping,
-              isFeatured: state.isFeatured
-            }}
-            onChange={handleFlagChange}
-          />
+          <ExtraFlagsTable flagMap={flagMap} onChange={handleFlagChange} />
           {/* update photos */}
         </Form.MultipleChoice>
         <Form.SubmitButton>
-          <Button disabled={loading}>Updat{loading ? 'ing...' : 'e'}</Button>
+          <Button type='button' disabled={loading} onClick={handleDelete}>
+            Delete Product
+          </Button>
+          <Button type='submit' disabled={loading}>
+            Updat{loading ? 'ing...' : 'e'}
+          </Button>
         </Form.SubmitButton>
       </Form>
     )
@@ -171,10 +202,15 @@ const ProductUpdateForm = ({
 const ProductUpdateComponent = ({ product }) => {
   const userInfo = useCurrentUserQuery() // prettier-ignore
   const [updateProduct, updateProductInfo] = useUpdateProductMutation() // prettier-ignore
+  const [deleteProduct, deleteProductInfo] = useDeleteProductMutation()
 
   return (
     <UpdateProduct>
-      <ErrorBoundary error={userInfo.error || updateProductInfo.error}>
+      <ErrorBoundary
+        error={
+          userInfo.error || updateProductInfo.error || deleteProductInfo.error
+        }
+      >
         {userInfo.loading ? (
           <Loader color='white' size='small' />
         ) : (
@@ -182,7 +218,9 @@ const ProductUpdateComponent = ({ product }) => {
             product={product}
             updateProduct={updateProduct}
             updateProductData={updateProductInfo.data}
-            loading={updateProductInfo.loading}
+            deleteProduct={deleteProduct}
+            deleteProductData={deleteProductInfo.data}
+            loading={updateProductInfo.loading || deleteProductInfo.loading}
             me={userInfo.data.me}
           />
         )}

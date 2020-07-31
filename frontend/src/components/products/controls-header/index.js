@@ -23,7 +23,12 @@ const ControlsHeaderComponent = ({ count, setOrderBy }) => (
   <ControlsHeader>
     <Filter />
     {typeof count === 'number' && <Count count={count} />}
-    <Select onChange={setOrderBy} options={options} label='Order by' />
+    <Select
+      onChange={setOrderBy}
+      options={options}
+      label='Order by'
+      selected='id_ASC'
+    />
   </ControlsHeader>
 )
 

@@ -19,3 +19,12 @@ export const UPDATE_PRODUCT_MUTATION = gql`
   }
   ${PRODUCT_FRAGMENT}
 `
+
+export const DELETE_PRODUCT_MUTATION = gql`
+  mutation($where: ProductWhereUniqueInput!) {
+    deleteProduct(where: $where) {
+      ...ProductFragment
+    }
+  }
+  ${PRODUCT_FRAGMENT}
+`

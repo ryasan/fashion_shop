@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+
 import { buildStyledComponent } from './config/build-styled-component'
 
 export const Button = buildStyledComponent({
@@ -36,4 +37,7 @@ export const transparentButton = css`
   border: 2px solid var(--red);
   font-size: var(--font-size-m);
   outline-color: var(--red);
+  &:hover {
+    color: var(--dark);
+  }
 `

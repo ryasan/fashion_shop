@@ -12,7 +12,7 @@ import { useOrdersConnectionQuery } from '../../../graphql/order/hooks'
 const perPage = 8
 
 const options = [
-  { name: 'Choose...', value: 'createdAt_DESC' },
+  { name: 'Choose...', value: 'id_ASC' },
   { name: 'Lowest to highest', value: 'total_ASC' },
   { name: 'Highest to lowest', value: 'total_DESC' },
   { name: 'Earlier', value: 'createdAt_DESC' },
@@ -36,7 +36,12 @@ const OrderListComponent = ({ me }) => {
 
   return (
     <Orders>
-      <Select options={options} onChange={setOrderBy} label='Order by' />
+      <Select
+        options={options}
+        onChange={setOrderBy}
+        label='Order by'
+        selected='id_ASC'
+      />
       <Orders.Inner>
         <ErrorBoundary error={error}>
           {loading ? (
