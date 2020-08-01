@@ -4,8 +4,6 @@ import { Button, P } from '../../../elements'
 
 const Filter = styled.div`
   display: flex;
-  align-items: center;
-  border-radius: 3px;
 `
 
 const filterBtnStyles = isSelected => css`

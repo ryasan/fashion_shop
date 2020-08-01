@@ -22,6 +22,7 @@ import DocumentIcon from './document'
 import TitleIcon from './title'
 import MoneyIcon from './money'
 import FingerprintIcon from './fingerprint'
+import FilterIcon from './filter'
 
 const Icon = props => {
   switch (props.name) {
@@ -68,6 +69,8 @@ const Icon = props => {
       return <MoneyIcon {...props} />
     case 'fingerprint':
       return <FingerprintIcon {...props} />
+    case 'filter':
+      return <FilterIcon {...props} />
     case 'document':
     default:
       return <DocumentIcon {...props} />

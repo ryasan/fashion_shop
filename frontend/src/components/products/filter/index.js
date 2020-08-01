@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { capitalCase } from 'change-case'
 
 import Filter, { Round, WideBox } from './filter.styles'
+import MultiLevelDropdown from '../../muli-level-dropdown'
 import {
   useAddSizeFilterMutation,
   useRemoveSizeFilterMutation,
@@ -71,6 +72,7 @@ const FilterComponent = () => {
   return (
     <Filter>
       <Filter.Title>Filters:</Filter.Title>
+      {/* <MultiLevelDropdown levels={[CATEGORY_FILTERS, SIZE_FILTERS]} /> */}
       <Filter.ButtonGroup>
         <WideBox>
           {CATEGORY_FILTERS.map((category, i) => (
