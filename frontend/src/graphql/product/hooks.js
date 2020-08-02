@@ -12,11 +12,11 @@ import {
 } from './queries'
 
 export const useProductQuery = ({ variables }) => {
-  return useQuery(PRODUCT_QUERY, { variables })
+  return useQuery(PRODUCT_QUERY, { variables, fetchPolicy: 'network-only' })
 }
 
 export const useProductsQuery = ({ variables }) => {
-  return useQuery(PRODUCTS_QUERY, { variables })
+  return useQuery(PRODUCTS_QUERY, { variables, fetchPolicy: 'network-only' })
 }
 
 export const useProductsConnectionQuery = filters => {

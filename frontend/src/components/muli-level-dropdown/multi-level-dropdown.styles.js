@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+import { Li } from '../../elements'
+
 const DropdownButton = styled(motion.button)`
   align-items: center;
   background: var(--dark);
@@ -63,8 +65,7 @@ const Menu = styled(motion.div)`
     text-align: center;
 
     &:hover {
-      background: white;
-      color: var(--dark);
+      color: var(--light-gray);
     }
   }
 `
@@ -82,19 +83,18 @@ Dropdown.List = styled.ul`
   flex: 1;
   flex-direction: column;
   justify-content: space-around;
+`
 
-  li {
-    cursor: pointer;
-    flex: 1;
-    line-height: 6rem;
-    text-align: center;
+const ListItemStyles = styled(Li)`
+  cursor: pointer;
+  flex: 1;
+  line-height: 6rem;
+  text-align: center;
 
-    &:hover {
-      background: white;
-      color: var(--dark);
-    }
+  &:hover {
+    color: ${props => (props.isSelected ? 'var(--dark)' : 'var(--light-gray)')};
   }
 `
 
-export { DropdownButton, Dropdown }
+export { DropdownButton, Dropdown, ListItemStyles }
 export default DropdownWrap
