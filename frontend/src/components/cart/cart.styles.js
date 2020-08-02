@@ -3,72 +3,78 @@ import styled from 'styled-components'
 import { device } from '../../utils'
 
 const Cart = styled.div`
-  position: fixed;
-  z-index: 20;
-  height: 100%;
-  width: 45rem;
-  right: ${props => (props.cartOpen ? '0' : '-45rem')};
-  bottom: 0;
-  transition: right 0.2s;
   background: var(--dark);
-  &:after {
-    content: '';
-    position: absolute;
+  bottom: 0;
+  height: 100%;
+  position: fixed;
+  right: ${props => (props.cartOpen ? '0' : '-45rem')};
+  transition: right 0.2s;
+  width: 45rem;
+  z-index: 20;
+
+  &::after {
     background: var(--red);
+    content: '';
+    height: ${props => (props.cartOpen ? '100%' : '0')};
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 2px;
-    height: ${props => (props.cartOpen ? '100%' : '0')};
     transition: height 0.5s;
     transition-delay: 0.2s;
+    width: 2px;
   }
+
   @media ${device.mobileL} {
-    width: 35rem;
     right: ${props => (props.cartOpen ? '0' : '-35rem')};
+    width: 35rem;
   }
 `
 
 Cart.ToggleButton = styled.div`
-  position: absolute;
-  width: 9rem;
+  align-items: center;
+  background: var(--dark);
+  cursor: pointer;
+  display: flex;
+  fill: white;
+  flex-direction: column;
+  font-size: var(--font-size-s);
   height: 7rem;
+  justify-content: center;
   left: -9rem;
   outline: 0;
-  background: var(--dark);
-  fill: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
   transition: fill 0.2s;
-  cursor: pointer;
-  font-size: var(--font-size-s);
+  width: 9rem;
+
   svg {
-    width: 3rem;
     height: 3rem;
+    width: 3rem;
   }
-  &:before {
-    content: '';
-    position: absolute;
-    width: 2px;
+
+  &::before {
     background: var(--red);
     bottom: 0;
+    content: '';
+    height: ${props => (props.cartOpen ? '100%' : '0')};
     left: 0;
+    position: absolute;
     transition: height 0.2s ease-out;
     transition-delay: ${props => (props.cartOpen ? '0.8s' : '0')};
-    height: ${props => (props.cartOpen ? '100%' : '0')};
+    width: 2px;
   }
-  &:after {
-    content: '';
-    position: absolute;
-    height: 3px;
+
+  &::after {
     background: var(--red);
     bottom: 0;
+    content: '';
+    height: 3px;
+    position: absolute;
     right: 0;
     transition: width 0.2s ease-out;
     transition-delay: ${props => (props.cartOpen ? '0.6s' : '0')};
     width: ${props => (props.cartOpen ? '100%' : '0')};
   }
+
   &:hover {
     color: var(--red);
   }
@@ -76,31 +82,32 @@ Cart.ToggleButton = styled.div`
 
 Cart.Content = styled.div`
   color: white;
-  height: 70%;
   display: flex;
   flex-direction: column;
+  height: 70%;
   overflow-y: scroll;
 `
 
 Cart.Header = styled.div`
-  text-align: center;
-  padding: 4rem 0;
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 4rem 0;
+  text-align: center;
+
   h4 {
     margin: 0;
   }
 `
 
 Cart.BagContainer = styled.div`
-  position: relative;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 9rem;
+  display: flex;
   height: 7rem;
+  justify-content: center;
+  position: relative;
+  width: 9rem;
 `
 
 Cart.List = styled.ul`
@@ -108,9 +115,9 @@ Cart.List = styled.ul`
 `
 
 Cart.EmptyDisplay = styled.div`
-  text-align: center;
   display: block;
   font-size: var(--font-size-m);
+  text-align: center;
   width: 100%;
 `
 
