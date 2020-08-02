@@ -6,7 +6,7 @@ const sizeIsInStock = (sizes, filters) => {
   return intersection(sizes, filters).length > 0
 }
 
-const itemsAreAvailable = (itemIds) => {
+const availableSizes = (itemIds) => {
   return !isEmpty(itemIds)
 }
 
@@ -30,7 +30,7 @@ const Query = {
 
     const where = {
       ...(freeShippingSelected && { isFreeShipping: true }),
-      ...(itemsAreAvailable(itemIds) && { id_in: itemIds }),
+      ...(availableSizes(itemIds) && { id_in: itemIds }),
       ...(categoryFilters.length && { category_in: categoryFilters })
     }
 
