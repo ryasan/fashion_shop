@@ -1,18 +1,19 @@
 import styled from 'styled-components'
 
 const Select = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+
   select {
-    margin-left: 1rem;
-    height: 3rem;
-    cursor: pointer;
+    background: var(--dark);
     border: 0.1rem solid white;
-    background: var(--darker);
     color: white;
+    cursor: pointer;
+    height: 3rem;
+    margin-left: 1rem;
     outline-color: transparent;
   }
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 `
 
 export default Select

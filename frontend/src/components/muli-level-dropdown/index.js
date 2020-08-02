@@ -1,11 +1,11 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useCycle } from 'framer-motion'
 import { capitalCase } from 'change-case'
 
 import DropdownWrap, { Dropdown } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
-import { H4, Li } from '../../elements'
+import { H4, Li, A } from '../../elements'
 
 const slideVerticalAnimation = {
   open: {
@@ -58,35 +58,38 @@ const MultiLevelDropdownComponent = ({ levels }) => {
   return (
     <DropdownWrap>
       <DropdownButton onClick={toggleDropdown} isOpen={isOpen} />
-      <Dropdown
-        style={{ height }}
-        initial='close'
-        animate={isOpen ? 'open' : 'close'}
-        variants={slideVerticalAnimation}
-      >
-        <Dropdown.Inner
-          initial='left'
-          animate={isLeftMenu ? 'left' : 'right'}
-          variants={slideHorizontalAnimation}
+      <A onBlur={toggleDropdown}>
+        <Dropdown
+          tabIndex={0}
+          style={{ height }}
+          initial='close'
+          animate={isOpen ? 'open' : 'close'}
+          variants={slideVerticalAnimation}
         >
-          <Dropdown.Categories>
-            <H4 onClick={toggleMenu}>Sizes &#8594;</H4>
-            <Dropdown.List>
-              {leftMenu.map((text, i) => (
-                <Li key={i}>{capitalCase(text)}</Li>
-              ))}
-            </Dropdown.List>
-          </Dropdown.Categories>
-          <Dropdown.Sizes>
-            <H4 onClick={toggleMenu}>&#8592; Categories</H4>
-            <Dropdown.List>
-              {rightMenu.map((text, i) => (
-                <Li key={i}>{text}</Li>
-              ))}
-            </Dropdown.List>
-          </Dropdown.Sizes>
-        </Dropdown.Inner>
-      </Dropdown>
+          <Dropdown.Inner
+            initial='left'
+            animate={isLeftMenu ? 'left' : 'right'}
+            variants={slideHorizontalAnimation}
+          >
+            <Dropdown.Categories>
+              <H4 onClick={toggleMenu}>Sizes &#8594;</H4>
+              <Dropdown.List>
+                {leftMenu.map((text, i) => (
+                  <Li key={i}>{capitalCase(text)}</Li>
+                ))}
+              </Dropdown.List>
+            </Dropdown.Categories>
+            <Dropdown.Sizes>
+              <H4 onClick={toggleMenu}>&#8592; Categories</H4>
+              <Dropdown.List>
+                {rightMenu.map((text, i) => (
+                  <Li key={i}>{text}</Li>
+                ))}
+              </Dropdown.List>
+            </Dropdown.Sizes>
+          </Dropdown.Inner>
+        </Dropdown>
+      </A>
     </DropdownWrap>
   )
 }

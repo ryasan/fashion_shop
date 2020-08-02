@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 const DropdownButton = styled(motion.button)`
   align-items: center;
-  background: var(--darker);
+  background: var(--dark);
   border: 0.1rem solid white;
   border-radius: 50%;
   color: white;
@@ -26,9 +26,10 @@ const DropdownWrap = styled.div`
 `
 
 const Dropdown = styled(motion.div)`
-  background: var(--darker);
+  background: var(--dark);
   border: 0.2rem solid white;
   border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
   left: 6rem;
   overflow: hidden;
   position: absolute;
@@ -56,14 +57,14 @@ const Menu = styled(motion.div)`
   width: 25rem;
 
   h4 {
-    border-bottom: 0.2rem solid white;
     cursor: pointer;
     margin: 0;
     padding: 2rem 0;
     text-align: center;
 
     &:hover {
-      color: var(--light-gray);
+      background: white;
+      color: var(--dark);
     }
   }
 `
@@ -84,10 +85,13 @@ Dropdown.List = styled.ul`
 
   li {
     cursor: pointer;
+    flex: 1;
+    line-height: 6rem;
     text-align: center;
 
     &:hover {
-      color: var(--light-gray);
+      background: white;
+      color: var(--dark);
     }
   }
 `
