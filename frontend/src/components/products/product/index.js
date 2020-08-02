@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import Product from './product.styles'
 import { formatPrice, getFrontImage } from '../../../utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
-import { Button, Image, Small, B, Div as Price, Hr as Divider, H3 as Title } from '../../../elements'
+import { Button, Image, Small, B, Div as Price, Hr as Divider, H3 as Title, A } from '../../../elements'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()

@@ -16,6 +16,7 @@ const Path = props => (
 const DropdownToggleComponent = ({ onClick, isOpen }) => (
   <DropdownButton
     onClick={onClick}
+    isOpen={isOpen}
     animate={isOpen ? 'open' : 'closed'}
     initial={false}
   >

@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { sumBy } from 'lodash'
 
 import Cart from './cart.styles'
 import CartItem from './cart-item'
 import Icon from '../icons'
 import CartFooter from './cart-footer/index'
+import CartCount from './cart-count'
 import { H4 } from '../../elements'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
-import CartCount from './cart-count'
 
 const CartComponent = () => {
   const cartRef = useRef(null)
@@ -16,24 +16,12 @@ const CartComponent = () => {
   const cartCount = sumBy(cartItems, c => c.quantity)
   const cartTotal = sumBy(cartItems, c => c.product.price * c.quantity)
 
-  const _toggleCart = e => {
-    if (
-      !cartRef.current.contains(e.target) &&
-      !e.target.classList.contains('buy-btn') &&
-      !e.target.classList.contains('del-btn') &&
-      !e.target.parentElement.classList.contains('del-btn')
-    ) {
-      toggleCart()
-    }
+  const handleOnBlur = () => {
+    if (cartOpen) toggleCart()
   }
 
-  useEffect(() => {
-    if (cartOpen) document.addEventListener('click', _toggleCart)
-    return () => document.removeEventListener('click', _toggleCart)
-  }, [cartOpen])
-
   return (
-    <Cart cartOpen={cartOpen} ref={cartRef}>
+    <Cart cartOpen={cartOpen} ref={cartRef} tabIndex='0' onBlur={handleOnBlur}>
       <Cart.ToggleButton cartOpen={cartOpen} onClick={toggleCart}>
         <Icon name={cartOpen ? 'close' : 'cart'} />
         {!cartOpen && 'CART'}

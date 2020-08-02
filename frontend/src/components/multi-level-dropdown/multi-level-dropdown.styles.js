@@ -3,6 +3,12 @@ import { motion } from 'framer-motion'
 
 import { Li } from '../../elements'
 
+const DropdownWrap = styled.div`
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+`
+
 const DropdownButton = styled(motion.button)`
   align-items: center;
   background: var(--dark);
@@ -14,17 +20,15 @@ const DropdownButton = styled(motion.button)`
   height: 5rem;
   justify-content: center;
   outline: none;
+  pointer-events: ${props => (props.isOpen ? 'none' : 'auto')};
+  position: relative;
   user-select: none;
   width: 5rem;
+  z-index: 9999;
 
   svg {
     margin: 0.4rem 0 0 0.1rem;
   }
-`
-
-const DropdownWrap = styled.div`
-  position: absolute;
-  z-index: 100;
 `
 
 const Dropdown = styled(motion.div)`
@@ -33,10 +37,10 @@ const Dropdown = styled(motion.div)`
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
   left: 6rem;
+  outline: 0;
   overflow: hidden;
-  position: absolute;
-  top: 0;
-  transition: height 0.3s;
+  position: relative;
+  top: -5rem;
   width: 25rem;
   z-index: 200;
 `
@@ -46,7 +50,6 @@ Dropdown.Inner = styled(motion.div)`
   display: flex;
   height: 100%;
   position: relative;
-  transition: height 0.3s;
   width: 50rem;
 `
 

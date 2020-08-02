@@ -6,6 +6,7 @@ const Cart = styled.div`
   background: var(--dark);
   bottom: 0;
   height: 100%;
+  outline: 0;
   position: fixed;
   right: ${props => (props.cartOpen ? '0' : '-45rem')};
   transition: right 0.2s;
