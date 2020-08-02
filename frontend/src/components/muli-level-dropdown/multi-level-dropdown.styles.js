@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const DropdownButton = styled(motion.button)`
@@ -16,45 +16,49 @@ const DropdownButton = styled(motion.button)`
   color: white;
 `
 
+const menuWidth = '25rem'
+
 const DropdownWrap = styled.div`
   position: absolute;
   z-index: 100;
-  width: 25rem;
+  width: ${menuWidth};
 `
 
 const Dropdown = styled(motion.div)`
+  overflow-x: hidden;
   position: relative;
+  border-radius: 0.5rem;
+  border-bottom: 0;
 `
 
 Dropdown.Inner = styled(motion.div)`
-  outline: 2px solid red;
-  width: 100%;
-  background: var(--darker);
   transition: height 0.5s;
+  width: calc(2 * ${menuWidth});
+  display: flex;
+  align-items: flex-start;
+  background: var(--darker);
+  position: relative;
+  z-index: 200;
 `
 
 const Menu = styled(motion.div)`
   z-index: 2;
-  border-radius: 5px;
-  position: absolute;
   background: var(--darker);
   font-size: var(--font-size-m);
   width: 100%;
   padding: 2rem 0;
+
   h4 {
     text-align: center;
-    margin: 2rem;
+    margin: 0 0 2rem 0;
     cursor: pointer;
   }
 `
 
-Dropdown.Categories = styled(Menu)`
-  position: relative;
-`
+Dropdown.Categories = styled(Menu)``
 
 Dropdown.Sizes = styled(Menu)`
   top: 0;
-  transform: translateX(100%);
 `
 
 Dropdown.List = styled.ul`

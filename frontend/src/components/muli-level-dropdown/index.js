@@ -1,28 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useCycle } from 'framer-motion'
-import { capitalCase } from 'change-case'
 
 import DropdownWrap, { Dropdown } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
 import { H4, Li } from '../../elements'
-import { useDimensions } from './hooks'
 
 const toggleMenuAnimate = {
   open: {
     rotateX: 0,
     y: 0,
+    opacity: 1,
     transition: {
+      duration: 0.5,
       type: 'spring',
-      duration: 0.5
+      mass: 0.8
     },
     display: 'block'
   },
   close: {
     rotateX: -15,
     y: -320,
+    opacity: 0,
     transition: {
-      type: 'spring',
       duration: 0.5,
       delay: 0.3
     },
@@ -32,61 +32,29 @@ const toggleMenuAnimate = {
   }
 }
 
-const slideLeft = {
-  visible: {
+const menuSlideAnimate = {
+  left: {
     x: 0,
     transition: {
       duration: 0.5
-    },
-    display: 'block'
+    }
   },
-  hidden: {
+  right: {
     x: -250,
     transition: {
       duration: 0.5
-    },
-    transitionEnd: {
-      display: 'none'
     }
   }
 }
-
-const slideRight = {
-  visible: {
-    x: 0,
-    transition: {
-      duration: 0.5
-    },
-    display: 'block'
-  },
-  hidden: {
-    x: 250,
-    transition: {
-      duration: 0.5
-    },
-    transitionEnd: {
-      display: 'block'
-    }
-  }
-}
-
-// const changeHeight = height => {
-//   categoryView: {
-//     height: height
-//   }
-// }
 
 const MultiLevelDropdownComponent = ({ levels }) => {
   const [categories, sizes] = levels
   const [isOpen, toggleDropdown] = useCycle(false, true)
-  const [isFirstMenu, toggleMenu] = useCycle(true, false)
+  const [isLeftMenu, toggleMenu] = useCycle(true, false)
   const categoriesRef = useRef(null)
   const sizesRef = useRef(null)
   const [menuHeight, setMenuHeights] = useState({})
-
-  useEffect(() => {
-    console.log(menuHeight)
-  }, [menuHeight])
+  const height = isLeftMenu ? menuHeight.categories : menuHeight.sizes
 
   const getHeights = () => {
     setMenuHeights({
@@ -95,42 +63,36 @@ const MultiLevelDropdownComponent = ({ levels }) => {
     })
   }
 
+  console.log(height)
+
   return (
     <DropdownWrap>
       <DropdownButton onClick={toggleDropdown} isOpen={isOpen} />
-      <Dropdown>
+      <Dropdown
+        initial='close'
+        animate={isOpen ? 'open' : 'close'}
+        variants={toggleMenuAnimate}
+        onAnimationComplete={getHeights}
+      >
         <Dropdown.Inner
-          initial='close'
-          animate={isOpen ? 'open' : 'close'}
-          variants={toggleMenuAnimate}
-          onAnimationComplete={getHeights}
-          style={{
-            height: isFirstMenu ? menuHeight.categories : menuHeight.sizes
-          }}
+          style={{ height }}
+          initial='left'
+          animate={isLeftMenu ? 'left' : 'right'}
+          variants={menuSlideAnimate}
         >
-          <Dropdown.Categories
-            initial='visible'
-            animate={isFirstMenu ? 'visible' : 'hidden'}
-            variants={slideLeft}
-            ref={categoriesRef}
-          >
+          <Dropdown.Categories ref={categoriesRef}>
             <H4 onClick={toggleMenu}>Sizes &#8594;</H4>
             <Dropdown.List>
               {categories.map((text, i) => (
-                <Li key={i}>{capitalCase(text)}</Li>
+                <Li key={i}>{text.toUpperCase()}</Li>
               ))}
             </Dropdown.List>
           </Dropdown.Categories>
-          <Dropdown.Sizes
-            ref={sizesRef}
-            initial='hidden'
-            animate={isFirstMenu ? 'hidden' : 'visible'}
-            variants={slideRight}
-          >
+          <Dropdown.Sizes ref={sizesRef}>
             <H4 onClick={toggleMenu}>&#8592; Categories</H4>
             <Dropdown.List>
               {sizes.map((text, i) => (
-                <Li key={i}>{capitalCase(text)}</Li>
+                <Li key={i}>{text}</Li>
               ))}
             </Dropdown.List>
           </Dropdown.Sizes>
