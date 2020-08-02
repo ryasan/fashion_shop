@@ -6,7 +6,10 @@ import { capitalCase } from 'change-case'
 import DropdownWrap, { Dropdown } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
 import { H4, Li } from '../../elements'
-import { menuVariants, slideHorizontalAnimation, slideVerticalAnimation } from './animation-variants'
+import {
+  slideHorizontalAnimation,
+  slideVerticalAnimation
+} from './animation-variants'
 
 const MultiLevelDropdownComponent = ({ levels }) => {
   const [categories, sizes] = levels

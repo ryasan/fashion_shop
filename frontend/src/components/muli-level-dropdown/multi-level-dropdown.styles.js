@@ -14,6 +14,10 @@ const DropdownButton = styled(motion.button)`
   outline: none;
   user-select: none;
   width: 5rem;
+
+  svg {
+    margin: 0.4rem 0 0 0.1rem;
+  }
 `
 
 const DropdownWrap = styled.div`
@@ -22,12 +26,13 @@ const DropdownWrap = styled.div`
 `
 
 const Dropdown = styled(motion.div)`
-  /* border: 0.2rem solid red; */
   background: var(--darker);
   border: 0.2rem solid white;
   border-radius: 0.5rem;
-  overflow-x: hidden;
-  position: relative;
+  left: 6rem;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
   transition: height 0.5s;
   width: 25rem;
   z-index: 200;
@@ -49,29 +54,41 @@ const Menu = styled(motion.div)`
   width: 25rem;
 
   h4 {
+    border-bottom: 0.2rem solid white;
     cursor: pointer;
-    margin: 2.5rem 0;
+    margin: 0;
+    padding: 2rem 0;
     text-align: center;
+
+    &:hover {
+      background: white;
+      color: var(--darker);
+    }
   }
 `
 
 Dropdown.Categories = styled(Menu)`
-
   li {
     margin-bottom: 3rem !important;
   }
 `
 
 Dropdown.Sizes = styled(Menu)`
+  padding-bottom: 3rem;
   position: absolute;
   right: 0;
   top: 0;
 `
 
 Dropdown.List = styled.ul`
+  padding-top: 3rem;
+
   li {
-    margin-bottom: 2rem;
     text-align: center;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
   }
 `
 
