@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useApolloClient } from '@apollo/react-hooks'
 
 import Filter from './filter.styles'
-import MultiLevelDropdown from '../../muli-level-dropdown'
+import MultiLevelDropdown from '../../multi-level-dropdown'
 import {
   useFiltersQuery,
   useAddSizeFilterMutation,
@@ -11,10 +12,10 @@ import {
 } from '../../../graphql/filter/hooks'
 import CATEGORY_FILTERS from '../../../types/category-types.js'
 import SIZE_FILTERS from '../../../types/size-types.js'
-
-// TODO: add free shipping filter
+import { filtersInitialState } from '../../../graphql/filter/reducer'
 
 const FilterComponent = () => {
+  const client = useApolloClient()
   const { data: { sizeFilters, categoryFilters } } = useFiltersQuery() // prettier-ignore
   const [addCategoryFilter] = useAddCategoryFilterMutation()
   const [removeCategoryFilter] = useRemoveCategoryFilterMutation()
@@ -41,12 +42,18 @@ const FilterComponent = () => {
     }
   }
 
+  useEffect(() => {
+    return () => {
+      client.writeData({ data: { ...filtersInitialState } })
+    }
+  }, [])
+
   return (
     <Filter>
       <MultiLevelDropdown
         levels={[CATEGORY_FILTERS, SIZE_FILTERS]}
-        leftMenuTitle='Categories'
-        rightMenuTitle='Sizes'
+        leftMenuTitle='Sizes'
+        rightMenuTitle='Categories'
         onLeftMenuClick={onCategoryClick}
         onRightMenuClick={onSizeClick}
       />
