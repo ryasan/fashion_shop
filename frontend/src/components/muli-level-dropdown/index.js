@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useCycle } from 'framer-motion'
 import { capitalCase } from 'change-case'
@@ -6,26 +6,54 @@ import { capitalCase } from 'change-case'
 import DropdownWrap, { Dropdown } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
 import { H4, Li } from '../../elements'
-import {
-  slideHorizontalAnimation,
-  slideVerticalAnimation
-} from './animation-variants'
+
+const slideVerticalAnimation = {
+  open: {
+    rotateX: 0,
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      mass: 0.8,
+      type: 'spring'
+    },
+    display: 'block'
+  },
+  close: {
+    rotateX: -15,
+    y: -320,
+    opacity: 0,
+    transition: {
+      duration: 0.3
+    },
+    transitionEnd: {
+      display: 'none'
+    }
+  }
+}
+
+const slideHorizontalAnimation = {
+  left: {
+    x: 0,
+    transition: {
+      duration: 0.3
+    }
+  },
+  right: {
+    x: -250,
+    transition: {
+      duration: 0.3
+    }
+  }
+}
 
 const MultiLevelDropdownComponent = ({ levels }) => {
-  const [categories, sizes] = levels
+  const [leftMenu, rightMenu] = levels
   const [isOpen, toggleDropdown] = useCycle(false, true)
   const [isLeftMenu, toggleMenu] = useCycle(true, false)
-  const categoriesRef = useRef(null)
-  const sizesRef = useRef(null)
-  const [menuHeight, setMenuHeights] = useState({})
-  const height = isLeftMenu ? menuHeight.categories : menuHeight.sizes
-
-  const getHeights = () => {
-    setMenuHeights({
-      categories: categoriesRef.current.offsetHeight,
-      sizes: sizesRef.current.offsetHeight
-    })
-  }
+  const leftMenuHeight = (leftMenu.length + 1) * 60
+  const rightMenuHeight = (rightMenu.length + 1) * 60
+  const height = isLeftMenu ? leftMenuHeight : rightMenuHeight
 
   return (
     <DropdownWrap>
@@ -35,26 +63,24 @@ const MultiLevelDropdownComponent = ({ levels }) => {
         initial='close'
         animate={isOpen ? 'open' : 'close'}
         variants={slideVerticalAnimation}
-        onAnimationComplete={getHeights}
       >
         <Dropdown.Inner
           initial='left'
           animate={isLeftMenu ? 'left' : 'right'}
           variants={slideHorizontalAnimation}
-          style={{ height }}
         >
-          <Dropdown.Categories ref={categoriesRef}>
+          <Dropdown.Categories>
             <H4 onClick={toggleMenu}>Sizes &#8594;</H4>
             <Dropdown.List>
-              {categories.map((text, i) => (
+              {leftMenu.map((text, i) => (
                 <Li key={i}>{capitalCase(text)}</Li>
               ))}
             </Dropdown.List>
           </Dropdown.Categories>
-          <Dropdown.Sizes ref={sizesRef}>
+          <Dropdown.Sizes>
             <H4 onClick={toggleMenu}>&#8592; Categories</H4>
             <Dropdown.List>
-              {sizes.map((text, i) => (
+              {rightMenu.map((text, i) => (
                 <Li key={i}>{text}</Li>
               ))}
             </Dropdown.List>

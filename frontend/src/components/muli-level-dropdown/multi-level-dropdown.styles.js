@@ -33,7 +33,7 @@ const Dropdown = styled(motion.div)`
   overflow: hidden;
   position: absolute;
   top: 0;
-  transition: height 0.5s;
+  transition: height 0.3s;
   width: 25rem;
   z-index: 200;
 `
@@ -42,14 +42,16 @@ Dropdown.Inner = styled(motion.div)`
   align-items: flex-start;
   display: flex;
   height: 100%;
-  outline: 4px solid red;
   position: relative;
-  transition: height 0.5s;
+  transition: height 0.3s;
   width: 50rem;
 `
 
 const Menu = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
   font-size: var(--font-size-m);
+  height: 100%;
   position: relative;
   width: 25rem;
 
@@ -61,33 +63,31 @@ const Menu = styled(motion.div)`
     text-align: center;
 
     &:hover {
-      background: white;
-      color: var(--darker);
+      color: var(--light-gray);
     }
   }
 `
 
-Dropdown.Categories = styled(Menu)`
-  li {
-    margin-bottom: 3rem !important;
-  }
-`
+Dropdown.Categories = styled(Menu)``
 
 Dropdown.Sizes = styled(Menu)`
-  padding-bottom: 3rem;
   position: absolute;
   right: 0;
   top: 0;
 `
 
 Dropdown.List = styled.ul`
-  padding-top: 3rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
 
   li {
+    cursor: pointer;
     text-align: center;
 
-    &:not(:last-child) {
-      margin-bottom: 2rem;
+    &:hover {
+      color: var(--light-gray);
     }
   }
 `
