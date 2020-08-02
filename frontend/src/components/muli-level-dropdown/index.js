@@ -1,51 +1,12 @@
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useCycle } from 'framer-motion'
+import { capitalCase } from 'change-case'
 
 import DropdownWrap, { Dropdown } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
 import { H4, Li } from '../../elements'
-
-const toggleMenuAnimate = {
-  open: {
-    rotateX: 0,
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      type: 'spring',
-      mass: 0.8
-    },
-    display: 'block'
-  },
-  close: {
-    rotateX: -15,
-    y: -320,
-    opacity: 0,
-    transition: {
-      duration: 0.5,
-      delay: 0.3
-    },
-    transitionEnd: {
-      display: 'none'
-    }
-  }
-}
-
-const menuSlideAnimate = {
-  left: {
-    x: 0,
-    transition: {
-      duration: 0.5
-    }
-  },
-  right: {
-    x: -250,
-    transition: {
-      duration: 0.5
-    }
-  }
-}
+import { menuVariants, slideHorizontalAnimation, slideVerticalAnimation } from './animation-variants'
 
 const MultiLevelDropdownComponent = ({ levels }) => {
   const [categories, sizes] = levels
@@ -63,28 +24,27 @@ const MultiLevelDropdownComponent = ({ levels }) => {
     })
   }
 
-  console.log(height)
-
   return (
     <DropdownWrap>
       <DropdownButton onClick={toggleDropdown} isOpen={isOpen} />
       <Dropdown
+        style={{ height }}
         initial='close'
         animate={isOpen ? 'open' : 'close'}
-        variants={toggleMenuAnimate}
+        variants={slideVerticalAnimation}
         onAnimationComplete={getHeights}
       >
         <Dropdown.Inner
-          style={{ height }}
           initial='left'
           animate={isLeftMenu ? 'left' : 'right'}
-          variants={menuSlideAnimate}
+          variants={slideHorizontalAnimation}
+          style={{ height }}
         >
           <Dropdown.Categories ref={categoriesRef}>
             <H4 onClick={toggleMenu}>Sizes &#8594;</H4>
             <Dropdown.List>
               {categories.map((text, i) => (
-                <Li key={i}>{text.toUpperCase()}</Li>
+                <Li key={i}>{capitalCase(text)}</Li>
               ))}
             </Dropdown.List>
           </Dropdown.Categories>

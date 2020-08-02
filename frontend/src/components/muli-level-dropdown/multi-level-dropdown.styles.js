@@ -2,71 +2,76 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const DropdownButton = styled(motion.button)`
-  outline: none;
-  user-select: none;
-  cursor: pointer;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
+  align-items: center;
   background: var(--darker);
   border: 0.1rem solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 50%;
   color: white;
+  cursor: pointer;
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  outline: none;
+  user-select: none;
+  width: 5rem;
 `
-
-const menuWidth = '25rem'
 
 const DropdownWrap = styled.div`
   position: absolute;
   z-index: 100;
-  width: ${menuWidth};
 `
 
 const Dropdown = styled(motion.div)`
+  /* border: 0.2rem solid red; */
+  background: var(--darker);
+  border: 0.2rem solid white;
+  border-radius: 0.5rem;
   overflow-x: hidden;
   position: relative;
-  border-radius: 0.5rem;
-  border-bottom: 0;
-`
-
-Dropdown.Inner = styled(motion.div)`
   transition: height 0.5s;
-  width: calc(2 * ${menuWidth});
-  display: flex;
-  align-items: flex-start;
-  background: var(--darker);
-  position: relative;
+  width: 25rem;
   z-index: 200;
 `
 
+Dropdown.Inner = styled(motion.div)`
+  align-items: flex-start;
+  display: flex;
+  height: 100%;
+  outline: 4px solid red;
+  position: relative;
+  transition: height 0.5s;
+  width: 50rem;
+`
+
 const Menu = styled(motion.div)`
-  z-index: 2;
-  background: var(--darker);
   font-size: var(--font-size-m);
-  width: 100%;
-  padding: 2rem 0;
+  position: relative;
+  width: 25rem;
 
   h4 {
-    text-align: center;
-    margin: 0 0 2rem 0;
     cursor: pointer;
+    margin: 2.5rem 0;
+    text-align: center;
   }
 `
 
-Dropdown.Categories = styled(Menu)``
+Dropdown.Categories = styled(Menu)`
+
+  li {
+    margin-bottom: 3rem !important;
+  }
+`
 
 Dropdown.Sizes = styled(Menu)`
+  position: absolute;
+  right: 0;
   top: 0;
 `
 
 Dropdown.List = styled.ul`
-  text-align: center;
   li {
-    &:not(:last-child) {
-      margin-bottom: 2rem;
-    }
+    margin-bottom: 2rem;
+    text-align: center;
   }
 `
 
