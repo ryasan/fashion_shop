@@ -71,28 +71,7 @@ const FilterComponent = () => {
 
   return (
     <Filter>
-      <Filter.Title>Filters:</Filter.Title>
-      {/* <MultiLevelDropdown levels={[CATEGORY_FILTERS, SIZE_FILTERS]} /> */}
-      <Filter.ButtonGroup>
-        <WideBox>
-          {CATEGORY_FILTERS.map((category, i) => (
-            <WideButton key={i} category={category}>
-              {capitalCase(category)}
-            </WideButton>
-          ))}
-          <WideBox.Button
-            onClick={toggleFreeShippingSelected}
-            isSelected={isSelected}
-          >
-            Free shipping
-          </WideBox.Button>
-        </WideBox>
-        <Round>
-          {SIZE_FILTERS.map((size, i) => (
-            <RoundButton key={i} size={size} />
-          ))}
-        </Round>
-      </Filter.ButtonGroup>
+      <MultiLevelDropdown levels={[CATEGORY_FILTERS, SIZE_FILTERS]} />
     </Filter>
   )
 }

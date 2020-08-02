@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Button, P } from '../../../elements'
 
 const Filter = styled.div`
-  display: flex;
+  position: relative;
 `
 
 const filterBtnStyles = isSelected => css`
@@ -53,7 +53,9 @@ Round.Button = styled(Button)`
   ${props => filterBtnStyles(props.isSelected)};
 `
 
-Filter.Title = P
+Filter.Title = styled(P)`
+  margin: 0;
+`
 
 export { Round, WideBox }
 export default Filter

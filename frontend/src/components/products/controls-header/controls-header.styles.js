@@ -8,6 +8,9 @@ const ControlsHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 1395px) {
+    padding: 0 5rem;
+  }
   @media ${device.laptop} {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;

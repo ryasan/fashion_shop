@@ -6,7 +6,7 @@ const Select = styled.div`
     height: 3rem;
     cursor: pointer;
     border: 0.1rem solid white;
-    background: var(--dark);
+    background: var(--darker);
     color: white;
     outline-color: transparent;
   }
