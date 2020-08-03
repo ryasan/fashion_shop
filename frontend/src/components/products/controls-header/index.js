@@ -6,7 +6,7 @@ import { Span } from '../../../elements'
 import Select from '../../select'
 
 const Count = ({ count }) => (
-  <Span modifiers={['white_color', 'font_size_m']}>
+  <Span modifiers={['text_align_center', 'white_color', 'font_size_m']}>
     {`Found ${count} product${count > 1 ? 's' : ''}`}
   </Span>
 )

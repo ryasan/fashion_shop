@@ -42,7 +42,7 @@ const Dropdown = styled(motion.div)`
   position: relative;
   top: -5rem;
   width: 25rem;
-  z-index: 200;
+  z-index: 9999;
 `
 
 Dropdown.Inner = styled(motion.div)`

@@ -9,6 +9,10 @@ const ControlsHeader = styled.div`
   justify-content: space-between;
   width: 100%;
 
+  > * {
+    flex: 1;
+  }
+
   @media (max-width: 1395px) {
     padding: 0 5rem;
   }
