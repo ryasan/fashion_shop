@@ -1,41 +1,41 @@
 import styled, { keyframes } from 'styled-components'
 
 const spin = keyframes`
-  0%{ transform: rotate(0deg); }
-100%{ transform: rotate(360deg); }
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
 `
 
 const Loader = styled.div`
-  width: ${props => props.size?.loader};
-  height: ${props => props.size?.loader};
-  border-radius: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  border-radius: 100%;
+  display: flex;
+  height: ${props => props.size?.loader};
+  justify-content: center;
+  left: 50%;
+  margin: 0 auto;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
+  width: ${props => props.size?.loader};
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
+    border: ${props => props.size?.border} solid transparent;
+    border-bottom-color: ${props => props.primary};
+    border-radius: 100%;
+    border-top-color: ${props => props.primary};
     content: '';
+    height: 100%;
     position: absolute;
     width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    border: ${props => props.size?.border} solid transparent;
-    border-top-color: ${props => props.primary};
-    border-bottom-color: ${props => props.primary};
   }
 
-  &:before {
-    z-index: 100;
+  &::before {
     animation: ${spin} 1s infinite;
+    z-index: 100;
   }
 
-  &:after {
+  &::after {
     border: ${props => props.size?.border} solid ${props => props.secondary};
   }
 
@@ -45,9 +45,9 @@ const Loader = styled.div`
 `
 
 Loader.Dot = styled.div`
-  width: ${props => props.size?.dot};
-  height: ${props => props.size?.dot};
   border-radius: 50%;
+  height: ${props => props.size?.dot};
+  width: ${props => props.size?.dot};
 `
 
 export default Loader

@@ -2,61 +2,68 @@ import styled, { keyframes, css } from 'styled-components'
 import { motion } from 'framer-motion'
 
 const fillRight = keyframes`
-    0% { width: 0; } 
-  100% { width: 100%; opacity: 1; }
+0% { width: 0; }
+
+100% { 
+  opacity: 1;
+  width: 100%;  
+}
 `
 
 const Sidebar = styled(motion.div)`
-  width: 40rem;
-  height: 100%;
   background: var(--red);
-  position: relative;
-  z-index: 10;
+  height: 100%;
   padding: 12% 5%;
+  position: relative;
+  width: 40rem;
+  z-index: 10;
 `
 
 Sidebar.List = styled.ul`
   a {
-    text-decoration: none;
     color: white;
+    text-decoration: none;
   }
 `
 
 Sidebar.Text = styled(motion.p)`
-  position: absolute;
   bottom: 25%;
+  font-size: var(--font-size-lg);
   left: 4rem;
   padding-right: 7%;
-  font-size: var(--font-size-lg);
+  position: absolute;
 `
 
 const MotionListItem = styled(motion.li)`
+  background: var(--dark);
+  border: 0.3rem solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  cursor: pointer;
   margin-bottom: 5rem;
   position: relative;
-  cursor: pointer;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
-  border: 0.3rem solid white;
-  color: white;
-  background: var(--dark);
+
   a {
-    font-weight: bolder;
+    color: inherit;
     display: block;
     font-size: 3rem;
+    font-weight: bolder;
     padding: 1rem;
-    text-align: center;
-    color: inherit;
     position: relative;
+    text-align: center;
     z-index: 10;
-    &:after {
+
+    &::after {
+      background: black;
       content: '';
-      z-index: -1;
-      position: absolute;
       height: 100%;
-      width: 0;
-      top: 0;
       left: 0;
       opacity: 0;
-      background: black;
+      position: absolute;
+      top: 0;
+      width: 0;
+      z-index: -1;
+
       ${props =>
         props.isHovered &&
         css`

@@ -1,33 +1,35 @@
 import styled from 'styled-components'
 
 const Pagination = styled.div`
-  width: 100%;
   font-size: var(--font-size-lg);
   margin: 5rem 0;
+  width: 100%;
 `
 
 Pagination.PageControls = styled.div`
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 `
 
 const PageButton = styled.button`
-  width: 3rem;
-  height: 3rem;
-  fill: white;
-  margin: 0 3rem;
   background: 0;
-  cursor: pointer;
-  padding: 0.5rem;
   color: white;
+  cursor: pointer;
+  fill: white;
+  height: 3rem;
+  margin: 0 3rem;
+  padding: 0.5rem;
+  width: 3rem;
+
   &:disabled {
-    cursor: not-allowed;
     color: gray;
+    cursor: not-allowed;
   }
+
   svg {
-    width: 100%;
     height: 100%;
+    width: 100%;
   }
 `
 

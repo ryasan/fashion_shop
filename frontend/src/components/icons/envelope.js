@@ -11,7 +11,8 @@ const EnvelopeIcon = props => (
     y='0px'
     viewBox='0 0 512 512'
     style={{ enableBackground: 'new 0 0 512 512' }}
-    xmlSpace='preserve'>
+    xmlSpace='preserve'
+  >
     <g>
       <g>
         <path

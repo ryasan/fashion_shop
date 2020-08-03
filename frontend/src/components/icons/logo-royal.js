@@ -7,7 +7,8 @@ const LogoRoyalIcon = props => (
     height='139'
     viewBox='0 0 270 139'
     fill='none'
-    xmlns='http://www.w3.org/2000/svg'>
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <rect
       x='1.5'
       y='72.3663'

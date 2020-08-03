@@ -4,21 +4,22 @@ import FormStyles from '../../form'
 import { transparentButton } from '../../../elements'
 
 const UpdateProduct = styled.div`
-  width: 80%;
-  max-width: var(--max-width);
   margin: 2rem auto;
+  max-width: var(--max-width);
   min-height: 10rem;
   position: relative;
+  width: 80%;
+
   h3 {
     margin: 0;
   }
 `
 
 const Form = styled(FormStyles)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3rem;
   box-shadow: var(--box-shadow);
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-columns: 1fr 1fr;
   padding: 3rem;
 `
 
@@ -27,29 +28,32 @@ Form.Fieldset = styled.fieldset`
 `
 
 Form.FieldsetInner = styled.span`
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: flex-end;
+
   div:last-child {
     margin: 0;
   }
 `
 
 Form.MultipleChoice = styled.div`
-  grid-column: 2/3;
-  height: 30rem;
   display: flex;
   flex-direction: column;
+  grid-column: 2/3;
+  height: 30rem;
   justify-content: space-between;
 `
 
 Form.SubmitButton = styled.div`
-  grid-column: 1/3;
   display: flex;
+  grid-column: 1/3;
   justify-content: space-around;
+
   button {
     width: 20rem;
+
     &:first-child {
       ${transparentButton};
     }

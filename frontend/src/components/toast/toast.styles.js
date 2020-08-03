@@ -4,32 +4,36 @@ const Toast = styled.div`
   .toast-container {
     width: auto;
   }
+
   .toast {
     background: var(--dark);
-    font-size: var(--font-size-m);
     color: white;
-    overflow: initial;
-    position: relative;
-    padding: 0 3rem;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: -2rem;
-      right: 0;
-      width: 0;
-      height: 0;
+    font-size: var(--font-size-m);
+    overflow: initial;
+    padding: 0 3rem;
+    position: relative;
+
+    &::after {
       border: 2rem solid transparent;
-      border-top-color: var(--dark);
       border-bottom: 0;
       border-right: 0;
-    }
-    .close-button {
-      fill: white;
+      border-top-color: var(--dark);
+      bottom: -2rem;
+      content: '';
+      height: 0;
       position: absolute;
       right: 0;
-      padding: 0.5rem;
+      width: 0;
     }
+
+    .close-button {
+      fill: white;
+      padding: 0.5rem;
+      position: absolute;
+      right: 0;
+    }
+
     &.toast-success {
       background: red;
     }

@@ -6,7 +6,8 @@ const LogoDiamondIcon = props => (
     height='63'
     viewBox='0 0 123 63'
     fill='none'
-    xmlns='http://www.w3.org/2000/svg'>
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <path
       d='M91 9.64815L80.2926 2H65.8704H51.4482L40.0852 9.64815L65.8704 36.5259L91 9.64815Z'
       stroke='#EC1C24'

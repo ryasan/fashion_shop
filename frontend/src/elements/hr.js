@@ -4,7 +4,7 @@ import { buildStyledComponent } from './config/build-styled-component'
 export const Hr = buildStyledComponent({
   element: styled.hr,
   baseStyles: css`
-    border: none;
+    border: 0;
     height: 1px;
-  `
+`
 })

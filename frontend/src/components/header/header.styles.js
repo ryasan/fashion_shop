@@ -4,84 +4,90 @@ import { Link } from 'gatsby'
 import { device } from '../../utils'
 
 const Header = styled.header`
-  position: relative;
+  align-items: center;
   background: var(--dark);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 7rem;
+  justify-content: space-between;
+  position: relative;
   z-index: 1000;
 `
 
 Header.LogoContainer = styled(Link)`
-  width: 10rem;
-  display: inline;
-  margin-left: 3rem;
-  display: flex;
   align-items: center;
+  display: flex;
+  margin-left: 3rem;
+  width: 10rem;
 `
 
 Header.Nav = styled.ul`
   display: flex;
-  z-index: 10;
   position: relative;
   width: ${({ me }) => `calc((${me ? 4 : 3} + 1) * 9rem)`};
+  z-index: 10;
+
   @media ${device.mobileL} {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
     background: var(--dark);
+    bottom: 0;
+    position: fixed;
+    width: 100%;
   }
 `
 
 Header.NavItem = styled.li`
+  align-items: center;
+  color: white;
+  cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
   position: relative;
-  color: white;
   width: 9rem;
+
   @media ${device.mobileL} {
-    width: 100%;
     margin: 0;
+    width: 100%;
   }
-  &:after {
+
+  &::after {
+    background: var(--red);
+    bottom: 0;
     content: '';
     height: 0.2rem;
-    background: var(--red);
-    width: 0;
-    position: absolute;
     left: 50%;
-    bottom: 0;
+    position: absolute;
     transform: translateX(-50%);
     transition: width 0.4s;
     transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
+    width: 0;
   }
+
   &:hover,
   &:focus {
-    outline: none;
     color: var(--red);
-    &:after {
+    outline: none;
+
+    &::after {
       width: 100%;
     }
   }
+
   a {
-    width: 100%;
-    height: 7rem;
+    align-items: center;
+    color: inherit;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: var(--font-size-s);
+    height: 7rem;
+    justify-content: center;
     text-decoration: none;
-    color: inherit;
+    width: 100%;
   }
+
   svg {
     fill: white;
+    height: 3rem;
     transition: fill 0.2s;
     width: 3rem;
-    height: 3rem;
   }
 `
 

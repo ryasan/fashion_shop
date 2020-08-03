@@ -2,45 +2,50 @@ import styled from 'styled-components'
 
 const CartCount = styled.div`
   background: var(--red);
-  color: white;
   border-radius: 50%;
-  padding: 0.5rem;
-  line-height: 1rem;
-  min-width: 2rem;
-  margin-left: 1rem;
-  font-size: 1.5rem;
-  font-weight: 100;
+  color: white;
   font-feature-settings: 'tnum';
+  font-size: 1.5rem;
   font-variant-numeric: tabular-nums;
-  text-align: center;
+  font-weight: 100;
   left: -20%;
+  line-height: 1rem;
+  margin-left: 1rem;
+  min-width: 2rem;
+  padding: 0.5rem;
+  text-align: center;
 `
 
 CartCount.AnimationStyles = styled.span`
   position: absolute;
   right: 0;
+
   .count {
+    backface-visibility: hidden;
     display: block;
     position: relative;
     transition: all 0.5s;
-    backface-visibility: hidden;
   }
+
   .count-enter {
     transform: rotateX(0.5turn);
   }
+
   .count-enter-active {
     background: red;
     transform: rotateX(0);
   }
+
   .count-exit {
-    top: 0;
+    background: red;
     position: absolute;
+    top: 0;
     transform: rotateX(0);
-    background: red;
   }
+
   .count-exit-active {
-    transform: rotateX(0.5turn);
     background: red;
+    transform: rotateX(0.5turn);
   }
 `
 

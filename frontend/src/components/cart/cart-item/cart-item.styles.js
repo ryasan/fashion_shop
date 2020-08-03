@@ -1,14 +1,16 @@
 import styled, { css } from 'styled-components'
 
 const CartItem = styled.li`
-  width: 100%;
-  height: 12rem;
   border-top: 2px solid #101010;
+  height: 12rem;
   position: relative;
+  width: 100%;
+
   ${props =>
     props.isMouseOver &&
     css`
       background: var(--darker);
+
       span {
         text-decoration: line-through;
       }
@@ -16,35 +18,38 @@ const CartItem = styled.li`
 `
 
 CartItem.Content = styled.div`
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
   padding: 1.5rem;
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
+
   img {
     height: 100%;
   }
 `
 
 CartItem.Details = styled.div`
-  flex: 1;
-  margin: 0 2rem;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 2rem;
 `
 
 CartItem.Price = styled.div`
-  display: flex;
   align-items: flex-end;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
     cursor: pointer;
     fill: white;
+    height: 1.5rem;
+    width: 1.5rem;
+
     &:hover {
       fill: var(--red);
     }
@@ -52,22 +57,25 @@ CartItem.Price = styled.div`
 
   div {
     display: flex;
-    button {
-      border-radius: 0;
-      height: 2.5rem;
-      width: 2rem;
-      background: var(--darker);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 2px;
-      &:disabled {
-        background: var(--dark);
-      }
-      &:focus {
-        outline-color: transparent;
-      }
+  }
+
+  button {
+    align-items: center;
+    background: var(--darker);
+    border-radius: 0;
+    color: white;
+    display: flex;
+    height: 2.5rem;
+    justify-content: center;
+    margin-left: 2px;
+    width: 2rem;
+
+    &:disabled {
+      background: var(--dark);
+    }
+
+    &:focus {
+      outline-color: transparent;
     }
   }
 `

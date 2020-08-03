@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 
 const CartFooter = styled.footer`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 30%;
   background: var(--dark);
+  bottom: 0;
   box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
-  padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
+  height: 30%;
   justify-content: space-around;
+  padding: 4rem 3rem;
+  position: absolute;
+  width: 100%;
 `
 
 CartFooter.SubTotal = styled.div`

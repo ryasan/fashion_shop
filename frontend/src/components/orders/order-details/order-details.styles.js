@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 const OrderDetails = styled.div`
   padding-top: 2rem;
+
   span {
     color: var(--red);
   }
+
   p {
     display: flex;
     justify-content: space-between;
@@ -25,15 +27,17 @@ OrderDetails.Items = styled.ul`
 `
 
 const OrderItem = styled.li`
-  margin-top: 2.5rem;
   box-shadow: var(--box-shadow);
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
+  margin-top: 2.5rem;
   padding: 1rem;
-  cursor: pointer;
+
   span {
     color: var(--red);
   }
+
   p {
     color: white;
   }
@@ -41,24 +45,24 @@ const OrderItem = styled.li`
 
 OrderItem.Image = styled.div`
   img {
-    width: 7rem;
+    border: 0.5rem solid var(--dark);
     height: 9rem;
     object-fit: cover;
-    border: 0.5rem solid var(--dark);
+    width: 7rem;
   }
 `
 
 OrderItem.Cost = styled.div`
-  width: 22%;
-  padding-right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-right: 1rem;
+  width: 22%;
 `
 
 OrderItem.Info = styled.div`
-  width: 60%;
   padding-right: 1rem;
+  width: 60%;
 `
 
 export { OrderItem }

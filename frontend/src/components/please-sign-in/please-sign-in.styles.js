@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { redButton } from '../../elements'
 
 const PleaseSignin = styled.div`
-  height: 10rem;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  height: 10rem;
   justify-content: space-around;
-  align-items: center;
+  
   button {
     padding: 1rem 2rem;
     ${redButton}

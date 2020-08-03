@@ -4,71 +4,74 @@ import { motion } from 'framer-motion'
 
 const Dropdown = styled(motion.ul)`
   background: var(--dark);
-  position: relative;
-  bottom: -0.3rem;
-  border-radius: 0.3rem;
-  text-align: center;
-  overflow-y: scroll;
-  max-height: 49.2rem;
   border-left: 0.2rem solid white;
+  border-radius: 0.3rem;
+  bottom: -0.3rem;
+  max-height: 49.2rem;
+  overflow-y: scroll;
+  position: relative;
+  text-align: center;
 `
 
 Dropdown.Item = styled.li`
-  cursor: pointer;
   border: 0.2rem solid white;
-  display: flex;
-  transition: all 0.2s;
-  height: 7rem;
   border-left: ${props => (props.highlighted ? '1rem' : 0)} solid var(--darker);
+  cursor: pointer;
+  display: flex;
+  height: 7rem;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  transition: all 0.2s;
+  white-space: nowrap;
+
   &:first-child {
     border-radius: 0.3rem 0.3rem 0 0;
   }
+
   &:not(:first-child) {
-    border-top: none;
+    border-top: 0;
   }
+
   & > span {
-    flex: 1;
     background: ${props =>
       props.highlighted ? 'var(--darker)' : 'var(--dark)'};
-    padding: 0 1rem;
-    text-align: left;
     display: inline-block;
+    flex: 1;
     line-height: 7rem;
     margin: 0;
+    padding: 0 1rem;
+    text-align: left;
   }
 `
 
 Dropdown.ItemImage = styled.img`
   height: 7rem;
-  width: 7rem;
   object-fit: cover;
   padding: 0.2rem 0;
+  width: 7rem;
 `
 
 const KeepScrolling = styled(motion.div)`
   background: var(--dark);
   border: 0.2rem solid white;
-  height: 7rem;
+  border-radius: 0 0 0.3rem 0.3rem;
+  bottom: 0.2rem;
   display: flex;
   flex-direction: column;
+  height: 7rem;
   justify-content: flex-end;
-  border-radius: 0 0 0.3rem 0.3rem;
   position: relative;
-  bottom: 0.2rem;
   width: calc(100% - 0.5rem);
 `
 
 KeepScrolling.Text = styled(motion.div)`
-  flex: 1;
-  display: inline-block;
-  width: 100%;
-  vertical-align: text-bottom;
-  display: flex;
-  justify-content: center;
   align-items: flex-end;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  vertical-align: text-bottom;
+  width: 100%;
+
   &:last-child {
     align-items: flex-start;
     font-size: 3rem;
