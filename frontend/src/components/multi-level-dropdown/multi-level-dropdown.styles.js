@@ -24,7 +24,7 @@ const DropdownButton = styled(motion.button)`
   position: relative;
   user-select: none;
   width: 5rem;
-  z-index: 9999;
+  z-index: 200;
 
   svg {
     margin: 0.4rem 0 0 0.1rem;
@@ -42,7 +42,7 @@ const Dropdown = styled(motion.div)`
   position: relative;
   top: -5rem;
   width: 25rem;
-  z-index: 9999;
+  z-index: 200;
 `
 
 Dropdown.Inner = styled(motion.div)`

@@ -13,6 +13,7 @@ import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 import { SIGNOUT } from '../../types/auth-form-types'
 import LoaderComponent from '../loader'
+import Search from '../search'
 
 const HeaderComponent = props => {
   const client = useApolloClient()
@@ -46,6 +47,7 @@ const HeaderComponent = props => {
       <Header.LogoContainer to='/'>
         <Icon name='logo-royal' />
       </Header.LogoContainer>
+      <Search />
       <Header.Nav ref={navRef} me={me}>
         {loading ? (
           <LoaderComponent size='small' />

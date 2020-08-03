@@ -4,94 +4,113 @@ import { motion } from 'framer-motion'
 import { device } from '../utils'
 
 const Home = styled.div`
-  height: 100vh;
   background: var(--dark);
-  overflow: hidden;
   display: flex;
+  height: 100vh;
+  overflow: hidden;
 `
 
 const grow = keyframes`
-  0% { width: 60rem; height: 60rem; }
-100% { width: 80rem; height: 80rem; }
+0% {
+  height: 60rem;
+  width: 60rem;
+}
+
+100% {
+  height: 80rem;
+  width: 80rem;
+}
 `
 
 const grow2 = keyframes`
-  0% { width: 40rem; height: 40rem; }
-100% { width: 50rem; height: 50rem; }
+0% {
+  height: 40rem;
+  width: 40rem;
+}
+
+100% {
+  height: 50rem;
+  width: 50rem;
+}
 `
 
 const Foreground = styled.div`
-  height: 100%;
-  flex: 1;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: center;
   position: relative;
-  &:before {
-    content: '';
-    width: 50rem;
-    height: 50rem;
-    background: var(--red);
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.1;
-    transform: translate(25rem, -10rem);
+
+  &::before {
     animation: ${grow} 7s linear forwards;
-  }
-  &:after {
-    content: '';
-    width: 30rem;
-    height: 30rem;
-    background: white;
-    position: absolute;
-    opacity: 0.03;
+    background: var(--red);
     border-radius: 50%;
-    transform: translate(-40rem, 25rem);
+    content: '';
+    height: 50rem;
+    opacity: 0.1;
+    position: absolute;
+    transform: translate(25rem, -10rem);
+    width: 50rem;
+  }
+
+  &::after {
     animation: ${grow2} 7s linear forwards;
+    background: white;
+    border-radius: 50%;
+    content: '';
+    height: 30rem;
+    opacity: 0.03;
+    position: absolute;
+    transform: translate(-40rem, 25rem);
+    width: 30rem;
   }
 `
 
 const MotionLogo = styled(motion.div)`
-  position: relative;
-  z-index: 100;
-  width: 70rem;
   height: 70rem;
+  position: relative;
+  width: 70rem;
+  z-index: 100;
+
   svg {
-    width: 100%;
     height: 100%;
+    width: 100%;
   }
 `
 
 const SocialMedia = styled(motion.div)`
-  position: absolute;
   bottom: 5rem;
+  position: absolute;
   right: 5rem;
 `
 
 const MotionIcon = styled(motion.div)`
   color: var(--red);
   display: inline-block;
+
   svg {
-    height: 5rem;
-    width: 5rem;
     cursor: pointer;
+    height: 5rem;
     margin-left: 2rem;
+    width: 5rem;
   }
 `
 
 const SpecialOffer = styled(motion.div)`
   background: var(--red);
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.5rem 1rem;
-  font-size: var(--font-size-s);
   border-radius: 0.3rem;
-  width: 100%;
-  text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+  font-size: var(--font-size-s);
+  left: 50%;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 100;
+
   @media ${device.tablet} {
     position: relative;
   }

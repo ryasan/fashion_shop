@@ -2,15 +2,20 @@ import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
 
-const Dropdown = styled(motion.ul)`
+const Dropdown = styled(motion.div)`
+  position: absolute;
+  top: calc(100% - 2.4rem);
+  width: 100%;
+`
+
+Dropdown.List = styled.ul`
   background: var(--dark);
   border-left: 0.2rem solid white;
   border-radius: 0.3rem;
-  bottom: -0.3rem;
-  max-height: 49.2rem;
+  max-height: 48.5rem;
   overflow-y: scroll;
-  position: relative;
   text-align: center;
+  width: 100%;
 `
 
 Dropdown.Item = styled.li`
@@ -32,7 +37,7 @@ Dropdown.Item = styled.li`
     border-top: 0;
   }
 
-  & > span {
+  > span {
     background: ${props =>
       props.highlighted ? 'var(--darker)' : 'var(--dark)'};
     display: inline-block;
@@ -55,12 +60,12 @@ const KeepScrolling = styled(motion.div)`
   background: var(--dark);
   border: 0.2rem solid white;
   border-radius: 0 0 0.3rem 0.3rem;
-  bottom: 0.2rem;
+  /* bottom: -49.5rem; */
   display: flex;
   flex-direction: column;
   height: 7rem;
   justify-content: flex-end;
-  position: relative;
+  /* position: absolute; */
   width: calc(100% - 0.5rem);
 `
 

@@ -7,26 +7,39 @@ const Header = styled.header`
   align-items: center;
   background: var(--dark);
   display: flex;
-  height: 7rem;
+  height: 10rem;
   justify-content: space-between;
   position: relative;
   z-index: 1000;
 `
 
 Header.LogoContainer = styled(Link)`
-  align-items: center;
   display: flex;
-  margin-left: 3rem;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-start;
+  padding: 1rem;
   width: 10rem;
+
+  svg {
+    height: 100%;
+    width: 20rem;
+  }
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `
 
 Header.Nav = styled.ul`
   display: flex;
+  flex: 1;
+  justify-content: flex-end;
   position: relative;
   width: ${({ me }) => `calc((${me ? 4 : 3} + 1) * 9rem)`};
   z-index: 10;
 
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     background: var(--dark);
     bottom: 0;
     position: fixed;
@@ -43,9 +56,17 @@ Header.NavItem = styled.li`
   position: relative;
   width: 9rem;
 
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     margin: 0;
     width: 100%;
+  }
+
+  &:last-child {
+    margin-right: 9rem;
+
+    @media ${device.tablet} {
+      margin-right: 0;
+    }
   }
 
   &::after {
@@ -77,7 +98,7 @@ Header.NavItem = styled.li`
     display: flex;
     flex-direction: column;
     font-size: var(--font-size-s);
-    height: 7rem;
+    height: 10rem;
     justify-content: center;
     text-decoration: none;
     width: 100%;

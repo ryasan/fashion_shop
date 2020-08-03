@@ -13,13 +13,17 @@ import {
   ADD_CATEGORY_FILTER,
   REMOVE_CATEGORY_FILTER
 } from './filter/action-types'
+import { TOGGLE_OVERLAY } from './overlay/action-types'
 import cartReducer from './cart/reducer'
 import filtersReducer from './filter/reducer'
+import overlayReducer from './overlay/reducer'
 
 // local data
 export const Mutation = {
   toggleCart: (_, variables, { client }) =>
     cartReducer(TOGGLE_CART, client, variables),
+  toggleOverlay: (_, variables, { client }) =>
+    overlayReducer(TOGGLE_OVERLAY, client, variables),
   increaseCartItemQuantity: (_, variables, { client }) =>
     cartReducer(INCREASE_CART_ITEM_QUANTITY, client, variables),
   decreaseCartItemQuantity: (_, variables, { client }) =>

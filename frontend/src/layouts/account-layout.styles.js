@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 const Account = styled.div`
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   padding: 5rem;
-  flex-grow: 1;
 `
 
 Account.Inner = styled.div`
@@ -20,21 +20,24 @@ const Tabs = styled.div`
 
 Tabs.Links = styled.div`
   border-bottom: 1px solid white;
+
   a {
-    width: 11.7rem;
-    text-align: center;
-    font-size: var(--font-size-m);
-    text-decoration: none;
-    padding: 1rem;
-    color: white;
     background: var(--dark);
     border: 0.1rem solid white;
-    border-left: none;
+    border-left: 0;
+    color: white;
     display: inline-block;
+    font-size: var(--font-size-m);
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
     transform: translateY(1px);
+    width: 11.7rem;
+
     &.active {
       border-bottom-color: var(--dark);
     }
+
     &:first-child {
       border-left: 1px solid white;
     }

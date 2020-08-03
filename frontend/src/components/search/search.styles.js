@@ -1,17 +1,40 @@
 import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
+import { device } from '../../utils'
 
 const Search = styled(motion.div)`
+  align-items: center;
   color: white;
   display: flex;
+  flex: 2;
   flex-direction: column;
-  left: 50%;
-  position: absolute;
-  top: 10rem;
-  width: 50rem;
+  height: 100%;
+  justify-content: center;
+  position: relative;
   z-index: 200;
 
+  @media ${device.tablet} {
+    width: 20rem !important;
+  }
+
+  svg {
+    height: 3.5rem;
+    left: 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.5rem;
+    z-index: 1000;
+  }
+`
+
+const InputField = styled.div`
+  align-items: center;
+  display: flex;
+  position: relative;
+  width: 90%;
+  
   input {
     background: var(--dark);
     border: 0;
@@ -22,18 +45,12 @@ const Search = styled(motion.div)`
     font-size: var(--font-size-lg);
     outline: 0;
     padding: 1rem 1rem 1rem 5rem;
+    position: absolute;
+    width: 100%;
 
     ::placeholder {
       color: var(--gray);
     }
-  }
-
-  svg {
-    height: 3.5rem;
-    left: 1rem;
-    position: absolute;
-    top: 0.4rem;
-    width: 3.5rem;
   }
 `
 
@@ -44,4 +61,5 @@ Search.Loader = styled.div`
   transform: translateX(-50%);
 `
 
+export { InputField }
 export default Search

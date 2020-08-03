@@ -4,7 +4,7 @@ import { device } from '../../../utils'
 
 const Filter = styled.div`
   position: relative;
-  z-index: 9999;
+  z-index: 200;
 
   @media ${device.laptop} {
     left: 1rem;

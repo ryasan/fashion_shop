@@ -39,7 +39,7 @@ Cart.ToggleButton = styled.div`
   fill: white;
   flex-direction: column;
   font-size: var(--font-size-s);
-  height: 7rem;
+  height: 10rem;
   justify-content: center;
   left: -9rem;
   outline: 0;

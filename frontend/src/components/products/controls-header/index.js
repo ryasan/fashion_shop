@@ -2,13 +2,13 @@ import React from 'react'
 
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
-import { Span } from '../../../elements'
 import Select from '../../select'
+import { Div } from '../../../elements'
 
 const Count = ({ count }) => (
-  <Span modifiers={['text_align_center', 'white_color', 'font_size_m']}>
+  <Div modifiers={['text_align_center', 'white_color', 'font_size_m']}>
     {`Found ${count} product${count > 1 ? 's' : ''}`}
-  </Span>
+  </Div>
 )
 
 const options = [
@@ -22,7 +22,7 @@ const options = [
 const ControlsHeaderComponent = ({ count, setOrderBy }) => (
   <ControlsHeader>
     <Filter />
-    {typeof count === 'number' && <Count count={count} />}
+    <Count count={count} />
     <Select
       onChange={setOrderBy}
       options={options}

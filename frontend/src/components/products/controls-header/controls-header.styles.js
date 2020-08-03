@@ -3,14 +3,17 @@ import styled from 'styled-components'
 import { device } from '../../../utils'
 
 const ControlsHeader = styled.div`
-  align-items: center;
+  align-items: flex-start;
   background: transparent;
   display: flex;
   justify-content: space-between;
+  margin-top: 5rem;
+  position: relative;
   width: 100%;
 
   > * {
     flex: 1;
+    text-align: center;
   }
 
   @media (max-width: 1395px) {

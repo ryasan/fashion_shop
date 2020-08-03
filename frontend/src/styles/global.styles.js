@@ -5,6 +5,7 @@ import { device } from '../utils'
 // prettier-ignore
 const StyledRoot = css`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
+  
   :root {
     --dark        : #16141a;
     --darker      : #090909;
@@ -34,11 +35,11 @@ const StyledRoot = css`
 const StyledHtml = css`
   html,
   body {
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    margin: 0;
     box-sizing: border-box;
-    font-size: 10px;
     color: white;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    margin: 0;
   }
 
   @media ${device.mobileL} {
@@ -57,22 +58,28 @@ const StyledHtml = css`
   h2 { font-size: 4rem; }
   h3 { font-size: 3rem; }
   h4 { font-size: 2rem; }
-  p  { font-size: var(--font-size-m); }
-  a  { text-decoration: none; }
-  button { border: none; }
-  input, button { cursor: pointer; }
+  p { font-size: var(--font-size-m); }
+  a { text-decoration: none; }
+  button { border: 0; }
+  
+  input,
+  button
+  { cursor: pointer; }
 
   ::-webkit-scrollbar {
-    width: 0.5rem;
     background: white;
+    width: 0.5rem;
   }
+
   ::-webkit-scrollbar-track {
     background-color: var(--darker);
   }
+
   ::-webkit-scrollbar-thumb {
     background: var(--dark);
     border-radius: 1rem;
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: #f5f5f5;
   }

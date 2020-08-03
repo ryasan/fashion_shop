@@ -3,23 +3,17 @@ import Downshift from 'downshift'
 import { DebounceInput } from 'react-debounce-input'
 import { navigate } from '@reach/router'
 
-import Search from './search.styles'
+import Search, { InputField } from './search.styles'
 import Icon from '../icons'
 import ErrorBoundary from '../error-boundary/index'
-import { useProductsQuery } from '../../graphql/product/hooks'
 import Dropdown from './dropdown'
-
-const fadeInUp = {
-  initial: { y: '20rem', opacity: 0, scale: 0.1 },
-  animate: { y: 0, translateX: '-50%', opacity: 1, scale: 1 },
-  transition: { duration: 0.5, delay: 1.3 }
-}
+import { useProductsQuery } from '../../graphql/product/hooks'
 
 const routeToProduct = product => {
   navigate(`/shop/${product.id}/`, { state: { sku: product.sku } })
 }
 
-const SearchComponent = () => {
+const SearchComponent = ({ className }) => {
   const [search, setSearch] = useState('')
   const { data, loading, error } = useProductsQuery({
     variables: {
@@ -50,17 +44,19 @@ const SearchComponent = () => {
           highlightedIndex,
           isOpen: dropdownIsOpen
         }) => (
-          <Search {...fadeInUp} {...getRootProps()}>
-            <Icon name='magnifier' />
-            <DebounceInput
-              id='search'
-              type='search'
-              placeholder='Search...'
-              minLength={1}
-              debounceTimeout={350}
-              value={search}
-              {...getInputProps({ onChange })}
-            />
+          <Search {...getRootProps()}>
+            <InputField>
+              <Icon name='magnifier' />
+              <DebounceInput
+                id='search'
+                type='search'
+                placeholder='Search...'
+                minLength={1}
+                debounceTimeout={350}
+                value={search}
+                {...getInputProps({ onChange })}
+              />
+            </InputField>
             {!loading && search && (
               <Dropdown
                 products={data.products}

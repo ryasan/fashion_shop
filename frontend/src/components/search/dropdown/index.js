@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { AnimatePresence } from 'framer-motion'
 
 import Dropdown, { KeepScrolling } from './dropdown.styles'
 import { Span } from '../../../elements'
 import { getFrontImage } from '../../../utils'
+import { useToggleOverlayMutation } from '../../../graphql/overlay/hooks'
 
 const fadeAway = {
   initial: { opacity: 0 },
@@ -23,6 +24,7 @@ const DropdownComponent = ({
   getItemProps,
   products
 }) => {
+  const [toggleOverlay] = useToggleOverlayMutation()
   const [scrolledToBottom, setScrolledToBottom] = useState(false)
 
   const handleScroll = e => {
@@ -39,30 +41,38 @@ const DropdownComponent = ({
 
   const showKeepScrollingText = products.length > 7 && !scrolledToBottom
 
+  useEffect(() => {
+    toggleOverlay()
+  }, [dropdownIsOpen])
+
   return (
     <>
       <AnimatePresence>
         {dropdownIsOpen && (
           <Dropdown {...fadeAway} onScroll={handleScroll}>
-            {products.map((p, i) => (
-              <Dropdown.Item
-                key={p.id}
-                {...getItemProps({ item: p })}
-                highlighted={i === highlightedIndex}
-              >
-                <Dropdown.ItemImage src={getFrontImage(p.sku)} />
-                <Span modifiers='font_size_m'>{p.title}</Span>
-              </Dropdown.Item>
-            ))}
+            <Dropdown.List>
+              {products.map((p, i) => (
+                <Dropdown.Item
+                  key={p.id}
+                  {...getItemProps({ item: p })}
+                  highlighted={i === highlightedIndex}
+                >
+                  <Dropdown.ItemImage src={getFrontImage(p.sku)} />
+                  <Span modifiers='font_size_m'>{p.title}</Span>
+                </Dropdown.Item>
+              ))}
+            </Dropdown.List>
+            <AnimatePresence>
+              {showKeepScrollingText && dropdownIsOpen && (
+                <KeepScrolling {...fadeAway}>
+                  <KeepScrolling.Text {...pulse}>
+                    Scroll down
+                  </KeepScrolling.Text>
+                  <KeepScrolling.Text {...pulse}>&darr;</KeepScrolling.Text>
+                </KeepScrolling>
+              )}
+            </AnimatePresence>
           </Dropdown>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {showKeepScrollingText && dropdownIsOpen && (
-          <KeepScrolling {...fadeAway}>
-            <KeepScrolling.Text {...pulse}>Scroll down</KeepScrolling.Text>
-            <KeepScrolling.Text {...pulse}>&darr;</KeepScrolling.Text>
-          </KeepScrolling>
         )}
       </AnimatePresence>
     </>

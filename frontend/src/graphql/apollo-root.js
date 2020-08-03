@@ -10,16 +10,17 @@ import Loader from '../components/loader'
 import { Mutation } from './local-resolvers'
 import { cartInitialState } from './cart/reducer'
 import { filtersInitialState } from './filter/reducer'
+import { overlayInitialState } from './overlay/reducer'
 
 const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fs-backend-staging.herokuapp.com'
 
 const LoaderContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
   align-items: center;
   background: white;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
 `
 
 const PersistApolloProvider = ({ children }) => {
@@ -33,7 +34,8 @@ const PersistApolloProvider = ({ children }) => {
         resolvers: { Mutation },
         defaults: {
           ...cartInitialState,
-          ...filtersInitialState
+          ...filtersInitialState,
+          ...overlayInitialState
         }
       },
       credentials: 'include',
