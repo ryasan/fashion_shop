@@ -6,7 +6,7 @@ const sizeIsInStock = (sizes, filters) => {
   return intersection(sizes, filters).length > 0
 }
 
-const availableSizes = (itemIds) => {
+const availableSizes = itemIds => {
   return !isEmpty(itemIds)
 }
 
@@ -31,7 +31,7 @@ const Query = {
     const where = {
       ...(freeShippingSelected && { isFreeShipping: true }),
       ...(availableSizes(itemIds) && { id_in: itemIds }),
-      ...((categoryFilters && categoryFilters.length) && { category_in: categoryFilters })
+      ...(categoryFilters && categoryFilters.length && { category_in: categoryFilters }) // prettier-ignore
     }
 
     return ctx.db.query.productsConnection({ where }, info)
