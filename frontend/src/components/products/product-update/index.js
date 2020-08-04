@@ -8,7 +8,7 @@ import AvailableSizesTable from './available-sizes-table'
 import CategorySelect from './category-select'
 import Loader from '../../loader'
 import ExtraFlagsTable from './extra-flags-table'
-import { H3, Button, Span } from '../../../elements'
+import { H3, Button } from '../../../elements'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { hasPermission } from '../../../utils'
 import { ADMIN, ITEM_UPDATE } from '../../../types/permission-types'
@@ -182,7 +182,6 @@ const ProductUpdateForm = ({
             onChange={handleSizeChange}
           />
           <ExtraFlagsTable flagMap={flagMap} onChange={handleFlagChange} />
-          {/* update photos */}
         </Form.MultipleChoice>
         <Form.SubmitButton>
           <Button type='button' disabled={loading} onClick={handleDelete}>

@@ -6,7 +6,7 @@ export const getFrontImage = sku => {
   return url + sku + '.jpg'
 }
 
-export const getSmallImage = sku => {
+export const getBackImg = sku => {
   if (!sku) return null
   return url + sku.replace(/front/, 'back') + '.jpg'
 }

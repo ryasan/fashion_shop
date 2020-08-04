@@ -31,46 +31,49 @@ const Icon = props => {
       return <AccountIcon {...props} />
     case 'cart':
       return <CartIcon {...props} />
-    case 'left-arrow':
-      return <LeftArrowIcon {...props} />
-    case 'right-arrow':
-      return <RightArrowIcon {...props} />
-    case 'magnifier':
-      return <MagnifierIcon {...props} />
     case 'envelope':
       return <EnvelopeIcon {...props} />
-    case 'logo-royal':
-      return <LogoRoyalIcon {...props} />
-    case 'logo-jersey':
-      return <LogoJerseyIcon {...props} />
-    case 'logo-diamond':
-      return <LogoDiamondIcon {...props} />
-    case 'shopping-bag':
-      return <ShoppingBagIcon {...props} />
-    case 'close':
-      return <CloseIcon {...props} />
-    case 'key':
-      return <KeyIcon {...props} />
-    case 'facebook':
-      return <FacebookIcon {...props} />
-    case 'twitter':
-      return <TwitterIcon {...props} />
-    case 'instagram':
-      return <InstagramIcon {...props} />
-    case 'home':
-      return <HomeIcon {...props} />
-    case 'store':
-      return <StoreIcon {...props} />
     case 'exit':
       return <ExitIcon {...props} />
-    case 'title':
-      return <TitleIcon {...props} />
-    case 'money':
-      return <MoneyIcon {...props} />
-    case 'fingerprint':
-      return <FingerprintIcon {...props} />
+    case 'close':
+      return <CloseIcon {...props} />
+    case 'facebook-filled':
+    case 'facebook-outlined':
+      return <FacebookIcon {...props} />
     case 'filter':
       return <FilterIcon {...props} />
+    case 'fingerprint':
+      return <FingerprintIcon {...props} />
+    case 'home':
+      return <HomeIcon {...props} />
+    case 'instagram-filled':
+    case 'instagram-outlined':
+      return <InstagramIcon {...props} />
+    case 'key':
+      return <KeyIcon {...props} />
+    case 'left-arrow':
+      return <LeftArrowIcon {...props} />
+    case 'logo-diamond':
+      return <LogoDiamondIcon {...props} />
+    case 'logo-jersey':
+      return <LogoJerseyIcon {...props} />
+    case 'logo-royal':
+      return <LogoRoyalIcon {...props} />
+    case 'magnifier':
+      return <MagnifierIcon {...props} />
+    case 'money':
+      return <MoneyIcon {...props} />
+    case 'right-arrow':
+      return <RightArrowIcon {...props} />
+    case 'shopping-bag':
+      return <ShoppingBagIcon {...props} />
+    case 'store':
+      return <StoreIcon {...props} />
+    case 'title':
+      return <TitleIcon {...props} />
+    case 'twitter-filled':
+    case 'twitter-outlined':
+      return <TwitterIcon {...props} />
     case 'document':
     default:
       return <DocumentIcon {...props} />

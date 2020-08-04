@@ -5,8 +5,10 @@ import { useOverlayQuery } from '../../graphql/overlay/hooks'
 
 const OverlayComponent = () => {
   const { data } = useOverlayQuery()
+  console.log(data)
 
-  return <Overlay active={data.overlayIsOpen} />
+  if (data.overlayIsOpen) return <Overlay />
+  return null
 }
 
 export default OverlayComponent

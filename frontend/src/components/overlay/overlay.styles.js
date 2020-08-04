@@ -1,8 +1,10 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   background: rgba(0, 0, 0, 0.7);
-  height: ${props => (props.active ? '100%' : 0)};
+  flex: 1;
+  height: 100%;
   position: absolute;
   width: 100%;
   z-index: 300;

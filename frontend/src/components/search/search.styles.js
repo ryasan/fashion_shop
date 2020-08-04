@@ -34,7 +34,7 @@ const InputField = styled.div`
   display: flex;
   position: relative;
   width: 90%;
-  
+
   input {
     background: var(--dark);
     border: 0;
@@ -42,7 +42,7 @@ const InputField = styled.div`
     box-shadow: 0 0 0 0.3rem white;
     caret-color: white;
     color: white;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-m);
     outline: 0;
     padding: 1rem 1rem 1rem 5rem;
     position: absolute;

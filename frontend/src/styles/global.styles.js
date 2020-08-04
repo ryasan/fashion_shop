@@ -2,30 +2,30 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 
 import { device } from '../utils'
 
-// prettier-ignore
 const StyledRoot = css`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
   
   :root {
-    --dark        : #16141a;
-    --darker      : #090909;
-    --red         : #ec1c24;
-    --salmon      : #fa8072;
-    --green       : #33ff33;
-    --off-white   : #f5f5f5;
-    --gray        : #7b797e;
-    --light-gray  : #bbb;
+    --dark: #16141a;
+    --darker: #090909;
+    --red: #ec1c24;
+    --salmon: #fa8072;
+    --green: #3f3;
+    --off-white: #ededed;
+    --gray: #7b797e;
+    --light-gray: #bbb;
     --font-size-xs: 0.8rem;
-    --font-size-s : 1.2rem;
-    --font-size-m : 1.6rem;
+    --font-size-s: 1.2rem;
+    --font-size-m: 1.6rem;
     --font-size-lg: 2rem;
-    --max-width   : 140rem;
-    --box-shadow  : 0 0 1rem 0.5rem rgba(0, 0, 0, 0.6);
+    --max-width: 120rem;
+    --box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.6);
   }
 
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     box-sizing: inherit;
     outline-color: transparent;
   }
@@ -43,10 +43,7 @@ const StyledHtml = css`
   }
 
   @media ${device.mobileL} {
-    html {
-      font-size: 8px;
-    }
-  }
+    html { font-size: 8px; } }
 
   ul {
     margin: 0;
@@ -63,8 +60,7 @@ const StyledHtml = css`
   button { border: 0; }
   
   input,
-  button
-  { cursor: pointer; }
+  button { cursor: pointer; }
 
   ::-webkit-scrollbar {
     background: white;

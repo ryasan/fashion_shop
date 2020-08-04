@@ -1,82 +1,98 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { device } from '../utils'
-
 const Home = styled.div`
-  background: var(--dark);
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-`
-
-const grow = keyframes`
-0% {
-  height: 60rem;
-  width: 60rem;
-}
-
-100% {
-  height: 80rem;
-  width: 80rem;
-}
-`
-
-const grow2 = keyframes`
-0% {
-  height: 40rem;
-  width: 40rem;
-}
-
-100% {
-  height: 50rem;
-  width: 50rem;
-}
-`
-
-const Foreground = styled.div`
-  align-items: center;
   display: flex;
   flex: 1;
-  height: 100%;
+  flex-direction: column;
+  position: relative;
+`
+
+Home.Header = styled.div`
+  background: var(--dark);
+  height: 50vh;
+  position: relative;
+
+  h1 {
+    font-weight: 100;
+  }
+
+  > svg {
+    bottom: 0;
+    fill: var(--off-white);
+    position: absolute;
+    width: 100vw;
+  }
+`
+
+Home.Body = styled.div`
+  background: var(--off-white);
+  height: 150vh;
+  position: relative;
+`
+
+Home.FeaturedProducts = styled.div`
+  background: var(--off-white);
+  border-radius: 3px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  height: 40rem;
+  justify-content: space-around;
+  left: 50%;
+  max-width: var(--max-width);
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 100%;
+`
+
+const Card = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+Card.Header = styled.div`
+  background: var(--dark);
+
+  h3 {
+    font-weight: 100;
+    letter-spacing: 1rem;
+    margin: 0;
+    padding: 2rem 0;
+    text-align: center;
+  }
+`
+
+const topLeftPosition = css`
+  left: 0;
+  top: 10rem;
+`
+
+const bottomRightPosition = css`
+  right: 0;
+  top: 20rem;
+`
+
+Card.ImageContainer = styled(motion.div)`
+  display: flex;
+  flex: 1;
   justify-content: center;
   position: relative;
 
-  &::before {
-    animation: ${grow} 7s linear forwards;
-    background: var(--red);
-    border-radius: 50%;
-    content: '';
-    height: 50rem;
-    opacity: 0.1;
+  svg {
+    ${props => (props.bottomRight ? bottomRightPosition : topLeftPosition)}
+    color: var(--dark);
     position: absolute;
-    transform: translate(25rem, -10rem);
-    width: 50rem;
-  }
-
-  &::after {
-    animation: ${grow2} 7s linear forwards;
-    background: white;
-    border-radius: 50%;
-    content: '';
-    height: 30rem;
-    opacity: 0.03;
-    position: absolute;
-    transform: translate(-40rem, 25rem);
-    width: 30rem;
+    width: 14rem;
+    z-index: 1;
   }
 `
 
-const MotionLogo = styled(motion.div)`
-  height: 70rem;
-  position: relative;
-  width: 70rem;
-  z-index: 100;
-
-  svg {
-    height: 100%;
-    width: 100%;
-  }
+Card.Image = styled(motion.div)`
+  background: url('${props => props.image}') center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `
 
 const SocialMedia = styled(motion.div)`
@@ -86,7 +102,7 @@ const SocialMedia = styled(motion.div)`
 `
 
 const MotionIcon = styled(motion.div)`
-  color: var(--red);
+  color: var(--dark);
   display: inline-block;
 
   svg {
@@ -97,24 +113,5 @@ const MotionIcon = styled(motion.div)`
   }
 `
 
-const SpecialOffer = styled(motion.div)`
-  background: var(--red);
-  border-radius: 0.3rem;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
-  font-size: var(--font-size-s);
-  left: 50%;
-  padding: 0.5rem 1rem;
-  position: fixed;
-  text-align: center;
-  top: 0;
-  transform: translateX(-50%);
-  width: 100%;
-  z-index: 100;
-
-  @media ${device.tablet} {
-    position: relative;
-  }
-`
-
-export { Foreground, MotionLogo, SocialMedia, MotionIcon, SpecialOffer }
+export { SocialMedia, MotionIcon, Card }
 export default Home

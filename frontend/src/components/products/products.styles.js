@@ -5,7 +5,7 @@ const Products = styled.div`
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
-  max-width: var(--max-width);
+  max-width: 1400rem;
 `
 
 Products.Container = styled.div`

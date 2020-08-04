@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 const Dropdown = styled(motion.div)`
   position: absolute;
   top: calc(100% - 2.4rem);
-  width: 100%;
+  width: 90%;
 `
 
 Dropdown.List = styled.ul`
@@ -60,12 +60,10 @@ const KeepScrolling = styled(motion.div)`
   background: var(--dark);
   border: 0.2rem solid white;
   border-radius: 0 0 0.3rem 0.3rem;
-  /* bottom: -49.5rem; */
   display: flex;
   flex-direction: column;
   height: 7rem;
   justify-content: flex-end;
-  /* position: absolute; */
   width: calc(100% - 0.5rem);
 `
 
