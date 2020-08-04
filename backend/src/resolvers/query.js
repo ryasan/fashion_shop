@@ -31,7 +31,7 @@ const Query = {
     const where = {
       ...(freeShippingSelected && { isFreeShipping: true }),
       ...(availableSizes(itemIds) && { id_in: itemIds }),
-      ...(categoryFilters.length && { category_in: categoryFilters })
+      ...((categoryFilters && categoryFilters.length) && { category_in: categoryFilters })
     }
 
     return ctx.db.query.productsConnection({ where }, info)
