@@ -11,7 +11,7 @@ const Cart = styled.div`
   right: ${props => (props.cartOpen ? '0' : '-45rem')};
   transition: right 0.2s;
   width: 45rem;
-  z-index: 20;
+  z-index: 9999;
 
   &::after {
     background: var(--red);

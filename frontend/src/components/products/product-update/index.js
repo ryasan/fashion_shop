@@ -35,17 +35,18 @@ const reducer = (state, action) => {
   const target = camelCase(type)
 
   switch (type) {
-    case TITLE:
     case DESCRIPTION:
-    case PRICE:
+    case CATEGORY:
+    case IS_AVAILABLE:
+    case IS_FEATURED:
+    case IS_FREE_SHIPPING:
     case SKU:
     case STYLE:
-    case IS_AVAILABLE:
-    case IS_FREE_SHIPPING:
-    case IS_FEATURED:
-    case CATEGORY:
+    case TITLE:
     case AVAILABLE_SIZES:
       return { ...state, [target]: payload }
+    case PRICE:
+      return { ...state, [target]: parseInt(payload) }
     default:
       return state
   }
@@ -141,7 +142,7 @@ const ProductUpdateForm = ({
     },
     {
       name: 'price',
-      type: 'text',
+      type: 'number',
       value: state.price,
       icon: 'money'
     },
