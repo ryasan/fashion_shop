@@ -18,12 +18,13 @@ Header.LogoContainer = styled(Link)`
   flex: 1;
   height: 100%;
   justify-content: flex-start;
-  padding: 1rem;
+  padding: 1rem 2rem;
   width: 10rem;
 
   svg {
+    color: white;
     height: 100%;
-    width: 20rem;
+    width: 15rem;
   }
 
   @media ${device.tablet} {

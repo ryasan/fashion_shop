@@ -65,10 +65,11 @@ const SocialMediaIcons = () => {
 }
 
 const imageContainerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: -300 },
   show: {
     opacity: 1,
-    transition: { duration: 1, delayChildren: 1 }
+    transition: { duration: 1, when: 'beforeChildren' },
+    y: 0
   }
 }
 

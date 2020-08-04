@@ -23,6 +23,7 @@ const HeaderComponent = props => {
   const [uploadCart] = useUploadCartMutation()
   const navRef = useRef(null)
   const me = userData && userData.me
+
   const handleSignout = () => {
     signout({
       variables: { authType: SIGNOUT }
