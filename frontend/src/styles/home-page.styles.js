@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
+import styled, { keyframes } from 'styled-components'
 
 const Home = styled.div`
   display: flex;
@@ -8,13 +7,57 @@ const Home = styled.div`
   position: relative;
 `
 
+const balloonGrow = (startingSize, targetSize) => {
+  return keyframes`
+  0% {
+    height: ${startingSize}rem;
+    width: ${startingSize}rem;
+  }
+
+  100% {
+    height: ${targetSize}rem;
+    width: ${targetSize}rem;
+  }
+`
+}
+
 Home.Header = styled.div`
   background: var(--dark);
   height: 60vh;
   position: relative;
 
+  &::before {
+    animation: ${balloonGrow(25, 35)} 5s linear forwards;
+    background: white;
+    border-radius: 50%;
+    bottom: 10rem;
+    content: '';
+    height: 30em;
+    left: 5rem;
+    opacity: 0.1;
+    position: absolute;
+    width: 30rem;
+  }
+
+  &::after {
+    animation: ${balloonGrow(15, 20)} 5s linear forwards;
+    background: var(--red);
+    border-radius: 50%;
+    content: '';
+    height: 10em;
+    opacity: 0.1;
+    position: absolute;
+    right: 15rem;
+    top: 5rem;
+    width: 10rem;
+  }
+
   h1 {
     font-weight: 100;
+    left: 50%;
+    position: absolute;
+    top: 15%;
+    transform: translateX(-50%);
   }
 
   > svg {
@@ -31,96 +74,4 @@ Home.Body = styled.div`
   position: relative;
 `
 
-Home.FeaturedProducts = styled.div`
-  background: var(--off-white);
-  border-radius: 3px;
-  box-shadow: var(--box-shadow);
-  display: flex;
-  height: 50rem;
-  justify-content: space-around;
-  left: 50%;
-  max-width: var(--max-width);
-  position: absolute;
-  top: 0;
-  transform: translate(-50%, -50%);
-  width: 100%;
-`
-
-const Card = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`
-
-Card.Header = styled.div`
-  background: var(--dark);
-
-  h3 {
-    font-weight: 100;
-    letter-spacing: 1rem;
-    margin: 0;
-    padding: 2rem 0;
-    text-align: center;
-  }
-`
-
-Card.CallToAction = styled(motion.button)`
-  align-items: center;
-  color: var(--red);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-end;
-`
-
-const topLeftPosition = css`
-  left: 0;
-  top: 10rem;
-`
-
-const bottomRightPosition = css`
-  right: 0;
-  top: 20rem;
-`
-
-Card.ImageContainer = styled(motion.div)`
-  display: flex;
-  flex: 9;
-  justify-content: center;
-  position: relative;
-
-  svg {
-    ${props => (props.bottomRight ? bottomRightPosition : topLeftPosition)}
-    color: var(--dark);
-    position: absolute;
-    width: 14rem;
-    z-index: 1;
-  }
-`
-
-Card.Image = styled(motion.div)`
-  background: url('${props => props.image}') center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`
-
-const SocialMedia = styled(motion.div)`
-  bottom: 5rem;
-  position: absolute;
-  right: 5rem;
-`
-
-const MotionIcon = styled(motion.div)`
-  color: var(--dark);
-  display: inline-block;
-
-  svg {
-    cursor: pointer;
-    height: 5rem;
-    margin-left: 2rem;
-    width: 5rem;
-  }
-`
-
-export { SocialMedia, MotionIcon, Card }
 export default Home
