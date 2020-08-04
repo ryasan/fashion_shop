@@ -10,7 +10,7 @@ const Home = styled.div`
 
 Home.Header = styled.div`
   background: var(--dark);
-  height: 50vh;
+  height: 60vh;
   position: relative;
 
   h1 {
@@ -27,7 +27,7 @@ Home.Header = styled.div`
 
 Home.Body = styled.div`
   background: var(--off-white);
-  height: 150vh;
+  height: 140vh;
   position: relative;
 `
 
@@ -36,7 +36,7 @@ Home.FeaturedProducts = styled.div`
   border-radius: 3px;
   box-shadow: var(--box-shadow);
   display: flex;
-  height: 40rem;
+  height: 50rem;
   justify-content: space-around;
   left: 50%;
   max-width: var(--max-width);
@@ -64,6 +64,15 @@ Card.Header = styled.div`
   }
 `
 
+Card.CallToAction = styled(motion.button)`
+  align-items: center;
+  color: var(--red);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+`
+
 const topLeftPosition = css`
   left: 0;
   top: 10rem;
@@ -76,7 +85,7 @@ const bottomRightPosition = css`
 
 Card.ImageContainer = styled(motion.div)`
   display: flex;
-  flex: 1;
+  flex: 9;
   justify-content: center;
   position: relative;
 

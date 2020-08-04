@@ -11,7 +11,7 @@ import { useFiltersQuery } from '../../graphql/filter/hooks'
 
 const perPage = 8
 
-const ProductsComponent = ({ seedProducts }) => {
+const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
   const [skip, setSkip] = useState(0)
   const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery()

@@ -7,11 +7,10 @@ export const overlayInitialState = {
 
 const overlayReducer = (actionType, client, variables) => {
   const state = client.readQuery({ query: OVERLAY_QUERY })
-  const { overlayIsOpen } = state
 
   switch (actionType) {
     case TOGGLE_OVERLAY:
-      return client.writeData({ data: { overlayIsOpen: !overlayIsOpen } })
+      return client.writeData({ data: { overlayIsOpen: variables.bool } })
     default:
       return state
   }

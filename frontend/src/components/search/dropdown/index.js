@@ -42,7 +42,8 @@ const DropdownComponent = ({
   const showKeepScrollingText = products.length > 7 && !scrolledToBottom
 
   useEffect(() => {
-    toggleOverlay()
+    if (dropdownIsOpen) toggleOverlay({ variables: { bool: true } })
+    else if (!dropdownIsOpen) toggleOverlay({ variables: { bool: false } })
   }, [dropdownIsOpen])
 
   return (

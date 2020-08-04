@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { navigate } from '@reach/router'
 
 import Home, { SocialMedia, MotionIcon, Card } from '../styles/home-page.styles'
 import SEO from '../components/seo'
@@ -13,6 +14,8 @@ import NinjaText from '../images/ninja-text.svg'
 import { H3 } from '../elements'
 import { useProductsQuery } from '../graphql/product/hooks'
 import { getFrontImage, getBackImg } from '../utils'
+import { useAddCategoryFilterMutation } from '../graphql/filter/hooks'
+import { HOODIE, SHIRT } from '../types/category-types'
 
 const iconParentVariants = {
   hidden: { opacity: 0 },
@@ -77,12 +80,21 @@ const imageVariants = {
   hidden: { width: 0 },
   show: {
     transition: { duration: 2, type: 'spring' },
-    width: 200
+    width: 250
   }
 }
 
 const FeaturedProducts = ({ products }) => {
   const [featureA, featureB] = products
+  const [addCategoryFilter, { data }] = useAddCategoryFilterMutation()
+
+  const handleClick = category => {
+    addCategoryFilter({ variables: { category } })
+  }
+
+  useEffect(() => {
+    if (data) navigate('/shop')
+  }, [data])
 
   return (
     <Home.FeaturedProducts>
@@ -90,6 +102,9 @@ const FeaturedProducts = ({ products }) => {
         <Card.Header>
           <H3>HOODIES</H3>
         </Card.Header>
+        <Card.CallToAction onClick={() => handleClick(HOODIE)}>
+          VIEW ALL
+        </Card.CallToAction>
         <Card.ImageContainer>
           <Card.Image
             variants={imageVariants}
@@ -106,6 +121,9 @@ const FeaturedProducts = ({ products }) => {
         <Card.Header>
           <H3>CREW</H3>
         </Card.Header>
+        <Card.CallToAction onClick={() => handleClick(SHIRT)}>
+          VIEW ALL
+        </Card.CallToAction>
         <Card.ImageContainer bottomRight>
           <Card.Image
             variants={imageVariants}

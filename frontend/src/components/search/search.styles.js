@@ -36,7 +36,7 @@ const InputField = styled.div`
   width: 90%;
 
   input {
-    background: var(--dark);
+    background: var(--darker);
     border: 0;
     border-radius: 5rem;
     box-shadow: 0 0 0 0.3rem white;
