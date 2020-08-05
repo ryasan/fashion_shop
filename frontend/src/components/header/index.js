@@ -6,14 +6,14 @@ import Header from './header.styles'
 import useAuth from '../auth'
 import Cart from '../cart'
 import Icon from '../icons'
+import Loader from '../loader'
+import Search from '../search'
 import { A } from '../../elements'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import { toast } from '../toast'
 import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 import { SIGNOUT } from '../../types/auth-form-types'
-import LoaderComponent from '../loader'
-import Search from '../search'
 
 const HeaderComponent = props => {
   const client = useApolloClient()
@@ -49,9 +49,9 @@ const HeaderComponent = props => {
         <Icon name='logo-royal' />
       </Header.LogoContainer>
       <Search />
-      <Header.Nav ref={navRef} me={me}>
+      <Header.NavList ref={navRef} me={me}>
         {loading ? (
-          <LoaderComponent size='small' />
+          <Loader size='small' />
         ) : (
           <>
             <Header.NavItem>
@@ -92,7 +92,7 @@ const HeaderComponent = props => {
             )}
           </>
         )}
-      </Header.Nav>
+      </Header.NavList>
       <Cart />
     </Header>
   )

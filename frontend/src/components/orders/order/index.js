@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { navigate } from '@reach/router'
 
-import Order from './order.styles'
+import Order, { Header, Text } from './order.styles'
 import { getFrontImage } from '../../../utils/get-image'
-import { Image, P } from '../../../elements'
 import { formatPrice } from '../../../utils'
 
 const OrderComponent = ({ order }) => {
@@ -18,13 +17,13 @@ const OrderComponent = ({ order }) => {
 
   return (
     <Order onClick={goToOrderDetails}>
-      <Order.Header>
-        <Image src={image} />
-      </Order.Header>
+      <Header>
+        <Header.Image src={image} />
+      </Header>
       <Order.Body>
-        <P>{orderItems.length} items</P>
-        <P>{formatPrice(total)}</P>
-        <P>{moment(createdAt).fromNow()}</P>
+        <Text>{orderItems.length} items</Text>
+        <Text>{formatPrice(total)}</Text>
+        <Text>{moment(createdAt).fromNow()}</Text>
       </Order.Body>
     </Order>
   )

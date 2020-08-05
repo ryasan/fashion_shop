@@ -32,7 +32,7 @@ Header.LogoContainer = styled(Link)`
   }
 `
 
-Header.Nav = styled.ul`
+Header.NavList = styled.ul`
   display: flex;
   flex: 1;
   justify-content: flex-end;

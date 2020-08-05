@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { Li } from '../../elements'
+import { Li, H4 } from '../../elements'
 
 const DropdownWrap = styled.div`
   cursor: pointer;
@@ -60,35 +60,46 @@ const Menu = styled(motion.div)`
   height: 100%;
   position: relative;
   width: 25rem;
+`
 
-  h4 {
-    cursor: pointer;
-    margin: 0;
-    padding: 2rem 0;
-    text-align: center;
+export const Categories = styled(Menu)``
 
-    &:hover {
-      color: var(--light-gray);
-    }
+Categories.Title = styled(H4)`
+  cursor: pointer;
+  margin: 0;
+  padding: 2rem 0;
+  text-align: center;
+
+  &:hover {
+    color: var(--light-gray);
   }
 `
 
-Dropdown.Categories = styled(Menu)``
-
-Dropdown.Sizes = styled(Menu)`
+export const Sizes = styled(Menu)`
   position: absolute;
   right: 0;
   top: 0;
 `
 
-Dropdown.List = styled.ul`
+Sizes.Title = styled(H4)`
+  cursor: pointer;
+  margin: 0;
+  padding: 2rem 0;
+  text-align: center;
+
+  &:hover {
+    color: var(--light-gray);
+  }
+`
+
+export const MenuList = styled.ul`
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: space-around;
 `
 
-const ListItemStyles = styled(Li)`
+MenuList.Item = styled(Li)`
   cursor: pointer;
   flex: 1;
   line-height: 6rem;
@@ -99,5 +110,5 @@ const ListItemStyles = styled(Li)`
   }
 `
 
-export { DropdownButton, Dropdown, ListItemStyles }
+export { DropdownButton, Dropdown }
 export default DropdownWrap

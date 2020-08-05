@@ -1,20 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ErrorBoundary from './error-boundary.styles'
-import { P, Span } from '../../elements'
+import ErrorBoundary, { Text } from './error-boundary.styles'
 
 const ErrorBoundaryComponent = ({ error, children }) => {
   if (error?.networkError?.result?.errors?.length) {
     return (
       <ErrorBoundary>
         {error.networkError.result.errors.map((error, i) => (
-          <P key={i}>
-            <Span modifiers='red_color'>
-              !&nbsp;
-            </Span>
+          <Text key={i}>
+            <Text.Bang modifiers='red_color'>!&nbsp;</Text.Bang>
             {error.message}
-          </P>
+          </Text>
         ))}
       </ErrorBoundary>
     )
@@ -23,12 +20,10 @@ const ErrorBoundaryComponent = ({ error, children }) => {
   if (error?.message) {
     return (
       <ErrorBoundary>
-        <P>
-          <Span modifiers='red_color'>
-            !&nbsp;
-          </Span>
+        <Text>
+          <Text.Bang modifiers='red_color'>!&nbsp;</Text.Bang>
           {error?.title}: {error.message}
-        </P>
+        </Text>
       </ErrorBoundary>
     )
   }

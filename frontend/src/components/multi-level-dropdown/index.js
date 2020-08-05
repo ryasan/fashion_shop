@@ -5,10 +5,11 @@ import { capitalCase, constantCase } from 'change-case'
 
 import DropdownWrap, {
   Dropdown,
-  ListItemStyles
+  Categories,
+  MenuList,
+  Sizes
 } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
-import { H4 } from '../../elements'
 
 const ListItem = ({ index, text, onClick }) => {
   const [isSelected, setIsSelected] = useState(false)
@@ -19,7 +20,7 @@ const ListItem = ({ index, text, onClick }) => {
   }
 
   return (
-    <ListItemStyles
+    <MenuList.Item
       modifiers={[
         isSelected ? 'dark_color' : 'white_color',
         isSelected ? 'white' : 'dark'
@@ -28,7 +29,7 @@ const ListItem = ({ index, text, onClick }) => {
       onClick={() => handleClick(index)}
     >
       {text}
-    </ListItemStyles>
+    </MenuList.Item>
   )
 }
 
@@ -102,9 +103,11 @@ const MultiLevelDropdownComponent = ({
           animate={isLeftMenu ? 'left' : 'right'}
           variants={slideHorizontalAnimation()}
         >
-          <Dropdown.Categories>
-            <H4 onClick={toggleMenu}>{constantCase(leftMenuTitle)} &#8594;</H4>
-            <Dropdown.List>
+          <Categories>
+            <Categories.Title onClick={toggleMenu}>
+              {constantCase(leftMenuTitle)} &#8594;
+            </Categories.Title>
+            <MenuList>
               {leftMenu.map((text, i) => (
                 <ListItem
                   key={i}
@@ -113,11 +116,11 @@ const MultiLevelDropdownComponent = ({
                   onClick={onLeftMenuClick}
                 />
               ))}
-            </Dropdown.List>
-          </Dropdown.Categories>
-          <Dropdown.Sizes>
-            <H4 onClick={toggleMenu}>&#8592; {constantCase(rightMenuTitle)}</H4>
-            <Dropdown.List>
+            </MenuList>
+          </Categories>
+          <Sizes>
+            <Sizes.Title onClick={toggleMenu}>&#8592; {constantCase(rightMenuTitle)}</Sizes.Title>
+            <MenuList>
               {rightMenu.map((text, i) => (
                 <ListItem
                   key={i}
@@ -126,8 +129,8 @@ const MultiLevelDropdownComponent = ({
                   onClick={onRightMenuClick}
                 />
               ))}
-            </Dropdown.List>
-          </Dropdown.Sizes>
+            </MenuList>
+          </Sizes>
         </Dropdown.Inner>
       </Dropdown>
     </DropdownWrap>
