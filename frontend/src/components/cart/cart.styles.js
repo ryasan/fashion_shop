@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 import { device } from '../../utils'
+import Icon from '../icons'
+import { H4 } from '../../elements'
 
 const Cart = styled.div`
   background: var(--dark);
@@ -31,7 +33,7 @@ const Cart = styled.div`
   }
 `
 
-Cart.ToggleButton = styled.div`
+const ToggleButton = styled.div`
   align-items: center;
   background: var(--dark);
   cursor: pointer;
@@ -81,7 +83,9 @@ Cart.ToggleButton = styled.div`
   }
 `
 
-Cart.Content = styled.div`
+ToggleButton.Icon = styled(Icon)``
+
+const Content = styled.div`
   color: white;
   display: flex;
   flex-direction: column;
@@ -89,20 +93,22 @@ Cart.Content = styled.div`
   overflow-y: scroll;
 `
 
-Cart.Header = styled.div`
+const Header = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 4rem 0;
   text-align: center;
-
-  h4 {
-    margin: 0;
-  }
 `
 
-Cart.BagContainer = styled.div`
+Header.Title = styled(H4)`
+  margin: 0;
+`
+
+Header.Icon = styled(Icon)``
+
+Header.BagContainer = styled.div`
   align-items: center;
   display: flex;
   height: 7rem;
@@ -111,15 +117,16 @@ Cart.BagContainer = styled.div`
   width: 9rem;
 `
 
-Cart.List = styled.ul`
+const CartList = styled.ul`
   flex: 1;
 `
 
-Cart.EmptyDisplay = styled.div`
+const EmptyDisplay = styled.div`
   display: block;
   font-size: var(--font-size-m);
   text-align: center;
   width: 100%;
 `
 
+export { ToggleButton, Content, CartList, EmptyDisplay, Header }
 export default Cart

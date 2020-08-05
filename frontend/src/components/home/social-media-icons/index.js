@@ -22,26 +22,26 @@ const iconChildrenVariants = {
 const socials = ['facebook-outlined', 'instagram-outlined', 'twitter-outlined']
 
 const SocialMediaComponent = () => {
-  const [scrolledToBottom, setScrolledToBottom] = useState(false)
+  const [yEnd, setYEnd] = useState(false)
 
-  const detectScrollPosition = () => {
+  const yPosition = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      setScrolledToBottom(true)
+      setYEnd(true)
     }
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', detectScrollPosition)
-    return () => window.removeEventListener('scroll', detectScrollPosition)
+    window.addEventListener('scroll', yPosition)
+    return () => window.removeEventListener('scroll', yPosition)
   }, [])
 
   return (
     <AnimatePresence>
-      {scrolledToBottom && (
+      {yEnd && (
         <SocialMedia
           variants={iconParentVariants}
           initial='hidden'
-          animate={scrolledToBottom ? 'show' : 'hidden'}
+          animate={yEnd ? 'show' : 'hidden'}
         >
           {socials.map((social, i) => (
             <SocialMedia.MotionIcon key={i} variants={iconChildrenVariants}>

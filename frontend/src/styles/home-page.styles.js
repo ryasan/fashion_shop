@@ -1,10 +1,9 @@
 import styled, { keyframes } from 'styled-components'
 
+import { H1, H2, H4, P, Ul, Li, A, Input } from '../elements'
+
 const Home = styled.div`
-  display: flex;
   flex: 1;
-  flex-direction: column;
-  position: relative;
 `
 
 const balloonGrow = (startingSize, targetSize) => {
@@ -21,9 +20,12 @@ const balloonGrow = (startingSize, targetSize) => {
 `
 }
 
-Home.Header = styled.div`
+const Heading = styled.div`
+  align-items: center;
   background: var(--dark);
-  height: 60vh;
+  display: flex;
+  height: 90vh;
+  justify-content: center;
   position: relative;
 
   &::before {
@@ -52,14 +54,6 @@ Home.Header = styled.div`
     width: 10rem;
   }
 
-  h1 {
-    font-weight: 100;
-    left: 50%;
-    position: absolute;
-    top: 15%;
-    transform: translateX(-50%);
-  }
-
   > svg {
     bottom: 0;
     fill: var(--off-white);
@@ -68,29 +62,102 @@ Home.Header = styled.div`
   }
 `
 
-Home.Body = styled.div`
+Heading.TextContainer = styled.div`
+  text-align: center;
+  transform: translateY(-13rem);
+`
+
+Heading.Title = styled(H1)`
+  font-size: 10rem;
+  font-weight: 400;
+`
+
+Heading.Subtitle = styled(H4)`
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+`
+
+Heading.Subtext = styled(P)``
+
+const Body = styled.div`
   background: var(--off-white);
-  height: 140vh;
+`
+
+const Footer = styled.div`
+  align-items: flex-start;
+  background: var(--red);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  height: 35rem;
+  justify-content: flex-start;
+  padding: 5rem;
   position: relative;
 `
 
-Home.Footer = styled.div`
-  background: var(--red);
-  height: 30rem;
+const Links = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
 `
 
-Home.FooterLinks = styled.ul`
-  display: grid;
-  grid-column-gap: 3rem;
-  grid-template-columns: 1fr 1fr;
-  padding: 3rem;
-  width: 50%;
+Links.Title = styled(H2)`
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 1rem;
+  margin-top: 0;
+`
 
-  li {
-    font-size: 4rem;
-    letter-spacing: 1rem;
-    margin: 1rem;
+Links.List = styled(Ul)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
+
+Links.ListItem = styled(Li)`
+  font-size: 3rem;
+  letter-spacing: 1rem;
+  margin: 1rem 0;
+`
+
+Links.Link = styled(A)`
+  cursor: pointer;
+`
+
+const Subscribe = styled.div`
+  align-content: space-between;
+  display: grid;
+  flex: 1;
+  grid-column-gap: 2rem;
+`
+
+Subscribe.Title = styled(H2)`
+  grid-column: 1/3;
+
+  span {
+    text-decoration: underline;
   }
 `
 
+Subscribe.TextInput = styled(Input)`
+  background: 0;
+  border: 0;
+  border-bottom: 0.3rem solid white;
+  margin-bottom: 4rem;
+
+  ::placeholder {
+    color: var(--off-white);
+  }
+
+  &:first-child {
+    grid-column: 1/2;
+  }
+
+  &:last-child {
+    grid-column: 2/3;
+  }
+`
+
+export { Heading, Body, Links, Subscribe, Footer }
 export default Home

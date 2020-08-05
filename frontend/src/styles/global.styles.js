@@ -3,9 +3,6 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 import { device } from '../utils'
 
 const StyledRoot = css`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat');
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-  
   :root {
     --dark: #16141a;
     --darker: #090909;
