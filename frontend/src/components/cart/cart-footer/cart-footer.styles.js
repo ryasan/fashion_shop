@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Span } from '../../../elements'
+
 const CartFooter = styled.footer`
   background: var(--dark);
   bottom: 0;
@@ -13,9 +15,12 @@ const CartFooter = styled.footer`
   width: 100%;
 `
 
-CartFooter.SubTotal = styled.div`
+const Footer = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
+const Text = Span
+
+export { Footer, Text }
 export default CartFooter

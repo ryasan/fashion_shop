@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../../icons'
-import CartItem from './cart-item.styles'
-import { Image, Span, Button } from '../../../elements'
+import CartItem, { Details, Content, ButtonGroup, Price, Text } from './cart-item.styles'
 import { formatPrice, getFrontImage } from '../../../utils'
 import {
   useRemoveCartItemMutation,
@@ -42,28 +40,27 @@ const CartItemComponent = ({ cartItem }) => {
 
   return (
     <CartItem isMouseOver={isMouseOver}>
-      <CartItem.Content>
-        <Image src={image} />
-        <CartItem.Details>
-          <Span modifiers={['font_size_m']}>{product.title}</Span>
-          <Span modifiers={['gray_color', 'font_size_s']}>{`${availableSizes} | ${product.style}`}</Span>
-          <Span modifiers='gray_color'>Quantity: <Span modifiers='white_color'>{quantity}</Span></Span>
-        </CartItem.Details>
-        <CartItem.Price>
-          <Icon
+      <Content>
+        <Content.Image src={image} />
+        <Details>
+          <Text modifiers={['font_size_m']}>{product.title}</Text>
+          <Text modifiers={['gray_color', 'font_size_s']}>{`${availableSizes} | ${product.style}`}</Text>
+          <Text modifiers='gray_color'>Quantity: <Text modifiers='white_color'>{quantity}</Text></Text>
+        </Details>
+        <Price>
+          <Price.CloseBtn
             name='close'
-            className='del-btn'
             onMouseOut={handleMouseOut}
             onMouseOver={handleMouseOver}
             onClick={handleRemoveCartItem}
           />
-          <Span modifiers={['font_size_m', 'red_color']}>{formatPrice(product.price)}</Span>
-          <div>
-            <Button onClick={handleDecreaseQty} disabled={quantity === 1}>-</Button>
-            <Button onClick={handleIncreaseQty}>+</Button>
-          </div>
-        </CartItem.Price>
-      </CartItem.Content>
+          <Text modifiers={['font_size_m', 'red_color']}>{formatPrice(product.price)}</Text>
+          <ButtonGroup>
+            <ButtonGroup.Button onClick={handleDecreaseQty} disabled={quantity === 1}>-</ButtonGroup.Button>
+            <ButtonGroup.Button onClick={handleIncreaseQty}>+</ButtonGroup.Button>
+          </ButtonGroup>
+        </Price>
+      </Content>
     </CartItem>
   )
 }

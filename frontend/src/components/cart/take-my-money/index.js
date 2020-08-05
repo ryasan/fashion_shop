@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import { useApolloClient } from '@apollo/react-hooks'
 import { navigate } from '@reach/router'
 
-import TakeMyMoney from './take-my-money.styles'
+import TakeMyMoney, { CheckoutBtn } from './take-my-money.styles'
 import ErrorBoundary from '../../error-boundary'
 import Loader from '../../loader'
 import { toast } from '../../toast'
@@ -67,11 +67,12 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
             amount={cartTotal}
             image={image}
             email={me.email}
-            token={res => onToken(res)}>
-            <Button>CHECKOUT</Button>
+            token={res => onToken(res)}
+          >
+            <CheckoutBtn>CHECKOUT</CheckoutBtn>
           </StripeCheckout>
         )}
-        {!isReady && <Button onClick={handleToastMessage}>CHECKOUT</Button>}
+        {!isReady && <CheckoutBtn onClick={handleToastMessage}>CHECKOUT</CheckoutBtn>}
       </TakeMyMoney>
     </ErrorBoundary>
   )

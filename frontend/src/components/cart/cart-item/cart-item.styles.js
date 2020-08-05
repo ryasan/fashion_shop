@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components'
 
+import { Image, Span, Button } from '../../../elements'
+import Icon from '../../icons'
+
 const CartItem = styled.li`
   border-top: 2px solid #101010;
   height: 12rem;
@@ -17,19 +20,19 @@ const CartItem = styled.li`
     `}
 `
 
-CartItem.Content = styled.div`
+const Content = styled.div`
   display: flex;
   height: 100%;
   justify-content: space-between;
   padding: 1.5rem;
   width: 100%;
-
-  img {
-    height: 100%;
-  }
 `
 
-CartItem.Details = styled.div`
+Content.Image = styled(Image)`
+  height: 100%;
+`
+
+const Details = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -37,47 +40,50 @@ CartItem.Details = styled.div`
   margin: 0 2rem;
 `
 
-CartItem.Price = styled.div`
+const Price = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+`
 
-  svg {
-    cursor: pointer;
-    fill: white;
-    height: 1.5rem;
-    width: 1.5rem;
+Price.CloseBtn = styled(Icon)`
+  cursor: pointer;
+  fill: white;
+  height: 1.5rem;
+  width: 1.5rem;
 
-    &:hover {
-      fill: var(--red);
-    }
-  }
-
-  div {
-    display: flex;
-  }
-
-  button {
-    align-items: center;
-    background: var(--darker);
-    border-radius: 0;
-    color: white;
-    display: flex;
-    height: 2.5rem;
-    justify-content: center;
-    margin-left: 2px;
-    width: 2rem;
-
-    &:disabled {
-      background: var(--dark);
-    }
-
-    &:focus {
-      outline-color: transparent;
-    }
+  &:hover {
+    fill: var(--red);
   }
 `
 
+const Text = Span
+
+const ButtonGroup = styled.div`
+  display: flex;
+`
+
+ButtonGroup.Button = styled(Button)`
+  align-items: center;
+  background: var(--darker);
+  border-radius: 0;
+  color: white;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  margin-left: 2px;
+  width: 2rem;
+
+  &:disabled {
+    background: var(--dark);
+  }
+
+  &:focus {
+    outline-color: transparent;
+  }
+`
+
+export { Details, Content, ButtonGroup, Price, Text }
 export default CartItem
