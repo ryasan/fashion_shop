@@ -19,7 +19,7 @@ const iconChildrenVariants = {
   show: { opacity: 1 }
 }
 
-const socials = ['facebook-filled', 'instagram-filled', 'twitter-filled']
+const socials = ['facebook-outlined', 'instagram-outlined', 'twitter-outlined']
 
 const SocialMediaComponent = () => {
   const [scrolledToBottom, setScrolledToBottom] = useState(false)

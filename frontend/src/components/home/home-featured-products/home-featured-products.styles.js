@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-const FeaturedProducts = styled.div`
+const FeaturedProducts = styled(motion.div)`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -23,7 +23,7 @@ FeaturedProducts.Inner = styled.div`
   width: 100%;
 `
 
-const Card = styled(motion.div)`
+const Card = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

@@ -2,20 +2,20 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 const SocialMedia = styled(motion.div)`
-  bottom: 5rem;
+  bottom: 2rem;
   position: absolute;
-  right: 5rem;
+  right: 3rem;
 `
 
 SocialMedia.MotionIcon = styled(motion.div)`
-  color: var(--dark);
+  color: white;
   display: inline-block;
 
   svg {
     cursor: pointer;
-    height: 5rem;
+    height: 4rem;
     margin-left: 2rem;
-    width: 5rem;
+    width: 4rem;
   }
 `
 

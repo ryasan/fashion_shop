@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
 
-import FeaturedProducts, { Card } from './home-featured-products'
+import FeaturedProducts, { Card } from './home-featured-products.styles'
 import { NinjaText, SkullText } from '../../../images'
 import { H3 } from '../../../elements'
 import { getFrontImage, getBackImg } from '../../../utils'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 import { HOODIE, SHIRT } from '../../../types/category-types'
 
-const imageContainerVariants = {
+const containerVariants = {
   hidden: { opacity: 0, y: -300 },
   show: {
     opacity: 1,
-    transition: { duration: 1, when: 'beforeChildren' },
+    transition: { duration: 1, type: 'spring', when: 'beforeChildren' },
     y: 0
   }
 }
@@ -38,9 +38,13 @@ const FeaturedProductsComponent = ({ products }) => {
   }, [data])
 
   return (
-    <FeaturedProducts>
+    <FeaturedProducts
+      variants={containerVariants}
+      initial='hidden'
+      animate='show'
+    >
       <FeaturedProducts.Inner>
-        <Card variants={imageContainerVariants} initial='hidden' animate='show'>
+        <Card>
           <Card.Header>
             <H3>HOODIES</H3>
           </Card.Header>
@@ -59,7 +63,7 @@ const FeaturedProductsComponent = ({ products }) => {
             <SkullText position='top-left' />
           </Card.ImageContainer>
         </Card>
-        <Card variants={imageContainerVariants} initial='hidden' animate='show'>
+        <Card>
           <Card.Header>
             <H3>CREW</H3>
           </Card.Header>

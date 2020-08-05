@@ -74,4 +74,23 @@ Home.Body = styled.div`
   position: relative;
 `
 
+Home.Footer = styled.div`
+  background: var(--red);
+  height: 30rem;
+`
+
+Home.FooterLinks = styled.ul`
+  display: grid;
+  grid-column-gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  padding: 3rem;
+  width: 50%;
+
+  li {
+    font-size: 4rem;
+    letter-spacing: 1rem;
+    margin: 1rem;
+  }
+`
+
 export default Home
