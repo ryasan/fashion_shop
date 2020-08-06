@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from '@nfront/global-styles'
 
-import { device } from'../shared/utils'
+import { device } from '../shared/utils'
 
 const StyledRoot = css`
   :root {

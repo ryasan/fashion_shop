@@ -104,6 +104,7 @@ MenuList.Item = styled(Li)`
   flex: 1;
   line-height: 6rem;
   text-align: center;
+  transition: background-color 0.3s, color 0.3s;
 
   &:hover {
     color: ${props => (props.isSelected ? 'var(--dark)' : 'var(--light-gray)')};

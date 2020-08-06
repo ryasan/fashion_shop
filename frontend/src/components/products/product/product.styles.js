@@ -11,6 +11,10 @@ const Product = styled.div`
     color: white;
     text-decoration: none;
   }
+
+  * {
+    font-weight: 400;
+  }
 `
 
 export const Promo = styled.div`
@@ -64,6 +68,7 @@ export const Body = styled.div`
 Body.Title = styled(H3)`
   align-items: center;
   display: flex;
+  font-weight: 400;
   height: 11rem;
   justify-content: center;
   margin: 0;

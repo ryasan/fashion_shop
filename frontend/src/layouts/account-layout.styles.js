@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { Link } from 'gatsby'
 
 const Account = styled.div`
   display: flex;
@@ -18,6 +19,11 @@ const Tabs = styled.div`
   height: 100%;
 `
 
+const fadeIn = keyframes`
+  0% { border-bottom-color: white; }
+  100% { border-bottom-color: transparent; }
+`
+
 Tabs.Links = styled.div`
   border-bottom: 1px solid white;
 
@@ -32,15 +38,41 @@ Tabs.Links = styled.div`
     text-align: center;
     text-decoration: none;
     transform: translateY(1px);
+    transition: border-bottom-color 0.3s;
     width: 11.7rem;
 
     &.active {
+      animation: ${fadeIn} 0.3s;
       border-bottom-color: var(--dark);
     }
 
     &:first-child {
       border-left: 1px solid white;
     }
+  }
+`
+
+Tabs.LinkItem = styled(Link)`
+  background: var(--dark);
+  border: 0.1rem solid white;
+  border-left: 0;
+  color: white;
+  display: inline-block;
+  font-size: var(--font-size-m);
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transform: translateY(1px);
+  transition: border-bottom-color 0.2s;
+  width: 11.7rem;
+
+  &.active {
+    animation: ${fadeIn} 0.3s;
+    border-bottom-color: var(--dark);
+  }
+
+  &:first-child {
+    border-left: 1px solid white;
   }
 `
 

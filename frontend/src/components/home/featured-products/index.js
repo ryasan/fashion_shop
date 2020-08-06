@@ -24,7 +24,7 @@ const imageVariants = {
 }
 
 const FeaturedProductsComponent = ({ products, pct }) => {
-  const [addCategoryFilter, { data }] = useAddCategoryFilterMutation()
+  const [addCategoryFilter, { data, loading }] = useAddCategoryFilterMutation()
   const [isVisible, setIsVisible] = useState(false)
 
   const handleClick = category => {
@@ -32,12 +32,14 @@ const FeaturedProductsComponent = ({ products, pct }) => {
   }
 
   useEffect(() => {
-    if (data) navigate('/shop')
+    if (data) navigate('/shop/')
   }, [data])
 
   useEffect(() => {
     if (pct >= 25) setIsVisible(true)
   }, [pct])
+
+  if (loading) return null
 
   return (
     <FeaturedProducts>

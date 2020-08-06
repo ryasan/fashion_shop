@@ -8,7 +8,6 @@ import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
 import InputFields from '../form/input-fields'
 import FooterText from './footer-text'
-import { Span, Button } from '../../shared/elements'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
 import { toast } from '../toast'
 import {

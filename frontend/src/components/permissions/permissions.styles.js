@@ -35,7 +35,7 @@ const Permissions = styled.div`
       border-right: 0;
       width: 12rem;
 
-      & > [type='checkbox'] {
+      > [type='checkbox'] {
         transform: translate(-1rem, -0.9rem);
       }
     }

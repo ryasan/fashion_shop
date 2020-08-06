@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import { useApolloClient } from '@apollo/react-hooks'
+import { Link } from 'gatsby'
 
 import Header from './header.styles'
 import useAuth from '../auth'
@@ -26,7 +26,7 @@ const HeaderComponent = props => {
 
   const handleSignout = () => {
     signout({
-      variables: { authMethod: SIGNOUT }
+      variables: { authType: SIGNOUT }
     })
     uploadCart({
       variables: {
@@ -55,16 +55,16 @@ const HeaderComponent = props => {
         ) : (
           <>
             <Header.NavItem>
-              <AniLink swipe direction='up' to='/'>
+              <Link to='/'>
                 <Icon name='home' />
                 HOME
-              </AniLink>
+              </Link>
             </Header.NavItem>
             <Header.NavItem>
-              <AniLink paintDrip to='/shop/'>
+              <Link to='/shop/'>
                 <Icon name='store' />
                 SHOP
-              </AniLink>
+              </Link>
             </Header.NavItem>
             {me && (
               <Header.NavItem>
@@ -76,18 +76,18 @@ const HeaderComponent = props => {
             )}
             {!me && (
               <Header.NavItem>
-                <AniLink sswipe top='entry' to='/signin/'>
+                <Link to='/signin/'>
                   <Icon name='key' />
                   SIGNIN
-                </AniLink>
+                </Link>
               </Header.NavItem>
             )}
             {me && (
               <Header.NavItem>
-                <AniLink swipe top='exit' to='/account/'>
+                <Link to='/account/'>
                   <Icon name='account-circle' />
                   ACCOUNT
-                </AniLink>
+                </Link>
               </Header.NavItem>
             )}
           </>
