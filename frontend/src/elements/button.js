@@ -13,7 +13,7 @@ export const Button = buildStyledComponent({
     &:disabled {
       cursor: not-allowed;
     }
-  `
+` // prettier-ignore
 })
 
 export const redButton = css`
@@ -34,14 +34,33 @@ export const redButton = css`
   }
 `
 
+export const whiteButton = css`
+  background: white;
+  border: 0.2rem solid white;
+  border-radius: 0.3rem;
+  color: var(--dark);
+  font-size: var(--font-size-m);
+  transition: background 0.2s;
+
+  &:disabled {
+    background: #ddd;
+    border-color: #ddd;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--dark);
+    color: white;
+  }
+`
+
 export const transparentButton = css`
   background: transparent;
-  border: 2px solid var(--red);
-  color: var(--red);
+  border: 0.2rem solid white;
+  color: white;
   font-size: var(--font-size-m);
-  outline-color: var(--red);
 
   &:hover {
-    color: var(--dark);
+    background: var(--red);
+    border-color: var(--red);
   }
 `

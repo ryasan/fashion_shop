@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton } from '../../../elements'
+import { redButton, H3, Image, Span, Button } from '../../../elements'
 
 const ProductDetails = styled.div`
   max-width: var(--max-width);
@@ -8,30 +8,39 @@ const ProductDetails = styled.div`
   width: 100%;
 `
 
+ProductDetails.Title = styled(H3)``
+
 ProductDetails.Image = styled.div`
   display: flex;
   width: 55rem;
-
-  img {
-    object-fit: contain;
-    width: 100%;
-  }
 `
 
-ProductDetails.Content = styled.div`
+export const Content = styled.div`
   display: flex;
 `
 
-ProductDetails.Text = styled.div`
+Content.ImageContainer = styled.div`
+  display: flex;
+  width: 55rem;
+`
+
+Content.Image = styled(Image)`
+  object-fit: contain;
+  width: 100%;
+`
+
+export const Details = styled.div`
   display: flex;
   flex-direction: column;
   height: 25rem;
   justify-content: space-between;
   margin-left: 5rem;
+`
 
-  button {
-    ${redButton};
-  }
+Details.Text = styled(Span)``
+
+Details.AddToCartBtn = styled(Button)`
+  ${redButton};
 `
 
 export default ProductDetails

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Image, H3, Hr, B, Small, Button } from '../../../elements'
+
 const Product = styled.div`
   box-shadow: var(--box-shadow);
   position: relative;
@@ -11,7 +13,7 @@ const Product = styled.div`
   }
 `
 
-Product.Special = styled.div`
+export const Promo = styled.div`
   background: var(--red);
   color: var(--off-white);
   font-size: var(--font-size-s);
@@ -22,7 +24,7 @@ Product.Special = styled.div`
   z-index: 3;
 `
 
-Product.Header = styled.div`
+export const Header = styled.div`
   background: var(--red);
   background-size: cover;
   display: flex;
@@ -39,66 +41,70 @@ Product.Header = styled.div`
     width: 50%;
     z-index: 1;
   }
+`
 
-  img {
-    border: 1rem solid var(--dark);
-    bottom: -1.5rem;
-    height: 40rem;
-    object-fit: cover;
-    position: relative;
-    width: 28rem;
-    z-index: 2;
-  }
+Header.Image = styled(Image)`
+  border: 1rem solid var(--dark);
+  bottom: -1.5rem;
+  height: 40rem;
+  object-fit: cover;
+  position: relative;
+  width: 28rem;
+  z-index: 2;
 `
 
 Product.Offset = styled.div`
   height: 25rem;
 `
 
-Product.Body = styled.div`
+export const Body = styled.div`
   text-align: center;
+`
 
-  h3 {
-    align-items: center;
-    display: flex;
-    height: 11rem;
-    justify-content: center;
-    margin: 0;
-    padding: 1rem;
-    width: 100%;
-  }
+Body.Title = styled(H3)`
+  align-items: center;
+  display: flex;
+  height: 11rem;
+  justify-content: center;
+  margin: 0;
+  padding: 1rem;
+  width: 100%;
+`
 
-  hr {
-    background: red;
-    width: 2rem;
-  }
+Body.Divider = styled(Hr)`
+  background: red;
+  width: 2rem;
+`
 
-  > div {
-    align-items: center;
-    display: flex;
-    height: 5rem;
-    justify-content: center;
-    width: 100%;
+Body.Price = styled.div`
+  align-items: center;
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  width: 100%;
+`
 
-    b {
-      font-size: 2.5rem;
-    }
+Body.Dollars = styled(B)`
+  font-size: 2.5rem;
+`
 
-    small {
-      font-size: 1.5rem;
-    }
-  }
+Body.Cents = styled(Small)`
+  font-size: 1.5rem;
 `
 
 Product.Footer = styled.div`
   height: 5rem;
+`
 
-  button {
-    background: var(--red);
-    color: white;
-    height: 100%;
-    width: 100%;
-  }
+export const Footer = styled.div`
+  height: 5rem;
+`
+
+Footer.Button = styled(Button)`
+  background: var(--red);
+  color: white;
+  height: 100%;
+  width: 100%;
 `
 
 export default Product

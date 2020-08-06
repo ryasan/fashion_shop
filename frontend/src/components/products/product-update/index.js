@@ -163,7 +163,7 @@ const ProductUpdateForm = ({
   if (hasPermission(me, [ADMIN, ITEM_UPDATE])) {
     return (
       <Form method='post' onSubmit={handleSubmit}>
-        <H3>Product Update</H3>
+        <Form.Title>Product Update</Form.Title>
         <Form.Fieldset>
           <Form.FieldsetInner>
             <InputFields
@@ -184,14 +184,18 @@ const ProductUpdateForm = ({
           />
           <ExtraFlagsTable flagMap={flagMap} onChange={handleFlagChange} />
         </Form.MultipleChoice>
-        <Form.SubmitButton>
-          <Button type='button' disabled={loading} onClick={handleDelete}>
+        <Form.BtnGroup>
+          <Form.ActionBtn
+            type='button'
+            disabled={loading}
+            onClick={handleDelete}
+          >
             Delete Product
-          </Button>
-          <Button type='submit' disabled={loading}>
+          </Form.ActionBtn>
+          <Form.ActionBtn type='submit' disabled={loading}>
             Updat{loading ? 'ing...' : 'e'}
-          </Button>
-        </Form.SubmitButton>
+          </Form.ActionBtn>
+        </Form.BtnGroup>
       </Form>
     )
   }

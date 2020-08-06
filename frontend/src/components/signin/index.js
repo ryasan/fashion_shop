@@ -4,8 +4,7 @@ import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase } from 'change-case'
 
-import Signin, { Header } from './signin.styles'
-import Form from '../form'
+import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
 import InputFields from '../form/input-fields'
 import FooterText from './footer-text'
@@ -26,6 +25,7 @@ import {
   REQUEST_RESET,
   PASSWORD_RESET
 } from '../../types/auth-form-types'
+import { RoyalBannerBackground } from '../../images'
 
 const initialState = {
   email: '',
@@ -215,19 +215,27 @@ const SigninComponent = ({
 
   return (
     <Signin>
-      <Header />
+      <Header>
+        <RoyalBannerBackground />
+      </Header>
       <Form method='post' onSubmit={handleOnSubmit}>
         <Form.Fieldset>
-          {headerText && <Span modifiers={headerTextColors}>{headerText}</Span>}
+          {headerText && (
+            <Form.HeaderText modifiers={headerTextColors}>
+              {headerText}
+            </Form.HeaderText>
+          )}
           <InputFields
             loading={loading}
             fields={Object.values(fields)}
             onChange={handleOnChange}
           />
-          <Span modifiers={authValidationColors}>{message}</Span>
-          <Button type='submit' disabled={loading}>
+          <Form.FeedbackMessage modifiers={authValidationColors}>
+            {message}
+          </Form.FeedbackMessage>
+          <Form.SubmitBtn type='submit' disabled={loading}>
             Submit{loading ? 'ting...' : ''}
-          </Button>
+          </Form.SubmitBtn>
         </Form.Fieldset>
       </Form>
       <FooterText

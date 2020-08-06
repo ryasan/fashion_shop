@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
-import Product from './product.styles'
+import Product, { Promo, Header, Body, Footer } from './product.styles'
 import { formatPrice, getFrontImage } from '../../../utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
-import { Button, Image, Small, B, Div as Price, Hr as Divider, H3 as Title, A } from '../../../elements'
 
 const ProductComponent = ({ product, sizeFilters }) => {
   const [addCartItem] = useAddCartItemMutation()
@@ -21,26 +20,24 @@ const ProductComponent = ({ product, sizeFilters }) => {
 
   return (
     <Product>
-      {product.isFreeShipping && <Product.Special>Free Shipping</Product.Special>}
+      {product.isFreeShipping && <Promo>Free Shipping</Promo>}
       <Link to={detailsPage} state={{ sku: product.sku }}>
-        <Product.Header>
-          <Image src={image} />
-        </Product.Header>
+        <Header>
+          <Header.Image src={image} />
+        </Header>
         <Product.Offset />
-        <Product.Body>
-          <Title>{product.title}</Title>
-          <Divider />
-          <Price>
-            <B>{dollars}</B>
-            <Small>{cents}</Small>
-          </Price>
-        </Product.Body>
+        <Body>
+          <Body.Title>{product.title}</Body.Title>
+          <Body.Divider />
+          <Body.Price>
+            <Body.Dollars>{dollars}</Body.Dollars>
+            <Body.Cents>{cents}</Body.Cents>
+          </Body.Price>
+        </Body>
       </Link>
-      <Product.Footer>
-        <Button className='buy-btn' onClick={handleAddCartItem}>
-          Add to cart
-        </Button>
-      </Product.Footer>
+      <Footer>
+        <Footer.Button onClick={handleAddCartItem}>Add to cart</Footer.Button>
+      </Footer>
     </Product>
   )
 }

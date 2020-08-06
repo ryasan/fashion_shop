@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
+import { Span } from '../../../elements'
 
 const Dropdown = styled(motion.div)`
   position: absolute;
@@ -36,17 +37,16 @@ Dropdown.Item = styled.li`
   &:not(:first-child) {
     border-top: 0;
   }
+`
 
-  > span {
-    background: ${props =>
-      props.highlighted ? 'var(--darker)' : 'var(--dark)'};
-    display: inline-block;
-    flex: 1;
-    line-height: 7rem;
-    margin: 0;
-    padding: 0 1rem;
-    text-align: left;
-  }
+Dropdown.ItemTitle = styled(Span)`
+  background: ${props => (props.highlighted ? 'var(--darker)' : 'var(--dark)')};
+  display: inline-block;
+  flex: 1;
+  line-height: 7rem;
+  margin: 0;
+  padding: 0 1rem;
+  text-align: left;
 `
 
 Dropdown.ItemImage = styled.img`

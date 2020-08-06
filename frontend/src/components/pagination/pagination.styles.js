@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import Icon from '../icons'
+
 const Pagination = styled.div`
   font-size: var(--font-size-lg);
   margin: 5rem 0;
@@ -26,11 +28,11 @@ const PageButton = styled.button`
     color: gray;
     cursor: not-allowed;
   }
+`
 
-  svg {
-    height: 100%;
-    width: 100%;
-  }
+PageButton.Icon = styled(Icon)`
+  height: 100%;
+  width: 100%;
 `
 
 export { PageButton }

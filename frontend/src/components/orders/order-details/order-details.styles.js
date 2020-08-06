@@ -1,59 +1,56 @@
 import styled from 'styled-components'
 
+import { P, Span, Image, Ul } from '../../../elements'
+
 const OrderDetails = styled.div`
   padding-top: 2rem;
-
-  span {
-    color: var(--red);
-  }
-
-  p {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem 0;
-  }
 `
 
-OrderDetails.Summary = styled.div`
+export const TextKey = styled(Span)`
+  color: var(--red);
+`
+
+export const Text = styled(P)`
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+`
+
+export const Summary = styled.div`
   display: flex;
   flex-direction: column;
   width: 40rem;
 `
 
-OrderDetails.Items = styled.ul`
+export const OrderList = styled(Ul)`
   display: flex;
   flex-direction: column;
   width: 50rem;
 `
 
-const OrderItem = styled.li`
+export const OrderItem = styled.li`
   box-shadow: var(--box-shadow);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   margin-top: 2.5rem;
   padding: 1rem;
-
-  span {
-    color: var(--red);
-  }
-
-  p {
-    color: white;
-  }
 `
 
-OrderItem.Image = styled.div`
-  img {
-    border: 0.5rem solid var(--dark);
-    height: 9rem;
-    object-fit: cover;
-    width: 7rem;
-  }
+OrderItem.ImageContainer = styled.div`
+  flex: 1;
+`
+
+OrderItem.Image = styled(Image)`
+  border: 0.5rem solid var(--dark);
+  height: 9rem;
+  object-fit: cover;
+  width: 7rem;
 `
 
 OrderItem.Cost = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   padding-right: 1rem;
@@ -61,9 +58,9 @@ OrderItem.Cost = styled.div`
 `
 
 OrderItem.Info = styled.div`
+  flex: 2;
   padding-right: 1rem;
   width: 60%;
 `
 
-export { OrderItem }
 export default OrderDetails

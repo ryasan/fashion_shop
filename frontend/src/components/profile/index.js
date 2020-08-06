@@ -34,9 +34,9 @@ const ProfileComponent = () => {
         <Loader color='white' />
       ) : (
         <ErrorBoundary error={userError || delError}>
-          <P modifiers='white_color'>email: {me.email}</P>
-          <P modifiers='white_color'>username: {me.username}</P>
-          <Button onClick={handleDelete}>Delete Account</Button>
+          <Profile.Text modifiers='white_color'>email: {me.email}</Profile.Text>
+          <Profile.Text modifiers='white_color'>username: {me.username}</Profile.Text>
+          <Profile.DelBtn onClick={handleDelete}>Delete Account</Profile.DelBtn>
         </ErrorBoundary>
       )}
     </Profile>

@@ -3,8 +3,7 @@ import Downshift from 'downshift'
 import { DebounceInput } from 'react-debounce-input'
 import { navigate } from '@reach/router'
 
-import Search, { InputField } from './search.styles'
-import Icon from '../icons'
+import Search from './search.styles'
 import ErrorBoundary from '../error-boundary/index'
 import Dropdown from './dropdown'
 import { useProductsQuery } from '../../graphql/product/hooks'
@@ -45,8 +44,8 @@ const SearchComponent = ({ className }) => {
           isOpen: dropdownIsOpen
         }) => (
           <Search {...getRootProps()}>
-            <InputField>
-              <Icon name='magnifier' />
+            <Search.InputField>
+              <Search.Icon name='magnifier' />
               <DebounceInput
                 id='search'
                 type='search'
@@ -56,7 +55,7 @@ const SearchComponent = ({ className }) => {
                 value={search}
                 {...getInputProps({ onChange })}
               />
-            </InputField>
+            </Search.InputField>
             {!loading && search && (
               <Dropdown
                 products={data.products}

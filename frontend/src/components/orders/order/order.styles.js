@@ -21,7 +21,7 @@ export const Header = styled.div`
   position: relative;
 
   &::before {
-    background: white;
+    background: var(--red);
     content: '';
     height: 100%;
     left: 0;

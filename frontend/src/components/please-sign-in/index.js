@@ -3,7 +3,6 @@ import { navigate } from '@reach/router'
 
 import PleaseSignin from './please-sign-in.styles'
 import { useCurrentUserQuery } from '../../graphql/user/hooks'
-import { P, Button } from '../../elements'
 
 const PleaseSigninComponent = ({ children }) => {
   const { data } = useCurrentUserQuery()
@@ -12,10 +11,12 @@ const PleaseSigninComponent = ({ children }) => {
   if (!me) {
     return (
       <PleaseSignin>
-        <P modifiers={['white_color', 'font_size_m']}>
+        <PleaseSignin.Text modifiers={['white_color', 'font_size_m']}>
           Please sign in before continuing
-        </P>
-        <Button onClick={() => navigate('/signin/')}>Signin</Button>
+        </PleaseSignin.Text>
+        <PleaseSignin.Button onClick={() => navigate('/signin/')}>
+          Signin
+        </PleaseSignin.Button>
       </PleaseSignin>
     )
   }

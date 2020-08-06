@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Select from './select.styles'
+import SelectContainer from './select.styles'
 import { Label, Option, Select as Dropdown } from '../../elements'
 
 const SelectComponent = ({ onChange, options, label, selected }) => {
   const handleOnChange = e => onChange(e.target.value)
 
   return (
-    <Select>
+    <SelectContainer>
       <Label modifiers='font_size_m'>{label}:</Label>
       <Dropdown
         modifiers='font_size_s'
@@ -21,7 +21,7 @@ const SelectComponent = ({ onChange, options, label, selected }) => {
           </Option>
         ))}
       </Dropdown>
-    </Select>
+    </SelectContainer>
   )
 }
 

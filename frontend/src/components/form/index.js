@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import InputFields from './input-fields'
-import { redInput, redButton } from '../../elements'
+import { whiteInput, whiteButton } from '../../elements'
 
 const Form = styled.form`
   padding: 0;
@@ -14,12 +14,12 @@ const Form = styled.form`
   }
 
   input:not([type='submit']) {
-    ${redInput};
+    ${whiteInput};
     width: 100%;
   }
 
   button {
-    ${redButton}
+    ${whiteButton}
     height: 100%;
     width: 100%;
   }

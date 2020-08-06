@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ProductDetails from './product-details.styles'
+import ProductDetails, { Content, Details } from './product-details.styles'
 import ProductUpdate from '../product-update'
 import LoaderComponent from '../../loader'
 import ErrorBoundary from '../../error-boundary'
 import SEO from '../../seo'
-import { H3, Image, Span, Button } from '../../../elements'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 import { useProductQuery } from '../../../graphql/product/hooks'
 import { formatPrice } from '../../../utils/format-price'
@@ -32,30 +31,36 @@ const ProductDetailsComponent = ({ productId }) => {
     <ProductDetails>
       <ErrorBoundary error={error}>
         <SEO title={product.title} />
-        <H3 modifiers='red_color'>{product.title}</H3>
-        <ProductDetails.Content>
-          <ProductDetails.Image>
-            <Image src={image} alt={product.title} />
-          </ProductDetails.Image>
-          <ProductDetails.Text>
-            <Span modifiers={['font_size_lg']}>{product.style}</Span>
-            <Span modifiers={['font_size_lg', 'red_color']}>
+        <ProductDetails.Title modifiers='red_color'>
+          {product.title}
+        </ProductDetails.Title>
+        <Content>
+          <Content.ImageContainer>
+            <Content.Image src={image} alt={product.title} />
+          </Content.ImageContainer>
+          <Details>
+            <Details.Text modifiers={['font_size_lg']}>
+              {product.style}
+            </Details.Text>
+            <Details.Text modifiers={['font_size_lg', 'red_color']}>
               {formatPrice(product.price)}
-            </Span>
-            <Span modifiers={['font_size_s', 'gray_color']}>
+            </Details.Text>
+            <Details.Text modifiers={['font_size_s', 'gray_color']}>
               sku: {product.sku}
-            </Span>
+            </Details.Text>
             {product.isFreeShipping && (
-              <Span modifiers={['font_size_s']}>Free shipping available</Span>
+              <Details.Text modifiers={['font_size_s']}>
+                Free shipping available
+              </Details.Text>
             )}
-            <Span modifiers={['font_size_m']}>
+            <Details.Text modifiers={['font_size_m']}>
               description: {product.description}
-            </Span>
-            <Button className='buy-btn' onClick={handleAddCartItem}>
+            </Details.Text>
+            <Details.AddToCartBtn onClick={handleAddCartItem}>
               Add to cart
-            </Button>
-          </ProductDetails.Text>
-        </ProductDetails.Content>
+            </Details.AddToCartBtn>
+          </Details>
+        </Content>
         <ProductUpdate product={product} />
       </ErrorBoundary>
     </ProductDetails>

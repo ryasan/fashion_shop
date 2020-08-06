@@ -59,7 +59,9 @@ const DropdownComponent = ({
                   highlighted={i === highlightedIndex}
                 >
                   <Dropdown.ItemImage src={getFrontImage(p.sku)} />
-                  <Span modifiers='font_size_m'>{p.title}</Span>
+                  <Dropdown.ItemTitle modifiers='font_size_m'>
+                    {p.title}
+                  </Dropdown.ItemTitle>
                 </Dropdown.Item>
               ))}
             </Dropdown.List>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import FormStyles from '../../form'
-import { transparentButton } from '../../../elements'
+import { transparentButton, H3, Button } from '../../../elements'
 
 const UpdateProduct = styled.div`
   margin: 2rem auto;
@@ -9,10 +9,6 @@ const UpdateProduct = styled.div`
   min-height: 10rem;
   position: relative;
   width: 80%;
-
-  h3 {
-    margin: 0;
-  }
 `
 
 const Form = styled(FormStyles)`
@@ -21,6 +17,10 @@ const Form = styled(FormStyles)`
   grid-gap: 3rem;
   grid-template-columns: 1fr 1fr;
   padding: 3rem;
+`
+
+Form.Title = styled(H3)`
+  margin: 0;
 `
 
 Form.Fieldset = styled.fieldset`
@@ -46,17 +46,17 @@ Form.MultipleChoice = styled.div`
   justify-content: space-between;
 `
 
-Form.SubmitButton = styled.div`
+Form.BtnGroup = styled.div`
   display: flex;
   grid-column: 1/3;
   justify-content: space-around;
+`
 
-  button {
-    width: 20rem;
+Form.ActionBtn = styled(Button)`
+  width: 20rem;
 
-    &:first-child {
-      ${transparentButton};
-    }
+  &:first-child {
+    ${transparentButton};
   }
 `
 

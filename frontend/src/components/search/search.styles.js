@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
 import { device } from '../../utils'
+import Icon from '../icons'
 
 const Search = styled(motion.div)`
   align-items: center;
@@ -17,25 +18,15 @@ const Search = styled(motion.div)`
   @media ${device.tablet} {
     width: 20rem !important;
   }
-
-  svg {
-    height: 3.5rem;
-    left: 1rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3.5rem;
-    z-index: 1000;
-  }
 `
 
-const InputField = styled.div`
+Search.InputField = styled.div`
   align-items: center;
   display: flex;
   position: relative;
   width: 90%;
 
-  input {
+  > input {
     background: var(--dark);
     border: 0;
     border-radius: 5rem;
@@ -54,6 +45,16 @@ const InputField = styled.div`
   }
 `
 
+Search.Icon = styled(Icon)`
+  height: 3.5rem;
+  left: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3.5rem;
+  z-index: 1000;
+`
+
 Search.Loader = styled.div`
   left: 50%;
   position: absolute;
@@ -61,5 +62,4 @@ Search.Loader = styled.div`
   transform: translateX(-50%);
 `
 
-export { InputField }
 export default Search

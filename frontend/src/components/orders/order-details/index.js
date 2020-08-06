@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { navigate } from '@reach/router'
 
-import OrderDetails, { OrderItem } from './order-details.styles'
+import OrderDetails, {
+  OrderItem,
+  Summary,
+  OrderList,
+  Text,
+  TextKey
+} from './order-details.styles'
 import LoaderComponent from '../../loader'
-import { P, Span, Image } from '../../../elements'
 import { formatPrice, getFrontImage } from '../../../utils'
 import { useProductQuery } from '../../../graphql/product/hooks'
 import ErrorBoundary from '../../error-boundary/index'
@@ -25,17 +30,17 @@ const OrderItemComponent = ({ item }) => {
   return (
     <ErrorBoundary error={error}>
       <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
-        <OrderItem.Image>
-          <Image src={getFrontImage(item.sku)} />
-        </OrderItem.Image>
+        <OrderItem.ImageContainer>
+          <OrderItem.Image src={getFrontImage(item.sku)} />
+        </OrderItem.ImageContainer>
         <OrderItem.Cost>
-          <P><Span>price:</Span>{formatPrice(item.price)}</P>
-          <P><Span>qty:</Span>{item.quantity}</P>
-          <P><Span>total:</Span>{(formatPrice(item.price * item.quantity))}</P>
+          <Text><TextKey modifiers='red_color'>price:&nbsp;</TextKey>{formatPrice(item.price)}</Text>
+          <Text><TextKey modifiers='red_color'>qty:&nbsp;</TextKey>{item.quantity}</Text>
+          <Text><TextKey modifiers='red_color'>total:&nbsp;</TextKey>{(formatPrice(item.price * item.quantity))}</Text>
         </OrderItem.Cost>
         <OrderItem.Info>
-          <P>{item.title}</P>
-          <P>{item.description}</P>
+          <Text>{item.title}</Text>
+          <Text>{item.description}</Text>
         </OrderItem.Info>
       </OrderItem>
     </ErrorBoundary>
@@ -43,21 +48,20 @@ const OrderItemComponent = ({ item }) => {
 }
 
 const OrderDetailsComponent = ({ order }) => {
-
   return (
     <OrderDetails>
-      <OrderDetails.Summary>
-        <P><Span>id:</Span>{order.id}</P>
-        <P><Span>charge id:</Span>{order.chargeId}</P>
-        <P><Span>total:</Span>{formatPrice(order.total)}</P>
-        <P><Span>created:</Span>{moment(order.createdAt).format('LL')}</P>
-        <P><Span>updated:</Span>{moment(order.updatedAt).format('LL')}</P>
-      </OrderDetails.Summary>
-      <OrderDetails.Items>
+      <Summary>
+        <Text><TextKey>id:</TextKey>{order.id}</Text>
+        <Text><TextKey>charge id:</TextKey>{order.chargeId}</Text>
+        <Text><TextKey>total:</TextKey>{formatPrice(order.total)}</Text>
+        <Text><TextKey>created:</TextKey>{moment(order.createdAt).format('LL')}</Text>
+        <Text><TextKey>updated:</TextKey>{moment(order.updatedAt).format('LL')}</Text>
+      </Summary>
+      <OrderList>
         {order.orderItems.map(item => (
           <OrderItemComponent key={item.id} item={item} />
         ))}
-      </OrderDetails.Items>
+      </OrderList>
     </OrderDetails>
   )
 }

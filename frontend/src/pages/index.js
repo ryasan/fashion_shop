@@ -51,7 +51,7 @@ const HomePage = () => {
               To keep you dressed comfortably 365 days a year.
             </Heading.Subtext>
           </Heading.TextContainer>
-          <DiagonalBody />
+          {/* <DiagonalBody /> */}
         </Heading>
         <Body>
           <ErrorBoundary error={error}>

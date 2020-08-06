@@ -12,7 +12,7 @@ const FeaturedProducts = styled.div`
 `
 
 const InnerContainer = styled.div`
-  background: transparent;
+  background: var(--off-white);
   border-radius: 3px;
   box-shadow: var(--box-shadow);
   display: flex;
@@ -58,7 +58,6 @@ const TextSvgStyles = styled.div`
       props.rightSide &&
       css`
         bottom: 15rem !important;
-
         right: 0;
       `};
   }

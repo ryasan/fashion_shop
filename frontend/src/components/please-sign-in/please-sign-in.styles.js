@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton } from '../../elements'
+import { redButton, Button, P } from '../../elements'
 
 const PleaseSignin = styled.div`
   align-items: center;
@@ -8,11 +8,13 @@ const PleaseSignin = styled.div`
   flex-direction: column;
   height: 10rem;
   justify-content: space-around;
-  
-  button {
-    padding: 1rem 2rem;
-    ${redButton}
-  }
+`
+
+PleaseSignin.Text = P
+
+PleaseSignin.Button = styled(Button)`
+  padding: 1rem 2rem;
+  ${redButton}
 `
 
 export default PleaseSignin
