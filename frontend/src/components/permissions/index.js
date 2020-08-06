@@ -19,7 +19,7 @@ import {
   useUpdatePermissionsMutation,
   useUsersQuery
 } from '../../graphql/user/hooks'
-import { Button, Input } from '../../elements'
+import { Button, Input } from '../../shared/elements'
 import { toast } from '../toast'
 import { HeaderCell, Cell } from '../table/table.styles'
 

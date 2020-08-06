@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Table from '../../table'
 import { Cell } from '../../table/table.styles'
-import { Input, Label, Div } from '../../../elements'
+import { Input, Label, Div } from '../../../shared/elements'
 import possibleSizes, {
   SMALL,
   MEDIUM,

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton, P, Button } from '../../elements'
+import { redButton, P, Button } from '../../shared/elements'
 
 const Profile = styled.div`
   flex-grow: 1;

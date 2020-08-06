@@ -4,8 +4,7 @@ import moment from 'moment'
 import { navigate } from '@reach/router'
 
 import Order, { Header, Text } from './order.styles'
-import { getFrontImage } from '../../../utils/get-image'
-import { formatPrice } from '../../../utils'
+import { getFrontImage, formatPrice } from '../../../shared/utils'
 
 const OrderComponent = ({ order }) => {
   const { orderItems, createdAt, total } = order

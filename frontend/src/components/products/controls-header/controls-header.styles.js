@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { device } from '../../../utils'
+import { device } from '../../../shared/utils'
 
 const ControlsHeader = styled.div`
   align-items: flex-start;

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { H1, H2 } from '../../../elements'
+import { H1, H2 } from '../../../shared/elements'
 
 const Body = styled.div`
   background: var(--off-white);

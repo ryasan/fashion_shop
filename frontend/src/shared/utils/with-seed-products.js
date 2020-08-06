@@ -1,6 +1,6 @@
 import React from 'react'
-import { useCreateProductMutation } from '../graphql/product/hooks'
-import mockProducts from '../mocks/products.json'
+import { useCreateProductMutation } from '../../graphql/product/hooks'
+import mockProducts from '../../mocks/products.json'
 
 export const withSeedProducts = Component => props => {
   const [createProduct] = useCreateProductMutation()

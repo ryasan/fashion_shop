@@ -8,8 +8,7 @@ import ErrorBoundary from '../../error-boundary'
 import SEO from '../../seo'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 import { useProductQuery } from '../../../graphql/product/hooks'
-import { formatPrice } from '../../../utils/format-price'
-import { getFrontImage } from '../../../utils'
+import { getFrontImage, formatPrice } from '../../../shared/utils'
 
 const ProductDetailsComponent = ({ productId }) => {
   const [addCartItem] = useAddCartItemMutation()

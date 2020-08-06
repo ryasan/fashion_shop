@@ -21,7 +21,7 @@ const InnerContainer = styled.div`
   left: 50%;
   max-width: var(--max-width);
   position: absolute;
-  top: -15rem;
+  top: -19rem;
   transform: translateX(-50%);
   width: 100%;
 `

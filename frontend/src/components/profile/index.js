@@ -9,7 +9,7 @@ import {
   useDeleteMeMutation,
   useCurrentUserQuery
 } from '../../graphql/user/hooks'
-import { P, Button } from '../../elements'
+import { P, Button } from '../../shared/elements'
 import { toast } from '../../components/toast'
 
 const ProfileComponent = () => {

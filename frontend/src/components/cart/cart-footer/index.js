@@ -2,7 +2,7 @@ import React from 'react'
 
 import CartFooter, { Footer, Text } from './cart-footer.styles'
 import TakeMyMoney from '../take-my-money'
-import { formatPrice } from '../../../utils'
+import { formatPrice } from '../../../shared/utils'
 
 const CartFooterComponent = ({ cartTotal, cartItems, cartCount }) => (
   <CartFooter>

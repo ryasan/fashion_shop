@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { graphql, StaticQuery } from 'gatsby'
 
 import Body, { ProductPreview, Details } from './body-content.styles'
+import { Span } from '../../../shared/elements'
 
 export const BackgroundDiv = ({ className }) => (
   <StaticQuery
@@ -72,7 +73,9 @@ const BodyContentComponent = ({ pct }) => {
           variants={imageVariants}
           animate={isVisible ? 'show' : 'hidden'}
         >
-          <ProductPreview.Title>Red Ninja</ProductPreview.Title>
+          <ProductPreview.Title>
+            <Span modifiers='red_color'>Red</Span> Ninja
+          </ProductPreview.Title>
           <StyledBackgroundDiv />
         </ProductPreview.ImageContainer>
         <Details>

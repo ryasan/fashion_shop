@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import InputFields from './input-fields'
-import { whiteInput, whiteButton } from '../../elements'
+import { whiteInput, whiteButton } from '../../shared/elements'
 
 const Form = styled.form`
   padding: 0;

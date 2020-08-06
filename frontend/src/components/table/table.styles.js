@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Table as TableEl, Tr, Th, Td, Tbody, Thead } from '../../elements'
+import { Table as TableEl, Tr, Th, Td, Tbody, Thead } from '../../shared/elements'
 
 const TableWrap = styled.div`
   flex: 1;

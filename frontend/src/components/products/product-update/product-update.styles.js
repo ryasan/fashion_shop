@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import FormStyles from '../../form'
-import { transparentButton, H3, Button } from '../../../elements'
+import { transparentButton, H3, Button } from '../../../shared/elements'
 
 const UpdateProduct = styled.div`
   margin: 2rem auto;

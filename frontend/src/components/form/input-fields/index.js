@@ -4,7 +4,7 @@ import { capitalCase } from 'change-case'
 
 import Icon from '../../icons'
 import Field from './input-fields.styles'
-import { Input } from '../../../elements'
+import { Input } from '../../../shared/elements'
 
 const InputField = ({ field, onChange, loading }) => (
   <Field>

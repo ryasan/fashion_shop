@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { Li, H4 } from '../../elements'
+import { Li, H4 } from '../../shared/elements'
 
 const DropdownWrap = styled.div`
   cursor: pointer;

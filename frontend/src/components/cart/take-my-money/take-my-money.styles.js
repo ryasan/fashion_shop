@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Button } from '../../../elements'
+import { Button } from '../../../shared/elements'
 
 const TakeMyMoney = styled.div`
   align-items: center;

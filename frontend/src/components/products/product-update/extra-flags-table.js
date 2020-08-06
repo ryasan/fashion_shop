@@ -4,7 +4,7 @@ import { camelCase, capitalCase } from 'change-case'
 
 import Table from '../../table'
 import { Cell } from '../../table/table.styles'
-import { Input, Label, Div } from '../../../elements'
+import { Input, Label, Div } from '../../../shared/elements'
 import {
   IS_AVAILABLE,
   IS_FREE_SHIPPING,

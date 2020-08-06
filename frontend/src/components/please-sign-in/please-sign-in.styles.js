@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton, Button, P } from '../../elements'
+import { redButton, Button, P } from '../../shared/elements'
 
 const PleaseSignin = styled.div`
   align-items: center;

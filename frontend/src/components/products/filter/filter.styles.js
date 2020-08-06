@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { device } from '../../../utils'
+import { device } from '../../../shared/utils'
 
 const Filter = styled.div`
   position: relative;

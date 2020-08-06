@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Image, H3, Hr, B, Small, Button } from '../../../elements'
+import { Image, H3, Hr, B, Small, Button } from '../../../shared/elements'
 
 const Product = styled.div`
   box-shadow: var(--box-shadow);

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import StyledForm from '../form'
-import { Span, Button } from '../../elements'
+import { Span, Button } from '../../shared/elements'
 
 const Signin = styled.div`
   align-content: space-between;

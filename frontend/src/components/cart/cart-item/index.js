@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import CartItem, { Details, Content, ButtonGroup, Price, Text } from './cart-item.styles'
-import { formatPrice, getFrontImage } from '../../../utils'
+import { formatPrice, getFrontImage } from '../../../shared/utils'
 import {
   useRemoveCartItemMutation,
   useIncreaseCartItemQuantityMutation,

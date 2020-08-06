@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import { device } from '../../utils'
+import { device } from '../../shared/utils'
 import Icon from '../icons'
-import { H4 } from '../../elements'
+import { H4 } from '../../shared/elements'
 
 const Cart = styled.div`
   background: var(--dark);

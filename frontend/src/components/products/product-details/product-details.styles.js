@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { redButton, H3, Image, Span, Button } from '../../../elements'
+import { redButton, H3, Image, Span, Button } from '../../../shared/elements'
 
 const ProductDetails = styled.div`
   max-width: var(--max-width);

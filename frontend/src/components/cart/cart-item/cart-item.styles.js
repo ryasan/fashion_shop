@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { Image, Span, Button } from '../../../elements'
+import { Image, Span, Button } from '../../../shared/elements'
 import Icon from '../../icons'
 
 const CartItem = styled.li`

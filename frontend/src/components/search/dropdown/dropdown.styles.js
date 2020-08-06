@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
-import { Span } from '../../../elements'
+import { Span } from '../../../shared/elements'
 
 const Dropdown = styled(motion.div)`
   position: absolute;

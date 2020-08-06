@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { P, Span, Image, Ul } from '../../../elements'
+import { P, Span, Image, Ul } from '../../../shared/elements'
 
 const OrderDetails = styled.div`
   padding-top: 2rem;

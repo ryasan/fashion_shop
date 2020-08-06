@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Svg } from '../elements'
+import { Svg } from '../shared/elements'
 
 const RoyalBannerImage = ({ props }) => {
   return (

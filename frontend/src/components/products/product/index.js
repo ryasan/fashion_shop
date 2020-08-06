@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 import Product, { Promo, Header, Body, Footer } from './product.styles'
-import { formatPrice, getFrontImage } from '../../../utils'
+import { formatPrice, getFrontImage } from '../../../shared/utils'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
 const ProductComponent = ({ product, sizeFilters }) => {

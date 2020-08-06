@@ -17,7 +17,7 @@ import SocialMedia from '../components/home/social-media-icons'
 import BodyContent from '../components/home/body-content'
 import ScrollProgress from '../components/home/scroll-progress'
 import { DiagonalBody } from '../images'
-import { Span } from '../elements'
+import { Span } from '../shared/elements'
 import { useProductsQuery } from '../graphql/product/hooks'
 
 const links = ['About us', 'Events', 'Contact', 'Privacy', 'Press']
@@ -51,7 +51,7 @@ const HomePage = () => {
               To keep you dressed comfortably 365 days a year.
             </Heading.Subtext>
           </Heading.TextContainer>
-          {/* <DiagonalBody /> */}
+          <DiagonalBody />
         </Heading>
         <Body>
           <ErrorBoundary error={error}>

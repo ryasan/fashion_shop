@@ -11,7 +11,7 @@ import OrderDetails, {
   TextKey
 } from './order-details.styles'
 import LoaderComponent from '../../loader'
-import { formatPrice, getFrontImage } from '../../../utils'
+import { formatPrice, getFrontImage } from '../../../shared/utils'
 import { useProductQuery } from '../../../graphql/product/hooks'
 import ErrorBoundary from '../../error-boundary/index'
 

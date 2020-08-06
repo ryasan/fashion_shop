@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
-import { Select as Sel } from '../../elements'
+import { Select as Sel, Option, Label as Lab } from '../../shared/elements'
 
 const SelectContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
 `
+
+export const Label = styled(Lab)``
 
 export const Select = styled(Sel)`
   background: var(--dark);
@@ -17,4 +19,7 @@ export const Select = styled(Sel)`
   margin-left: 1rem;
   outline-color: transparent;
 `
+
+Select.Option = styled(Option)``
+
 export default SelectContainer

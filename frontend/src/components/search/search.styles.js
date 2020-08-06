@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
-import { device } from '../../utils'
+import { device } from '../../shared/utils'
 import Icon from '../icons'
 
 const Search = styled(motion.div)`

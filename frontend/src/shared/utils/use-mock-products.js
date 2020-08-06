@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import _mockProducts from '../mocks/products.json'
+import _mockProducts from '../../mocks/products.json'
 
 const getMockProducts = () => {
   return new Promise((resolve, reject) => {

@@ -3,7 +3,7 @@ import React from 'react'
 import ControlsHeader from './controls-header.styles'
 import Filter from '../filter'
 import Select from '../../select'
-import { Div } from '../../../elements'
+import { Div } from '../../../shared/elements'
 
 const Count = ({ count }) => (
   <Div modifiers={['text_align_center', 'white_color', 'font_size_m']}>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Span } from '../../../elements'
+import { Span } from '../../../shared/elements'
 
 const CartFooter = styled.footer`
   background: var(--dark);

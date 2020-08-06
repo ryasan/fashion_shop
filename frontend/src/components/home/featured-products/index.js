@@ -7,7 +7,7 @@ import FeaturedProducts, {
   SkullSvg,
   NinjaSvg
 } from './featured-products.styles'
-import { getFrontImage, getBackImg } from '../../../utils'
+import { getFrontImage, getBackImg } from '../../../shared/utils'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 
 const containerVariants = {

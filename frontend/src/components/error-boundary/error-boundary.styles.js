@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Span, P } from '../../elements'
+import { Span, P } from '../../shared/elements'
 
 const ErrorBoundary = styled.div`
   display: flex;

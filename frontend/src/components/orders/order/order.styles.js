@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import headerBackground from '../../../images/logo-royal-banner.svg'
-import { Image, P } from '../../../elements'
+import { Image, P } from '../../../shared/elements'
 
 const Order = styled.li`
   background: url(${headerBackground}) center center;

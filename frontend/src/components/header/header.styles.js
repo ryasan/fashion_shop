@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import { device } from '../../utils'
+import { device } from '../../shared/utils'
 
 const Header = styled.header`
   align-items: center;
