@@ -21,7 +21,7 @@ const useAuth = () => {
   const [resetPassword, resetPasswordInfo] = useResetPasswordMutation()
 
   const authMutation = ({ variables }) => {
-    const { email, username, password, confirm, resetToken, authType } = variables
+    const { email, username, password, confirm, resetToken, authMethod } = variables
 
     const trimmedVariables = {
       ...(email && { email }),
@@ -31,7 +31,7 @@ const useAuth = () => {
       ...(resetToken && { resetToken })
     }
 
-    switch (authType) {
+    switch (authMethod) {
       case SIGNOUT:
         return signout()
       case SIGNIN:

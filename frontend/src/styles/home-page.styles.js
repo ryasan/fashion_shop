@@ -4,6 +4,7 @@ import { H1, H2, H4, P, Ul, Li, A, Input } from '../shared/elements'
 
 const Home = styled.div`
   flex: 1;
+  overflow-x: hidden;
 `
 
 const balloonGrow = (startingSize, targetSize) => {

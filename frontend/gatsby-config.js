@@ -41,14 +41,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /images/
-        }
-      }
-    },
-    {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
@@ -64,6 +56,7 @@ module.exports = {
           include: /images/
         }
       }
-    }
+    },
+    'gatsby-plugin-transition-link'
   ]
 }

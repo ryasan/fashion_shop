@@ -142,7 +142,7 @@ const SigninComponent = ({
         payload: 'Passwords do not match'
       })
     } else {
-      const [authType] = [
+      const [authMethod] = [
         isSignup && SIGNUP,
         isSignin && SIGNIN,
         isRequestReset && REQUEST_RESET,
@@ -150,7 +150,7 @@ const SigninComponent = ({
       ].filter(Boolean)
 
       authMutation({
-        variables: { email, username, password, confirm, resetToken, authType }
+        variables: { email, username, password, confirm, resetToken, authMethod }
       })
       dispatch({ type: RESET_FIELDS })
     }
