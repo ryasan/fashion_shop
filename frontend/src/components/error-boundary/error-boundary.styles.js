@@ -15,6 +15,6 @@ export const Text = styled(P)`
   padding: 1rem 2rem;
 `
 
-Text.Bang = styled(Span)
+Text.Addon = styled(Span)
 
 export default ErrorBoundary

@@ -20,8 +20,8 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const { data: userData } = useCurrentUserQuery()
   const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation()
   const [uploadCart, { error: uploadError }] = useUploadCartMutation()
-  const me = userData && userData.me
-  const isReady = me && cartItems.length > 0
+  const me = userData?.me
+  const isReady = cartItems?.length > 0
   const image = getFrontImage(cartItems[0]?.product.sku)
 
   const handleToastMessage = () => {
@@ -55,7 +55,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
 
   return (
     <ErrorBoundary error={orderError || uploadError}>
-      <TakeMyMoney className='close-btn'>
+      <TakeMyMoney>
         {loading && <Loader />}
         {isReady && !loading && (
           <StripeCheckout

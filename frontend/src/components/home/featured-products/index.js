@@ -71,7 +71,11 @@ const FeaturedProductsComponent = ({ products, pct }) => {
                 src={getBackImg(product.sku)}
               />
             </Card.ImageContainer>
-            {i === 0 ? <SkullSvg /> : <NinjaSvg />}
+            {i === 0 ? (
+              <SkullSvg name='skull-text' />
+            ) : (
+              <NinjaSvg name='ninja-text' />
+            )}
           </Card>
         ))}
       </InnerContainer>

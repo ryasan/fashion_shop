@@ -9,7 +9,7 @@ const ErrorBoundaryComponent = ({ error, children }) => {
       <ErrorBoundary>
         {error.networkError.result.errors.map((error, i) => (
           <Text key={i}>
-            <Text.Bang modifiers='red_color'>!&nbsp;</Text.Bang>
+            <Text.Addon modifiers='red_color'>!&nbsp;</Text.Addon>
             {error.message}
           </Text>
         ))}
@@ -21,7 +21,7 @@ const ErrorBoundaryComponent = ({ error, children }) => {
     return (
       <ErrorBoundary>
         <Text>
-          <Text.Bang modifiers='red_color'>!&nbsp;</Text.Bang>
+          <Text.Addon modifiers='red_color'>!&nbsp;</Text.Addon>
           {error?.title}: {error.message}
         </Text>
       </ErrorBoundary>

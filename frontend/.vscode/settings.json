@@ -4,5 +4,11 @@
     "titleBar.inactiveForeground": "#000000CC",
     "titleBar.activeBackground": "#76D7C4",
     "titleBar.inactiveBackground": "#76D7C4"
+  },
+  "standard.enable": true,
+  "standard.options": {
+    "rules" : { 
+      "react/jsx-pascal-case": "ignore"
+     }
   }
 }

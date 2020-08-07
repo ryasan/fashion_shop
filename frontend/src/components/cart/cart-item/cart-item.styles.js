@@ -20,7 +20,7 @@ const CartItem = styled.li`
     `}
 `
 
-const Content = styled.div`
+export const Content = styled.div`
   display: flex;
   height: 100%;
   justify-content: space-between;
@@ -32,7 +32,7 @@ Content.Image = styled(Image)`
   height: 100%;
 `
 
-const Details = styled.div`
+export const Details = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -40,7 +40,11 @@ const Details = styled.div`
   margin: 0 2rem;
 `
 
-const Price = styled.div`
+Details.Text = Span
+
+Details.WhiteText = Span
+
+export const Price = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
@@ -59,9 +63,9 @@ Price.CloseBtn = styled(Icon)`
   }
 `
 
-const Text = Span
+Price.Text = Span
 
-const ButtonGroup = styled.div`
+export const ButtonGroup = styled.div`
   display: flex;
 `
 
@@ -85,5 +89,4 @@ ButtonGroup.Button = styled(Button)`
   }
 `
 
-export { Details, Content, ButtonGroup, Price, Text }
 export default CartItem

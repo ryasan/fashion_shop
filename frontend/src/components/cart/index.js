@@ -9,7 +9,6 @@ import Cart, {
   Header
 } from './cart.styles'
 import CartItem from './cart-item'
-import Icon from '../icons'
 import CartFooter from './cart-footer/index'
 import CartCount from './cart-count'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
@@ -30,7 +29,7 @@ const CartComponent = () => {
   return (
     <Cart cartOpen={cartOpen} ref={cartRef} tabIndex='0' onBlur={handleOnBlur}>
       <ToggleButton cartOpen={cartOpen} onClick={toggleCart}>
-        <Icon name={cartOpen ? 'close' : 'cart'} />
+        <ToggleButton.Icon name={cartOpen ? 'close' : 'cart'} />
         {!cartOpen && 'CART'}
         {!cartOpen && <CartCount>{cartCount}</CartCount>}
       </ToggleButton>

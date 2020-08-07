@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
-import { redButton, H3, Image, Span, Button } from '../../../shared/elements'
+import { H3, Image, Span, Button, Div } from '../../../shared/elements'
+import { btns } from '../../../shared/styles'
 
-const ProductDetails = styled.div`
+const ProductDetails = styled(Div)`
   max-width: var(--max-width);
   padding: 0 4rem;
   width: 100%;
@@ -40,7 +41,7 @@ export const Details = styled.div`
 Details.Text = styled(Span)``
 
 Details.AddToCartBtn = styled(Button)`
-  ${redButton};
+  ${btns.red};
 `
 
 export default ProductDetails

@@ -24,6 +24,7 @@ const StyledRoot = css`
   *::before,
   *::after {
     box-sizing: inherit;
+    font-weight: 400;
     outline-color: transparent;
   }
 `

@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import CartItem, { Details, Content, ButtonGroup, Price, Text } from './cart-item.styles'
+import CartItem, {
+  Details,
+  Content,
+  ButtonGroup,
+  Price
+} from './cart-item.styles'
 import { formatPrice, getFrontImage } from '../../../shared/utils'
 import {
   useRemoveCartItemMutation,
@@ -9,8 +14,16 @@ import {
   useDecreaseCartItemQuantityMutation
 } from '../../../graphql/cart/hooks'
 
+const mods = {
+  title: 'font-size-m',
+  sizes: ['gray_color', 'font_size_s'],
+  qty: 'White_color',
+  price: ['font_size_m', 'red_color']
+}
+
 const CartItemComponent = ({ cartItem }) => {
   const { product, quantity } = cartItem
+  const { title, price } = product
   const [removeCartItem] = useRemoveCartItemMutation()
   const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
   const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
@@ -43,9 +56,11 @@ const CartItemComponent = ({ cartItem }) => {
       <Content>
         <Content.Image src={image} />
         <Details>
-          <Text modifiers={['font_size_m']}>{product.title}</Text>
-          <Text modifiers={['gray_color', 'font_size_s']}>{`${availableSizes} | ${product.style}`}</Text>
-          <Text modifiers='gray_color'>Quantity: <Text modifiers='white_color'>{quantity}</Text></Text>
+          <Details.Text modifiers={mods.title}>{title}</Details.Text>
+          <Details.Text modifiers={mods.sizes}>{availableSizes}</Details.Text>
+          <Details.Text modifiers={mods.qty}>Quantity:
+            {' '}<Details.WhiteText modifiers={mods.qty}>{quantity}</Details.WhiteText>
+          </Details.Text>
         </Details>
         <Price>
           <Price.CloseBtn
@@ -54,9 +69,11 @@ const CartItemComponent = ({ cartItem }) => {
             onMouseOver={handleMouseOver}
             onClick={handleRemoveCartItem}
           />
-          <Text modifiers={['font_size_m', 'red_color']}>{formatPrice(product.price)}</Text>
+          <Price.Text modifiers={mods.price}>{formatPrice(price)}</Price.Text>
           <ButtonGroup>
-            <ButtonGroup.Button onClick={handleDecreaseQty} disabled={quantity === 1}>-</ButtonGroup.Button>
+            <ButtonGroup.Button onClick={handleDecreaseQty} disabled={quantity === 1}>
+              -
+            </ButtonGroup.Button>
             <ButtonGroup.Button onClick={handleIncreaseQty}>+</ButtonGroup.Button>
           </ButtonGroup>
         </Price>

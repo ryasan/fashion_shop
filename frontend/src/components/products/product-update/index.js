@@ -3,7 +3,6 @@ import { constantCase, camelCase } from 'change-case'
 
 import UpdateProduct, { Form } from './product-update.styles'
 import ErrorBoundary from '../../error-boundary'
-import InputFields from '../../form/input-fields'
 import AvailableSizesTable from './available-sizes-table'
 import CategorySelect from './category-select'
 import Loader from '../../loader'
@@ -165,11 +164,15 @@ const ProductUpdateForm = ({
         <Form.Title>Product Update</Form.Title>
         <Form.Fieldset>
           <Form.FieldsetInner>
-            <InputFields
-              fields={fields}
-              onChange={handleTextChange}
-              loading={loading}
-            />
+            {fields.map((field, i) => (
+              <Form.InputField
+                key={i}
+                field={field}
+                onChange={handleTextChange}
+                loading={loading}
+                theme='dark'
+              />
+            ))}
           </Form.FieldsetInner>
         </Form.Fieldset>
         <Form.MultipleChoice>

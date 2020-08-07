@@ -45,13 +45,13 @@ const config = {
       border-width: 0.3rem;
     `,
     border_none: () => css`
-      border: none;
+      border: 0;
     `,
     border_left_none: () => css`
-      border-left: none;
+      border-left: 0;
     `,
     border_right_none: () => css`
-      border-right: none;
+      border-right: 0;
     `,
     border_radius_2: () => css`
       border-radius: 2rem;
@@ -120,10 +120,94 @@ const config = {
     flex_1: () => css`
       flex: 1;
     `,
-    height_100: () => css`
+    height_100_pct: () => css`
       height: 100%;
     `,
-    width_100: () => css`
+    margin_2: () => css`
+      margin: 2rem;
+      color: red;
+    `,
+    width_5: () =>
+      css`
+        width: 5rem;
+      `,
+    width_10: () =>
+      css`
+        width: 10rem;
+      `,
+    width_15: () =>
+      css`
+        width: 15rem;
+      `,
+    width_20: () =>
+      css`
+        width: 20rem;
+      `,
+    width_25: () =>
+      css`
+        width: 25rem;
+      `,
+    width_30: () =>
+      css`
+        width: 30rem;
+      `,
+    width_35: () =>
+      css`
+        width: 35rem;
+      `,
+    width_40: () =>
+      css`
+        width: 40rem;
+      `,
+    width_45: () =>
+      css`
+        width: 45rem;
+      `,
+    width_50: () =>
+      css`
+        width: 50rem;
+      `,
+    width_55: () =>
+      css`
+        width: 55rem;
+      `,
+    width_60: () =>
+      css`
+        width: 60rem;
+      `,
+    width_65: () =>
+      css`
+        width: 65rem;
+      `,
+    width_70: () =>
+      css`
+        width: 70rem;
+      `,
+    width_75: () =>
+      css`
+        width: 75rem;
+      `,
+    width_80: () =>
+      css`
+        width: 80rem;
+      `,
+    width_85: () =>
+      css`
+        width: 85rem;
+      `,
+    width_90: () =>
+      css`
+        width: 90rem;
+      `,
+    width_95: () =>
+      css`
+        width: 95rem;
+      `,
+    width_100: () =>
+      css`
+        width: 100rem;
+      `,
+    width_100_pct: () => css`
       width: 100%;
     `
   },

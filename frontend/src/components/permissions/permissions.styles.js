@@ -1,20 +1,17 @@
 import styled from 'styled-components'
 
+import { btns } from '../../shared/styles'
+
 const Permissions = styled.div`
   margin-top: 3rem;
   width: 100%;
 
   button {
-    align-items: center;
-    background: var(--salmon);
-    display: flex;
-    height: 3rem;
-    justify-content: center;
-    width: 70%;
+    ${btns.salmon}
+    width: 100%;
 
     &:hover {
-      background: var(--red);
-      color: white;
+      ${btns.red}
     }
   }
 

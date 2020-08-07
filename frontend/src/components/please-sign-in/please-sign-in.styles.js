@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import { redButton, Button, P } from '../../shared/elements'
+import { Button, P } from '../../shared/elements'
+import { btns } from '../../shared/styles'
 
 const PleaseSignin = styled.div`
   align-items: center;
@@ -14,7 +15,7 @@ PleaseSignin.Text = P
 
 PleaseSignin.Button = styled(Button)`
   padding: 1rem 2rem;
-  ${redButton}
+  ${btns.red}
 `
 
 export default PleaseSignin

@@ -1,12 +1,9 @@
 import styled from 'styled-components'
 
-import headerBackground from '../../../images/logo-royal-banner.svg'
+import orderBg from '../../../static/main-white.svg'
 import { Image, P } from '../../../shared/elements'
 
 const Order = styled.li`
-  background: url(${headerBackground}) center center;
-  background-repeat: no-repeat;
-  background-size: contain;
   box-shadow: var(--box-shadow);
   cursor: pointer;
   margin-bottom: 4.7rem;
@@ -15,20 +12,13 @@ const Order = styled.li`
 
 export const Header = styled.div`
   align-items: center;
+  background: url(${orderBg}) center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   height: 10rem;
   justify-content: center;
   position: relative;
-
-  &::before {
-    background: var(--red);
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 50%;
-  }
 `
 
 Header.Image = styled(Image)`

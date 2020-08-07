@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import { redButton, P, Button } from '../../shared/elements'
+import { P, Button } from '../../shared/elements'
+import { btns } from '../../shared/styles'
 
 const Profile = styled.div`
   flex-grow: 1;
@@ -12,8 +13,7 @@ Profile.Text = styled(P)`
 `
 
 Profile.DelBtn = styled(Button)`
-  ${redButton};
-  border-radius: 0.2rem;
+  ${btns.red};
   padding: 1rem 2rem;
 `
 

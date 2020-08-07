@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
-import FormStyles from '../../form'
-import { transparentButton, H3, Button } from '../../../shared/elements'
+import { H3, Button, Form as FormStyles } from '../../../shared/elements'
+import { btns } from '../../../shared/styles'
+import InputField from '../../input-field'
 
 const UpdateProduct = styled.div`
   margin: 2rem auto;
@@ -11,7 +12,7 @@ const UpdateProduct = styled.div`
   width: 80%;
 `
 
-const Form = styled(FormStyles)`
+export const Form = styled(FormStyles)`
   box-shadow: var(--box-shadow);
   display: grid;
   grid-gap: 3rem;
@@ -23,7 +24,7 @@ Form.Title = styled(H3)`
   margin: 0;
 `
 
-Form.Fieldset = styled.fieldset`
+Form.Fieldset = styled.div`
   grid-column: 1/2;
 `
 
@@ -31,11 +32,11 @@ Form.FieldsetInner = styled.span`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
+`
 
-  div:last-child {
-    margin: 0;
-  }
+Form.InputField = styled(InputField)`
+  margin-bottom: 2rem;
 `
 
 Form.MultipleChoice = styled.div`
@@ -53,12 +54,19 @@ Form.BtnGroup = styled.div`
 `
 
 Form.ActionBtn = styled(Button)`
-  width: 20rem;
+  ${btns.white}
+  width: 15rem;
+  &:hover {
+    ${btns.clearWhite}
+  }
 
   &:first-child {
-    ${transparentButton};
+    ${btns.clearWhite}
+
+    &:hover {
+      ${btns.clearRed}
+    }
   }
 `
 
-export { Form }
 export default UpdateProduct

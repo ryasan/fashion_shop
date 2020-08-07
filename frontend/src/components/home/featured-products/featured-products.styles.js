@@ -1,8 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { NinjaText, SkullText } from '../../../images'
+import Svg from '../../svgs'
 
 const FeaturedProducts = styled.div`
   flex: 1;
@@ -11,7 +10,7 @@ const FeaturedProducts = styled.div`
   width: 100%;
 `
 
-const InnerContainer = styled.div`
+export const InnerContainer = styled.div`
   background: var(--off-white);
   border-radius: 3px;
   box-shadow: var(--box-shadow);
@@ -26,7 +25,7 @@ const InnerContainer = styled.div`
   width: 100%;
 `
 
-const Card = styled(motion.div)`
+export const Card = styled(motion.div)`
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -34,50 +33,22 @@ const Card = styled(motion.div)`
   width: 100%;
 `
 
-const TextSvgStyles = styled.div`
+export const SkullSvg = styled(Svg)`
   color: var(--dark);
   height: 100%;
   position: absolute;
-  width: 100%;
-
-  &:first-child {
-    background: blue;
-  }
-
-  svg {
-    position: absolute;
-
-    ${props =>
-      props.leftSide &&
-      css`
-        bottom: 47rem;
-        left: 0;
-      `};
-
-    ${props =>
-      props.rightSide &&
-      css`
-        bottom: 15rem !important;
-        right: 0;
-      `};
-  }
+  top: -15rem;
+  width: 20rem;
 `
 
-const SkullSvg = leftSide => {
-  return (
-    <TextSvgStyles leftSide>
-      <SkullText />
-    </TextSvgStyles>
-  )
-}
-
-const NinjaSvg = () => {
-  return (
-    <TextSvgStyles rightSide>
-      <NinjaText />
-    </TextSvgStyles>
-  )
-}
+export const NinjaSvg = styled(Svg)`
+  bottom: -20rem;
+  color: var(--dark);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 20rem;
+`
 
 Card.Header = styled.div`
   background: var(--dark);
@@ -119,5 +90,4 @@ Card.Image = styled(motion.img)`
   width: 50%;
 `
 
-export { Card, InnerContainer, SkullSvg, NinjaSvg }
 export default FeaturedProducts

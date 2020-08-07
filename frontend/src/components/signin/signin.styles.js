@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
-import StyledForm from '../form'
-import { Span, Button } from '../../shared/elements'
+import { Span, Button, Form as StyledForm } from '../../shared/elements'
+import { btns } from '../../shared/styles'
+import InputField from '../../components/input-field'
+import headerBg from '../../static/main-red.svg'
 
 const Signin = styled.div`
   align-content: space-between;
@@ -24,14 +26,12 @@ export const Form = styled(StyledForm)`
 
 export const Header = styled.div`
   align-items: center;
+  background: url(${headerBg}) center center no-repeat;
+  background-size: cover;
   display: flex;
-  height: 15rem;
+  height: 17rem;
   overflow: hidden;
   width: 100%;
-
-  svg {
-    transform: scale(2) translateY(1.4rem);
-  }
 `
 
 Form.Fieldset = styled.div`
@@ -43,12 +43,24 @@ Form.HeaderText = styled(Span)`
   margin: 2rem 0;
 `
 
+Form.InputField = styled(InputField)`
+  margin-bottom: 2rem;
+`
+
 Form.FeedbackMessage = styled(Span)`
   display: block;
   margin: 2.4rem 0;
   text-align: center;
 `
 
-Form.SubmitBtn = styled(Button)``
+Form.SubmitBtn = styled(Button)`
+  ${btns.red}
+  width: 100%;
+
+  &:hover,
+  &:active {
+    ${btns.lightRed}
+  }
+`
 
 export default Signin

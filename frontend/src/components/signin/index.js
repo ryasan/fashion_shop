@@ -6,7 +6,6 @@ import { constantCase } from 'change-case'
 
 import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
-import InputFields from '../form/input-fields'
 import FooterText from './footer-text'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
 import { toast } from '../toast'
@@ -24,7 +23,6 @@ import {
   REQUEST_RESET,
   PASSWORD_RESET
 } from '../../types/auth-form-types'
-import { RoyalBannerBackground } from '../../images'
 
 const initialState = {
   email: '',
@@ -149,7 +147,14 @@ const SigninComponent = ({
       ].filter(Boolean)
 
       authMutation({
-        variables: { email, username, password, confirm, resetToken, authMethod }
+        variables: {
+          email,
+          username,
+          password,
+          confirm,
+          resetToken,
+          authMethod
+        }
       })
       dispatch({ type: RESET_FIELDS })
     }
@@ -207,16 +212,14 @@ const SigninComponent = ({
 
   const authValidationColors = [
     formIsValid ? 'green_color' : 'red_color',
-    'width_100',
+    'width_100_pct',
     'text_align_center',
     'font_size_s'
   ]
 
   return (
     <Signin>
-      <Header>
-        <RoyalBannerBackground />
-      </Header>
+      <Header />
       <Form method='post' onSubmit={handleOnSubmit}>
         <Form.Fieldset>
           {headerText && (
@@ -224,11 +227,15 @@ const SigninComponent = ({
               {headerText}
             </Form.HeaderText>
           )}
-          <InputFields
-            loading={loading}
-            fields={Object.values(fields)}
-            onChange={handleOnChange}
-          />
+          {Object.values(fields).map((field, i) => (
+            <Form.InputField
+              key={i}
+              loading={loading}
+              field={field}
+              onChange={handleOnChange}
+              theme='dark'
+            />
+          ))}
           <Form.FeedbackMessage modifiers={authValidationColors}>
             {message}
           </Form.FeedbackMessage>

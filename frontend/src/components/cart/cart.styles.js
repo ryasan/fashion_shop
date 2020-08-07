@@ -49,11 +49,6 @@ const ToggleButton = styled.div`
   transition: fill 0.2s;
   width: 9rem;
 
-  svg {
-    height: 3rem;
-    width: 3rem;
-  }
-
   &::before {
     background: var(--red);
     bottom: 0;
@@ -83,7 +78,10 @@ const ToggleButton = styled.div`
   }
 `
 
-ToggleButton.Icon = styled(Icon)``
+ToggleButton.Icon = styled(Icon)`
+  height: 3rem;
+  width: 3rem;
+`
 
 const Content = styled.div`
   color: white;

@@ -7,10 +7,10 @@ import { formatPrice } from '../../../shared/utils'
 const CartFooterComponent = ({ cartTotal, cartItems, cartCount }) => (
   <CartFooter>
     <Footer>
-      <Text modifiers={['font_size_m']}>SUBTOTAL</Text>
-      <Text modifiers={['red_color', 'font_size_lg']}>
+      <Footer.Text modifiers={['font_size_m']}>SUBTOTAL</Footer.Text>
+      <Footer.Text modifiers={['red_color', 'font_size_lg']}>
         {formatPrice(cartTotal)}
-      </Text>
+      </Footer.Text>
     </Footer>
     <TakeMyMoney
       cartItems={cartItems}

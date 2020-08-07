@@ -26,7 +26,7 @@ const HeaderComponent = props => {
 
   const handleSignout = () => {
     signout({
-      variables: { authType: SIGNOUT }
+      variables: { authMethod: SIGNOUT }
     })
     uploadCart({
       variables: {
