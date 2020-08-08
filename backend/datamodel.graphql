@@ -40,6 +40,7 @@ type CartItem {
   id: ID! @unique @id
   quantity: Int! @default(value: 1)
   product: Product!
+  size: Size
   user: User! @relation(name: "CartItemOfUser", onDelete: SET_NULL)
 }
 
@@ -63,6 +64,7 @@ type OrderItem {
   quantity: Int! @default(value: 1)
   title: String!
   description: String!
+  size: Size
   sku: String!
   price: Int!
   user: User
@@ -70,9 +72,9 @@ type OrderItem {
 
 type Order {
   id: ID! @unique @id
-  orderItems: [OrderItem!]!
+  orderItems: [OrderItem!]! @relation(name: "OrderItemOfOrder", onDelete: CASCADE)
   total: Int!
-  user: User! @relation(name: "OrderOfUser", onDelete: CASCADE)
+  user: User! @relation(name: "OrderOfUser")
   chargeId: String!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

@@ -30,6 +30,7 @@ const Mutation = {
       await ctx.db.mutation.createCartItem(
         {
           data: {
+            size: c.size,
             quantity: c.quantity,
             product: { connect: { id: c.productId } },
             user: { connect: { id: userId } }
@@ -39,7 +40,11 @@ const Mutation = {
       )
     }
 
-    return ctx.db.query.cartItems({ where: { user: { id: userId } } })
+    const cartItems = await ctx.db.query.cartItems({
+      where: { user: { id: userId } }
+    })
+
+    return cartItems
   },
   deleteMe: async (parent, args, ctx, info) => {
     await ctx.db.mutation.deleteUser({
@@ -107,7 +112,7 @@ const Mutation = {
 
     const user = await ctx.db.query.user(
       { where: { id: userId } },
-      '{ id email username cart { id quantity product { title price id description sku } } }'
+      '{ id email username cart { id quantity size product { title price id description sku } } }'
     )
 
     const amount = user.cart.reduce(
@@ -121,9 +126,10 @@ const Mutation = {
       source: args.token
     })
 
-    const orderItems = user.cart.map((cartItem) => {
+    const orderItems = user.cart.map(cartItem => {
       const orderItem = {
         ...cartItem.product,
+        size: cartItem.size,
         quantity: cartItem.quantity,
         user: { connect: { id: userId } }
       }

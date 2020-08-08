@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/ryan-santos-beb648/fashion-shop/dev
-# timestamp: Fri Jul 24 2020 01:31:04 GMT-0700 (Pacific Daylight Time)
+# timestamp: Fri Aug 07 2020 23:53:25 GMT-0700 (Pacific Daylight Time)
 
 type AggregateCartItem {
   count: Int!
@@ -30,6 +30,7 @@ type CartItem implements Node {
   id: ID!
   quantity: Int!
   product: Product!
+  size: Size
   user: User!
 }
 
@@ -46,6 +47,7 @@ type CartItemConnection {
 input CartItemCreateInput {
   id: ID
   quantity: Int
+  size: Size
   product: ProductCreateOneInput!
   user: UserCreateOneWithoutCartInput!
 }
@@ -58,6 +60,7 @@ input CartItemCreateManyWithoutUserInput {
 input CartItemCreateWithoutUserInput {
   id: ID
   quantity: Int
+  size: Size
   product: ProductCreateOneInput!
 }
 
@@ -75,11 +78,14 @@ enum CartItemOrderByInput {
   id_DESC
   quantity_ASC
   quantity_DESC
+  size_ASC
+  size_DESC
 }
 
 type CartItemPreviousValues {
   id: ID!
   quantity: Int!
+  size: Size
 }
 
 input CartItemScalarWhereInput {
@@ -153,6 +159,16 @@ input CartItemScalarWhereInput {
 
   """All values greater than or equal the given value."""
   quantity_gte: Int
+  size: Size
+
+  """All values that are not equal to given value."""
+  size_not: Size
+
+  """All values that are contained in given list."""
+  size_in: [Size!]
+
+  """All values that are not contained in given list."""
+  size_not_in: [Size!]
 }
 
 type CartItemSubscriptionPayload {
@@ -194,16 +210,19 @@ input CartItemSubscriptionWhereInput {
 
 input CartItemUpdateInput {
   quantity: Int
+  size: Size
   product: ProductUpdateOneRequiredInput
   user: UserUpdateOneRequiredWithoutCartInput
 }
 
 input CartItemUpdateManyDataInput {
   quantity: Int
+  size: Size
 }
 
 input CartItemUpdateManyMutationInput {
   quantity: Int
+  size: Size
 }
 
 input CartItemUpdateManyWithoutUserInput {
@@ -225,6 +244,7 @@ input CartItemUpdateManyWithWhereNestedInput {
 
 input CartItemUpdateWithoutUserDataInput {
   quantity: Int
+  size: Size
   product: ProductUpdateOneRequiredInput
 }
 
@@ -310,6 +330,16 @@ input CartItemWhereInput {
 
   """All values greater than or equal the given value."""
   quantity_gte: Int
+  size: Size
+
+  """All values that are not equal to given value."""
+  size_not: Size
+
+  """All values that are contained in given list."""
+  size_in: [Size!]
+
+  """All values that are not contained in given list."""
+  size_not_in: [Size!]
   product: ProductWhereInput
   user: UserWhereInput
 }
@@ -434,6 +464,7 @@ type OrderItem implements Node {
   quantity: Int!
   title: String!
   description: String!
+  size: Size
   sku: String!
   price: Int!
   user: User
@@ -454,6 +485,7 @@ input OrderItemCreateInput {
   quantity: Int
   title: String!
   description: String!
+  size: Size
   sku: String!
   price: Int!
   user: UserCreateOneInput
@@ -482,6 +514,8 @@ enum OrderItemOrderByInput {
   title_DESC
   description_ASC
   description_DESC
+  size_ASC
+  size_DESC
   sku_ASC
   sku_DESC
   price_ASC
@@ -493,6 +527,7 @@ type OrderItemPreviousValues {
   quantity: Int!
   title: String!
   description: String!
+  size: Size
   sku: String!
   price: Int!
 }
@@ -648,6 +683,16 @@ input OrderItemScalarWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  size: Size
+
+  """All values that are not equal to given value."""
+  size_not: Size
+
+  """All values that are contained in given list."""
+  size_in: [Size!]
+
+  """All values that are not contained in given list."""
+  size_not_in: [Size!]
   sku: String
 
   """All values that are not equal to given value."""
@@ -753,6 +798,7 @@ input OrderItemUpdateDataInput {
   quantity: Int
   title: String
   description: String
+  size: Size
   sku: String
   price: Int
   user: UserUpdateOneInput
@@ -762,6 +808,7 @@ input OrderItemUpdateInput {
   quantity: Int
   title: String
   description: String
+  size: Size
   sku: String
   price: Int
   user: UserUpdateOneInput
@@ -771,6 +818,7 @@ input OrderItemUpdateManyDataInput {
   quantity: Int
   title: String
   description: String
+  size: Size
   sku: String
   price: Int
 }
@@ -791,6 +839,7 @@ input OrderItemUpdateManyMutationInput {
   quantity: Int
   title: String
   description: String
+  size: Size
   sku: String
   price: Int
 }
@@ -962,6 +1011,16 @@ input OrderItemWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  size: Size
+
+  """All values that are not equal to given value."""
+  size_not: Size
+
+  """All values that are contained in given list."""
+  size_in: [Size!]
+
+  """All values that are not contained in given list."""
+  size_not_in: [Size!]
   sku: String
 
   """All values that are not equal to given value."""

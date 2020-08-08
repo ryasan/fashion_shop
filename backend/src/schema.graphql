@@ -56,6 +56,7 @@ type CartItem {
   id: ID!
   quantity: Int!
   product: Product!
+  size: Size
   user: User!
 }
 
@@ -81,4 +82,5 @@ type SuccessMessage {
 input CartUploadInput {
   quantity: Int!
   productId: ID!
+  size: Size
 }
