@@ -6,6 +6,7 @@ export const CART_QUERY = gql`
   query @client {
     cartItems {
       quantity
+      size
       product {
         ...ProductFragment
       }

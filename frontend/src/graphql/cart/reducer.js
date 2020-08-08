@@ -7,13 +7,35 @@ import {
   MERGE_REMOTE_CART_ITEMS,
   DECREASE_CART_ITEM_QUANTITY
 } from './action-types'
+import { HOODIE, LONG_SLEEVE, SHIRT } from '../../types/category-types'
 
 const itemAlreadyInCart = (cartItems, product) => {
-  return !!cartItems.find(cartItem => cartItem.product.id === product.id)
+  const findItems = cartItems.filter(
+    cartItem => cartItem.product.id === product.id
+  )
+  const itemHasSizeProperty = [HOODIE, LONG_SLEEVE, SHIRT].includes(
+    product.category
+  )
+
+  if (findItems.length && !itemHasSizeProperty) {
+    return true
+  }
+  if (findItems.length && findItems.some(f => f.size === product.size)) {
+    return true
+  }
+
+  return false
 }
 
 const createNewCartItem = (cartItems, product) => {
-  return [...cartItems, { product, quantity: 1, __typename: 'CartItem' }]
+  const newItem = {
+    __typename: 'CartItem',
+    size: product.size,
+    quantity: 1,
+    product
+  }
+
+  return [...cartItems, newItem]
 }
 
 const removeCartItem = (cartItems, product) => {
@@ -21,13 +43,15 @@ const removeCartItem = (cartItems, product) => {
 }
 
 const increaseCartItemQty = (cartItems, product) => {
-  return cartItems.map(cartItem => ({
+  const newCartItems = cartItems.map(cartItem => ({
     ...cartItem,
     quantity:
       cartItem.product.id === product.id
         ? cartItem.quantity + 1
         : cartItem.quantity
   }))
+
+  return newCartItems
 }
 
 const decreaseCartItemQty = (cartItems, product) => {

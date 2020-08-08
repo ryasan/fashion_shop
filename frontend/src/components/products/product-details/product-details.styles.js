@@ -36,6 +36,11 @@ export const Details = styled.div`
   height: 25rem;
   justify-content: space-between;
   margin-left: 5rem;
+  min-width: 20rem;
+
+  select {
+    width: 10rem;
+  }
 `
 
 Details.Text = styled(Span)``

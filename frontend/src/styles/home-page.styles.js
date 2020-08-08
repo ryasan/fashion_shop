@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 
 import { H1, H2, H4, P, Ul, Li, A, Input } from '../shared/elements'
+import redTexture from '../static/red-texture.png'
 
 const Home = styled.div`
   flex: 1;
@@ -30,7 +31,7 @@ export const Heading = styled.div`
   background-size: 7.5rem 7.5rem;
   border-radius: 0.4rem;
   border-top: 0.5rem var(--red) solid;
-  box-shadow: var(--big-box-shadow);
+  box-shadow: var(--box-shadow-lg);
   display: flex;
   height: 90vh;
   justify-content: center;
@@ -91,7 +92,8 @@ export const Body = styled.div`
 export const Footer = styled.div`
   align-items: flex-start;
   background: var(--dark);
-  box-shadow: var(--big-box-shadow);
+  box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.25),
+    0 -0.5rem 1rem rgba(0, 0, 0, 0.22);
   display: flex;
   height: 35rem;
   justify-content: flex-start;

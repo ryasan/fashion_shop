@@ -13,7 +13,7 @@ const UpdateProduct = styled.div`
 `
 
 export const Form = styled(FormStyles)`
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.9), 0 0 2.5rem rgba(0, 0, 0, 0.15);
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: 1fr 1fr;

@@ -239,9 +239,7 @@ const SigninComponent = ({
           <Form.FeedbackMessage modifiers={authValidationColors}>
             {message}
           </Form.FeedbackMessage>
-          <Form.SubmitBtn type='submit' disabled={loading}>
-            Submit{loading ? 'ting...' : ''}
-          </Form.SubmitBtn>
+          <Form.SubmitBtn type='submit' disabled={loading} />
         </Form.Fieldset>
       </Form>
       <FooterText

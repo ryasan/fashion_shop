@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 
-import { device } from '../../shared/utils'
 import Icon from '../icons'
+import { device } from '../../shared/utils'
 import { H4 } from '../../shared/elements'
 
 const Cart = styled.div`
@@ -104,7 +105,7 @@ Header.Title = styled(H4)`
   margin: 0;
 `
 
-Header.Icon = styled(Icon)``
+Header.Icon = Icon
 
 Header.BagContainer = styled.div`
   align-items: center;
@@ -113,6 +114,25 @@ Header.BagContainer = styled.div`
   justify-content: center;
   position: relative;
   width: 9rem;
+`
+
+Header.LinkToShop = styled(Link)`
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  text-decoration: underline;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--light-gray);
+  }
+
+  &:visited {
+    color: inherit;
+
+    &:hover {
+      color: var(--light-gray);
+    }
+  }
 `
 
 const CartList = styled.ul`

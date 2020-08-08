@@ -36,6 +36,7 @@ export const Details = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  font-size: var(--font-size-lg);
   justify-content: space-between;
   margin: 0 2rem;
 `
@@ -63,7 +64,9 @@ Price.CloseBtn = styled(Icon)`
   }
 `
 
-Price.Text = Span
+Price.Text = styled(Span)`
+  font-size: var(--font-size-lg);
+`
 
 export const ButtonGroup = styled.div`
   display: flex;

@@ -1,13 +1,14 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
 import Svg from '../../svgs'
+import redTexture from '../../../static/red-texture.png'
 
 const FeaturedProducts = styled.div`
   flex: 1;
   height: 70vh;
   position: absolute;
-  top: -20vh;
+  top: -5vh;
   width: 100%;
   z-index: 100;
 `
@@ -15,7 +16,7 @@ const FeaturedProducts = styled.div`
 export const InnerContainer = styled.div`
   background: var(--off-white);
   border-radius: 3px;
-  box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.3);
+  box-shadow: var(--box-shadow-s);
   display: flex;
   height: 100%;
   justify-content: space-around;
@@ -56,16 +57,46 @@ export const NinjaSvg = styled(Svg)`
 
 Card.Header = styled.div`
   background: var(--dark);
-  height: 7rem;
-  line-height: 7rem;
+  height: 9rem;
+  line-height: 9rem;
+  position: relative;
+
+  ${props =>
+    props.isOdd &&
+    css`
+      border-left: 0;
+    `}
 `
 
 Card.Title = styled.h3`
+  background: url(${redTexture});
   font-size: 4rem;
   font-weight: 100;
   letter-spacing: 1rem;
   margin: 0;
   text-align: center;
+
+  &::before {
+    align-items: center;
+    background: var(--dark);
+    content: '${props => props.title}';
+    display: flex;
+    height: calc(100% - 1rem);
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(calc(-50%), -50%);
+    width: calc(100% - 1rem);
+    z-index: 0;
+
+    ${props =>
+      props.isEvenElement &&
+      css`
+        transform: translate(calc(-50% + 0.5rem), -50%);
+        width: calc(100% - 0.1rem);
+      `}
+  }
 `
 
 Card.CallToAction = styled(motion.button)`

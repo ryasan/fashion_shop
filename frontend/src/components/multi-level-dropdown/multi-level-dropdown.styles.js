@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 import { Li, H4 } from '../../shared/elements'
+import redTexture from '../../static/red-texture.png'
 
 const DropdownWrap = styled.div`
   cursor: pointer;
@@ -11,23 +12,35 @@ const DropdownWrap = styled.div`
 
 const DropdownButton = styled(motion.button)`
   align-items: center;
-  background: var(--dark);
-  border: 0.1rem solid white;
+  background: url(${redTexture}) 5%;
   border-radius: 50%;
   color: white;
   cursor: pointer;
   display: flex;
-  height: 5rem;
+  height: 7rem;
   justify-content: center;
   outline: none;
   pointer-events: ${props => (props.isOpen ? 'none' : 'auto')};
   position: relative;
   user-select: none;
-  width: 5rem;
+  width: 7rem;
   z-index: 200;
 
   svg {
     margin: 0.4rem 0 0 0.1rem;
+  }
+
+  &::before {
+    background: var(--dark);
+    border-radius: 50%;
+    content: '';
+    height: 80%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    z-index: -1;
   }
 `
 
@@ -35,7 +48,7 @@ const Dropdown = styled(motion.div)`
   background: var(--dark);
   border: 0.2rem solid white;
   border-radius: 0.5rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-m);
   left: 6rem;
   outline: 0;
   overflow: hidden;

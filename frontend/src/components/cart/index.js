@@ -16,9 +16,7 @@ import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 const CartComponent = () => {
   const cartRef = useRef(null)
   const [toggleCart] = useToggleCartMutation()
-  const {
-    data: { cartOpen, cartItems }
-  } = useCartQuery()
+  const { data: { cartOpen, cartItems } } = useCartQuery()
   const cartCount = sumBy(cartItems, c => c.quantity)
   const cartTotal = sumBy(cartItems, c => c.product.price * c.quantity)
 
@@ -40,11 +38,12 @@ const CartComponent = () => {
             <Header.Icon name='cart' />
             <CartCount>{cartCount}</CartCount>
           </Header.BagContainer>
+          <Header.LinkToShop to='/shop/'>Continue shopping..</Header.LinkToShop>
         </Header>
         {!cartItems.length && <EmptyDisplay>Cart is empty</EmptyDisplay>}
         <CartList>
-          {cartItems.map(item => (
-            <CartItem key={item.product.id} cartItem={item} />
+          {cartItems.map((item, i) => (
+            <CartItem key={i} cartItem={item} />
           ))}
         </CartList>
         <CartFooter

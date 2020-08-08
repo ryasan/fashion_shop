@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
 
 import Product, { Promo, Header, Body, Footer } from './product.styles'
 import { formatPrice, getFrontImage } from '../../../shared/utils'
-import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 
 const ProductComponent = ({ product, sizeFilters }) => {
-  const [addCartItem] = useAddCartItemMutation()
   const image = getFrontImage(product.sku)
   const formattedPrice = formatPrice(product.price)
   const dollars = formattedPrice.slice(0, -3)
@@ -15,7 +14,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
   const detailsPage = `/shop/${product.id}/`
 
   const handleAddCartItem = () => {
-    addCartItem({ variables: { product } })
+    navigate(detailsPage)
   }
 
   return (
@@ -36,7 +35,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
         </Body>
       </Link>
       <Footer>
-        <Footer.Button onClick={handleAddCartItem}>Add to cart</Footer.Button>
+        <Footer.Button onClick={handleAddCartItem} />
       </Footer>
     </Product>
   )

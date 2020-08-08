@@ -1,6 +1,13 @@
 import styled from 'styled-components'
 
-import { Table as TableEl, Tr, Th, Td, Tbody, Thead } from '../../shared/elements'
+import {
+  Table as TableEl,
+  Tr,
+  Th,
+  Td,
+  Tbody,
+  Thead
+} from '../../shared/elements'
 
 const TableWrap = styled.div`
   flex: 1;
@@ -60,7 +67,7 @@ Table.Row = styled(Tr)`
 
 const HeaderCell = styled(Th)`
   border-top: 0.1rem solid white;
-  color: ${props => (props.isActive ? 'var(--red)' : 'var(--salmon)')};
+  color: var(--red);
 `
 
 const Cell = styled(Td)`

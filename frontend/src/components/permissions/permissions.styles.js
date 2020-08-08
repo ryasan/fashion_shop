@@ -7,11 +7,11 @@ const Permissions = styled.div`
   width: 100%;
 
   button {
-    ${btns.salmon}
+    ${btns.red}
     width: 100%;
 
     &:hover {
-      ${btns.red}
+      ${btns.salmon}
     }
   }
 

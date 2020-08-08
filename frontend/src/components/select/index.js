@@ -26,7 +26,12 @@ const SelectComponent = ({ onChange, options, label, selected }) => {
 
 SelectComponent.propTypes = {
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    })
+  ).isRequired,
   label: PropTypes.string.isRequired
 }
 

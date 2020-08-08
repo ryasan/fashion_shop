@@ -21,7 +21,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation()
   const [uploadCart, { error: uploadError }] = useUploadCartMutation()
   const me = userData?.me
-  const isReady = cartItems?.length > 0
+  const isReady = me && cartItems?.length > 0
   const image = getFrontImage(cartItems[0]?.product.sku)
 
   const handleToastMessage = () => {
@@ -37,7 +37,8 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
       variables: {
         data: cartItems.map(c => ({
           productId: c.product.id,
-          quantity: c.quantity
+          quantity: c.quantity,
+          size: c.size
         }))
       }
     })
@@ -65,7 +66,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
             stripeKey={stripeKey}
             amount={cartTotal}
             image={image}
-            email={me.email}
+            email={me?.email}
             token={res => onToken(res)}
           >
             <CheckoutBtn>CHECKOUT</CheckoutBtn>

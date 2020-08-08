@@ -23,6 +23,7 @@ import TitleIcon from './title'
 import MoneyIcon from './money'
 import FingerprintIcon from './fingerprint'
 import FilterIcon from './filter'
+import PersonAddIcon from './person-add'
 
 const Icon = props => {
   switch (props.name) {
@@ -49,7 +50,8 @@ const Icon = props => {
     case 'instagram-filled':
     case 'instagram-outlined':
       return <InstagramIcon {...props} />
-    case 'key':
+    case 'key-filled':
+    case 'key-outlined':
       return <KeyIcon {...props} />
     case 'left-arrow':
       return <LeftArrowIcon {...props} />
@@ -63,6 +65,8 @@ const Icon = props => {
       return <MagnifierIcon {...props} />
     case 'money':
       return <MoneyIcon {...props} />
+    case 'person-add':
+      return <PersonAddIcon {...props} />
     case 'right-arrow':
       return <RightArrowIcon {...props} />
     case 'shopping-bag':

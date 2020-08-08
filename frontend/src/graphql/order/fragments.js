@@ -8,6 +8,7 @@ export const ORDER_ITEM_FRAGMENT = gql`
     quantity
     title
     description
+    size
     sku
     price
   }

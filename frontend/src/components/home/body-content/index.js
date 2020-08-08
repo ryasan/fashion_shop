@@ -75,7 +75,7 @@ const BodyContentComponent = ({ pct }) => {
             animate={isVisible ? 'show' : 'hidden'}
           >
             <ProductPreview.Title>
-              <Span modifiers={['white_color', 'text_shadow_3']}>
+              <Span>
                 Ninja Hoodie
               </Span>
             </ProductPreview.Title>

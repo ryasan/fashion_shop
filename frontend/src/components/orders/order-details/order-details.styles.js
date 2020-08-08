@@ -8,11 +8,11 @@ const OrderDetails = styled.div`
 
 export const TextKey = styled(Span)`
   color: var(--red);
+  width: 9rem;
 `
 
 export const Text = styled(P)`
   display: flex;
-  justify-content: space-between;
   margin: 0.5rem 0;
 `
 
@@ -29,16 +29,17 @@ export const OrderList = styled(Ul)`
 `
 
 export const OrderItem = styled.li`
-  box-shadow: var(--box-shadow);
+  border: 0.2rem solid var(--red);
   cursor: pointer;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
   margin-top: 2.5rem;
   padding: 1rem;
 `
 
 OrderItem.ImageContainer = styled.div`
-  flex: 1;
+  grid-column: 1/2;
 `
 
 OrderItem.Image = styled(Image)`
@@ -49,18 +50,19 @@ OrderItem.Image = styled(Image)`
 `
 
 OrderItem.Cost = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-right: 1rem;
-  width: 22%;
+  grid-column: 2/4;
+
+  > p:not(:last-child) {
+    margin-bottom: 1.3rem;
+  }
 `
 
 OrderItem.Info = styled.div`
-  flex: 2;
-  padding-right: 1rem;
-  width: 60%;
+  grid-column: 4/6;
+
+  > p:not(:last-child) {
+    margin-bottom: 1.3rem;
+  }
 `
 
 export default OrderDetails

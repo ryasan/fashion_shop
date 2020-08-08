@@ -4,7 +4,7 @@ import orderBg from '../../../static/main-white.svg'
 import { Image, P } from '../../../shared/elements'
 
 const Order = styled.li`
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-m);
   cursor: pointer;
   margin-bottom: 4.7rem;
   width: 100%;

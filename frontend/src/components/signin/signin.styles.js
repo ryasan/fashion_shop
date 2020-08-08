@@ -4,10 +4,11 @@ import { Span, Button, Form as StyledForm } from '../../shared/elements'
 import { btns } from '../../shared/styles'
 import InputField from '../../components/input-field'
 import headerBg from '../../static/main-red.svg'
+import redTexture from '../../static/red-texture.png'
 
 const Signin = styled.div`
   align-content: space-between;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-m);
   display: flex;
   flex-direction: column;
   left: 50%;
@@ -55,11 +56,33 @@ Form.FeedbackMessage = styled(Span)`
 
 Form.SubmitBtn = styled(Button)`
   ${btns.red}
+  background: url(${redTexture});
+  height: 5rem;
+  position: relative;
   width: 100%;
 
-  &:hover,
-  &:active {
-    ${btns.lightRed}
+  &::before {
+    align-items: center;
+    background: var(--dark);
+    content: '${props => (props.disabled ? 'Submitting' : 'Submit')}';
+    display: flex;
+    height: calc(100% - 0.5rem);
+    justify-content: center;
+    left: 50%;
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+    width: calc(100% - 0.5rem);
+  }
+
+  &:hover {
+    transform: scale(1.02);
+    
+    &::before {
+      background: transparent;
+    }
   }
 `
 

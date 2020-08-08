@@ -6,7 +6,7 @@ import { device } from '../../shared/utils'
 const Header = styled.header`
   align-items: center;
   background: var(--dark);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-m);
   display: flex;
   height: 10rem;
   justify-content: space-between;

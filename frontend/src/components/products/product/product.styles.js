@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 
 import { Image, H3, Hr, B, Small, Button } from '../../../shared/elements'
+import redTexture from '../../../static/red-texture.png'
 
 const Product = styled.div`
-  box-shadow: var(--box-shadow);
+  background: var(--dark);
+  border-radius: 0.2rem;
+  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.9), 0 0 2.5rem rgba(0, 0, 0, 0.15);
   position: relative;
   width: 100%;
 
@@ -29,26 +32,14 @@ export const Promo = styled.div`
 `
 
 export const Header = styled.div`
-  background: var(--red);
   background-size: cover;
   display: flex;
   height: 15.5rem;
   justify-content: center;
   position: relative;
-
-  &::after {
-    background: var(--dark);
-    content: '';
-    height: 100%;
-    position: absolute;
-    right: 0;
-    width: 50%;
-    z-index: 1;
-  }
 `
 
 Header.Image = styled(Image)`
-  border: 1rem solid var(--dark);
   bottom: -1.5rem;
   height: 40rem;
   object-fit: cover;
@@ -77,7 +68,7 @@ Body.Title = styled(H3)`
 `
 
 Body.Divider = styled(Hr)`
-  background: red;
+  background: var(--red);
   width: 2rem;
 `
 
@@ -107,9 +98,26 @@ export const Footer = styled.div`
 
 Footer.Button = styled(Button)`
   background: var(--red);
+  background: url(${redTexture}) center center;
+  border-bottom-left-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
   color: white;
   height: 100%;
+  position: relative;
   width: 100%;
+
+  &::before {
+    background: var(--red);
+    border-radius: 1rem;
+    content: 'Purchase';
+    font-size: var(--font-size-xlg);
+    font-weight: 500;
+    left: 50%;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 export default Product

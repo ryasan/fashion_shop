@@ -71,7 +71,7 @@ const Details = styled.div`
   align-content: space-between;
   background: white;
   border-radius: 0.3rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-s);
   color: var(--dark);
   direction: rtl;
   display: flex;

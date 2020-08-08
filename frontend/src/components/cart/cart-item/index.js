@@ -14,21 +14,13 @@ import {
   useDecreaseCartItemQuantityMutation
 } from '../../../graphql/cart/hooks'
 
-const mods = {
-  title: 'font-size-lg',
-  sizes: ['gray_color', 'font_size_m'],
-  qty: 'White_color',
-  price: ['font_size_lg', 'red_color']
-}
-
 const CartItemComponent = ({ cartItem }) => {
-  const { product, quantity } = cartItem
+  const { product, quantity, size } = cartItem
   const { title, price } = product
   const [removeCartItem] = useRemoveCartItemMutation()
   const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
   const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
-  const availableSizes = product.availableSizes.join(' | ')
   const image = getFrontImage(product.sku)
 
   const handleRemoveCartItem = () => {
@@ -56,10 +48,15 @@ const CartItemComponent = ({ cartItem }) => {
       <Content>
         <Content.Image src={image} />
         <Details>
-          <Details.Text modifiers={mods.title}>{title}</Details.Text>
-          <Details.Text modifiers={mods.sizes}>{availableSizes}</Details.Text>
-          <Details.Text modifiers={mods.qty}>Quantity:
-            {' '}<Details.WhiteText modifiers={mods.qty}>{quantity}</Details.WhiteText>
+          <Details.Text>{title}</Details.Text>
+          <Details.Text modifiers={['gray_color', 'font_size_m']}>
+            {size ? `Size: ${size}` : ''}
+          </Details.Text>
+          <Details.Text modifiers='gray_color'>
+            Quantity:{' '}
+            <Details.WhiteText modifiers='white_color'>
+              {quantity}
+            </Details.WhiteText>
           </Details.Text>
         </Details>
         <Price>
@@ -69,12 +66,17 @@ const CartItemComponent = ({ cartItem }) => {
             onMouseOver={handleMouseOver}
             onClick={handleRemoveCartItem}
           />
-          <Price.Text modifiers={mods.price}>{formatPrice(price)}</Price.Text>
+          <Price.Text modifiers='red_color'>{formatPrice(price)}</Price.Text>
           <ButtonGroup>
-            <ButtonGroup.Button onClick={handleDecreaseQty} disabled={quantity === 1}>
+            <ButtonGroup.Button
+              onClick={handleDecreaseQty}
+              disabled={quantity === 1}
+            >
               -
             </ButtonGroup.Button>
-            <ButtonGroup.Button onClick={handleIncreaseQty}>+</ButtonGroup.Button>
+            <ButtonGroup.Button onClick={handleIncreaseQty}>
+              +
+            </ButtonGroup.Button>
           </ButtonGroup>
         </Price>
       </Content>

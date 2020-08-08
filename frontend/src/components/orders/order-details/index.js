@@ -11,9 +11,9 @@ import OrderDetails, {
   TextKey
 } from './order-details.styles'
 import LoaderComponent from '../../loader'
+import ErrorBoundary from '../../error-boundary'
 import { formatPrice, getFrontImage } from '../../../shared/utils'
 import { useProductQuery } from '../../../graphql/product/hooks'
-import ErrorBoundary from '../../error-boundary/index'
 
 const OrderItemComponent = ({ item }) => {
   const { data, loading, error } = useProductQuery({
@@ -34,12 +34,13 @@ const OrderItemComponent = ({ item }) => {
           <OrderItem.Image src={getFrontImage(item.sku)} />
         </OrderItem.ImageContainer>
         <OrderItem.Cost>
-          <Text><TextKey modifiers='red_color'>price:&nbsp;</TextKey>{formatPrice(item.price)}</Text>
-          <Text><TextKey modifiers='red_color'>qty:&nbsp;</TextKey>{item.quantity}</Text>
-          <Text><TextKey modifiers='red_color'>total:&nbsp;</TextKey>{(formatPrice(item.price * item.quantity))}</Text>
+          <Text><TextKey modifiers='red_color'>Price:&nbsp;</TextKey>{formatPrice(item.price)}</Text>
+          <Text><TextKey modifiers='red_color'>Qty:&nbsp;</TextKey>{item.quantity}</Text>
+          <Text><TextKey modifiers='red_color'>Total:&nbsp;</TextKey>{(formatPrice(item.price * item.quantity))}</Text>
         </OrderItem.Cost>
         <OrderItem.Info>
           <Text>{item.title}</Text>
+          {item.size && <Text><TextKey modifiers='red_color'>Size:</TextKey>{item.size}</Text>}
           <Text>{item.description}</Text>
         </OrderItem.Info>
       </OrderItem>
@@ -51,11 +52,11 @@ const OrderDetailsComponent = ({ order }) => {
   return (
     <OrderDetails>
       <Summary>
-        <Text><TextKey>id:</TextKey>{order.id}</Text>
-        <Text><TextKey>charge id:</TextKey>{order.chargeId}</Text>
-        <Text><TextKey>total:</TextKey>{formatPrice(order.total)}</Text>
-        <Text><TextKey>created:</TextKey>{moment(order.createdAt).format('LL')}</Text>
-        <Text><TextKey>updated:</TextKey>{moment(order.updatedAt).format('LL')}</Text>
+        <Text><TextKey>Id:</TextKey>{order.id}</Text>
+        <Text><TextKey>Charge Id:</TextKey>{order.chargeId}</Text>
+        <Text><TextKey>Total:</TextKey>{formatPrice(order.total)}</Text>
+        <Text><TextKey>Created:</TextKey>{moment(order.createdAt).format('LL')}</Text>
+        <Text><TextKey>Updated:</TextKey>{moment(order.updatedAt).format('LL')}</Text>
       </Summary>
       <OrderList>
         {order.orderItems.map(item => (

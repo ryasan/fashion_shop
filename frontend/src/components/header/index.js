@@ -77,8 +77,16 @@ const HeaderComponent = props => {
             {!me && (
               <Header.NavItem>
                 <Link to='/signin/'>
-                  <Icon name='key' />
+                  <Icon name='key-outlined' />
                   SIGNIN
+                </Link>
+              </Header.NavItem>
+            )}
+            {!me && (
+              <Header.NavItem>
+                <Link to='/signup/'>
+                  <Icon name='key-filled' />
+                  SIGNUP
                 </Link>
               </Header.NavItem>
             )}

@@ -36,7 +36,7 @@ const FeaturedProductsComponent = ({ products, pct }) => {
   }, [data])
 
   useEffect(() => {
-    if (pct >= 15) setIsVisible(true)
+    if (pct >= 20) setIsVisible(true)
   }, [pct])
 
   if (loading) return null
@@ -52,7 +52,12 @@ const FeaturedProductsComponent = ({ products, pct }) => {
             animate='show'
           >
             <Card.Header>
-              <Card.Title>{product.category.toUpperCase()}</Card.Title>
+              <Card.Title
+                isEvenElement={i % 2 === 0}
+                title={product.category.toUpperCase() + 'S'}
+              >
+                {product.category.toUpperCase()}
+              </Card.Title>
             </Card.Header>
             <Card.CallToAction onClick={() => handleClick(product.category)}>
               VIEW ALL

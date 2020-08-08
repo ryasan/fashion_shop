@@ -23,15 +23,15 @@ import { Button, Input } from '../../shared/elements'
 import { toast } from '../toast'
 import { HeaderCell, Cell } from '../table/table.styles'
 
-const iconStyles = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
-}
-
 const KeyIcon = () => (
-  <HeaderCell styles={iconStyles}>
-    <Icon name='key' />
+  <HeaderCell
+    styles={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <Icon name='key' style={{ padding: '1.5rem' }} />
   </HeaderCell>
 )
 

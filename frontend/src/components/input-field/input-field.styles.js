@@ -5,10 +5,6 @@ import { Input } from '../../shared/elements'
 
 const fields = {
   container: {
-    dark: css`
-      border-color: white;
-      border-width: 0.1rem;
-    `,
     red: css`
       border-color: var(--red);
     `
@@ -23,7 +19,7 @@ const fields = {
   },
   input: {
     dark: css`
-      border-color: var(--dark);
+      border: 0;
     `,
     red: css`
       border-color: white;
