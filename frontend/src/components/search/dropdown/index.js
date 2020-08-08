@@ -6,16 +6,16 @@ import Dropdown, { KeepScrolling } from './dropdown.styles'
 import { getFrontImage } from '../../../shared/utils'
 import { useToggleOverlayMutation } from '../../../graphql/overlay/hooks'
 
-const fadeAway = {
+const fadeAway = () => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 }
-}
+})
 
-const pulse = {
+const pulse = () => ({
   animate: { scale: [1, 1.2, 1] },
   transition: { loop: Infinity, ease: 'easeOut' }
-}
+})
 
 const DropdownComponent = ({
   dropdownIsOpen,
@@ -49,7 +49,7 @@ const DropdownComponent = ({
     <>
       <AnimatePresence>
         {dropdownIsOpen && (
-          <Dropdown {...fadeAway} onScroll={handleScroll}>
+          <Dropdown {...fadeAway()} onScroll={handleScroll}>
             <Dropdown.List>
               {products.map((p, i) => (
                 <Dropdown.Item
@@ -66,11 +66,11 @@ const DropdownComponent = ({
             </Dropdown.List>
             <AnimatePresence>
               {showKeepScrollingText && dropdownIsOpen && (
-                <KeepScrolling {...fadeAway}>
-                  <KeepScrolling.Text {...pulse}>
+                <KeepScrolling {...fadeAway()}>
+                  <KeepScrolling.Text {...pulse()}>
                     Scroll down
                   </KeepScrolling.Text>
-                  <KeepScrolling.Text {...pulse}>&darr;</KeepScrolling.Text>
+                  <KeepScrolling.Text {...pulse()}>&darr;</KeepScrolling.Text>
                 </KeepScrolling>
               )}
             </AnimatePresence>

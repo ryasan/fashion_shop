@@ -39,13 +39,11 @@ const duration = animationSpeed / 1000
 const slideVerticalAnimation = height => ({
   open: {
     height,
-    rotateX: 0,
     display: 'block',
     transition: { duration }
   },
   close: {
     height: 0,
-    rotateX: -15,
     transition: { duration },
     transitionEnd: {
       display: 'none'

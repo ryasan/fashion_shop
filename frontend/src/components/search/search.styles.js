@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
 import { device } from '../../shared/utils'
-import Icon from '../icons'
 import redTexture from '../../static/red-texture.png'
 import redMagnifier from '../../static/magnifier-texture.svg'
 

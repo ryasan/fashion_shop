@@ -28,7 +28,7 @@ export const BackgroundDiv = ({ className }) => (
   />
 )
 
-const imageVariants = {
+const imageVariants = () => ({
   hidden: { scale: 1 },
   show: {
     scale: 1.2,
@@ -36,17 +36,17 @@ const imageVariants = {
       duration: 3
     }
   }
-}
+})
 
-const parentVariants = {
+const parentVariants = () => ({
   hidden: { opacity: 1 },
   show: { opacity: 1, transition: { duration: 1, staggerChildren: 0.5 } }
-}
+})
 
-const childVariants = {
+const childVariants = () => ({
   hidden: { x: 150, opacity: 0 },
   show: { x: 0, opacity: 1, transition: { duration: 0.5 } }
-}
+})
 
 const StyledBackgroundDiv = styled(BackgroundDiv)`
   background-position: center center;
@@ -71,24 +71,22 @@ const BodyContentComponent = ({ pct }) => {
         <ProductPreview>
           <ProductPreview.ImageContainer
             initial='hidden'
-            variants={imageVariants}
+            variants={imageVariants()}
             animate={isVisible ? 'show' : 'hidden'}
           >
             <ProductPreview.Title>
-              <Span>
-                Ninja Hoodie
-              </Span>
+              <Span>Ninja Hoodie</Span>
             </ProductPreview.Title>
             <StyledBackgroundDiv />
           </ProductPreview.ImageContainer>
           <Details>
             <Details.List
-              variants={parentVariants}
+              variants={parentVariants()}
               initial='hidden'
               animate={isVisible ? 'show' : 'hidden'}
             >
               {['Back in stock', 'Classic', '.Ninja Co'].map((text, i) => (
-                <Details.ListItem key={i} variants={childVariants}>
+                <Details.ListItem key={i} variants={childVariants()}>
                   {text}
                 </Details.ListItem>
               ))}

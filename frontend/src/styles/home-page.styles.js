@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
 import { H1, H2, H4, P, Ul, Li, A, Input } from '../shared/elements'
-import redTexture from '../static/red-texture.png'
 
 const Home = styled.div`
   flex: 1;

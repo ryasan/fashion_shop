@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import Icon from '../../icons'
 import SocialMedia from './social-media-icon.styles'
 
-const iconParentVariants = {
+const iconParentVariants = () => ({
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -12,12 +12,11 @@ const iconParentVariants = {
       staggerChildren: 0.5
     }
   }
-}
-
-const iconChildrenVariants = {
+})
+const iconChildrenVariants = () => ({
   hidden: { opacity: 0 },
   show: { opacity: 1 }
-}
+})
 
 const socials = ['facebook-outlined', 'instagram-outlined', 'twitter-outlined']
 
@@ -39,12 +38,12 @@ const SocialMediaComponent = () => {
     <AnimatePresence>
       {yEnd && (
         <SocialMedia
-          variants={iconParentVariants}
+          variants={iconParentVariants()}
           initial='hidden'
           animate={yEnd ? 'show' : 'hidden'}
         >
           {socials.map((social, i) => (
-            <SocialMedia.MotionIcon key={i} variants={iconChildrenVariants}>
+            <SocialMedia.MotionIcon key={i} variants={iconChildrenVariants()}>
               <Icon name={social} />
             </SocialMedia.MotionIcon>
           ))}

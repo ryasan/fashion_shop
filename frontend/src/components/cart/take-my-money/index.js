@@ -61,7 +61,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
         {isReady && !loading && (
           <StripeCheckout
             currency='USD'
-            name='Fashion Shop'
+            name='E & S Streetwear'
             description={`Order of ${cartCount} items`}
             stripeKey={stripeKey}
             amount={cartTotal}
