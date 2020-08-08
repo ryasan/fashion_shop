@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { device } from '../../shared/utils'
 import Icon from '../icons'
+import redTexture from '../../static/red-texture.png'
+import redMagnifier from '../../static/magnifier-texture.svg'
 
 const Search = styled(motion.div)`
   align-items: center;
@@ -28,9 +30,9 @@ Search.InputField = styled.div`
 
   > input {
     background: var(--dark);
-    border: 0;
-    border-radius: 5rem;
-    box-shadow: 0 0 0 0.3rem white;
+    border-image: url(${redTexture}) 10% repeat;
+    border-style: solid;
+    border-width: 0.5rem;
     caret-color: white;
     color: white;
     font-size: var(--font-size-lg);
@@ -45,13 +47,12 @@ Search.InputField = styled.div`
   }
 `
 
-Search.Icon = styled(Icon)`
-  height: 3.5rem;
-  left: 1rem;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3.5rem;
+Search.Icon = styled.div`
+  background: url(${redMagnifier}) center center;
+  background-size: cover;
+  height: 3rem;
+  transform: translateX(1.5rem);
+  width: 3rem;
   z-index: 1000;
 `
 

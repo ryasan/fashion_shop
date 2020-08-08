@@ -62,6 +62,7 @@ const Icon = props => {
     case 'logo-royal':
       return <LogoRoyalIcon {...props} />
     case 'magnifier':
+    case 'magnifier-texture':
       return <MagnifierIcon {...props} />
     case 'money':
       return <MoneyIcon {...props} />

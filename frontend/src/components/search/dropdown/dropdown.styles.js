@@ -11,7 +11,7 @@ const Dropdown = styled(motion.div)`
 
 Dropdown.List = styled.ul`
   background: var(--dark);
-  border-left: 0.2rem solid white;
+  border-left: 0.2rem solid var(--red);
   border-radius: 0.3rem;
   max-height: 48.5rem;
   overflow-y: scroll;
@@ -20,7 +20,7 @@ Dropdown.List = styled.ul`
 `
 
 Dropdown.Item = styled.li`
-  border: 0.2rem solid white;
+  border: 0.2rem solid var(--red);
   border-left: ${props => (props.highlighted ? '1rem' : 0)} solid var(--darker);
   cursor: pointer;
   display: flex;
@@ -58,7 +58,7 @@ Dropdown.ItemImage = styled.img`
 
 const KeepScrolling = styled(motion.div)`
   background: var(--dark);
-  border: 0.2rem solid white;
+  border: 0.2rem solid var(--red);
   border-radius: 0 0 0.3rem 0.3rem;
   display: flex;
   flex-direction: column;
