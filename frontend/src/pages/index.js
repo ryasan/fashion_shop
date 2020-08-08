@@ -16,7 +16,6 @@ import FeaturedProducts from '../components/home/featured-products'
 import SocialMedia from '../components/home/social-media-icons'
 import BodyContent from '../components/home/body-content'
 import ScrollProgress from '../components/home/scroll-progress'
-import SVG from '../components/svgs'
 import { Span } from '../shared/elements'
 import { useProductsQuery } from '../graphql/product/hooks'
 
@@ -45,13 +44,11 @@ const HomePage = () => {
         <ScrollProgress pct={pct} />
         <Heading>
           <Heading.TextContainer>
-            <Heading.Title>E & S Streetware</Heading.Title>
-            <Heading.Subtitle>For the fellas</Heading.Subtitle>
-            <Heading.Subtext>
-              To keep you dressed comfortably 365 days a year.
-            </Heading.Subtext>
+            <Heading.Title>E <Span modifiers='red_color'>&</Span> S Streetware</Heading.Title>
+            <Heading.Subtitle>
+              Keeping people dressed comfortably 365 days a year.
+            </Heading.Subtitle>
           </Heading.TextContainer>
-          <SVG name='diagonal-block' />
         </Heading>
         <Body>
           <ErrorBoundary error={error}>
@@ -87,11 +84,5 @@ const HomePage = () => {
     </Layout>
   )
 }
-
-const thing = () => {
-
-}
-
-const a = new thing()
 
 export default HomePage

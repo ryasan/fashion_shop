@@ -36,7 +36,7 @@ const FeaturedProductsComponent = ({ products, pct }) => {
   }, [data])
 
   useEffect(() => {
-    if (pct >= 25) setIsVisible(true)
+    if (pct >= 15) setIsVisible(true)
   }, [pct])
 
   if (loading) return null

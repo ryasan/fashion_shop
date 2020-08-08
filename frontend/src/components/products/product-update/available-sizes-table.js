@@ -43,7 +43,7 @@ ProductSizes.propTypes = {
 
 const AvailableSizesTableComponent = props => (
   <Div>
-    <Label modifiers='font_size_m'>Available sizes:</Label>
+    <Label modifiers='font_size_lg'>Available sizes:</Label>
     <Table {...createSizesData(props)} />
   </Div>
 )

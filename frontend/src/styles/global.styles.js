@@ -12,11 +12,13 @@ const StyledRoot = css`
     --off-white: #ededed;
     --gray: #7b797e;
     --light-gray: #bbb;
-    --font-size-xs: 0.8rem;
-    --font-size-s: 1.2rem;
-    --font-size-m: 1.6rem;
-    --font-size-lg: 2rem;
+    --font-size-s: 0.8rem;
+    --font-size-m: 1.2rem;
+    --font-size-lg: 1.6rem;
+    --font-size-xlg: 2rem;
     --max-width: 120rem;
+    --box-shadow-xs
+    --big-box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.5);
     --box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.6);
   }
 
@@ -53,7 +55,7 @@ const StyledHtml = css`
   h2 { font-size: 4rem; }
   h3 { font-size: 3rem; }
   h4 { font-size: 2rem; }
-  p { font-size: var(--font-size-m); }
+  p { font-size: var(--font-size-lg); }
   a { text-decoration: none; }
   button { border: 0; }
   

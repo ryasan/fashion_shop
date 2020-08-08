@@ -8,9 +8,9 @@ const SelectComponent = ({ onChange, options, label, selected }) => {
 
   return (
     <SelectContainer>
-      <Label modifiers='font_size_m'>{label}:</Label>
+      <Label modifiers='font_size_lg'>{label}:</Label>
       <Select
-        modifiers='font_size_s'
+        modifiers='font_size_m'
         defaultValue={selected}
         onChange={handleOnChange}
       >

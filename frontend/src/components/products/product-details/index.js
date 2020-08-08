@@ -38,21 +38,21 @@ const ProductDetailsComponent = ({ productId }) => {
             <Content.Image src={image} alt={product.title} />
           </Content.ImageContainer>
           <Details>
-            <Details.Text modifiers='font_size_lg'>
+            <Details.Text modifiers='font_size_xlg'>
               {product.style}
             </Details.Text>
-            <Details.Text modifiers={['font_size_lg', 'red_color']}>
+            <Details.Text modifiers={['font_size_xlg', 'red_color']}>
               {formatPrice(product.price)}
             </Details.Text>
-            <Details.Text modifiers={['font_size_s', 'gray_color']}>
+            <Details.Text modifiers={['font_size_m', 'gray_color']}>
               sku: {product.sku}
             </Details.Text>
             {product.isFreeShipping && (
-              <Details.Text modifiers='font_size_s'>
+              <Details.Text modifiers='font_size_m'>
                 Free shipping available
               </Details.Text>
             )}
-            <Details.Text modifiers='font_size_m'>
+            <Details.Text modifiers='font_size_lg'>
               description: {product.description}
             </Details.Text>
             <Details.AddToCartBtn onClick={handleAddCartItem}>

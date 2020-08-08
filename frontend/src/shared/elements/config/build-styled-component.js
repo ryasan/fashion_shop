@@ -215,6 +215,9 @@ const config = {
     bold: () => css`
       font-weight: bold;
     `,
+    font_size_xlg: () => css`
+      font-size: var(--font-size-xlg);
+    `,
     font_size_lg: () => css`
       font-size: var(--font-size-lg);
     `,
@@ -223,9 +226,6 @@ const config = {
     `,
     font_size_s: () => css`
       font-size: var(--font-size-s);
-    `,
-    font_size_xs: () => css`
-      font-size: var(--font-size-xs);
     `,
     text_align_center: () => css`
       text-align: center;
@@ -236,6 +236,7 @@ const config = {
     text_align_right: () => css`
       text-align: right;
     `,
+
     uppercase: () => css`
       text-transform: uppercase;
     `

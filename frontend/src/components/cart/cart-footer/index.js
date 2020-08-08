@@ -7,8 +7,8 @@ import { formatPrice } from '../../../shared/utils'
 const CartFooterComponent = ({ cartTotal, cartItems, cartCount }) => (
   <CartFooter>
     <Footer>
-      <Footer.Text modifiers={['font_size_m']}>SUBTOTAL</Footer.Text>
-      <Footer.Text modifiers={['red_color', 'font_size_lg']}>
+      <Footer.Text modifiers={['font_size_lg']}>SUBTOTAL</Footer.Text>
+      <Footer.Text modifiers={['red_color', 'font_size_xlg']}>
         {formatPrice(cartTotal)}
       </Footer.Text>
     </Footer>

@@ -33,7 +33,7 @@ Search.InputField = styled.div`
     box-shadow: 0 0 0 0.3rem white;
     caret-color: white;
     color: white;
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-lg);
     outline: 0;
     padding: 1rem 1rem 1rem 5rem;
     position: absolute;

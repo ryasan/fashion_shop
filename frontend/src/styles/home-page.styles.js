@@ -21,16 +21,25 @@ const balloonGrow = (startingSize, targetSize) => {
 `
 }
 
-const Heading = styled.div`
+export const Heading = styled.div`
   align-items: center;
-  background: var(--dark);
+  background: linear-gradient(225deg, var(--red) 50%, transparent 50%),
+    var(--dark);
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 7.5rem 7.5rem;
+  border-radius: 0.4rem;
+  border-top: 0.5rem var(--red) solid;
+  box-shadow: var(--big-box-shadow);
   display: flex;
   height: 90vh;
   justify-content: center;
   position: relative;
+  width: 100%;
+  z-index: 100;
 
   &::before {
-    animation: ${balloonGrow(25, 35)} 5s linear forwards;
+    animation: ${balloonGrow(35, 45)} 5s linear forwards;
     background: white;
     border-radius: 50%;
     bottom: 10rem;
@@ -43,8 +52,8 @@ const Heading = styled.div`
   }
 
   &::after {
-    animation: ${balloonGrow(15, 20)} 5s linear forwards;
-    background: var(--red);
+    animation: ${balloonGrow(17.5, 22.5)} 5s linear forwards;
+    background: white;
     border-radius: 50%;
     content: '';
     height: 10em;
@@ -54,16 +63,10 @@ const Heading = styled.div`
     top: 5rem;
     width: 10rem;
   }
-
-  > svg {
-    bottom: 0;
-    fill: var(--off-white);
-    position: absolute;
-    width: 100vw;
-  }
 `
 
 Heading.TextContainer = styled.div`
+  color: white;
   text-align: center;
   transform: translateY(-13rem);
 `
@@ -81,14 +84,14 @@ Heading.Subtitle = styled(H4)`
 
 Heading.Subtext = styled(P)``
 
-const Body = styled.div`
-  background: var(--off-white);
+export const Body = styled.div`
+  position: relative;
 `
 
-const Footer = styled.div`
+export const Footer = styled.div`
   align-items: flex-start;
-  background: var(--red);
-  box-shadow: var(--box-shadow);
+  background: var(--dark);
+  box-shadow: var(--big-box-shadow);
   display: flex;
   height: 35rem;
   justify-content: flex-start;
@@ -96,7 +99,7 @@ const Footer = styled.div`
   position: relative;
 `
 
-const Links = styled.div`
+export const Links = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -105,6 +108,7 @@ const Links = styled.div`
 `
 
 Links.Title = styled(H2)`
+  color: var(--red);
   font-style: italic;
   font-weight: 400;
   letter-spacing: 1rem;
@@ -126,7 +130,7 @@ Links.Link = styled(A)`
   cursor: pointer;
 `
 
-const Subscribe = styled.div`
+export const Subscribe = styled.div`
   align-content: space-between;
   display: grid;
   flex: 1;
@@ -138,6 +142,7 @@ Subscribe.Title = styled(H2)`
 
   span {
     text-decoration: underline;
+    text-decoration-color: var(--red);
   }
 `
 
@@ -160,5 +165,4 @@ Subscribe.TextInput = styled(Input)`
   }
 `
 
-export { Heading, Body, Links, Subscribe, Footer }
 export default Home

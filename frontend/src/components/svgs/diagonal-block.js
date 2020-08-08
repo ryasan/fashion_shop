@@ -7,7 +7,7 @@ const DiagonalBlockSvg = props => (
     viewBox='0 0 100 10'
     preserveAspectRatio='none'
   >
-    <polygon points='100 0 100 10 0 10' />
+    <polygon points='100 0 100 10 0 0' />
   </svg>
 )
 

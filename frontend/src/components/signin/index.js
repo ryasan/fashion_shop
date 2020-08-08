@@ -208,13 +208,13 @@ const SigninComponent = ({
     (isRequestReset && 'Enter the account email address.') ||
     (isPasswordReset && 'Enter your new password.')
 
-  const headerTextColors = ['white_color', 'font_size_lg', 'text_align_center']
+  const headerTextColors = ['white_color', 'font_size_xlg', 'text_align_center']
 
   const authValidationColors = [
     formIsValid ? 'green_color' : 'red_color',
     'width_100_pct',
     'text_align_center',
-    'font_size_s'
+    'font_size_m'
   ]
 
   return (

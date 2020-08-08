@@ -40,7 +40,7 @@ const ToggleButton = styled.div`
   display: flex;
   fill: white;
   flex-direction: column;
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-m);
   height: 10rem;
   justify-content: center;
   left: -9rem;
@@ -121,7 +121,7 @@ const CartList = styled.ul`
 
 const EmptyDisplay = styled.div`
   display: block;
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-lg);
   text-align: center;
   width: 100%;
 `

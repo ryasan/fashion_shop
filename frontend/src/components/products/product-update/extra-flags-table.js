@@ -40,7 +40,7 @@ ExtraFlags.propTypes = {
 
 const ExtraFlagsTableComponent = props => (
   <Div>
-    <Label modifiers='font_size_m'>Extra flags:</Label>
+    <Label modifiers='font_size_lg'>Extra flags:</Label>
     <Table {...createSizesData(props)} />
   </Div>
 )

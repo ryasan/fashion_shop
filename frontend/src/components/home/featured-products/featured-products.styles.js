@@ -6,21 +6,25 @@ import Svg from '../../svgs'
 const FeaturedProducts = styled.div`
   flex: 1;
   height: 70vh;
-  position: relative;
+  position: absolute;
+  top: -20vh;
   width: 100%;
+  z-index: 100;
 `
 
 export const InnerContainer = styled.div`
   background: var(--off-white);
   border-radius: 3px;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.3);
   display: flex;
   height: 100%;
   justify-content: space-around;
   left: 50%;
   max-width: var(--max-width);
   position: absolute;
+  position: relative;
   top: -19rem;
+  top: 0;
   transform: translateX(-50%);
   width: 100%;
 `

@@ -6,7 +6,7 @@ import Select from '../../select'
 import { Div } from '../../../shared/elements'
 
 const Count = ({ count }) => (
-  <Div modifiers={['text_align_center', 'white_color', 'font_size_m']}>
+  <Div modifiers={['text_align_center', 'white_color', 'font_size_lg']}>
     {`Found ${count} product${count > 1 ? 's' : ''}`}
   </Div>
 )

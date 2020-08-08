@@ -5,7 +5,7 @@ const btnBase = css`
   border-style: solid;
   border-width: 0.2rem;
   cursor: pointer;
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-lg);
   padding: 1rem;
   transition: all 0.2s;
 

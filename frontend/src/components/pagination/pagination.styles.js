@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Icon from '../icons'
 
 const Pagination = styled.div`
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xlg);
   margin: 5rem 0;
   width: 100%;
 `

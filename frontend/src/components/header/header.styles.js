@@ -6,6 +6,7 @@ import { device } from '../../shared/utils'
 const Header = styled.header`
   align-items: center;
   background: var(--dark);
+  box-shadow: var(--box-shadow);
   display: flex;
   height: 10rem;
   justify-content: space-between;
@@ -98,7 +99,7 @@ Header.NavItem = styled.li`
     color: inherit;
     display: flex;
     flex-direction: column;
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-m);
     height: 10rem;
     justify-content: center;
     text-decoration: none;

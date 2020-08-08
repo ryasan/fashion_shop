@@ -56,7 +56,7 @@ Dropdown.Inner = styled(motion.div)`
 const Menu = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-lg);
   height: 100%;
   position: relative;
   width: 25rem;

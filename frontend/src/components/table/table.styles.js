@@ -16,7 +16,7 @@ const Table = styled(TableEl)`
     border-bottom: 0;
     border-left: 0;
     flex: 1;
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-m);
     height: 4rem;
     line-height: 4rem;
     overflow: hidden;

@@ -9,7 +9,7 @@ const Toast = styled.div`
     background: var(--dark);
     color: white;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-lg);
     overflow: initial;
     padding: 0 3rem;
     position: relative;

@@ -33,7 +33,7 @@ Tabs.Links = styled.div`
     border-left: 0;
     color: white;
     display: inline-block;
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-lg);
     padding: 1rem;
     text-align: center;
     text-decoration: none;
@@ -58,7 +58,7 @@ Tabs.LinkItem = styled(Link)`
   border-left: 0;
   color: white;
   display: inline-block;
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-lg);
   padding: 1rem;
   text-align: center;
   text-decoration: none;

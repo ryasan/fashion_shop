@@ -35,7 +35,7 @@ const Field = styled.div`
   border-radius: 0.2rem;
   border-style: solid;
   border-width: 0.2rem;
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-lg);
   position: relative;
   transition: all 0.2s;
   ${({ theme }) => fields.container[theme] || ''}

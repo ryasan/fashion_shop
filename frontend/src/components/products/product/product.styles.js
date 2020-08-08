@@ -20,7 +20,7 @@ const Product = styled.div`
 export const Promo = styled.div`
   background: var(--red);
   color: var(--off-white);
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-m);
   padding: 0.5rem;
   position: absolute;
   right: -2rem;

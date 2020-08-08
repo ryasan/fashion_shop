@@ -11,7 +11,7 @@ const PleaseSigninComponent = ({ children }) => {
   if (!me) {
     return (
       <PleaseSignin>
-        <PleaseSignin.Text modifiers={['white_color', 'font_size_m']}>
+        <PleaseSignin.Text modifiers={['white_color', 'font_size_lg']}>
           Please sign in before continuing
         </PleaseSignin.Text>
         <PleaseSignin.Button onClick={() => navigate('/signin/')}>

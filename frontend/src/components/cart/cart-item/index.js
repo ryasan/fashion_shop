@@ -15,10 +15,10 @@ import {
 } from '../../../graphql/cart/hooks'
 
 const mods = {
-  title: 'font-size-m',
-  sizes: ['gray_color', 'font_size_s'],
+  title: 'font-size-lg',
+  sizes: ['gray_color', 'font_size_m'],
   qty: 'White_color',
-  price: ['font_size_m', 'red_color']
+  price: ['font_size_lg', 'red_color']
 }
 
 const CartItemComponent = ({ cartItem }) => {

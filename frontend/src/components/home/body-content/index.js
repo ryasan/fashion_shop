@@ -67,31 +67,35 @@ const BodyContentComponent = ({ pct }) => {
     <Body>
       <Body.HugeText>STYLE</Body.HugeText>
       <Body.HugeText>Nimatic</Body.HugeText>
-      <ProductPreview>
-        <ProductPreview.ImageContainer
-          initial='hidden'
-          variants={imageVariants}
-          animate={isVisible ? 'show' : 'hidden'}
-        >
-          <ProductPreview.Title>
-            <Span modifiers='red_color'>Red</Span> Ninja
-          </ProductPreview.Title>
-          <StyledBackgroundDiv />
-        </ProductPreview.ImageContainer>
-        <Details>
-          <Details.List
-            variants={parentVariants}
+      <Body.Content>
+        <ProductPreview>
+          <ProductPreview.ImageContainer
             initial='hidden'
+            variants={imageVariants}
             animate={isVisible ? 'show' : 'hidden'}
           >
-            {['Back in stock', 'Classic', '.Ninja Co'].map((text, i) => (
-              <Details.ListItem key={i} variants={childVariants}>
-                {text}
-              </Details.ListItem>
-            ))}
-          </Details.List>
-        </Details>
-      </ProductPreview>
+            <ProductPreview.Title>
+              <Span modifiers={['white_color', 'text_shadow_3']}>
+                Ninja Hoodie
+              </Span>
+            </ProductPreview.Title>
+            <StyledBackgroundDiv />
+          </ProductPreview.ImageContainer>
+          <Details>
+            <Details.List
+              variants={parentVariants}
+              initial='hidden'
+              animate={isVisible ? 'show' : 'hidden'}
+            >
+              {['Back in stock', 'Classic', '.Ninja Co'].map((text, i) => (
+                <Details.ListItem key={i} variants={childVariants}>
+                  {text}
+                </Details.ListItem>
+              ))}
+            </Details.List>
+          </Details>
+        </ProductPreview>
+      </Body.Content>
     </Body>
   )
 }

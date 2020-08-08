@@ -18,7 +18,7 @@ export const CheckoutBtn = styled(Button)`
   background: var(--darker);
   color: white;
   display: block;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xlg);
   padding: 1.5rem 0;
   width: 100%;
 
