@@ -8,7 +8,7 @@ const SocialMedia = styled(motion.div)`
 `
 
 SocialMedia.MotionIcon = styled(motion.div)`
-  color: white;
+  color: var(--red);
   display: inline-block;
 
   svg {

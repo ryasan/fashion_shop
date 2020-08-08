@@ -143,6 +143,7 @@ Subscribe.Title = styled(H2)`
   grid-column: 1/3;
 
   span {
+    cursor: pointer;
     text-decoration: underline;
     text-decoration-color: var(--red);
   }

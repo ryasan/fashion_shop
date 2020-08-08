@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CartFooter, { Footer, Text } from './cart-footer.styles'
+import CartFooter, { Footer } from './cart-footer.styles'
 import TakeMyMoney from '../take-my-money'
 import { formatPrice } from '../../../shared/utils'
 
