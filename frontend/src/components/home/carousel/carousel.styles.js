@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { Button, Ul, Li, Span, Image } from '../../../shared/elements'
 
 export const cardWidth = 40
+const cardHeight = 50
 
 const Carousel = styled.div`
   align-items: center;
@@ -13,11 +14,6 @@ const Carousel = styled.div`
   justify-content: center;
   padding: 5rem 0;
   position: relative;
-  outline: 1px solid blue;
-
-  * {
-    outline: 1px solid red;
-  }
 `
 
 Carousel.SliderContainer = styled.div`
@@ -36,10 +32,15 @@ Carousel.Track = styled.div`
 `
 
 Carousel.Button = styled(Button)`
+  align-items: center;
   background: var(--dark);
   border: 0.2rem solid white;
   border-radius: 50%;
+  color: white;
+  display: flex;
+  font-size: 3rem;
   height: 5rem;
+  justify-content: center;
   left: 1rem;
   position: absolute;
   top: 25rem;
@@ -50,6 +51,10 @@ Carousel.Button = styled(Button)`
     left: initial;
     right: 1rem;
   }
+
+  &:hover {
+    background: var(--darker);
+  }
 `
 
 Carousel.SliderList = styled(Ul)`
@@ -59,13 +64,13 @@ Carousel.SliderList = styled(Ul)`
   max-width: var(--max-width);
   padding: 5rem 0;
   position: relative;
-  transform: ${props => `translateX(calc(${props.translateX}rem))`};
+  transform: ${props => `translateX(${props.translateX}rem)`};
   transition: transform 0.5s;
   width: 100%;
 `
 
 export const Scene = styled(Li)`
-  height: 50rem;
+  height: ${cardHeight}rem;
   perspective: 600px;
   width: ${cardWidth}rem;
 `
@@ -80,25 +85,25 @@ export const Card = styled.div`
   width: 100%;
 
   ${props =>
-    props.isOnDeckOnTheLeft &&
+    props.isLeftOuterCard &&
     css`
       transform: rotateY(30deg) scale(0.78);
     `}
 
   ${props =>
-    props.isOnDeckOnTheRight &&
+    props.isRightOuterCard &&
     css`
       transform: rotateY(-30deg) scale(0.78);
     `}
 
   ${props =>
-    props.isPresentedOnLeft &&
+    props.isLeftInnerCard &&
     css`
       transform: rotateY(30deg) scale(0.8);
     `}
 
   ${props =>
-    props.isPresentedOnRight &&
+    props.isRightInnerCard &&
     css`
       transform: rotateY(-30deg) scale(0.8);
     `}

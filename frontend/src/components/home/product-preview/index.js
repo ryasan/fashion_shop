@@ -63,39 +63,7 @@ const ProductPreviewComponent = ({ pct }) => {
     if (pct >= 50) setIsVisible(true)
   }, [pct])
 
-  return (
-    <ProductPreview>
-      <ProductPreview.HugeText>STYLE</ProductPreview.HugeText>
-      <ProductPreview.HugeText>Nimatic</ProductPreview.HugeText>
-      <ProductPreview.Content>
-        <ProductPreview.Body>
-          <ProductPreview.ImageContainer
-            initial='hidden'
-            variants={imageVariants()}
-            animate={isVisible ? 'show' : 'hidden'}
-          >
-            <ProductPreview.Title>
-              <Span>Ninja Hoodie</Span>
-            </ProductPreview.Title>
-            <StyledBackgroundDiv />
-          </ProductPreview.ImageContainer>
-          <Details>
-            <Details.List
-              variants={parentVariants()}
-              initial='hidden'
-              animate={isVisible ? 'show' : 'hidden'}
-            >
-              {['Back in stock', 'Classic', '.Ninja Co'].map((text, i) => (
-                <Details.ListItem key={i} variants={childVariants()}>
-                  {text}
-                </Details.ListItem>
-              ))}
-            </Details.List>
-          </Details>
-        </ProductPreview.Body>
-      </ProductPreview.Content>
-    </ProductPreview>
-  )
+  return <ProductPreview></ProductPreview>
 }
 
 export default ProductPreviewComponent

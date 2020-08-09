@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 import Carousel, { cardWidth, Scene, Card } from './carousel.styles'
+import Loader from '../../loader'
+import ErrorBoundary from '../../error-boundary'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 import { getFrontImage, formatPrice } from '../../../shared/utils'
-import Loader from '../../loader'
-import ErrorBoundary from '../../error-boundary/index'
 
 const Slide = props => {
   const { product, centerPos, idx } = props
@@ -16,10 +16,10 @@ const Slide = props => {
       <Link to={`/shop/${product.id}/`}>
         <Card
           isCenter={idx === centerPos}
-          isPresentedOnLeft={idx === centerPos - 1}
-          isPresentedOnRight={idx === centerPos + 1}
-          isOnDeckOnTheLeft={idx < centerPos}
-          isOnDeckOnTheRight={idx > centerPos}
+          isLeftInnerCard={idx === centerPos - 1}
+          isRightInnerCard={idx === centerPos + 1}
+          isLeftOuterCard={idx < centerPos - 1}
+          isRightOuterCard={idx > centerPos + 1}
         >
           <Card.Face>
             <Card.Header>
@@ -36,8 +36,7 @@ const Slide = props => {
   )
 }
 
-const CarouselComponent = ({ products: productItems }) => {
-  const [products, setProducts] = useState(productItems)
+const CarouselComponent = ({ products }) => {
   const len = products.length
   const half = Math.floor(len / 2)
   const [{ translateX, centerPos }, setSlideData] = useState({
@@ -59,32 +58,24 @@ const CarouselComponent = ({ products: productItems }) => {
     }))
   }
 
-  const renderSliderList = (offset) => {
-    return (
-      <Carousel.SliderList translateX={translateX}>
-        {products.map((product, i) => (
-          <Slide
-            key={i}
-            idx={i}
-            translateX={translateX}
-            product={product}
-            centerPos={centerPos}
-          />
-        ))}
-      </Carousel.SliderList>
-    )
-  }
-
-  useEffect(() => {}, [centerPos])
-
   return (
     <Carousel>
       <h1>Browse our latest stuff.</h1>
       <Carousel.SliderContainer>
         <Carousel.Track>
-          <Carousel.Button onClick={handlePrevClick} />
-          {renderSliderList()}
-          <Carousel.Button onClick={handleNextClick} />
+          <Carousel.Button onClick={handlePrevClick}>&#8592;</Carousel.Button>
+          <Carousel.SliderList translateX={translateX}>
+            {products.map((product, i) => (
+              <Slide
+                key={i}
+                idx={i}
+                translateX={translateX}
+                product={product}
+                centerPos={centerPos}
+              />
+            ))}
+          </Carousel.SliderList>
+          <Carousel.Button onClick={handleNextClick}>&#8594;</Carousel.Button>
         </Carousel.Track>
       </Carousel.SliderContainer>
     </Carousel>

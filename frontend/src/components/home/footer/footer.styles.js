@@ -59,7 +59,7 @@ Subscribe.Title = styled(H2)`
   span {
     cursor: pointer;
     text-decoration: underline;
-    text-decoration-color: white;
+    text-decoration-color: var(--dark);
   }
 `
 
