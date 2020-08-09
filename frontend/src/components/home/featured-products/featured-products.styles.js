@@ -6,11 +6,8 @@ import redTexture from '../../../static/red-texture.png'
 
 const FeaturedProducts = styled.div`
   flex: 1;
-  height: 70vh;
-  position: absolute;
-  top: -5vh;
+  height: 120vh;
   width: 100%;
-  z-index: 100;
 `
 
 export const InnerContainer = styled.div`
@@ -18,22 +15,14 @@ export const InnerContainer = styled.div`
   border-radius: 3px;
   box-shadow: var(--box-shadow-s);
   display: flex;
-  height: 100%;
   justify-content: space-around;
-  left: 50%;
   max-width: var(--max-width);
-  position: absolute;
-  position: relative;
-  top: -19rem;
-  top: 0;
-  transform: translateX(-50%);
   width: 100%;
 `
 
 export const Card = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
   width: 100%;
 `

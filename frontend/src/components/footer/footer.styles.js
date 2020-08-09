@@ -6,6 +6,7 @@ const Footer = styled.footer`
   display: flex;
   justify-content: flex-end;
   padding: 2rem 3rem;
+  position: relative;
 `
 
 export default Footer

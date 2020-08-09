@@ -3,7 +3,7 @@ import BackgroundImage from 'gatsby-background-image'
 import styled from 'styled-components'
 import { graphql, StaticQuery } from 'gatsby'
 
-import Body, { ProductPreview, Details } from './body-content.styles'
+import ProductPreview, { Details } from './product-preview.styles'
 import { Span } from '../../../shared/elements'
 
 export const BackgroundDiv = ({ className }) => (
@@ -56,7 +56,7 @@ const StyledBackgroundDiv = styled(BackgroundDiv)`
   width: 100%;
 `
 
-const BodyContentComponent = ({ pct }) => {
+const ProductPreviewComponent = ({ pct }) => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -64,11 +64,11 @@ const BodyContentComponent = ({ pct }) => {
   }, [pct])
 
   return (
-    <Body>
-      <Body.HugeText>STYLE</Body.HugeText>
-      <Body.HugeText>Nimatic</Body.HugeText>
-      <Body.Content>
-        <ProductPreview>
+    <ProductPreview>
+      <ProductPreview.HugeText>STYLE</ProductPreview.HugeText>
+      <ProductPreview.HugeText>Nimatic</ProductPreview.HugeText>
+      <ProductPreview.Content>
+        <ProductPreview.Body>
           <ProductPreview.ImageContainer
             initial='hidden'
             variants={imageVariants()}
@@ -92,10 +92,10 @@ const BodyContentComponent = ({ pct }) => {
               ))}
             </Details.List>
           </Details>
-        </ProductPreview>
-      </Body.Content>
-    </Body>
+        </ProductPreview.Body>
+      </ProductPreview.Content>
+    </ProductPreview>
   )
 }
 
-export default BodyContentComponent
+export default ProductPreviewComponent

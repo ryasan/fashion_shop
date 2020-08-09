@@ -63,7 +63,7 @@ const StyledHtml = css`
   h3 { font-size: 3rem; }
   h4 { font-size: 2rem; }
   p { font-size: var(--font-size-lg); }
-  a { text-decoration: none; }
+  a { text-decoration: none; color: white; }
   button { border: 0; }
   
   input,

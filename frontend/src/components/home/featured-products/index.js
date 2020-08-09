@@ -11,13 +11,13 @@ import { getFrontImage, getBackImg } from '../../../shared/utils'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 
 const containerVariants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 1 } }
+  initial: { opacity: 0 },
+  final: { opacity: 1, transition: { duration: 1 } }
 }
 
 const imageVariants = {
-  hidden: { width: 0 },
-  show: {
+  initial: { width: 0 },
+  final: {
     transition: { duration: 1, type: 'spring' },
     width: 300
   }
@@ -41,15 +41,17 @@ const FeaturedProductsComponent = ({ products, pct }) => {
 
   if (loading) return null
 
+  const [firstFeature, secondFeature] = products
+
   return (
     <FeaturedProducts>
       <InnerContainer>
-        {products.map((product, i) => (
+        {[firstFeature, secondFeature].map((product, i) => (
           <Card
             key={i}
             variants={containerVariants}
-            initial='hidden'
-            animate='show'
+            initial='initial'
+            animate='final'
           >
             <Card.Header>
               <Card.Title
@@ -64,14 +66,14 @@ const FeaturedProductsComponent = ({ products, pct }) => {
             </Card.CallToAction>
             <Card.ImageContainer index={i}>
               <Card.Image
-                initial='hidden'
-                animate={isVisible ? 'show' : 'hidden'}
+                initial='initial'
+                animate={isVisible ? 'final' : 'initial'}
                 variants={imageVariants}
                 src={getFrontImage(product.sku)}
               />
               <Card.Image
-                initial='hidden'
-                animate={isVisible ? 'show' : 'hidden'}
+                initial='initial'
+                animate={isVisible ? 'final' : 'initial'}
                 variants={imageVariants}
                 src={getBackImg(product.sku)}
               />

@@ -3,44 +3,33 @@ import { motion } from 'framer-motion'
 
 import { H1, H2 } from '../../../shared/elements'
 
-const Body = styled.div`
+const ProductPreview = styled.div`
   background: var(--off-white);
-  bottom: 0;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 200vh;
   justify-content: flex-end;
-  position: relative;
   width: 100%;
 `
 
-Body.Content = styled.div`
+ProductPreview.HugeText = styled(H1)`
+  color: white;
+  font-size: 15rem;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+`
+
+ProductPreview.Content = styled.div`
   height: 100vh;
   position: relative;
 `
 
-Body.HugeText = styled(H1)`
-  color: white;
-  font-size: 15rem;
-  font-weight: 900;
-  left: -19rem;
-  margin: 10rem;
-  position: absolute;
-  text-transform: uppercase;
-  top: 45vh;
-
-  &:not(:first-child) {
-    top: 60vh;
-  }
-`
-
-const ProductPreview = styled(motion.div)`
+ProductPreview.Body = styled(motion.div)`
   align-items: flex-start;
   display: flex;
   height: 55rem;
-  left: 50%;
   position: absolute;
-  top: -20vh;
   width: 60rem;
 `
 
@@ -50,7 +39,6 @@ ProductPreview.Title = styled(H2)`
   letter-spacing: 1rem;
   margin-top: 0;
   padding: 0;
-  position: absolute;
   white-space: nowrap;
   z-index: 99;
 
@@ -96,5 +84,5 @@ Details.ListItem = styled(motion.li)`
   list-style-type: initial;
 `
 
-export { ProductPreview, Details }
-export default Body
+export { Details }
+export default ProductPreview
