@@ -5,7 +5,7 @@ import { Button, Ul, Li, Span, Image } from '../../../shared/elements'
 export const cardWidth = 40
 const cardHeight = 50
 
-const Carousel = styled.div`
+const Slider = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
@@ -16,13 +16,13 @@ const Carousel = styled.div`
   position: relative;
 `
 
-Carousel.SliderContainer = styled.div`
+Slider.Container = styled.div`
   align-items: center;
   display: flex;
   position: relative;
 `
 
-Carousel.Track = styled.div`
+Slider.Track = styled.div`
   display: flex;
   justify-content: center;
   left: 0;
@@ -31,7 +31,7 @@ Carousel.Track = styled.div`
   width: var(--max-width);
 `
 
-Carousel.Button = styled(Button)`
+Slider.Button = styled(Button)`
   align-items: center;
   background: var(--dark);
   border: 0.2rem solid white;
@@ -57,7 +57,7 @@ Carousel.Button = styled(Button)`
   }
 `
 
-Carousel.SliderList = styled(Ul)`
+Slider.List = styled(Ul)`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-content: center;
@@ -69,7 +69,7 @@ Carousel.SliderList = styled(Ul)`
   width: 100%;
 `
 
-export const Scene = styled(Li)`
+Slider.ListItem = styled(Li)`
   height: ${cardHeight}rem;
   perspective: 600px;
   width: ${cardWidth}rem;
@@ -107,6 +107,14 @@ export const Card = styled.div`
     css`
       transform: rotateY(-30deg) scale(0.8);
     `}
+
+    ${props =>
+      props.isCenter &&
+      css`
+        &:hover img {
+          transform: scale(1.2);
+        }
+      `}
 `
 
 Card.Face = styled.div`
@@ -122,11 +130,13 @@ Card.Face = styled.div`
 
 Card.Header = styled.div`
   flex: 9;
+  overflow: hidden;
 `
 
 Card.HeaderImage = styled(Image)`
   height: 100%;
   object-fit: cover;
+  transition: 0.3s ease;
   width: 100%;
 `
 
@@ -148,4 +158,4 @@ Card.Text = styled(Span)`
   }
 `
 
-export default Carousel
+export default Slider

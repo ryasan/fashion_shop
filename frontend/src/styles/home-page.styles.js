@@ -32,11 +32,11 @@ export const Heading = styled.div`
   border-top: 0.5rem var(--red) solid;
   box-shadow: var(--box-shadow-lg);
   display: flex;
-  height: 90vh;
+  height: 100vh;
   justify-content: center;
   position: relative;
   width: 100%;
-  z-index: 100;
+  z-index: 1;
 
   &::before {
     animation: ${balloonGrow(35, 45)} 5s linear forwards;

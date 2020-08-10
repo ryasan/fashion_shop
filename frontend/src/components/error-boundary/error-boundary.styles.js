@@ -5,6 +5,8 @@ import { Span, P } from '../../shared/elements'
 const ErrorBoundary = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
+  position: relative;
 `
 
 export const Text = styled(P)`
@@ -15,6 +17,6 @@ export const Text = styled(P)`
   padding: 1rem 2rem;
 `
 
-Text.Addon = styled(Span)
+Text.Addon = Span
 
 export default ErrorBoundary

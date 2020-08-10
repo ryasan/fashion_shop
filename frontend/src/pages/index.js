@@ -9,7 +9,7 @@ import ErrorBoundary from '../components/error-boundary'
 import FeaturedProducts from '../components/home/featured-products'
 import ProductPreview from '../components/home/product-preview'
 import ScrollProgress from '../components/home/scroll-progress'
-import Carousel from '../components/home/carousel'
+import Slider from '../components/home/slider'
 import Footer from '../components/home/footer'
 import { Span } from '../shared/elements'
 import { useProductsQuery } from '../graphql/product/hooks'
@@ -54,7 +54,7 @@ const HomePage = () => {
               <FeaturedProducts pct={pct} products={data.products} />
             )}
           </ErrorBoundary>
-          <Carousel />
+          <Slider />
           <ProductPreview pct={pct} />
         </Body>
         <Footer />

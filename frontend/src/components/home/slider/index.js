@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
-import Carousel, { cardWidth, Scene, Card } from './carousel.styles'
+import Slider, { cardWidth, Card } from './slider.styles'
 import Loader from '../../loader'
 import ErrorBoundary from '../../error-boundary'
 import { useProductsQuery } from '../../../graphql/product/hooks'
@@ -12,7 +12,7 @@ const Slide = props => {
   const { product, centerPos, idx } = props
 
   return (
-    <Scene {...props}>
+    <Slider.ListItem {...props}>
       <Link to={`/shop/${product.id}/`}>
         <Card
           isCenter={idx === centerPos}
@@ -32,11 +32,11 @@ const Slide = props => {
           </Card.Face>
         </Card>
       </Link>
-    </Scene>
+    </Slider.ListItem>
   )
 }
 
-const CarouselComponent = ({ products }) => {
+const SliderComponent = ({ products }) => {
   const len = products.length
   const half = Math.floor(len / 2)
   const [{ translateX, centerPos }, setSlideData] = useState({
@@ -59,12 +59,12 @@ const CarouselComponent = ({ products }) => {
   }
 
   return (
-    <Carousel>
-      <h1>Browse our latest stuff.</h1>
-      <Carousel.SliderContainer>
-        <Carousel.Track>
-          <Carousel.Button onClick={handlePrevClick}>&#8592;</Carousel.Button>
-          <Carousel.SliderList translateX={translateX}>
+    <Slider>
+      <h1>Browse our latest threads.</h1>
+      <Slider.Container>
+        <Slider.Track>
+          <Slider.Button onClick={handlePrevClick}>&#8592;</Slider.Button>
+          <Slider.List translateX={translateX}>
             {products.map((product, i) => (
               <Slide
                 key={i}
@@ -74,28 +74,28 @@ const CarouselComponent = ({ products }) => {
                 centerPos={centerPos}
               />
             ))}
-          </Carousel.SliderList>
-          <Carousel.Button onClick={handleNextClick}>&#8594;</Carousel.Button>
-        </Carousel.Track>
-      </Carousel.SliderContainer>
-    </Carousel>
+          </Slider.List>
+          <Slider.Button onClick={handleNextClick}>&#8594;</Slider.Button>
+        </Slider.Track>
+      </Slider.Container>
+    </Slider>
   )
 }
 
-CarouselComponent.propTypes = {
+SliderComponent.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object)
 }
 
-const withCarouselData = Component => props => {
+const withSlideData = Component => props => {
   const { data, loading, error } = useProductsQuery({
     variables: { where: { isFeatured: true } }
   })
 
   if (loading) {
     return (
-      <Carousel>
+      <Slider>
         <Loader color='white' />
-      </Carousel>
+      </Slider>
     )
   }
 
@@ -108,4 +108,4 @@ const withCarouselData = Component => props => {
   )
 }
 
-export default withCarouselData(CarouselComponent)
+export default withSlideData(SliderComponent)

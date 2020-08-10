@@ -5,8 +5,13 @@ import Svg from '../../svgs'
 import redTexture from '../../../static/red-texture.png'
 
 const FeaturedProducts = styled.div`
-  flex: 1;
-  height: 120vh;
+  align-items: center;
+  background: var(--red);
+  display: flex;
+  height: 70vh;
+  justify-content: center;
+  padding: 2rem 0;
+  position: relative;
   width: 100%;
 `
 
@@ -15,9 +20,13 @@ export const InnerContainer = styled.div`
   border-radius: 3px;
   box-shadow: var(--box-shadow-s);
   display: flex;
+  height: 100%;
   justify-content: space-around;
   max-width: var(--max-width);
+  position: absolute;
+  top: -9rem;
   width: 100%;
+  z-index: 10;
 `
 
 export const Card = styled(motion.div)`
