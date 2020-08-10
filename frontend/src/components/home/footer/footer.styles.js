@@ -1,7 +1,16 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { H2, Ul, Li, A, Input, Textarea } from '../../../shared/elements'
+import {
+  H2,
+  Ul,
+  Li,
+  A,
+  Input,
+  Textarea,
+  Button
+} from '../../../shared/elements'
+import { btns } from '../../../shared/styles/buttons'
 
 const Footer = styled.div`
   align-items: flex-start;
@@ -65,9 +74,10 @@ Subscribe.TextInput = styled(Input)`
   background: 0;
   border: 0;
   border-bottom: 0.3rem solid white;
+  border-radius: 0.2rem;
   color: white;
   margin-bottom: 4rem;
-  padding: 1rem 0;
+  padding: 1rem;
 
   &:first-child {
     grid-column: 1/2;
@@ -76,15 +86,43 @@ Subscribe.TextInput = styled(Input)`
   &:last-child {
     grid-column: 2/3;
   }
+
+  &:disabled {
+    border-bottom-color: var(--light-gray);
+    color: var(--light-gray);
+  }
 `
 
 Subscribe.Textarea = styled(Textarea)`
   background: 0;
   border: 0;
   border-bottom: 0.3rem solid white;
+  border-radius: 0.2rem;
   color: white;
   margin-bottom: 4rem;
-  padding: 1rem 0;
+  padding: 1rem;
+
+  &:disabled {
+    border-bottom-color: var(--light-gray);
+    color: var(--light-gray);
+  }
+`
+
+Subscribe.SubmitBtn = styled(Button)`
+  ${btns.clearWhite}
+  height: 4rem;
+  width: 17rem;
+
+  &:hover {
+    ${btns.white}
+    color: var(--red);
+  }
+
+  &:disabled {
+    background: var(--light-gray);
+    border-color: var(--light-gray);
+    color: white;
+  }
 `
 
 export const SocialMedia = styled(motion.div)`

@@ -11,6 +11,10 @@ const availableSizes = itemIds => {
 }
 
 const Query = {
+  me: (parent, args, ctx, info) => {
+    if (!isLoggedIn(ctx)) return null
+    return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
+  },
   orders: forwardTo('db'),
   ordersConnection: forwardTo('db'),
   product: forwardTo('db'),
@@ -36,10 +40,7 @@ const Query = {
 
     return ctx.db.query.productsConnection({ where }, info)
   },
-  me: (parent, args, ctx, info) => {
-    if (!isLoggedIn(ctx)) return null
-    return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
-  },
+
   users: (parent, args, ctx, info) => {
     if (!isLoggedIn(ctx)) {
       throwError('You must be signed in to perform this action.')

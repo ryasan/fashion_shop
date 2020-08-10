@@ -7,7 +7,8 @@ import {
   DELETE_ME,
   REQUEST_PASSWORD_RESET_MUTATION,
   RESET_PASSWORD_MUTATION,
-  UPDATE_PERMISSIONS_MUTATION
+  UPDATE_PERMISSIONS_MUTATION,
+  SEND_CONTACT_MESSAGE_MUTATION
 } from './mutations'
 import { CURRENT_USER_QUERY, USERS_QUERY } from './queries'
 
@@ -55,4 +56,8 @@ export const useResetPasswordMutation = () => {
 
 export const useUpdatePermissionsMutation = () => {
   return useMutation(UPDATE_PERMISSIONS_MUTATION)
+}
+
+export const useSendContactMessageMutation = () => {
+  return useMutation(SEND_CONTACT_MESSAGE_MUTATION)
 }

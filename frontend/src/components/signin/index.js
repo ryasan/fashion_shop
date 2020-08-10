@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
-import { constantCase } from 'change-case'
+import { constantCase, capitalCase } from 'change-case'
 
 import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
@@ -230,9 +230,13 @@ const SigninComponent = ({
           {Object.values(fields).map((field, i) => (
             <Form.InputField
               key={i}
-              loading={loading}
-              field={field}
+              placeholder={capitalCase(field.name)}
+              type={field.type}
+              name={field.name}
+              value={field.value}
+              disabled={loading}
               onChange={handleOnChange}
+              icon={field.icon}
               theme='dark'
             />
           ))}

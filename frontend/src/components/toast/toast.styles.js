@@ -6,9 +6,9 @@ const Toast = styled.div`
   }
 
   .toast {
-    background: var(--dark);
+    background: var(--red);
+    box-shadow: var(--box-shadow-lg);
     color: white;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
     font-size: var(--font-size-lg);
     overflow: initial;
     padding: 0 3rem;
@@ -18,7 +18,7 @@ const Toast = styled.div`
       border: 2rem solid transparent;
       border-bottom: 0;
       border-right: 0;
-      border-top-color: var(--dark);
+      border-top-color: var(--red);
       bottom: -2rem;
       content: '';
       height: 0;

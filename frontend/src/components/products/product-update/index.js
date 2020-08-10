@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
-import { constantCase, camelCase } from 'change-case'
+import { constantCase, camelCase, capitalCase } from 'change-case'
 
 import UpdateProduct, { Form } from './product-update.styles'
 import ErrorBoundary from '../../error-boundary'
@@ -167,9 +167,13 @@ const ProductUpdateForm = ({
             {fields.map((field, i) => (
               <Form.InputField
                 key={i}
-                field={field}
+                placeholder={capitalCase(field.name)}
+                type={field.type}
+                name={field.name}
+                value={field.value}
+                disabled={loading}
                 onChange={handleTextChange}
-                loading={loading}
+                icon={field.icon}
                 theme='dark'
               />
             ))}

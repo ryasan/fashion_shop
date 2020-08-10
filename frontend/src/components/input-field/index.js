@@ -1,24 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { capitalCase } from 'change-case'
 
 import Field from './input-field.styles'
 
 const InputFieldComponent = ({
   field,
   onChange,
-  loading,
+  disabled,
   theme,
-  className
+  className,
+  placeholder,
+  type,
+  name,
+  value,
+  icon
 }) => (
   <Field theme={theme} className={className}>
-    <Field.Icon name={field.icon} theme={theme} />
+    <Field.Icon name={icon} theme={theme} />
     <Field.Input
-      placeholder={capitalCase(field.name)}
-      type={field.type}
-      name={field.name}
-      value={field.value}
-      disabled={loading}
+      placeholder={placeholder}
+      type={type}
+      name={name}
+      value={value}
+      disabled={disabled}
       onChange={onChange}
       theme={theme}
     />
@@ -27,7 +31,6 @@ const InputFieldComponent = ({
 
 InputFieldComponent.propTypes = {
   className: PropTypes.string,
-  field: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   theme: PropTypes.string.isRequired

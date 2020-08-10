@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { validate } from 'email-validator'
 
 import Footer, { Links, Subscribe, SocialMedia } from './footer.styles'
 import Icon from '../../icons'
+import ErrorBoundary from '../../error-boundary/index'
+import { useSendContactMessageMutation } from '../../../graphql/user/hooks'
+import { toast } from '../../toast'
 
 const iconParentVariants = () => ({
   hidden: { opacity: 0 },
@@ -53,9 +57,40 @@ const SocialMediaComponent = () => {
   )
 }
 
-const links = ['About us', 'Events', 'Contact', 'Privacy', 'Press']
+const links = ['About us', 'Events', 'Privacy', 'Press']
 
 const HomeFooterComponent = () => {
+  const [sendContactMessage, { data, error, loading }] = useSendContactMessageMutation() // prettier-ignore
+  const [{ name, email, message }, setInputs] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  const handleOnChange = e => {
+    e.persist()
+    setInputs(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const handleSubmit = () => {
+    if (!validate(email)) {
+      toast('Please enter a valid email address.')
+    } else if (!message) {
+      toast('Message is empty!')
+    } else if (!name) {
+      toast("We don't know what to call you!")
+    } else {
+      sendContactMessage({ variables: { name, email, message } })
+    }
+  }
+
+  useEffect(() => {
+    if (data) toast(data.sendContactMessage.message)
+  }, [data])
+
   return (
     <Footer>
       <Links>
@@ -68,12 +103,39 @@ const HomeFooterComponent = () => {
           ))}
         </Links.List>
       </Links>
-      <Subscribe>
-        <Subscribe.Title>Get in touch with us here</Subscribe.Title>
-        <Subscribe.TextInput placeholder='You name' />
-        <Subscribe.TextInput placeholder='Email address' />
-        <Subscribe.Textarea placeholder='Message...' />
-      </Subscribe>
+      <ErrorBoundary error={error}>
+        <Subscribe>
+          <Subscribe.Title>Get in touch with us here</Subscribe.Title>
+          <Subscribe.TextInput
+            value={name}
+            disabled={loading}
+            type='text'
+            name='name'
+            placeholder='You name'
+            onChange={handleOnChange}
+          />
+          <Subscribe.TextInput
+            value={email}
+            disabled={loading}
+            type='text'
+            name='email'
+            placeholder='Email address'
+            onChange={handleOnChange}
+          />
+          <Subscribe.Textarea
+            rows='1'
+            value={message}
+            disabled={loading}
+            type='text'
+            name='message'
+            placeholder='Message...'
+            onChange={handleOnChange}
+          />
+          <Subscribe.SubmitBtn disabled={loading} onClick={handleSubmit}>
+            Send{loading ? 'ing' : ''} Message{loading ? '...' : ''}
+          </Subscribe.SubmitBtn>
+        </Subscribe>
+      </ErrorBoundary>
       <SocialMediaComponent />
     </Footer>
   )

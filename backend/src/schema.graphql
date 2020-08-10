@@ -40,6 +40,11 @@ type Mutation {
   createOrder(token: String!): Order!
   requestReset(email: String!): SuccessMessage
   resetPassword(resetToken: String!, password: String!, confirm: String!): User!
+  sendContactMessage(
+    name: String
+    email: String
+    message: String
+  ): SuccessMessage
 }
 
 type User {

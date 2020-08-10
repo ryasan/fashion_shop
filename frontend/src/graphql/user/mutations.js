@@ -76,3 +76,11 @@ export const UPDATE_PERMISSIONS_MUTATION = gql`
   }
   ${USER_FRAGMENT}
 `
+
+export const SEND_CONTACT_MESSAGE_MUTATION = gql`
+  mutation($name: String!, $email: String!, $message: String!) {
+    sendContactMessage(name: $name, email: $email, message: $message) {
+      message
+    }
+  }
+`
