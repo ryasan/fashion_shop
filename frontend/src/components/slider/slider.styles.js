@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { Button, Ul, Li, Span, Image, H1 } from '../../../shared/elements'
+import { Button, Ul, Li, Span, Image } from '../../shared/elements'
 
 export const cardWidth = 40
 const cardHeight = 50
@@ -17,8 +17,6 @@ const Slider = styled.div`
   padding: 5rem 0;
   position: relative;
 `
-
-Slider.Title = H1
 
 Slider.Container = styled.div`
   align-items: center;

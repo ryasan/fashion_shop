@@ -5,17 +5,13 @@ import { Link } from 'gatsby'
 import Slider, { cardWidth, Card } from './slider.styles'
 import SlideTimer from './timer'
 import DotsComponent from './dots'
-import ErrorBoundary from '../../error-boundary'
-import Loader from '../../loader'
-import { useProductsQuery } from '../../../graphql/product/hooks'
-import { getFrontImage, formatPrice } from '../../../shared/utils'
 
 const Slide = props => {
-  const { product, centerPos, idx } = props
+  const { item, centerPos, idx } = props
 
   return (
     <Slider.ListItem {...props}>
-      <Link to={`/shop/${product.id}/`}>
+      <Link to={item.link}>
         <Card
           isCenter={idx === centerPos}
           isLeftInnerCard={idx === centerPos - 1}
@@ -25,11 +21,12 @@ const Slide = props => {
         >
           <Card.Face>
             <Card.Header>
-              <Card.HeaderImage src={getFrontImage(product.sku)} />
+              <Card.HeaderImage src={item.image} />
             </Card.Header>
             <Card.Body>
-              <Card.Text>{product.title}</Card.Text>
-              <Card.Text>{formatPrice(product.price)}</Card.Text>
+              {item.bodyContent.map((content, i) => (
+                <Card.Text key={i}>{content}</Card.Text>
+              ))}
             </Card.Body>
           </Card.Face>
         </Card>
@@ -38,8 +35,8 @@ const Slide = props => {
   )
 }
 
-const SliderComponent = ({ products }) => {
-  const len = products.length
+const SliderComponent = ({ items }) => {
+  const len = items.length
   const half = Math.floor(len / 2)
   const [{ translateX, centerPos }, setSlideData] = useState({
     translateX: 0,
@@ -101,7 +98,6 @@ const SliderComponent = ({ products }) => {
 
   return (
     <Slider>
-      <Slider.Title>Browse our latest threads.</Slider.Title>
       <Slider.Container>
         <Slider.Track>
           <Slider.Button onClick={handlePrevClick}>&#8592;</Slider.Button>
@@ -110,8 +106,8 @@ const SliderComponent = ({ products }) => {
             onMouseEnter={stopAutoSlide}
             onMouseLeave={startAutoSlide}
           >
-            {products.map((product, i) => (
-              <Slide key={i} idx={i} product={product} centerPos={centerPos} />
+            {items.map((item, i) => (
+              <Slide key={i} idx={i} item={item} centerPos={centerPos} />
             ))}
           </Slider.List>
           <Slider.Button onClick={handleNextClick}>&#8594;</Slider.Button>
@@ -128,29 +124,13 @@ const SliderComponent = ({ products }) => {
 }
 
 SliderComponent.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object)
-}
-
-const withSlideData = Component => props => {
-  const { data, loading, error } = useProductsQuery({
-    variables: { where: { isFeatured: true } }
-  })
-
-  if (loading) {
-    return (
-      <Slider>
-        <Loader color='white' />
-      </Slider>
-    )
-  }
-
-  const products = data.products.slice(0, 7)
-
-  return (
-    <ErrorBoundary error={error}>
-      <Component {...props} products={products} />
-    </ErrorBoundary>
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      link: PropTypes.string,
+      image: PropTypes.string.isRequired,
+      bodyContent: PropTypes.arrayOf(PropTypes.string)
+    })
   )
 }
 
-export default withSlideData(SliderComponent)
+export default SliderComponent

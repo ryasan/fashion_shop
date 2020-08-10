@@ -85,9 +85,9 @@ Heading.Subtitle = styled(H4)`
 Heading.Subtext = styled(P)``
 
 export const Body = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  position: relative;
+  position: relative; */
 `
 
 Body.Loader = styled.div`
