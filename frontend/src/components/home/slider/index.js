@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 import Slider, { cardWidth, Card } from './slider.styles'
-import Loader from '../../loader'
+import SlideTimer from './timer'
+import DotsComponent from './dots'
 import ErrorBoundary from '../../error-boundary'
+import Loader from '../../loader'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 import { getFrontImage, formatPrice } from '../../../shared/utils'
 
@@ -43,40 +45,89 @@ const SliderComponent = ({ products }) => {
     translateX: 0,
     centerPos: half
   })
+  const [pct, setPct] = useState(0)
+  const [intervalPct, setIntervalPct] = useState(null)
 
   const handlePrevClick = () => {
-    setSlideData(prev => ({
+    setSlideData(({ centerPos, translateX }) => ({
       translateX: centerPos <= 0 ? half * -cardWidth : translateX + cardWidth,
-      centerPos: (prev.centerPos + (len - 1)) % len
+      centerPos: (centerPos + (len - 1)) % len
     }))
   }
 
   const handleNextClick = () => {
-    setSlideData(prev => ({
+    setSlideData(({ centerPos, translateX }) => ({
       translateX: centerPos >= 6 ? half * cardWidth : translateX - cardWidth,
-      centerPos: (prev.centerPos + 1) % len
+      centerPos: (centerPos + 1) % len
     }))
   }
 
+  const handleDotClick = selectedIdx => {
+    // if (selectedIdx < centerPos) {
+    //   setSlideData(
+    //     ({ centerPos: curCenter, translateX }) =>
+    //       console.log((curCenter - selectedIdx) * cardWidth) || {
+    //         centerPos: selectedIdx,
+    //         translateX: (curCenter - selectedIdx) * cardWidth
+    //       }
+    //   )
+    // } else if (selectedIdx > centerPos) {
+    //   setSlideData(
+    //     ({ centerPos: curCenter, translateX }) =>
+    //       console.log((selectedIdx - curCenter) * -cardWidth) || {
+    //         centerPos: selectedIdx,
+    //         translateX: (selectedIdx - curCenter) * -cardWidth
+    //       }
+    //   )
+    // }
+  }
+
+  const increasePct = () => {
+    setPct(prev => (prev < 100 ? prev + 25 : 0))
+  }
+
+  const startAutoSlide = () => {
+    const interval = setInterval(increasePct, 1000)
+    setIntervalPct(interval)
+  }
+
+  const stopAutoSlide = () => {
+    clearInterval(intervalPct)
+    setIntervalPct(null)
+  }
+
+  useEffect(() => {
+    startAutoSlide()
+    return () => stopAutoSlide()
+  }, [])
+
+  useEffect(() => {
+    if (pct === 100) handleNextClick()
+  }, [pct])
+
   return (
     <Slider>
-      <h1>Browse our latest threads.</h1>
+      <Slider.Title>Browse our latest threads.</Slider.Title>
       <Slider.Container>
         <Slider.Track>
           <Slider.Button onClick={handlePrevClick}>&#8592;</Slider.Button>
-          <Slider.List translateX={translateX}>
+          <Slider.List
+            translateX={translateX}
+            onMouseEnter={stopAutoSlide}
+            onMouseLeave={startAutoSlide}
+          >
             {products.map((product, i) => (
-              <Slide
-                key={i}
-                idx={i}
-                translateX={translateX}
-                product={product}
-                centerPos={centerPos}
-              />
+              <Slide key={i} idx={i} product={product} centerPos={centerPos} />
             ))}
           </Slider.List>
           <Slider.Button onClick={handleNextClick}>&#8594;</Slider.Button>
         </Slider.Track>
+        <DotsComponent
+          centerPos={centerPos}
+          numberOfDots={len}
+          onClick={handleDotClick}
+        />
+        <SlideTimer pct={pct} />
       </Slider.Container>
     </Slider>
   )

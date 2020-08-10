@@ -15,7 +15,7 @@ const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
   const [skip, setSkip] = useState(0)
   const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery()
-  let { data, error, loading } = useProductsConnectionQuery({
+  const { data, error, loading } = useProductsConnectionQuery({
     sizeFilters,
     categoryFilters,
     freeShippingSelected,
@@ -26,8 +26,6 @@ const ProductsComponent = () => {
 
   const count = data?.productsCount.aggregate.count
   const products = data?.productsConnection.edges.map(e => e.node)
-
-  error = { message: 'err', title: 'err' }
 
   useEffect(() => {
     setSkip(0)

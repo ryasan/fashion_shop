@@ -3,9 +3,7 @@ import { navigate } from '@reach/router'
 
 import FeaturedProducts, {
   Card,
-  InnerContainer,
-  SkullSvg,
-  NinjaSvg
+  InnerContainer
 } from './featured-products.styles'
 import { getFrontImage, getBackImg } from '../../../shared/utils'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
@@ -18,7 +16,7 @@ const containerVariants = {
 const imageVariants = {
   initial: { width: 0 },
   final: {
-    transition: { duration: 1, type: 'spring' },
+    transition: { duration: 0.5, delay: 0.3 },
     width: 300
   }
 }
@@ -36,7 +34,7 @@ const FeaturedProductsComponent = ({ products, pct }) => {
   }, [data])
 
   useEffect(() => {
-    if (pct >= 20) setIsVisible(true)
+    if (pct >= 30) setIsVisible(true)
   }, [pct])
 
   if (loading) return null
@@ -54,12 +52,12 @@ const FeaturedProductsComponent = ({ products, pct }) => {
             animate='final'
           >
             <Card.Header>
-              <Card.Title
+              <Card.CategoryTitle
                 isEvenElement={i % 2 === 0}
                 title={product.category.toUpperCase() + 'S'}
               >
                 {product.category.toUpperCase()}
-              </Card.Title>
+              </Card.CategoryTitle>
             </Card.Header>
             <Card.CallToAction onClick={() => handleClick(product.category)}>
               VIEW ALL
@@ -78,11 +76,7 @@ const FeaturedProductsComponent = ({ products, pct }) => {
                 src={getBackImg(product.sku)}
               />
             </Card.ImageContainer>
-            {i === 0 ? (
-              <SkullSvg name='skull-text' />
-            ) : (
-              <NinjaSvg name='ninja-text' />
-            )}
+            <Card.ProductTitle>{product.title}</Card.ProductTitle>
           </Card>
         ))}
       </InnerContainer>

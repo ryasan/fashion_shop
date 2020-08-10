@@ -90,6 +90,11 @@ export const Body = styled.div`
   position: relative;
 `
 
+Body.Loader = styled.div`
+  height: 68vh;
+  position: relative;
+`
+
 export const Footer = styled.div`
   align-items: flex-start;
   background: var(--dark);

@@ -1,24 +1,29 @@
 import styled, { css } from 'styled-components'
 
-import { Button, Ul, Li, Span, Image } from '../../../shared/elements'
+import { Button, Ul, Li, Span, Image, H1 } from '../../../shared/elements'
 
 export const cardWidth = 40
 const cardHeight = 50
 
 const Slider = styled.div`
   align-items: center;
+  box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.25),
+    0 -0.5rem 1rem rgba(0, 0, 0, 0.22);
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 100vh;
   justify-content: center;
+  min-height: 100vh;
   padding: 5rem 0;
   position: relative;
 `
 
+Slider.Title = H1
+
 Slider.Container = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   position: relative;
 `
 

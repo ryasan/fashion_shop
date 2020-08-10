@@ -7,7 +7,6 @@ import Layout from '../layouts/global-layout'
 import Loader from '../components/loader'
 import ErrorBoundary from '../components/error-boundary'
 import FeaturedProducts from '../components/home/featured-products'
-import ProductPreview from '../components/home/product-preview'
 import ScrollProgress from '../components/home/scroll-progress'
 import Slider from '../components/home/slider'
 import Footer from '../components/home/footer'
@@ -49,13 +48,14 @@ const HomePage = () => {
         <Body>
           <ErrorBoundary error={error}>
             {loading ? (
-              <Loader color='dark' />
+              <Body.Loader>
+                <Loader color='white' />
+              </Body.Loader>
             ) : (
               <FeaturedProducts pct={pct} products={data.products} />
             )}
           </ErrorBoundary>
           <Slider />
-          <ProductPreview pct={pct} />
         </Body>
         <Footer />
       </Home>

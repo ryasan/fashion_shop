@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-import Svg from '../../svgs'
 import redTexture from '../../../static/red-texture.png'
+import { H2 } from '../../../shared/elements'
 
 const FeaturedProducts = styled.div`
   align-items: center;
   background: var(--red);
   display: flex;
-  height: 70vh;
+  height: 68vh;
   justify-content: center;
   padding: 2rem 0;
   position: relative;
@@ -36,23 +36,6 @@ export const Card = styled(motion.div)`
   width: 100%;
 `
 
-export const SkullSvg = styled(Svg)`
-  color: var(--dark);
-  height: 100%;
-  position: absolute;
-  top: -15rem;
-  width: 20rem;
-`
-
-export const NinjaSvg = styled(Svg)`
-  bottom: -20rem;
-  color: var(--dark);
-  height: 100%;
-  position: absolute;
-  right: 0;
-  width: 20rem;
-`
-
 Card.Header = styled.div`
   background: var(--dark);
   height: 9rem;
@@ -66,7 +49,7 @@ Card.Header = styled.div`
     `}
 `
 
-Card.Title = styled.h3`
+Card.CategoryTitle = styled.h3`
   background: url(${redTexture});
   font-size: 4rem;
   font-weight: 100;
@@ -97,30 +80,43 @@ Card.Title = styled.h3`
   }
 `
 
-Card.CallToAction = styled(motion.button)`
-  align-items: center;
+Card.CallToAction = styled(motion.div)`
+  align-items: flex-end;
   color: var(--red);
   display: flex;
-  flex-direction: column;
   font-size: 2rem;
-  height: 7rem;
-  justify-content: flex-end;
-  line-height: 7rem;
+  justify-content: center;
+  padding: 2rem 0;
 `
 
 Card.ImageContainer = styled(motion.div)`
-  align-self: center;
   bottom: 0;
   display: flex;
   flex: 9;
   height: calc(100% - 14rem);
   justify-content: center;
-  position: absolute;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 `
 
 Card.Image = styled(motion.img)`
   object-fit: cover;
   width: 50%;
+`
+
+Card.ProductTitle = styled(H2)`
+  background: var(--dark);
+  bottom: -5rem;
+  box-shadow: var(--box-shadow-s);
+  display: inline;
+  left: 50%;
+  margin: 0;
+  padding: 2rem 4rem;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%) skew(-5deg) rotate(-1deg);
+  white-space: nowrap;
 `
 
 export default FeaturedProducts
