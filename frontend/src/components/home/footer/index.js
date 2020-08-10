@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
 import Footer, { Links, Subscribe, SocialMedia } from './footer.styles'
@@ -18,7 +18,7 @@ const iconChildrenVariants = () => ({
   show: { opacity: 1 }
 })
 
-const socials = ['facebook-outlined', 'instagram-outlined', 'twitter-outlined']
+const socials = ['facebook-filled', 'instagram-filled', 'twitter-filled']
 
 const SocialMediaComponent = () => {
   const [yEnd, setYEnd] = useState(false)
@@ -69,11 +69,10 @@ const HomeFooterComponent = () => {
         </Links.List>
       </Links>
       <Subscribe>
-        <Subscribe.Title>
-          Get in touch with us <Subscribe.Link>here</Subscribe.Link>
-        </Subscribe.Title>
+        <Subscribe.Title>Get in touch with us here</Subscribe.Title>
         <Subscribe.TextInput placeholder='You name' />
         <Subscribe.TextInput placeholder='Email address' />
+        <Subscribe.Textarea placeholder='Message...' />
       </Subscribe>
       <SocialMediaComponent />
     </Footer>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { H2, Ul, Li, A, Input, Span } from '../../../shared/elements'
+import { H2, Ul, Li, A, Input, Textarea } from '../../../shared/elements'
 
 const Footer = styled.div`
   align-items: flex-start;
@@ -50,17 +50,15 @@ export const Subscribe = styled.div`
   display: grid;
   flex: 1;
   grid-column-gap: 2rem;
+
+  *::placeholder {
+    color: var(--off-white);
+  }
 `
 
 Subscribe.Title = styled(H2)`
   grid-column: 1/3;
   margin-top: 0;
-
-  span {
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: var(--dark);
-  }
 `
 
 Subscribe.TextInput = styled(Input)`
@@ -71,10 +69,6 @@ Subscribe.TextInput = styled(Input)`
   margin-bottom: 4rem;
   padding: 1rem 0;
 
-  ::placeholder {
-    color: var(--off-white);
-  }
-
   &:first-child {
     grid-column: 1/2;
   }
@@ -84,16 +78,24 @@ Subscribe.TextInput = styled(Input)`
   }
 `
 
-Subscribe.Link = styled(Span)``
+Subscribe.Textarea = styled(Textarea)`
+  background: 0;
+  border: 0;
+  border-bottom: 0.3rem solid white;
+  color: white;
+  margin-bottom: 4rem;
+  padding: 1rem 0;
+`
 
 export const SocialMedia = styled(motion.div)`
   bottom: 2rem;
   position: absolute;
   right: 3rem;
+  z-index: 9999;
 `
 
 SocialMedia.MotionIcon = styled(motion.div)`
-  color: var(--red);
+  color: white;
   display: inline-block;
 
   svg {
