@@ -63,23 +63,17 @@ const SliderComponent = ({ products }) => {
   }
 
   const handleDotClick = selectedIdx => {
-    // if (selectedIdx < centerPos) {
-    //   setSlideData(
-    //     ({ centerPos: curCenter, translateX }) =>
-    //       console.log((curCenter - selectedIdx) * cardWidth) || {
-    //         centerPos: selectedIdx,
-    //         translateX: (curCenter - selectedIdx) * cardWidth
-    //       }
-    //   )
-    // } else if (selectedIdx > centerPos) {
-    //   setSlideData(
-    //     ({ centerPos: curCenter, translateX }) =>
-    //       console.log((selectedIdx - curCenter) * -cardWidth) || {
-    //         centerPos: selectedIdx,
-    //         translateX: (selectedIdx - curCenter) * -cardWidth
-    //       }
-    //   )
-    // }
+    if (selectedIdx < centerPos) {
+      setSlideData(({ centerPos: curCenter, translateX }) => ({
+        centerPos: selectedIdx,
+        translateX: translateX + (centerPos - selectedIdx) * cardWidth
+      }))
+    } else if (selectedIdx > centerPos) {
+      setSlideData(({ centerPos: curCenter, translateX }) => ({
+        centerPos: selectedIdx,
+        translateX: translateX + (centerPos - selectedIdx) * cardWidth
+      }))
+    }
   }
 
   const increasePct = () => {
