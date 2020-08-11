@@ -26,11 +26,12 @@ const FeaturedProducts = styled.div`
 FeaturedProducts.Promo = styled.div`
   background: white;
   border-radius: 2rem;
-  bottom: -3rem;
-  box-shadow: var(--box-shadow-m);
+  bottom: -1rem;
+  box-shadow: 0 0 2.8rem rgba(0, 0, 0, 0.25),
+    0 0 1rem rgba(0, 0, 0, 0.22);
   color: var(--dark);
   font-size: 2rem;
-  padding: 2rem 4rem;
+  padding: 2rem 3rem;
   position: absolute;
   right: 10rem;
   transform: rotate(15deg);

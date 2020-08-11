@@ -2,6 +2,7 @@
   "extends": "stylelint-config-sass-guidelines",
   "rules": {
     "color-named": "always-where-possible",
-    "no-missing-end-of-source-newline": null
+    "no-missing-end-of-source-newline": null,
+    "function-parentheses-space-inside": null
   }
 }

@@ -31,12 +31,13 @@ const HomePage = () => {
       <Home>
         <ScrollProgress scrollPct={pct} />
         <Heading>
+          <Heading.Diagonal />
           <Heading.TextContainer>
             <Heading.Title>
-              E <Span modifiers='red_color'>&</Span> S Streetwear
+              E <Span modifiers='dark_color'>&</Span> S Streetwear
             </Heading.Title>
             <Heading.Subtitle>
-              Keeping people dressed comfortably 365 days a year.
+              Keeping people dressed <br /> comfortably 365 days a year.
             </Heading.Subtitle>
           </Heading.TextContainer>
         </Heading>

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import { H1, H4, P, Div } from '../shared/elements'
 
@@ -7,29 +7,9 @@ const Home = styled.div`
   overflow-x: hidden;
 `
 
-const balloonGrow = (startingSize, targetSize) => {
-  return keyframes`
-  0% {
-    height: ${startingSize}rem;
-    width: ${startingSize}rem;
-  }
-
-  100% {
-    height: ${targetSize}rem;
-    width: ${targetSize}rem;
-  }
-`
-}
-
 export const Heading = styled.div`
   align-items: center;
-  background: linear-gradient(225deg, var(--red) 50%, transparent 50%),
-    var(--dark);
-  background-position: right top;
-  background-repeat: no-repeat;
-  background-size: 7.5rem 7.5rem;
-  border-radius: 0.4rem;
-  border-top: 0.5rem var(--red) solid;
+  background: var(--dark);
   box-shadow: var(--box-shadow-lg);
   display: flex;
   height: 100vh;
@@ -39,34 +19,49 @@ export const Heading = styled.div`
   z-index: 1;
 
   &::before {
-    animation: ${balloonGrow(35, 45)} 5s linear forwards;
     background: white;
-    border-radius: 50%;
-    bottom: 10rem;
+    bottom: 0;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
     content: '';
-    height: 30em;
-    left: 5rem;
-    opacity: 0.1;
+    height: 100%;
+    left: 0;
     position: absolute;
-    width: 30rem;
+    transition: all 0.8s ease;
+    width: 50%;
+    z-index: -1;
   }
 
   &::after {
-    animation: ${balloonGrow(17.5, 22.5)} 5s linear forwards;
-    background: white;
-    border-radius: 50%;
+    background: var(--red);
+    bottom: 0;
+    clip-path: polygon(0% 0%, 100% 0, 100% 60%, 50% 80%, 0 60%);
     content: '';
-    height: 10em;
-    opacity: 0.1;
+    height: 100%;
+    left: 0;
     position: absolute;
-    right: 15rem;
-    top: 5rem;
-    width: 10rem;
+    transition: all 0.8s ease;
+    width: 50%;
+    z-index: -1;
   }
 `
 
+Heading.Diagonal = styled.div`
+  background: linear-gradient(225deg, var(--red) 50%, transparent 50%);
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 7.5rem 7.5rem;
+  border-radius: 0.4rem;
+  border-top: 0.5rem var(--red) solid;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+`
+
 Heading.TextContainer = styled.div`
+  border: 0.4rem solid white;
+  box-shadow: var(--box-shadow-lg);
   color: white;
+  padding: 5rem;
   text-align: center;
   transform: translateY(-13rem);
 `
@@ -77,9 +72,13 @@ Heading.Title = styled(H1)`
 `
 
 Heading.Subtitle = styled(H4)`
+  color: var(--red);
+  float: right;
   font-weight: 400;
   margin-bottom: 0.5rem;
   margin-top: 0;
+  text-align: right;
+  width: 50%;
 `
 
 Heading.Subtext = styled(P)``
