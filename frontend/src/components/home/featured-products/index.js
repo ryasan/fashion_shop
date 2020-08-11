@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
 import FeaturedProducts, {
@@ -21,7 +22,7 @@ const imageVariants = {
   }
 }
 
-const FeaturedProductsComponent = ({ products, pct }) => {
+const FeaturedProductsComponent = ({ products, scrollPct }) => {
   const [addCategoryFilter, { data, loading }] = useAddCategoryFilterMutation()
   const [isVisible, setIsVisible] = useState(false)
 
@@ -34,8 +35,8 @@ const FeaturedProductsComponent = ({ products, pct }) => {
   }, [data])
 
   useEffect(() => {
-    if (pct >= 30) setIsVisible(true)
-  }, [pct])
+    if (scrollPct >= 25) setIsVisible(true)
+  }, [scrollPct])
 
   if (loading) return null
 
@@ -82,6 +83,11 @@ const FeaturedProductsComponent = ({ products, pct }) => {
       </InnerContainer>
     </FeaturedProducts>
   )
+}
+
+FeaturedProductsComponent.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  scrollPct: PropTypes.number.isRequired
 }
 
 export default FeaturedProductsComponent

@@ -1,8 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import ScrollProgress from './scroll-progress.styles'
 
-const ScrollProgressComponent = ({ pct }) => {
-  return <ScrollProgress>{pct}%</ScrollProgress>
+const ScrollProgressComponent = ({ scrollPct }) => {
+  return <ScrollProgress>{scrollPct}%</ScrollProgress>
 }
+
+ScrollProgressComponent.propTypes = {
+  scrollPct: PropTypes.number.isRequired
+}
+
 export default ScrollProgressComponent

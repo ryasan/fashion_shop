@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const ScrollProgress = styled.div`
-  color: white;
+  color: var(--light-gray);
   font-size: 3rem;
   position: fixed;
   right: 2rem;

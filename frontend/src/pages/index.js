@@ -13,18 +13,46 @@ import Footer from '../components/home/footer'
 import { Span } from '../shared/elements'
 import { useProductsQuery } from '../graphql/product/hooks'
 import { getFrontImage, formatPrice } from '../shared/utils'
+import OurServices from '../components/home/our-services'
 
-const HomePage = ({ items, featuredItems }) => {
-  const [pct, setPct] = useState(0)
-  const { scrollYProgress } = useViewportScroll()
-  const yRange = useTransform(scrollYProgress)
+const Products = props => {
+  const { data, loading, error } = useProductsQuery({
+    variables: { where: { isFeatured: true } }
+  })
 
-  const slideItems = items.slice(0, 7).map(item => ({
+  if (loading) {
+    return (
+      <Body.Loader>
+        <Loader color='white' />
+      </Body.Loader>
+    )
+  }
+
+  const products = data.products.slice(0, 7)
+
+  const featuredProducts = products.filter(p =>
+    ['hoodie_7_front5', 'T_7_front5'].includes(p.sku)
+  )
+
+  const slideItems = products.map(item => ({
     ...item,
     link: `/shop/${item.id}/`,
     image: getFrontImage(item.sku),
     bodyContent: [item.title, formatPrice(item.price)]
   }))
+
+  return (
+    <ErrorBoundary error={error}>
+      <FeaturedProducts scrollPct={props.scrollPct} products={featuredProducts} />
+      <Slider items={slideItems} title='Browser our latest threads.' />
+    </ErrorBoundary>
+  )
+}
+
+const HomePage = ({ items, featuredItems }) => {
+  const [pct, setPct] = useState(0)
+  const { scrollYProgress } = useViewportScroll()
+  const yRange = useTransform(scrollYProgress)
 
   const handleChange = y => {
     setPct(Math.min(Math.ceil(y * 100), 100))
@@ -37,12 +65,13 @@ const HomePage = ({ items, featuredItems }) => {
 
   return (
     <Layout>
+      <SEO title='Home' />
       <Home>
-        <ScrollProgress pct={pct} />
+        <ScrollProgress scrollPct={pct} />
         <Heading>
           <Heading.TextContainer>
             <Heading.Title>
-              E <Span modifiers='red_color'>&</Span> S Streetware
+              E <Span modifiers='red_color'>&</Span> S Streetwear
             </Heading.Title>
             <Heading.Subtitle>
               Keeping people dressed comfortably 365 days a year.
@@ -50,8 +79,8 @@ const HomePage = ({ items, featuredItems }) => {
           </Heading.TextContainer>
         </Heading>
         <Body>
-          <FeaturedProducts pct={pct} products={featuredItems} />
-          <Slider items={slideItems} />
+          <Products scrollPct={pct} />
+          <OurServices scrollPct={pct} />
         </Body>
         <Footer />
       </Home>
@@ -59,41 +88,4 @@ const HomePage = ({ items, featuredItems }) => {
   )
 }
 
-const withProductsData = Component => props => {
-  const { data, loading, error } = useProductsQuery({
-    variables: { where: { isFeatured: true } }
-  })
-  const {
-    data: featuredData,
-    loading: featuredLoading,
-    error: featuredError
-  } = useProductsQuery({
-    variables: { where: { sku_in: ['hoodie_7_front5', 'T_7_front5'] } }
-  })
-
-  if (loading || featuredLoading) {
-    return (
-      <Layout>
-        <Home>
-          <SEO title='Home' />
-          <Loader color='dark' />
-        </Home>
-      </Layout>
-    )
-  }
-
-  const products = data.products.slice(0, 7)
-
-  return (
-    <ErrorBoundary error={error || featuredError}>
-      <SEO title='Home' />
-      <Component
-        {...props}
-        items={products}
-        featuredItems={featuredData.products}
-      />
-    </ErrorBoundary>
-  )
-}
-
-export default withProductsData(HomePage)
+export default HomePage

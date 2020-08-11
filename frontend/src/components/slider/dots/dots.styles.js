@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const DotList = styled.ul`
   display: flex;
-  margin-top: 3rem;
+  margin-top: 10rem;
 `
 
 export const Dot = styled.li`

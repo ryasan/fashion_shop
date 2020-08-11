@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { Button, Ul, Li, Span, Image } from '../../shared/elements'
+import { Button, Ul, Li, Span, Image, H1 } from '../../shared/elements'
 
 export const cardWidth = 40
 const cardHeight = 50
@@ -14,8 +14,31 @@ const Slider = styled.div`
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
+  overflow: hidden;
   padding: 5rem 0;
   position: relative;
+`
+
+Slider.Title = styled(H1)`
+  margin-bottom: 15rem;
+`
+
+Slider.HugeTextLeft = styled(H1)`
+  color: var(--red);
+  font-size: 25rem;
+  font-weight: 300;
+  left: -10rem;
+  position: absolute;
+  top: 0;
+`
+
+Slider.HugeTextRight = styled(H1)`
+  bottom: -27rem;
+  font-size: 25rem;
+  font-weight: 300;
+  position: absolute;
+  right: -19rem;
+  z-index: 2;
 `
 
 Slider.Container = styled.div`
@@ -145,12 +168,14 @@ Card.HeaderImage = styled(Image)`
 
 Card.Body = styled.div`
   align-items: center;
+  background: var(--dark);
   display: flex;
   flex: 1;
   flex-direction: column;
   font-size: var(--font-size-xlg);
   justify-content: center;
   padding: 1rem 0;
+  width: 100%;
 `
 
 Card.Text = styled(Span)`

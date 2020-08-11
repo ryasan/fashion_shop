@@ -35,15 +35,16 @@ const Slide = props => {
   )
 }
 
-const SliderComponent = ({ items }) => {
+const SliderComponent = ({ items, title }) => {
   const len = items.length
   const half = Math.floor(len / 2)
   const [{ translateX, centerPos }, setSlideData] = useState({
     translateX: 0,
     centerPos: half
   })
+
   const [pct, setPct] = useState(0)
-  const [intervalPct, setIntervalPct] = useState(null)
+  const [isHovering, setIsHovering] = useState(null)
 
   const handlePrevClick = () => {
     setSlideData(({ centerPos, translateX }) => ({
@@ -73,24 +74,25 @@ const SliderComponent = ({ items }) => {
     }
   }
 
-  const increasePct = () => {
-    setPct(prev => (prev < 100 ? prev + 25 : 0))
-  }
-
-  const startAutoSlide = () => {
-    const interval = setInterval(increasePct, 1000)
-    setIntervalPct(interval)
-  }
-
-  const stopAutoSlide = () => {
-    clearInterval(intervalPct)
-    setIntervalPct(null)
+  const toggleIsHovering = () => {
+    setIsHovering(prev => !prev)
   }
 
   useEffect(() => {
-    startAutoSlide()
-    return () => stopAutoSlide()
-  }, [])
+    let interval
+
+    if (!isHovering) {
+      interval = setInterval(() => {
+        setPct(prev => {
+          return prev < 100 ? prev + 25 : 0
+        })
+      }, 1000)
+    } else {
+      clearInterval(interval)
+    }
+
+    return () => clearInterval(interval)
+  }, [isHovering])
 
   useEffect(() => {
     if (pct === 100) handleNextClick()
@@ -98,13 +100,16 @@ const SliderComponent = ({ items }) => {
 
   return (
     <Slider>
+      <Slider.Title>{title}</Slider.Title>
+      <Slider.HugeTextLeft>STYLE</Slider.HugeTextLeft>
+      <Slider.HugeTextRight>IDEA</Slider.HugeTextRight>
       <Slider.Container>
         <Slider.Track>
           <Slider.Button onClick={handlePrevClick}>&#8592;</Slider.Button>
           <Slider.List
             translateX={translateX}
-            onMouseEnter={stopAutoSlide}
-            onMouseLeave={startAutoSlide}
+            onMouseEnter={toggleIsHovering}
+            onMouseLeave={toggleIsHovering}
           >
             {items.map((item, i) => (
               <Slide key={i} idx={i} item={item} centerPos={centerPos} />

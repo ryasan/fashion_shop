@@ -17,6 +17,7 @@ const iconParentVariants = () => ({
     }
   }
 })
+
 const iconChildrenVariants = () => ({
   hidden: { opacity: 0 },
   show: { opacity: 1 }

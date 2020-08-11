@@ -91,7 +91,7 @@ export const Body = styled.div`
 `
 
 Body.Loader = styled.div`
-  height: 68vh;
+  height: 100vh;
   position: relative;
 `
 
