@@ -76,6 +76,7 @@ const FeaturedProductsComponent = ({ products, scrollPct }) => {
           <Card.ProductTitle>{product.title}</Card.ProductTitle>
         </Card>
       ))}
+      <FeaturedProducts.Promo>Questions? 210-547-1212</FeaturedProducts.Promo>
     </FeaturedProducts>
   )
 }

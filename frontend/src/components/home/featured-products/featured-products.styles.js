@@ -23,6 +23,20 @@ const FeaturedProducts = styled.div`
   }
 `
 
+FeaturedProducts.Promo = styled.div`
+  background: white;
+  border-radius: 2rem;
+  bottom: -3rem;
+  box-shadow: var(--box-shadow-m);
+  color: var(--dark);
+  font-size: 2rem;
+  padding: 2rem 4rem;
+  position: absolute;
+  right: 10rem;
+  transform: rotate(15deg);
+  z-index: 1;
+`
+
 export const Card = styled(motion.div)`
   background: var(--off-white);
   box-shadow: var(--box-shadow-s);
