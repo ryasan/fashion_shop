@@ -10,7 +10,7 @@ const {
   hasPermission
 } = require('../utils')
 const stripe = require('../stripe')
-const { transport, makeANiceEmail } = require('../mail')
+const { transport, makeANiceEmail, makeABasicEmail } = require('../mail')
 
 const Mutation = {
   createCartItem: forwardTo('db'),
@@ -139,7 +139,7 @@ const Mutation = {
         from: email,
         to: 'ryansantos86@gmail.com',
         subject: `${name} sent a message.`,
-        html: makeANiceEmail(message)
+        html: makeABasicEmail(message)
       })
     } catch (err) {
       throwError(err)

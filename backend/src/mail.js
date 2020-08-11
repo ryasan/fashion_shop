@@ -9,7 +9,7 @@ const transport = nodemailer.createTransport({
   }
 })
 
-const makeANiceEmail = (text) => `
+const makeANiceEmail = text => `
 <div class="email" 
      style="border: 1px solid black; 
      padding: 20px;
@@ -21,5 +21,10 @@ const makeANiceEmail = (text) => `
   <p>😘, Ryan Santos</p>
 </div>`
 
+const makeABasicEmail = text => `
+  <p>${text}</p>
+`
+
 exports.transport = transport
 exports.makeANiceEmail = makeANiceEmail
+exports.makeABasicEmail = makeABasicEmail
