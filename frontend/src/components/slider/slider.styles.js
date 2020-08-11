@@ -1,54 +1,15 @@
 import styled, { css } from 'styled-components'
 
-import { Button, Ul, Li, Span, Image, H1 } from '../../shared/elements'
+import { Button, Ul, Li, Span, Image } from '../../shared/elements'
 import { device } from '../../shared/utils'
 
 export const cardWidth = 40
 const cardHeight = 50
 
 const Slider = styled.div`
-  align-items: center;
-  box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.25),
-    0 -0.5rem 1rem rgba(0, 0, 0, 0.22);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  overflow: hidden;
-  padding: 5rem 0;
+  height: 100%;
   position: relative;
-`
-
-Slider.Title = styled(H1)`
-  margin-bottom: 15rem;
-  text-align: center;
-`
-
-Slider.HugeTextLeft = styled(H1)`
-  color: var(--red);
-  font-size: 25rem;
-  font-weight: 300;
-  left: -10rem;
-  position: absolute;
-  top: 0;
-
-  @media ${device.mobileL} {
-    display: none;
-  }
-`
-
-Slider.HugeTextRight = styled(H1)`
-  bottom: -27rem;
-  font-size: 25rem;
-  font-weight: 300;
-  position: absolute;
-  right: -19rem;
-  z-index: 2;
-
-  @media ${device.mobileL} {
-    display: none;
-  }
+  width: 100%;
 `
 
 Slider.Container = styled.div`

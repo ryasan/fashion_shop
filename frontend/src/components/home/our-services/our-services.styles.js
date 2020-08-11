@@ -26,7 +26,7 @@ OurServices.HugeText = styled(H1)`
   font-size: 25rem;
   font-weight: 300;
   position: absolute;
-  right: -19rem;
+  right: -24rem;
   top: -37rem;
 
   @media ${device.mobileL} {

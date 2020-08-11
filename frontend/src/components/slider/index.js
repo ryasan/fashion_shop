@@ -104,9 +104,6 @@ const SliderComponent = ({ items, title }) => {
 
   return (
     <Slider>
-      <Slider.Title>{title}</Slider.Title>
-      <Slider.HugeTextLeft>STYLE</Slider.HugeTextLeft>
-      <Slider.HugeTextRight>IDEA</Slider.HugeTextRight>
       <Slider.Container>
         <Slider.Track>
           <Slider.Button onClick={handlePrevClick}>&#8592;</Slider.Button>
