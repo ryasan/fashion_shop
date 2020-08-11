@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
+import { useMediaQuery } from 'react-responsive'
 
-import Slider, { cardWidth, Card } from './slider.styles'
+import Slider, { Card } from './slider.styles'
 import SlideTimer from './timer'
 import DotsComponent from './dots'
+import { device } from '../../shared/utils'
 
 const Slide = props => {
   const { item, centerPos, idx } = props
@@ -45,6 +47,8 @@ const SliderComponent = ({ items, title }) => {
 
   const [pct, setPct] = useState(0)
   const [isHovering, setIsHovering] = useState(null)
+  const isMobileLg = useMediaQuery({ query: device.mobileL })
+  const cardWidth = isMobileLg ? 20 : 40
 
   const handlePrevClick = () => {
     setSlideData(({ centerPos, translateX }) => ({

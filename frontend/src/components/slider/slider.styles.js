@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { Button, Ul, Li, Span, Image, H1 } from '../../shared/elements'
+import { device } from '../../shared/utils'
 
 export const cardWidth = 40
 const cardHeight = 50
@@ -21,6 +22,7 @@ const Slider = styled.div`
 
 Slider.Title = styled(H1)`
   margin-bottom: 15rem;
+  text-align: center;
 `
 
 Slider.HugeTextLeft = styled(H1)`
@@ -30,6 +32,10 @@ Slider.HugeTextLeft = styled(H1)`
   left: -10rem;
   position: absolute;
   top: 0;
+
+  @media ${device.mobileL} {
+    display: none;
+  }
 `
 
 Slider.HugeTextRight = styled(H1)`
@@ -39,6 +45,10 @@ Slider.HugeTextRight = styled(H1)`
   position: absolute;
   right: -19rem;
   z-index: 2;
+
+  @media ${device.mobileL} {
+    display: none;
+  }
 `
 
 Slider.Container = styled.div`
@@ -99,6 +109,11 @@ Slider.ListItem = styled(Li)`
   height: ${cardHeight}rem;
   perspective: 600px;
   width: ${cardWidth}rem;
+
+  @media ${device.mobileL} {
+    height: ${cardHeight / 2}rem;
+    width: ${cardWidth / 2}rem;
+  }
 `
 
 export const Card = styled.div`

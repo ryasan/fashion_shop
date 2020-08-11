@@ -3,37 +3,50 @@ import { motion } from 'framer-motion'
 
 import redTexture from '../../../static/red-texture.png'
 import { H2 } from '../../../shared/elements'
+import { device } from '../../../shared/utils'
 
 const FeaturedProducts = styled.div`
+  align-content: center;
   align-items: center;
   background: var(--red);
-  display: flex;
-  height: 68vh;
-  justify-content: center;
-  padding: 2rem 0;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  min-height: 90vh;
   position: relative;
   width: 100%;
-`
 
-export const InnerContainer = styled.div`
-  background: var(--off-white);
-  border-radius: 3px;
-  box-shadow: var(--box-shadow-s);
-  display: flex;
-  height: 100%;
-  justify-content: space-around;
-  max-width: var(--max-width);
-  position: absolute;
-  top: -9rem;
-  width: 100%;
-  z-index: 10;
+  @media ${device.mobileL} {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const Card = styled(motion.div)`
+  background: var(--off-white);
+  box-shadow: var(--box-shadow-s);
   display: flex;
   flex-direction: column;
+  max-width: calc(var(--max-width) / 2);
+  min-height: 69vh;
   position: relative;
+  top: -15rem;
   width: 100%;
+  z-index: 1;
+
+  &:first-child {
+    grid-column: 1/2;
+  }
+
+  &:last-child {
+    grid-column: 2/3;
+  }
+
+  @media ${device.mobileL} {
+    margin-top: 7rem;
+    width: 90%;
+  }
 `
 
 Card.Header = styled.div`
@@ -70,13 +83,6 @@ Card.CategoryTitle = styled.h3`
     transform: translate(calc(-50%), -50%);
     width: calc(100% - 1rem);
     z-index: 0;
-
-    ${props =>
-      props.isEvenElement &&
-      css`
-        transform: translate(calc(-50% + 0.5rem), -50%);
-        width: calc(100% - 0.1rem);
-      `}
   }
 `
 
@@ -93,11 +99,15 @@ Card.ImageContainer = styled(motion.div)`
   bottom: 0;
   display: flex;
   flex: 9;
-  height: calc(100% - 14rem);
   justify-content: center;
+  min-height: calc(100% - 14rem);
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+  }
 `
 
 Card.Image = styled(motion.img)`

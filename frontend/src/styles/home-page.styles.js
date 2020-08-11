@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-import { H1, H2, H4, P, Ul, Li, A, Input } from '../shared/elements'
+import { H1, H4, P, Div } from '../shared/elements'
 
 const Home = styled.div`
   flex: 1;
@@ -84,94 +84,11 @@ Heading.Subtitle = styled(H4)`
 
 Heading.Subtext = styled(P)``
 
-export const Body = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  position: relative; */
-`
+export const Body = Div
 
 Body.Loader = styled.div`
   height: 100vh;
   position: relative;
-`
-
-export const Footer = styled.div`
-  align-items: flex-start;
-  background: var(--dark);
-  box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.25),
-    0 -0.5rem 1rem rgba(0, 0, 0, 0.22);
-  display: flex;
-  height: 35rem;
-  justify-content: flex-start;
-  padding: 5rem;
-  position: relative;
-`
-
-export const Links = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-`
-
-Links.Title = styled(H2)`
-  color: var(--red);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 1rem;
-  margin-top: 0;
-`
-
-Links.List = styled(Ul)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`
-
-Links.ListItem = styled(Li)`
-  font-size: 3rem;
-  letter-spacing: 1rem;
-  margin: 1rem 0;
-`
-
-Links.Link = styled(A)`
-  cursor: pointer;
-`
-
-export const Subscribe = styled.div`
-  align-content: space-between;
-  display: grid;
-  flex: 1;
-  grid-column-gap: 2rem;
-`
-
-Subscribe.Title = styled(H2)`
-  grid-column: 1/3;
-
-  span {
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: var(--red);
-  }
-`
-
-Subscribe.TextInput = styled(Input)`
-  background: 0;
-  border: 0;
-  border-bottom: 0.3rem solid white;
-  margin-bottom: 4rem;
-
-  ::placeholder {
-    color: var(--off-white);
-  }
-
-  &:first-child {
-    grid-column: 1/2;
-  }
-
-  &:last-child {
-    grid-column: 2/3;
-  }
 `
 
 export default Home

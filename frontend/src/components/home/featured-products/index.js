@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
-import FeaturedProducts, {
-  Card,
-  InnerContainer
-} from './featured-products.styles'
+import FeaturedProducts, { Card } from './featured-products.styles'
 import { getFrontImage, getBackImg } from '../../../shared/utils'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 
@@ -44,43 +41,41 @@ const FeaturedProductsComponent = ({ products, scrollPct }) => {
 
   return (
     <FeaturedProducts>
-      <InnerContainer>
-        {[firstFeature, secondFeature].map((product, i) => (
-          <Card
-            key={i}
-            variants={containerVariants}
-            initial='initial'
-            animate='final'
-          >
-            <Card.Header>
-              <Card.CategoryTitle
-                isEvenElement={i % 2 === 0}
-                title={product.category.toUpperCase() + 'S'}
-              >
-                {product.category.toUpperCase()}
-              </Card.CategoryTitle>
-            </Card.Header>
-            <Card.CallToAction onClick={() => handleClick(product.category)}>
-              VIEW ALL
-            </Card.CallToAction>
-            <Card.ImageContainer index={i}>
-              <Card.Image
-                initial='initial'
-                animate={isVisible ? 'final' : 'initial'}
-                variants={imageVariants}
-                src={getFrontImage(product.sku)}
-              />
-              <Card.Image
-                initial='initial'
-                animate={isVisible ? 'final' : 'initial'}
-                variants={imageVariants}
-                src={getBackImg(product.sku)}
-              />
-            </Card.ImageContainer>
-            <Card.ProductTitle>{product.title}</Card.ProductTitle>
-          </Card>
-        ))}
-      </InnerContainer>
+      {[firstFeature, secondFeature].map((product, i) => (
+        <Card
+          key={i}
+          variants={containerVariants}
+          initial='initial'
+          animate='final'
+        >
+          <Card.Header>
+            <Card.CategoryTitle
+              isEvenElement={i % 2 === 0}
+              title={product.category.toUpperCase() + 'S'}
+            >
+              {product.category.toUpperCase()}
+            </Card.CategoryTitle>
+          </Card.Header>
+          <Card.CallToAction onClick={() => handleClick(product.category)}>
+            VIEW ALL
+          </Card.CallToAction>
+          <Card.ImageContainer index={i}>
+            <Card.Image
+              initial='initial'
+              animate={isVisible ? 'final' : 'initial'}
+              variants={imageVariants}
+              src={getFrontImage(product.sku)}
+            />
+            <Card.Image
+              initial='initial'
+              animate={isVisible ? 'final' : 'initial'}
+              variants={imageVariants}
+              src={getBackImg(product.sku)}
+            />
+          </Card.ImageContainer>
+          <Card.ProductTitle>{product.title}</Card.ProductTitle>
+        </Card>
+      ))}
     </FeaturedProducts>
   )
 }

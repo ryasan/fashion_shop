@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-import { H1, H4, P } from '../../../shared/elements'
 import Icon from '../../icons'
+import { H1, H4, P } from '../../../shared/elements'
+import { device } from '../../../shared/utils'
 
 const OurServices = styled.div`
   align-items: center;
@@ -12,6 +13,7 @@ const OurServices = styled.div`
   flex-direction: column;
   justify-content: center;
   min-height: 70vh;
+  padding: 5rem;
   position: relative;
 `
 
@@ -26,6 +28,10 @@ OurServices.HugeText = styled(H1)`
   position: absolute;
   right: -19rem;
   top: -37rem;
+
+  @media ${device.mobileL} {
+    display: none;
+  }
 `
 
 export const Grid = styled(motion.ul)`
@@ -36,13 +42,19 @@ export const Grid = styled(motion.ul)`
   max-width: var(--max-width);
   text-align: center;
   width: 100%;
+
+  @media ${device.mobileL} {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 Grid.Item = styled(motion.li)`
   border-radius: 2rem;
   box-shadow: var(--box-shadow-m);
   height: 20rem;
-  margin-top: 8rem;
+  margin-top: 15rem;
   position: relative;
   width: 30rem;
 

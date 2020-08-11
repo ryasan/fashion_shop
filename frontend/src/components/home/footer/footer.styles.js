@@ -11,6 +11,7 @@ import {
   Button
 } from '../../../shared/elements'
 import { btns } from '../../../shared/styles/buttons'
+import { device } from '../../../shared/utils'
 
 const Footer = styled.div`
   align-items: flex-start;
@@ -22,6 +23,12 @@ const Footer = styled.div`
   justify-content: flex-start;
   padding: 5rem;
   position: relative;
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 7rem;
+  }
 `
 
 export const Links = styled.div`
@@ -30,6 +37,10 @@ export const Links = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 50%;
+
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `
 
 Links.Title = styled(H2)`
@@ -43,6 +54,12 @@ Links.Title = styled(H2)`
 Links.List = styled(Ul)`
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media ${device.mobileL} {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7rem;
+  }
 `
 
 Links.ListItem = styled(Li)`
@@ -62,6 +79,11 @@ export const Subscribe = styled.div`
 
   *::placeholder {
     color: var(--off-white);
+  }
+
+  @media ${device.mobileL} {
+    display: flex;
+    flex-direction: column;
   }
 `
 
@@ -129,7 +151,15 @@ export const SocialMedia = styled(motion.div)`
   bottom: 2rem;
   position: absolute;
   right: 3rem;
-  z-index: 9999;
+  z-index: 1;
+
+  @media ${device.mobileL} {
+    bottom: 0;
+    left: 50%;
+    margin-top: 2rem;
+    position: relative;
+    transform: translateX(-50%);
+  }
 `
 
 SocialMedia.MotionIcon = styled(motion.div)`

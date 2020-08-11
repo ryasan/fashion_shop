@@ -77,6 +77,10 @@ const ToggleButton = styled.div`
   &:hover {
     color: var(--red);
   }
+
+  @media ${device.mobileL} {
+    bottom: 10rem;
+  }
 `
 
 ToggleButton.Icon = styled(Icon)`
