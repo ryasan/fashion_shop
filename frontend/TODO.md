@@ -7,3 +7,6 @@
 5. ~~Change loader~~
 6. ~~Fix order by border radius~~
 7. Testing
+8. Lazy load images with suspense
+9. Add multi item view in details,
+10. Ability to upload images from admin users.

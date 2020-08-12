@@ -26,6 +26,7 @@ import FilterIcon from './filter'
 import PersonAddIcon from './person-add'
 import DollarIcon from './dollar'
 import SmileyFaceIcon from './smiley-face'
+import UploadIcon from './upload'
 
 const Icon = props => {
   switch (props.name) {
@@ -85,6 +86,9 @@ const Icon = props => {
     case 'twitter-filled':
     case 'twitter-outlined':
       return <TwitterIcon {...props} />
+    case 'upload-filled':
+    case 'upload-outlined':
+      return <UploadIcon {...props} />
     case 'document':
     default:
       return <DocumentIcon {...props} />

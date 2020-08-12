@@ -3,6 +3,7 @@ import { constantCase, camelCase, capitalCase } from 'change-case'
 
 import UpdateProduct, { Form } from './product-update.styles'
 import ErrorBoundary from '../../error-boundary'
+import ProductImageUpload from './image-upload'
 import AvailableSizesTable from './available-sizes-table'
 import CategorySelect from './category-select'
 import Loader from '../../loader'
@@ -20,7 +21,8 @@ import {
   AVAILABLE_SIZES,
   IS_AVAILABLE,
   IS_FREE_SHIPPING,
-  IS_FEATURED
+  IS_FEATURED,
+  PHOTOS
 } from '../../../types/product-update-types'
 import {
   useUpdateProductMutation,
@@ -33,15 +35,16 @@ const reducer = (state, action) => {
   const target = camelCase(type)
 
   switch (type) {
-    case DESCRIPTION:
+    case AVAILABLE_SIZES:
     case CATEGORY:
+    case DESCRIPTION:
     case IS_AVAILABLE:
     case IS_FEATURED:
     case IS_FREE_SHIPPING:
+    case PHOTOS:
     case SKU:
     case STYLE:
     case TITLE:
-    case AVAILABLE_SIZES:
       return { ...state, [target]: payload }
     case PRICE:
       return { ...state, [target]: parseInt(payload) }
@@ -91,6 +94,13 @@ const ProductUpdateForm = ({
     dispatch({
       type: AVAILABLE_SIZES,
       payload: checkbox.checked ? addedCheckbox : removedCheckbox
+    })
+  }
+
+  const handleImages = ({ image, largeImage }) => {
+    dispatch({
+      type: PHOTOS,
+      payload: [...state.photos, largeImage]
     })
   }
 
@@ -162,34 +172,39 @@ const ProductUpdateForm = ({
     return (
       <Form method='post' onSubmit={handleSubmit}>
         <Form.Title>Product Update</Form.Title>
-        <Form.Fieldset>
-          <Form.FieldsetInner>
-            {fields.map((field, i) => (
-              <Form.InputField
-                key={i}
-                placeholder={capitalCase(field.name)}
-                type={field.type}
-                name={field.name}
-                value={field.value}
-                disabled={loading}
-                onChange={handleTextChange}
-                icon={field.icon}
-                theme='dark'
-              />
-            ))}
-          </Form.FieldsetInner>
-        </Form.Fieldset>
-        <Form.MultipleChoice>
-          <CategorySelect
-            onChange={handleCategoryChange}
-            selected={state.category}
-          />
-          <AvailableSizesTable
-            availableSizes={state.availableSizes}
-            onChange={handleSizeChange}
-          />
-          <ExtraFlagsTable flagMap={flagMap} onChange={handleFlagChange} />
-        </Form.MultipleChoice>
+        <Form.LeftColumn>
+          <Form.Fieldset>
+            <Form.FieldsetInner>
+              {fields.map((field, i) => (
+                <Form.InputField
+                  key={i}
+                  placeholder={capitalCase(field.name)}
+                  type={field.type}
+                  name={field.name}
+                  value={field.value}
+                  disabled={loading}
+                  onChange={handleTextChange}
+                  icon={field.icon}
+                  theme='dark'
+                />
+              ))}
+            </Form.FieldsetInner>
+          </Form.Fieldset>
+          <ProductImageUpload onImage={handleImages} />
+        </Form.LeftColumn>
+        <Form.RightColumn>
+          <Form.MultipleChoice>
+            <CategorySelect
+              onChange={handleCategoryChange}
+              selected={state.category}
+            />
+            <AvailableSizesTable
+              availableSizes={state.availableSizes}
+              onChange={handleSizeChange}
+            />
+            <ExtraFlagsTable flagMap={flagMap} onChange={handleFlagChange} />
+          </Form.MultipleChoice>
+        </Form.RightColumn>
         <Form.BtnGroup>
           <Form.ActionBtn
             type='button'

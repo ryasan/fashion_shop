@@ -24,6 +24,10 @@ Form.Title = styled(H3)`
   margin: 0;
 `
 
+Form.LeftColumn = styled.div`
+  grid-column: 1/2;
+`
+
 Form.Fieldset = styled.div`
   grid-column: 1/2;
 `
@@ -39,11 +43,16 @@ Form.InputField = styled(InputField)`
   margin-bottom: 2rem;
 `
 
+Form.RightColumn = styled.div`
+  grid-column: 2/3;
+  height: 100%;
+  outline-color: white;
+`
+
 Form.MultipleChoice = styled.div`
   display: flex;
   flex-direction: column;
-  grid-column: 2/3;
-  height: 30rem;
+  height: 100%;
   justify-content: space-between;
 `
 

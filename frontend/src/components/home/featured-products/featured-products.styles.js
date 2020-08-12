@@ -36,6 +36,10 @@ FeaturedProducts.Promo = styled.div`
   right: 10rem;
   transform: rotate(15deg);
   z-index: 1;
+
+  @media ${device.mobileL} {
+    display: none;
+  }
 `
 
 export const Card = styled(motion.div)`

@@ -1,33 +1,39 @@
 import React from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 import Hero from './hero.styles'
 import { Span } from '../../../shared/elements'
+import { device } from '../../../shared/utils'
 
-const leftAnimation = {
-  animate: {
-    height: [0, 120, 120, 120],
-    x: [0, 0, 0, -150]
-  },
+const createLeftAnimation = (height, x) => ({
+  animate: { height, x, rotateX: [180, 180, 0, 0, 0] },
   transition: {
-    duration: 1,
+    duration: 1.5,
     delay: 1,
     ease: 'easeInOut'
   }
-}
+})
 
-const rightAnimation = {
-  animate: {
-    height: [0, 120, 120, 120],
-    x: [0, 0, 0, 150]
-  },
+const createRightAnimation = (height, x) => ({
+  animate: { height, x, rotateX: [180, 180, 0, 0, 0] },
   transition: {
-    duration: 1,
+    duration: 1.5,
     delay: 1,
     ease: 'easeInOut'
   }
-}
+})
 
 const HeroComponent = () => {
+  const isMobileLg = useMediaQuery({ query: device.mobileL })
+
+  const leftAnimation = isMobileLg
+    ? createLeftAnimation([0, 48, 48, 48, 48], [0, 0, 0, 0, -48])
+    : createLeftAnimation([0, 120, 120, 120], [0, 0, 0, -120])
+
+  const rightAnimation = isMobileLg
+    ? createRightAnimation([0, 48, 48, 48, 48], [0, 0, 0, 0, 48])
+    : createRightAnimation([0, 120, 120, 120, 120], [0, 0, 0, 0, 120])
+
   return (
     <Hero>
       <Hero.TextContainer>

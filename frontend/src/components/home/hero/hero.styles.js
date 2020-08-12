@@ -1,8 +1,10 @@
 import styled from 'styled-components'
-
-import { H4 } from '../../../shared/elements'
-import heroBg from '../../../static/hero-bg-1.svg'
 import { motion } from 'framer-motion'
+
+import heroBg from '../../../static/hero-bg-1.svg'
+import { H4 } from '../../../shared/elements'
+import { device } from '../../../shared/utils'
+
 export const Hero = styled.div`
   align-items: center;
   background: url(${heroBg}) center center/cover no-repeat;
@@ -21,7 +23,7 @@ Hero.TextContainer = styled.div`
   color: white;
   padding: 5rem;
   text-align: center;
-  transform: translateY(-13rem);
+  transform: translate(0, -13rem);
 `
 
 Hero.Title = styled(motion.h1)`
@@ -30,6 +32,11 @@ Hero.Title = styled(motion.h1)`
   margin: 0;
   overflow: hidden;
   position: relative;
+  text-align: left;
+
+  @media ${device.mobileL} {
+    font-size: 5rem;
+  }
 `
 
 Hero.TitleLeft = styled(Hero.Title)``
