@@ -1,4 +1,5 @@
 import React from 'react'
+import { navigate } from '@reach/router'
 
 import ProductSlider from './product-slider.styles'
 import Slider from '../../slider'
@@ -24,7 +25,7 @@ const ProductSliderComponent = () => {
 
   const slideItems = products.map(item => ({
     ...item,
-    link: `/shop/${item.id}/`,
+    onClick: () => navigate(`/shop/${item.id}/`),
     image: getFrontImage(item.sku),
     bodyContent: [item.title, formatPrice(item.price)]
   }))

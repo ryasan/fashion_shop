@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import { useMediaQuery } from 'react-responsive'
 
 import Slider, { Card } from './slider.styles'
@@ -11,30 +10,43 @@ import { device } from '../../shared/utils'
 const Slide = props => {
   const { item, centerPos, idx } = props
 
+  const handleClick = () => {
+    if (item.onClick) item.onClick()
+  }
+
   return (
     <Slider.ListItem {...props}>
-      <Link to={item.link}>
-        <Card
-          isCenter={idx === centerPos}
-          isLeftInnerCard={idx === centerPos - 1}
-          isRightInnerCard={idx === centerPos + 1}
-          isLeftOuterCard={idx < centerPos - 1}
-          isRightOuterCard={idx > centerPos + 1}
-        >
-          <Card.Face>
-            <Card.Header>
-              <Card.HeaderImage src={item.image} />
-            </Card.Header>
-            <Card.Body>
-              {item.bodyContent.map((content, i) => (
-                <Card.Text key={i}>{content}</Card.Text>
-              ))}
-            </Card.Body>
-          </Card.Face>
-        </Card>
-      </Link>
+      <Card
+        isCenter={idx === centerPos}
+        isLeftInnerCard={idx === centerPos - 1}
+        isRightInnerCard={idx === centerPos + 1}
+        isLeftOuterCard={idx < centerPos - 1}
+        isRightOuterCard={idx > centerPos + 1}
+        onClick={handleClick}
+      >
+        <Card.Face>
+          <Card.Header>
+            <Card.HeaderImage src={item.image} />
+          </Card.Header>
+          <Card.Body>
+            {item.bodyContent.map((content, i) => (
+              <Card.Text key={i}>{content}</Card.Text>
+            ))}
+          </Card.Body>
+        </Card.Face>
+      </Card>
     </Slider.ListItem>
   )
+}
+
+Slide.propTypes = {
+  item: PropTypes.object,
+  centerPos: PropTypes.number,
+  idx: PropTypes.number
+}
+
+Slide.defaultProps = {
+  onClick: () => ({})
 }
 
 const SliderComponent = ({ items, title }) => {

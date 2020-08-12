@@ -2,26 +2,63 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { AnimatePresence } from 'framer-motion'
 
-import OurServices, { Grid } from './our-services.styles'
+import OurServices, { Grid, Item } from './our-services.styles'
 
 // prettier-ignore
 const services = [
   {
-    title: 'Lorem Ipsum',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    color: 'white'
+    title: 'Simple satisfaction',
+    description: [
+      {
+        paragraph: `
+        Your happiness is important to us. If for any reason you are not pleased with your purchase,
+        just contact us within 30 days and we will give you a refund or replacement`
+      }
+    ],
+    color: 'white',
+    icon: 'smiley-face'
   },
   {
-    title: 'Lorem Ipsum',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    color: 'black'
+    title: 'How do I place an order?',
+    description: [
+      {
+        paragraph: `
+        Select an item you like then click "purchase". If applicable, select a size then proceed to add your cart.
+        Continue shopping until you are ready to complete your purchase.`
+      }
+    ],
+    color: 'black',
+    icon: 'shopping-bag'
   },
   {
-    title: 'Lorem Ipsum',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    color: 'red'
+    title: 'Payment methods',
+    description: [
+      {
+        list: [
+          'VISA', 'MASTERCARD', 'AMERICAN EXPRESS', 'PAYPAL'
+        ]
+      }
+    ],
+    color: 'red',
+    icon: 'dollar'
   }
 ]
+
+const renderText = content => {
+  return content.map((c, index) => {
+    if (c.paragraph) {
+      return <Item.Text key={index}>{c.paragraph}</Item.Text>
+    } else if (c.list) {
+      return (
+        <Item.List key={index}>
+          {c.list.map((text, idx) => (
+            <Item.ListItem key={idx}>{text}</Item.ListItem>
+          ))}
+        </Item.List>
+      )
+    }
+  })
+}
 
 const parentVariants = () => ({
   hidden: { opacity: 0 },
@@ -52,13 +89,13 @@ const OurServicesComponent = ({ scrollPct }) => {
             animate={scrollPct >= 85 ? 'show' : 'hidden'}
           >
             {services.map((service, i) => (
-              <Grid.Item key={i} variants={childrenVariants()}>
-                <Grid.ItemIcon name='shopping-bag' color={service.color} />
-                <Grid.ItemTextContainer>
-                  <Grid.ItemTitle>{service.title}</Grid.ItemTitle>
-                  <Grid.ItemText>{service.description}</Grid.ItemText>
-                </Grid.ItemTextContainer>
-              </Grid.Item>
+              <Item key={i} variants={childrenVariants()}>
+                <Item.Icon name={service.icon} color={service.color} />
+                <Item.TextContainer>
+                  <Item.Title>{service.title}</Item.Title>
+                  {renderText(service.description)}
+                </Item.TextContainer>
+              </Item>
             ))}
           </Grid>
         )}

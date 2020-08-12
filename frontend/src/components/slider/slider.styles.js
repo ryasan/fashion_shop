@@ -79,6 +79,7 @@ Slider.ListItem = styled(Li)`
 
 export const Card = styled.div`
   box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 0.4);
+  cursor: pointer;
   height: 100%;
   position: relative;
   transform: ${props => (props.isCenter ? 'scale(1.2)' : 'scale(0.8)')};

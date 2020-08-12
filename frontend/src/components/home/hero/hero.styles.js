@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
-import { H1, H4 } from '../../../shared/elements'
+import { H4 } from '../../../shared/elements'
 import heroBg from '../../../static/hero-bg-1.svg'
+import { motion } from 'framer-motion'
 export const Hero = styled.div`
   align-items: center;
   background: url(${heroBg}) center center/cover no-repeat;
@@ -16,19 +17,6 @@ export const Hero = styled.div`
   width: 100%;
 `
 
-Hero.Diagonal = styled.div`
-  background: linear-gradient(225deg, var(--red) 50%, transparent 50%);
-  background-position: right top;
-  background-repeat: no-repeat;
-  background-size: 7.5rem 7.5rem;
-  border-radius: 0.4rem;
-  border-top: 0.5rem var(--red) solid;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  z-index: 2;
-`
-
 Hero.TextContainer = styled.div`
   color: white;
   padding: 5rem;
@@ -36,10 +24,17 @@ Hero.TextContainer = styled.div`
   transform: translateY(-13rem);
 `
 
-Hero.Title = styled(H1)`
+Hero.Title = styled(motion.h1)`
   font-size: 10rem;
   font-weight: 400;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
 `
+
+Hero.TitleLeft = styled(Hero.Title)``
+
+Hero.TitleRight = styled(Hero.Title)``
 
 Hero.Subtitle = styled(H4)`
   color: var(--red);

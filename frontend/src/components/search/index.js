@@ -45,7 +45,7 @@ const SearchComponent = ({ className }) => {
         }) => (
           <Search {...getRootProps()}>
             <Search.InputField>
-              <Search.Icon />
+              <Search.Icon name='magnifier' />
               <DebounceInput
                 id='search'
                 type='search'

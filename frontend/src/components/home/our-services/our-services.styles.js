@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
 import Icon from '../../icons'
-import { H1, H4, P } from '../../../shared/elements'
+import { H1, H4, P, Ul, Li } from '../../../shared/elements'
 import { device } from '../../../shared/utils'
 
 const OurServices = styled.div`
@@ -50,10 +50,10 @@ export const Grid = styled(motion.ul)`
   }
 `
 
-Grid.Item = styled(motion.li)`
+export const Item = styled(motion.li)`
   border-radius: 2rem;
   box-shadow: var(--box-shadow-m);
-  height: 20rem;
+  height: 23rem;
   margin-top: 15rem;
   position: relative;
   width: 30rem;
@@ -111,7 +111,7 @@ const iconBackground = color => {
   }
 }
 
-Grid.ItemIcon = styled(Icon)`
+Item.Icon = styled(Icon)`
   border-radius: 1.5rem;
   box-shadow: var(--box-shadow-s);
   height: 8rem;
@@ -127,17 +127,36 @@ Grid.ItemIcon = styled(Icon)`
   ${props => iconBackground(props.color)}
 `
 
-Grid.ItemTitle = styled(H4)`
-  margin-top: 5rem;
+Item.Title = styled(H4)`
+  margin-bottom: 0;
+  margin-top: 4rem;
 `
 
-Grid.ItemTextContainer = styled.div`
+Item.TextContainer = styled.div`
   height: 100%;
+  padding: 0 2rem;
   position: absolute;
   width: 100%;
   z-index: 1;
 `
 
-Grid.ItemText = styled(P)``
+Item.Text = styled(P)`
+  margin: 2rem 0;
+`
+
+Item.List = styled(Ul)`
+  margin-top: 2rem;
+  padding: 0 2rem;
+  text-align: left;
+`
+
+Item.ListItem = styled(Li)`
+  font-size: var(--font-size-lg);
+  list-style-type: disc;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+`
 
 export default OurServices

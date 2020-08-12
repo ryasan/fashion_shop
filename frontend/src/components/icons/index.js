@@ -24,6 +24,8 @@ import MoneyIcon from './money'
 import FingerprintIcon from './fingerprint'
 import FilterIcon from './filter'
 import PersonAddIcon from './person-add'
+import DollarIcon from './dollar'
+import SmileyFaceIcon from './smiley-face'
 
 const Icon = props => {
   switch (props.name) {
@@ -32,6 +34,8 @@ const Icon = props => {
       return <AccountIcon {...props} />
     case 'cart':
       return <CartIcon {...props} />
+    case 'dollar':
+      return <DollarIcon {...props} />
     case 'envelope':
       return <EnvelopeIcon {...props} />
     case 'exit':
@@ -72,6 +76,8 @@ const Icon = props => {
       return <RightArrowIcon {...props} />
     case 'shopping-bag':
       return <ShoppingBagIcon {...props} />
+    case 'smiley-face':
+      return <SmileyFaceIcon {...props} />
     case 'store':
       return <StoreIcon {...props} />
     case 'title':
