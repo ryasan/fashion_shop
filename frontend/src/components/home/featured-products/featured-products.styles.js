@@ -46,7 +46,7 @@ export const Card = styled(motion.div)`
   max-width: calc(var(--max-width) / 2);
   min-height: 69vh;
   position: relative;
-  top: -15rem;
+  top: -10rem;
   width: 100%;
   z-index: 1;
 

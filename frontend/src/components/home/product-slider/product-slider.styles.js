@@ -4,6 +4,7 @@ import { device } from '../../../shared/utils'
 
 const ProductSlider = styled.div`
   align-items: center;
+  background: var(--dark);
   box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.25),
     0 -0.5rem 1rem rgba(0, 0, 0, 0.22);
   display: flex;

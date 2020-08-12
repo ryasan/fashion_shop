@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useViewportScroll, useTransform } from 'framer-motion'
 
-import Home, { Heading, Body } from '../styles/home-page.styles'
+import Home, { Body } from '../styles/home-page.styles'
 import SEO from '../components/seo'
 import Layout from '../layouts/global-layout'
 import FeaturedProducts from '../components/home/featured-products'
@@ -9,7 +9,7 @@ import ScrollProgress from '../components/home/scroll-progress'
 import Footer from '../components/home/footer'
 import OurServices from '../components/home/our-services'
 import ProductSlider from '../components/home/product-slider'
-import { Span } from '../shared/elements'
+import Hero from '../components/home/hero'
 
 const HomePage = () => {
   const [pct, setPct] = useState(0)
@@ -30,17 +30,7 @@ const HomePage = () => {
       <SEO title='Home' />
       <Home>
         <ScrollProgress scrollPct={pct} />
-        <Heading>
-          <Heading.Diagonal />
-          <Heading.TextContainer>
-            <Heading.Title>
-              E <Span modifiers='dark_color'>&</Span> S Streetwear
-            </Heading.Title>
-            <Heading.Subtitle>
-              Keeping people dressed <br /> comfortably 365 days a year.
-            </Heading.Subtitle>
-          </Heading.TextContainer>
-        </Heading>
+        <Hero />
         <Body>
           <FeaturedProducts scrollPct={pct} />
           <ProductSlider />

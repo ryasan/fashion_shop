@@ -19,8 +19,7 @@ const itemAlreadyInCart = (cartItems, product) => {
 
   if (findItems.length && !itemHasSizeProperty) {
     return true
-  }
-  if (findItems.length && findItems.some(f => f.size === product.size)) {
+  } else if (findItems.length && findItems.some(f => f.size === product.size)) {
     return true
   }
 
