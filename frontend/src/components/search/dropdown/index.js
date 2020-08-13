@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { AnimatePresence } from 'framer-motion'
 
 import Dropdown, { KeepScrolling } from './dropdown.styles'
-import { getFrontImage } from '../../../shared/utils'
 import { useToggleOverlayMutation } from '../../../graphql/overlay/hooks'
 
 const fadeAway = () => ({
@@ -57,7 +56,7 @@ const DropdownComponent = ({
                   {...getItemProps({ item: p })}
                   highlighted={i === highlightedIndex}
                 >
-                  <Dropdown.ItemImage src={getFrontImage(p.sku)} />
+                  <Dropdown.ItemImage />
                   <Dropdown.ItemTitle modifiers='font_size_lg'>
                     {p.title}
                   </Dropdown.ItemTitle>

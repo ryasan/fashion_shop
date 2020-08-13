@@ -8,7 +8,7 @@ export const AVAILABLE_SIZES = 'AVAILABLE_SIZES'
 export const IS_FREE_SHIPPING = 'IS_FREE_SHIPPING'
 export const IS_FEATURED = 'IS_FEATURED'
 export const IS_AVAILABLE = 'IS_AVAILABLE'
-export const PHOTOS = 'PHOTOS'
+export const IMAGES = 'IMAGES'
 
 export default [
   TITLE,
@@ -21,5 +21,5 @@ export default [
   IS_FREE_SHIPPING,
   IS_FEATURED,
   IS_AVAILABLE,
-  PHOTOS
+  IMAGES
 ]

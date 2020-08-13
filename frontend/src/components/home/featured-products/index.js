@@ -5,7 +5,6 @@ import { navigate } from '@reach/router'
 import FeaturedProducts, { Card } from './featured-products.styles'
 import ErrorBoundary from '../../error-boundary'
 import Loader from '../../loader'
-import { getFrontImage, getBackImg } from '../../../shared/utils'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 
@@ -40,11 +39,11 @@ const Products = ({ products, scrollPct }) => {
 
   if (loading) return null
 
-  const [firstFeature, secondFeature] = products
+  if (products.length < 1) return null
 
   return (
     <FeaturedProducts>
-      {[firstFeature, secondFeature].map((product, i) => (
+      {products.map((product, i) => (
         <Card
           key={i}
           variants={containerVariants}
@@ -67,13 +66,13 @@ const Products = ({ products, scrollPct }) => {
               initial='initial'
               animate={isVisible ? 'final' : 'initial'}
               variants={imageVariants}
-              src={getFrontImage(product.sku)}
+              src={product.images[0]}
             />
             <Card.Image
               initial='initial'
               animate={isVisible ? 'final' : 'initial'}
               variants={imageVariants}
-              src={getBackImg(product.sku)}
+              src={product.images[0]}
             />
           </Card.ImageContainer>
           <Card.ProductTitle>{product.title}</Card.ProductTitle>
@@ -97,9 +96,14 @@ const FeaturedProductsComponent = props => {
     )
   }
 
+  const [firstFeature, secondFeature] = data.products
+
   return (
     <ErrorBoundary error={error}>
-      <Products scrollPct={props.scrollPct} products={data.products} />
+      <Products
+        scrollPct={props.scrollPct}
+        products={[firstFeature, secondFeature]}
+      />
     </ErrorBoundary>
   )
 }

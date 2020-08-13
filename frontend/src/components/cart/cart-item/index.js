@@ -7,7 +7,7 @@ import CartItem, {
   ButtonGroup,
   Price
 } from './cart-item.styles'
-import { formatPrice, getFrontImage } from '../../../shared/utils'
+import { formatPrice } from '../../../shared/utils'
 import {
   useRemoveCartItemMutation,
   useIncreaseCartItemQuantityMutation,
@@ -21,7 +21,7 @@ const CartItemComponent = ({ cartItem }) => {
   const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
   const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
-  const image = getFrontImage(product.sku)
+  const [image] = product.largeImages
 
   const handleRemoveCartItem = () => {
     removeCartItem({ variables: { product } })

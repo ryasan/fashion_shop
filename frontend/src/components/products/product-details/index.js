@@ -14,7 +14,7 @@ import Select from '../../select'
 import sizeTypes from '../../../types/size-types'
 import { useAddCartItemMutation } from '../../../graphql/cart/hooks'
 import { useProductQuery } from '../../../graphql/product/hooks'
-import { getFrontImage, getImage, formatPrice } from '../../../shared/utils'
+import { formatPrice, useImages } from '../../../shared/utils'
 import { SHIRT, HOODIE, LONG_SLEEVE } from '../../../types/category-types'
 
 const options = sizeTypes.map(size => ({ name: size, value: size }))
@@ -33,12 +33,17 @@ const ProductDetailsComponent = ({ productId }) => {
   }
 
   const { product } = data
-  const frontImage = getFrontImage(product.sku)
-  const otherImages = product.photos.map(getImage)
-  const images = [frontImage, ...otherImages]
+  const { smallImages, largeImages } = useImages(product.images)
 
   const handleAddCartItem = () => {
-    addCartItem({ variables: { product: { ...product, size: selectedSize } } })
+    addCartItem({
+      variables: {
+        product: {
+          ...product,
+          size: selectedSize
+        }
+      }
+    })
   }
 
   const handleSizeSelect = size => {
@@ -49,13 +54,13 @@ const ProductDetailsComponent = ({ productId }) => {
   return (
     <ProductDetails>
       <ErrorBoundary error={error}>
-        <SEO title={product.title} />
+        <SEO title={product.title} /> {/* eslint-disable-line */}
         <ProductDetails.Title modifiers='red_color'>{product.title}</ProductDetails.Title>
         <Content>
           <Image>
-            <Image.MainImage src={images[selectedIdx]} alt={product.title} />
+            <Image.MainImage src={largeImages[selectedIdx]} alt={product.title} />
             <Image.ImageList>
-              {images.length > 1 && images.map((image, i) => (
+              {smallImages.map((image, i) => (
                 <Image.Item key={i} onClick={() => setSelectedIdx(i)}>
                   <Image.TinyImage src={image} alt={product.title + i} />
                 </Image.Item>
@@ -65,9 +70,8 @@ const ProductDetailsComponent = ({ productId }) => {
           <Details>
             <Details.Text modifiers='font_size_xlg'>{product.style}</Details.Text>
             <Details.Text modifiers={['font_size_xlg', 'red_color']}>{formatPrice(product.price)}</Details.Text>
-            <Details.Text modifiers={['font_size_lg', 'gray_color']}>sku: {product.sku}</Details.Text>
             {product.isFreeShipping && <Details.Text modifiers='font_size_lg'>Free shipping available</Details.Text>}
-            <Details.Text modifiers='font_size_lg'>description: {product.description}</Details.Text>
+            <Details.Text modifiers='font_size_lg'>description: {product.description || 'none available'}</Details.Text>
             <Details.AddToCartBtn onClick={handleAddCartItem}>Add to cart</Details.AddToCartBtn>
             {[SHIRT, HOODIE, LONG_SLEEVE].includes(product.category) && (
               <Select

@@ -4,11 +4,10 @@ import moment from 'moment'
 import { navigate } from '@reach/router'
 
 import Order, { Header, Text } from './order.styles'
-import { getFrontImage, formatPrice } from '../../../shared/utils'
+import { formatPrice } from '../../../shared/utils'
 
 const OrderComponent = ({ order }) => {
   const { orderItems, createdAt, total } = order
-  const image = getFrontImage(order.orderItems[0].sku)
 
   const goToOrderDetails = () => {
     navigate(`/account/orders/${order.id}/`, { state: { order } })
@@ -17,7 +16,7 @@ const OrderComponent = ({ order }) => {
   return (
     <Order onClick={goToOrderDetails}>
       <Header>
-        <Header.Image src={image} />
+        <Header.Image />
       </Header>
       <Order.Body>
         <Text>{orderItems.length} items</Text>

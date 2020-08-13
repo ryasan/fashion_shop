@@ -4,15 +4,13 @@ import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
 
 import Product, { Promo, Header, Body, Footer } from './product.styles'
-import { formatPrice, getFrontImage } from '../../../shared/utils'
+import { formatPrice, getPrimaryImage } from '../../../shared/utils'
 
 const ProductComponent = ({ product, sizeFilters }) => {
-  const image = getFrontImage(product.sku)
   const formattedPrice = formatPrice(product.price)
   const dollars = formattedPrice.slice(0, -3)
   const cents = formattedPrice.slice(formattedPrice.length - 3)
   const detailsPage = `/shop/${product.id}/`
-
   const handleAddCartItem = () => {
     navigate(detailsPage)
   }
@@ -22,7 +20,7 @@ const ProductComponent = ({ product, sizeFilters }) => {
       {product.isFreeShipping && <Promo>Free Shipping</Promo>}
       <Link to={detailsPage} state={{ sku: product.sku }}>
         <Header>
-          <Header.Image src={image} />
+          <Header.Image src={getPrimaryImage(product.images)} />
         </Header>
         <Product.Offset />
         <Body>

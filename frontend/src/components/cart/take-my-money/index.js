@@ -8,7 +8,6 @@ import ErrorBoundary from '../../error-boundary'
 import Loader from '../../loader'
 import { toast } from '../../toast'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
-import { getFrontImage } from '../../../shared/utils'
 import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
 import { cartInitialState } from '../../../graphql/cart/reducer'
@@ -22,7 +21,6 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   const [uploadCart, { error: uploadError }] = useUploadCartMutation()
   const me = userData?.me
   const isReady = me && cartItems?.length > 0
-  const image = getFrontImage(cartItems[0]?.product.sku)
 
   const handleToastMessage = () => {
     if (!me) {
@@ -54,6 +52,8 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
     }
   }, [orderData])
 
+  // TODO: PUT IMAGE BACK ON THIS MOFO
+
   return (
     <ErrorBoundary error={orderError || uploadError}>
       <TakeMyMoney>
@@ -65,7 +65,6 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
             description={`Order of ${cartCount} items`}
             stripeKey={stripeKey}
             amount={cartTotal}
-            image={image}
             email={me?.email}
             token={res => onToken(res)}
           >

@@ -13,7 +13,7 @@ const UpdateProduct = styled.div`
 `
 
 export const Form = styled(FormStyles)`
-  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.9), 0 0 2.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--box-shadow-all-around);
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: 1fr 1fr;
@@ -76,6 +76,11 @@ Form.ActionBtn = styled(Button)`
       ${btns.clearRed}
     }
   }
+`
+
+export const ProductImageUpload = styled.div`
+  min-height: 10rem;
+  position: relative;
 `
 
 export default UpdateProduct

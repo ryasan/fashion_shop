@@ -6,7 +6,7 @@ import redTexture from '../../../static/red-texture.png'
 const Product = styled.div`
   background: var(--dark);
   border-radius: 0.2rem;
-  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.9), 0 0 2.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--box-shadow-all-around);
   position: relative;
   width: 100%;
 

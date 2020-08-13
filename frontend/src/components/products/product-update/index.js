@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from 'react'
-import { constantCase, camelCase, capitalCase } from 'change-case'
+import React, { useEffect, useState } from 'react'
+import { camelCase, capitalCase } from 'change-case'
 
 import UpdateProduct, { Form } from './product-update.styles'
 import ErrorBoundary from '../../error-boundary'
@@ -12,46 +12,10 @@ import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { hasPermission } from '../../../shared/utils'
 import { ADMIN, ITEM_UPDATE } from '../../../types/permission-types'
 import {
-  TITLE,
-  DESCRIPTION,
-  PRICE,
-  SKU,
-  STYLE,
-  CATEGORY,
-  AVAILABLE_SIZES,
-  IS_AVAILABLE,
-  IS_FREE_SHIPPING,
-  IS_FEATURED,
-  PHOTOS
-} from '../../../types/product-update-types'
-import {
   useUpdateProductMutation,
   useDeleteProductMutation
 } from '../../../graphql/product/hooks'
 import { toast } from '../../toast'
-
-const reducer = (state, action) => {
-  const { payload, type } = action
-  const target = camelCase(type)
-
-  switch (type) {
-    case AVAILABLE_SIZES:
-    case CATEGORY:
-    case DESCRIPTION:
-    case IS_AVAILABLE:
-    case IS_FEATURED:
-    case IS_FREE_SHIPPING:
-    case PHOTOS:
-    case SKU:
-    case STYLE:
-    case TITLE:
-      return { ...state, [target]: payload }
-    case PRICE:
-      return { ...state, [target]: parseInt(payload) }
-    default:
-      return state
-  }
-}
 
 const ProductUpdateForm = ({
   product,
@@ -63,59 +27,59 @@ const ProductUpdateForm = ({
   me
 }) => {
   const { id, __typename, ...rest } = product
-  const [state, dispatch] = useReducer(reducer, rest)
+  const [state, setState] = useState(rest)
 
   const handleTextChange = e => {
-    dispatch({
-      type: constantCase(e.target.name),
-      payload: e.target.value
-    })
+    setState(prev => ({
+      ...prev,
+      [camelCase(e.target.name)]: e.target.value
+    }))
   }
 
   const handleFlagChange = e => {
+    e.persist()
+
     const checkbox = e.target
-    dispatch({
-      type: constantCase(e.target.value),
-      payload: checkbox.checked
-    })
+    setState(prev => ({
+      ...prev,
+      [camelCase(e.target.value)]: checkbox.checked
+    }))
   }
 
-  const handleCategoryChange = payload => {
-    dispatch({ type: CATEGORY, payload })
+  const handleCategoryChange = category => {
+    setState(prev => ({ ...prev, category }))
   }
 
   const handleSizeChange = e => {
     const checkbox = e.target
-    const addedCheckbox = [...state.availableSizes, checkbox.value]
-    const removedCheckbox = state.availableSizes.filter(
+    const checkboxesPlus1 = [...state.availableSizes, checkbox.value]
+    const checkboxesMinus1 = state.availableSizes.filter(
       p => p !== checkbox.value
     )
 
-    dispatch({
-      type: AVAILABLE_SIZES,
-      payload: checkbox.checked ? addedCheckbox : removedCheckbox
-    })
+    setState(prev => ({
+      ...prev,
+      availableSizes: checkbox.checked ? checkboxesPlus1 : checkboxesMinus1
+    }))
   }
 
-  const handleImages = ({ image, largeImage }) => {
-    dispatch({
-      type: PHOTOS,
-      payload: [...state.photos, largeImage]
-    })
+  const handleOneProcessedImg = async ({ publicId }) => {
+    state.images.push(publicId)
+    setState(prev => ({ ...prev, images: state.images }))
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    updateProduct({
-      variables: {
-        where: { id },
-        data: {
-          ...state,
-          ...(state.photos && { photos: { set: state.photos } }),
-          availableSizes: { set: state.availableSizes }
-        }
+    const variables = {
+      where: { id },
+      data: {
+        ...state,
+        availableSizes: { set: state.availableSizes },
+        images: { set: state.images }
       }
-    })
+    }
+
+    updateProduct({ variables })
   }
 
   const handleDelete = () => {
@@ -190,7 +154,11 @@ const ProductUpdateForm = ({
               ))}
             </Form.FieldsetInner>
           </Form.Fieldset>
-          <ProductImageUpload onImage={handleImages} />
+          <ProductImageUpload
+            handleOneProcessedImg={handleOneProcessedImg}
+            currentImages={state.images}
+            sku={product.sku}
+          />
         </Form.LeftColumn>
         <Form.RightColumn>
           <Form.MultipleChoice>

@@ -1,4 +1,6 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
 import { useCreateProductMutation } from '../../graphql/product/hooks'
 import mockProducts from '../../mocks/products.json'
 
@@ -14,9 +16,7 @@ export const withSeedProducts = Component => props => {
             ...(p.availableSizes && {
               availableSizes: { set: p.availableSizes }
             }),
-            ...(p.photos && {
-              photos: { set: p.photos }
-            })
+            sku: uuidv4()
           }
         }
       })

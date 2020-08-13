@@ -14,7 +14,9 @@ const perPage = 8
 const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
   const [skip, setSkip] = useState(0)
-  const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery()
+  const {
+    data: { sizeFilters, categoryFilters, freeShippingSelected }
+  } = useFiltersQuery()
   const { data, error, loading } = useProductsConnectionQuery({
     sizeFilters,
     categoryFilters,

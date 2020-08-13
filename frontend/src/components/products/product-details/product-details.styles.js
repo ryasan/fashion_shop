@@ -61,7 +61,7 @@ Image.Item = styled(Li)`
 
     &::before {
       align-items: center;
-      color: var(--dark);
+      color: white;
       content: 'View';
       display: flex;
       font-size: 1.2rem;

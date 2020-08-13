@@ -13,6 +13,6 @@ export const PRODUCT_FRAGMENT = gql`
     style
     title
     category
-    photos
+    images
   }
 `
