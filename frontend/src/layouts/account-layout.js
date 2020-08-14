@@ -39,6 +39,9 @@ const AccountLayout = ({ children }) => {
                   <Link to='/account/permissions' activeClassName='active'>
                     Permissions
                   </Link>
+                  <Link to='/account/product-create' activeClassName='active'>
+                    Create Product
+                  </Link>
                 </Tabs.Links>
                 <Tabs.Content>{children}</Tabs.Content>
               </Tabs>

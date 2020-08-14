@@ -1,23 +1,24 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
+import PropTypes from 'prop-types'
 
 import ImageUpload, { Upload } from './image-upload.styles'
 import ThumbList from './thumbs'
+import { getThumbnail } from '../../shared/utils'
 
-const ImageUploadComponent = ({ onUpload, isLoading }) => {
-  const [previews, setPreviews] = useState([])
+const ImageUploadComponent = ({
+  onUpload,
+  isLoading,
+  currentImages,
+  setImages
+}) => {
+  const previews = currentImages.map(pubId => ({
+    preview: getThumbnail([pubId]),
+    pubId: pubId
+  }))
 
   const onDrop = useCallback(newFiles => {
     onUpload(newFiles)
-    setPreviews(acceptedFiles => {
-      return [
-        ...acceptedFiles,
-        ...newFiles.map(file => ({
-          ...file,
-          preview: URL.createObjectURL(file)
-        }))
-      ]
-    })
   }, [])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -37,7 +38,9 @@ const ImageUploadComponent = ({ onUpload, isLoading }) => {
 
   return (
     <ImageUpload isDragActive={isDragActive}>
-      {previews.length > 0 && <ThumbList thumbs={previews} />}
+      {previews.length > 0 && (
+        <ThumbList thumbs={previews} setImages={setImages} />
+      )}
 
       <Upload>
         <ImageUpload.Text>Click or drag to upload:</ImageUpload.Text>
@@ -59,6 +62,16 @@ const ImageUploadComponent = ({ onUpload, isLoading }) => {
       </Upload>
     </ImageUpload>
   )
+}
+
+ImageUploadComponent.defaultProps = {
+  currentImages: []
+}
+
+ImageUploadComponent.propTypes = {
+  onUpload: PropTypes.func.isRequired,
+  isUploading: PropTypes.func,
+  currentImages: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default ImageUploadComponent

@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import { Link } from 'gatsby'
 
 const Account = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ Tabs.Links = styled.div`
     text-decoration: none;
     transform: translateY(1px);
     transition: border-bottom-color 0.3s;
-    width: 11.7rem;
+    width: 15rem;
 
     &.active {
       animation: ${fadeIn} 0.3s;
@@ -49,30 +48,6 @@ Tabs.Links = styled.div`
     &:first-child {
       border-left: 1px solid white;
     }
-  }
-`
-
-Tabs.LinkItem = styled(Link)`
-  background: var(--dark);
-  border: 0.1rem solid white;
-  border-left: 0;
-  color: white;
-  display: inline-block;
-  font-size: var(--font-size-lg);
-  padding: 1rem;
-  text-align: center;
-  text-decoration: none;
-  transform: translateY(1px);
-  transition: border-bottom-color 0.2s;
-  width: 11.7rem;
-
-  &.active {
-    animation: ${fadeIn} 0.3s;
-    border-bottom-color: var(--dark);
-  }
-
-  &:first-child {
-    border-left: 1px solid white;
   }
 `
 

@@ -12,7 +12,7 @@ const Thumbs = styled.div`
 `
 
 Thumbs.Text = styled.div`
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-lg);
   margin-bottom: 1rem;
 `
 
@@ -27,13 +27,30 @@ Thumbs.List = styled(Ul)`
 
 export const Thumb = styled(Li)`
   align-items: center;
+  cursor: pointer;
   display: flex;
   height: 100%;
   margin-bottom: 1rem;
   overflow: hidden;
+  position: relative;
 
   &:not(:first-child) {
     margin-left: 1rem;
+  }
+
+  &:hover {
+    &::before {
+      align-items: center;
+      color: var(--red);
+      content: 'Delete';
+      display: flex;
+      font-size: var(--font-size-m);
+      font-weight: 600;
+      height: 100%;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+    }
   }
 `
 

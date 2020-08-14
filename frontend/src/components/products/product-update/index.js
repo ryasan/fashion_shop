@@ -64,9 +64,8 @@ const ProductUpdateForm = ({
     }))
   }
 
-  const handleOneProcessedImg = async ({ publicId }) => {
-    state.images.push(publicId)
-    setState(prevState => ({ ...prevState, images: state.images }))
+  const handleSetImages = images => {
+    setState(prevState => ({ ...prevState, images }))
   }
 
   const handleSubmit = async e => {
@@ -156,7 +155,8 @@ const ProductUpdateForm = ({
             </Form.FieldsetInner>
           </Form.Fieldset>
           <ProductImageUpload
-            handleOneProcessedImg={handleOneProcessedImg}
+            setImages={handleSetImages}
+            remoteImagesLoading={loading}
             currentImages={state.images}
             sku={product.sku}
           />

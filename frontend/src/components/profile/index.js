@@ -9,7 +9,6 @@ import {
   useDeleteMeMutation,
   useCurrentUserQuery
 } from '../../graphql/user/hooks'
-import { P, Button } from '../../shared/elements'
 import { toast } from '../../components/toast'
 
 const ProfileComponent = () => {
@@ -29,7 +28,7 @@ const ProfileComponent = () => {
 
   return (
     <Profile>
-      <SEO title={`Profile | ${me?.username || 'Loading...'}`} />
+      <SEO title={`Profile | ${me?.username || 'Loading...'}`} /> {/* eslint-disable-line */}
       {userLoading || delLoading ? (
         <Loader color='white' />
       ) : (
