@@ -11,26 +11,18 @@ import DropdownWrap, {
 } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
 
-const ListItem = ({ index, text, onClick, initial }) => {
-  const [isSelected, setIsSelected] = useState(initial)
-  const handleClick = index => {
-    setIsSelected(prevState => !prevState)
-    onClick(index)
-  }
-
-  return (
-    <MenuList.Item
-      modifiers={[
-        isSelected ? 'dark_color' : 'white_color',
-        isSelected ? 'white' : 'dark'
-      ]}
-      isSelected={isSelected}
-      onClick={() => handleClick(index)}
-    >
-      {text}
-    </MenuList.Item>
-  )
-}
+const ListItem = ({ index, text, onClick, isSelected }) => (
+  <MenuList.Item
+    modifiers={[
+      isSelected ? 'dark_color' : 'white_color',
+      isSelected ? 'white' : 'dark'
+    ]}
+    isSelected={isSelected}
+    onClick={() => onClick(index)}
+  >
+    {text}
+  </MenuList.Item>
+)
 
 const animationSpeed = 300
 const duration = animationSpeed / 1000
@@ -111,7 +103,7 @@ const MultiLevelDropdownComponent = ({
                   key={i}
                   index={i}
                   text={capitalCase(value)}
-                  initial={activeFilters.includes(value)}
+                  isSelected={activeFilters.includes(value)}
                   onClick={onLeftMenuClick}
                 />
               ))}
@@ -127,7 +119,7 @@ const MultiLevelDropdownComponent = ({
                   key={i}
                   index={i}
                   text={constantCase(value)}
-                  initial={activeFilters.includes(value)}
+                  isSelected={activeFilters.includes(value)}
                   onClick={onRightMenuClick}
                 />
               ))}

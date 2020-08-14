@@ -16,6 +16,7 @@ import {
   useDeleteProductMutation
 } from '../../../graphql/product/hooks'
 import { toast } from '../../toast'
+import { SHIRT, LONG_SLEEVE, HOODIE } from '../../../types/category-types'
 
 const ProductUpdateForm = ({
   product,
@@ -166,10 +167,12 @@ const ProductUpdateForm = ({
               onChange={handleCategoryChange}
               selected={state.category}
             />
-            <AvailableSizesTable
-              availableSizes={state.availableSizes}
-              onChange={handleSizeChange}
-            />
+            {[SHIRT, HOODIE, LONG_SLEEVE].includes(state.category) && (
+              <AvailableSizesTable
+                availableSizes={state.availableSizes}
+                onChange={handleSizeChange}
+              />
+            )}
             <ExtraFlagsTable flagMap={flagMap} onChange={handleFlagChange} />
           </Form.MultipleChoice>
         </Form.RightColumn>

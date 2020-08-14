@@ -6,7 +6,7 @@ import redTexture from '../../static/red-texture.png'
 
 const DropdownWrap = styled.div`
   cursor: pointer;
-  position: absolute;
+  position: relative;
   z-index: 100;
 `
 
@@ -30,16 +30,22 @@ const DropdownButton = styled(motion.button)`
     margin: 0.4rem 0 0 0.1rem;
   }
 
+  &:hover {
+    svg {
+      color: #c1c1c1;
+    }
+  }
+
   &::before {
     background: var(--dark);
     border-radius: 50%;
     content: '';
-    height: 80%;
+    height: 85%;
     left: 50%;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 85%;
     z-index: -1;
   }
 `
@@ -49,13 +55,13 @@ const Dropdown = styled(motion.div)`
   border: 0.2rem solid white;
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow-m);
-  left: 6rem;
+  left: 8rem;
   outline: 0;
   overflow: hidden;
-  position: relative;
-  top: -5rem;
+  position: absolute;
+  top: 0;
   width: 25rem;
-  z-index: 200;
+  z-index: 9999;
 `
 
 Dropdown.Inner = styled(motion.div)`
