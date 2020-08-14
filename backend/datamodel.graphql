@@ -56,7 +56,7 @@ type Product {
   title: String!
   category: Category!
   availableSizes: [Size!] @scalarList(strategy: RELATION)
-  photos: [String!] @scalarList(strategy: RELATION)
+  images: [String]! @scalarList(strategy: RELATION)
 }
 
 type OrderItem {

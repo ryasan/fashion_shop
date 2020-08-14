@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/ryan-santos-beb648/fashion-shop/dev
-# timestamp: Fri Aug 07 2020 23:53:25 GMT-0700 (Pacific Daylight Time)
+# timestamp: Wed Aug 12 2020 20:31:02 GMT-0700 (Pacific Daylight Time)
 
 type AggregateCartItem {
   count: Int!
@@ -1557,7 +1557,7 @@ type Product implements Node {
   title: String!
   category: Category!
   availableSizes: [Size!]!
-  photos: [String!]!
+  images: [String!]!
 }
 
 """A connection to a list of items."""
@@ -1574,6 +1574,10 @@ input ProductCreateavailableSizesInput {
   set: [Size!]
 }
 
+input ProductCreateimagesInput {
+  set: [String!]
+}
+
 input ProductCreateInput {
   id: ID
   description: String!
@@ -1586,16 +1590,12 @@ input ProductCreateInput {
   title: String!
   category: Category!
   availableSizes: ProductCreateavailableSizesInput
-  photos: ProductCreatephotosInput
+  images: ProductCreateimagesInput
 }
 
 input ProductCreateOneInput {
   create: ProductCreateInput
   connect: ProductWhereUniqueInput
-}
-
-input ProductCreatephotosInput {
-  set: [String!]
 }
 
 """An edge in a connection."""
@@ -1642,7 +1642,7 @@ type ProductPreviousValues {
   title: String!
   category: Category!
   availableSizes: [Size!]!
-  photos: [String!]!
+  images: [String!]!
 }
 
 type ProductSubscriptionPayload {
@@ -1697,7 +1697,11 @@ input ProductUpdateDataInput {
   title: String
   category: Category
   availableSizes: ProductUpdateavailableSizesInput
-  photos: ProductUpdatephotosInput
+  images: ProductUpdateimagesInput
+}
+
+input ProductUpdateimagesInput {
+  set: [String!]
 }
 
 input ProductUpdateInput {
@@ -1711,7 +1715,7 @@ input ProductUpdateInput {
   title: String
   category: Category
   availableSizes: ProductUpdateavailableSizesInput
-  photos: ProductUpdatephotosInput
+  images: ProductUpdateimagesInput
 }
 
 input ProductUpdateManyMutationInput {
@@ -1725,7 +1729,7 @@ input ProductUpdateManyMutationInput {
   title: String
   category: Category
   availableSizes: ProductUpdateavailableSizesInput
-  photos: ProductUpdatephotosInput
+  images: ProductUpdateimagesInput
 }
 
 input ProductUpdateOneRequiredInput {
@@ -1733,10 +1737,6 @@ input ProductUpdateOneRequiredInput {
   connect: ProductWhereUniqueInput
   update: ProductUpdateDataInput
   upsert: ProductUpsertNestedInput
-}
-
-input ProductUpdatephotosInput {
-  set: [String!]
 }
 
 input ProductUpsertNestedInput {

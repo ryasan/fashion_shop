@@ -77,7 +77,7 @@ type Product {
   title: String!
   availableSizes: [Size!]
   category: Category!
-  photos: [String!]
+  images: [String]!
 }
 
 type SuccessMessage {
