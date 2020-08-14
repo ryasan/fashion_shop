@@ -7,7 +7,7 @@ import { Div } from '../../../shared/elements'
 
 const Count = ({ count }) => (
   <Div modifiers={['text_align_center', 'white_color', 'font_size_lg']}>
-    {count && `Found ${count} product${count > 1 ? 's' : ''}`}
+    {count > 0 && `Found ${count} product${count > 1 ? 's' : ''}`}
   </Div>
 )
 

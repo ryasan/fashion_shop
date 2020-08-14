@@ -33,7 +33,7 @@ const ProductsComponent = () => {
   const totalPages = Math.ceil(count / perPage)
 
   useEffect(() => {
-    if (!loading) {
+    if (count) {
       changeProductsPage({
         variables: {
           page: Math.min(productsPage, totalPages)

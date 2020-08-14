@@ -118,7 +118,13 @@ const SliderComponent = ({ items, title }) => {
     <Slider>
       <Slider.Container>
         <Slider.Track>
-          <Slider.Button onClick={handlePrevClick}>&#8592;</Slider.Button>
+          <Slider.Button
+            onClick={handlePrevClick}
+            onMouseEnter={toggleIsHovering}
+            onMouseLeave={toggleIsHovering}
+          >
+            &#8592;
+          </Slider.Button>
           <Slider.List
             translateX={translateX}
             onMouseEnter={toggleIsHovering}
@@ -128,7 +134,13 @@ const SliderComponent = ({ items, title }) => {
               <Slide key={i} idx={i} item={item} centerPos={centerPos} />
             ))}
           </Slider.List>
-          <Slider.Button onClick={handleNextClick}>&#8594;</Slider.Button>
+          <Slider.Button
+            onClick={handleNextClick}
+            onMouseEnter={toggleIsHovering}
+            onMouseLeave={toggleIsHovering}
+          >
+            &#8594;
+          </Slider.Button>
         </Slider.Track>
         <DotsComponent
           centerPos={centerPos}

@@ -7,6 +7,7 @@ import ErrorBoundary from '../../error-boundary'
 import Loader from '../../loader'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 import { useProductsQuery } from '../../../graphql/product/hooks'
+import { getPrimaryImage } from '../../../shared/utils/get-image'
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -66,13 +67,13 @@ const Products = ({ products, scrollPct }) => {
               initial='initial'
               animate={isVisible ? 'final' : 'initial'}
               variants={imageVariants}
-              src={product.images[0]}
+              src={getPrimaryImage(product.images)}
             />
             <Card.Image
               initial='initial'
               animate={isVisible ? 'final' : 'initial'}
               variants={imageVariants}
-              src={product.images[0]}
+              src={getPrimaryImage(product.images)}
             />
           </Card.ImageContainer>
           <Card.ProductTitle>{product.title}</Card.ProductTitle>
@@ -83,9 +84,24 @@ const Products = ({ products, scrollPct }) => {
   )
 }
 
+Products.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object)
+}
+
+Products.defaultProps = {
+  products: []
+}
+
 const FeaturedProductsComponent = props => {
   const { data, loading, error } = useProductsQuery({
-    variables: { where: { sku_in: ['hoodie_7_front5', 'T_7_front5'] } }
+    variables: {
+      where: {
+        sku_in: [
+          '7add67da-0e1a-42d5-ba3c-bdf72b7be8ba',
+          '451209a9-330a-40ff-b95f-b5e3830a07c1'
+        ]
+      }
+    }
   })
 
   if (loading) {
@@ -96,14 +112,11 @@ const FeaturedProductsComponent = props => {
     )
   }
 
-  const [firstFeature, secondFeature] = data.products
+  if (data.products.length !== 2) return null
 
   return (
     <ErrorBoundary error={error}>
-      <Products
-        scrollPct={props.scrollPct}
-        products={[firstFeature, secondFeature]}
-      />
+      <Products scrollPct={props.scrollPct} products={data.products} />
     </ErrorBoundary>
   )
 }

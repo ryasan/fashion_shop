@@ -7,6 +7,7 @@ import Loader from '../../../components/loader'
 import ErrorBoundary from '../../error-boundary'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 import { formatPrice } from '../../../shared/utils'
+import { getPrimaryImage } from '../../../shared/utils/get-image'
 
 const ProductSliderComponent = () => {
   const { data, loading, error } = useProductsQuery({
@@ -25,7 +26,7 @@ const ProductSliderComponent = () => {
   const slideItems = products.map(item => ({
     ...item,
     onClick: () => navigate(`/shop/${item.id}/`),
-    image: item.images[0],
+    image: getPrimaryImage(item.images),
     bodyContent: [item.title, formatPrice(item.price)]
   }))
 

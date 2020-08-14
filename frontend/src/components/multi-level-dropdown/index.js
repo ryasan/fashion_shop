@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useCycle } from 'framer-motion'
 import { capitalCase, constantCase } from 'change-case'
