@@ -7,7 +7,7 @@ import CartItem, {
   ButtonGroup,
   Price
 } from './cart-item.styles'
-import { formatPrice } from '../../../shared/utils'
+import { formatPrice, getThumbnail } from '../../../shared/utils'
 import {
   useRemoveCartItemMutation,
   useIncreaseCartItemQuantityMutation,
@@ -21,7 +21,6 @@ const CartItemComponent = ({ cartItem }) => {
   const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()
   const [decreaseCartItemQuantity] = useDecreaseCartItemQuantityMutation()
   const [isMouseOver, setIsMouseOver] = useState(false)
-  const [image] = product.largeImages
 
   const handleRemoveCartItem = () => {
     removeCartItem({ variables: { product } })
@@ -46,7 +45,7 @@ const CartItemComponent = ({ cartItem }) => {
   return (
     <CartItem isMouseOver={isMouseOver}>
       <Content>
-        <Content.Image src={image} />
+        <Content.Image src={getThumbnail(product.images)} />
         <Details>
           <Details.Text>{title}</Details.Text>
           <Details.Text modifiers={['gray_color', 'font_size_m']}>

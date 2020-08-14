@@ -85,9 +85,11 @@ Card.CategoryTitle = styled.h3`
   background: url(${redTexture});
   font-size: 4rem;
   font-weight: 100;
+  height: 100%;
   letter-spacing: 1rem;
   margin: 0;
   text-align: center;
+  width: 100%;
 
   &::before {
     align-items: center;

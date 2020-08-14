@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
 
 import Filter from './filter.styles'
@@ -46,11 +46,6 @@ const FilterComponent = () => {
     client.writeData({ data: { ...filtersInitialState } })
     refetch()
   }
-
-  useEffect(() => {
-    console.log(sizeFilters)
-    console.log(categoryFilters)
-  }, [sizeFilters, categoryFilters])
 
   return (
     <Filter>

@@ -4,7 +4,7 @@ import moment from 'moment'
 import { navigate } from '@reach/router'
 
 import Order, { Header, Text } from './order.styles'
-import { formatPrice } from '../../../shared/utils'
+import { formatPrice, getThumbnail } from '../../../shared/utils'
 
 const OrderComponent = ({ order }) => {
   const { orderItems, createdAt, total } = order
@@ -16,7 +16,7 @@ const OrderComponent = ({ order }) => {
   return (
     <Order onClick={goToOrderDetails}>
       <Header>
-        <Header.Image />
+        <Header.Image src={getThumbnail([orderItems[0].sku + '-1'])} />
       </Header>
       <Order.Body>
         <Text>{orderItems.length} items</Text>

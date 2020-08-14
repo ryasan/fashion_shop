@@ -52,12 +52,7 @@ const Products = ({ products, scrollPct }) => {
           animate='final'
         >
           <Card.Header>
-            <Card.CategoryTitle
-              isEvenElement={i % 2 === 0}
-              title={product.category.toUpperCase() + 'S'}
-            >
-              {product.category.toUpperCase()}
-            </Card.CategoryTitle>
+            <Card.CategoryTitle title={product.category.toUpperCase() + 'S'} />
           </Card.Header>
           <Card.CallToAction onClick={() => handleClick(product.category)}>
             VIEW ALL

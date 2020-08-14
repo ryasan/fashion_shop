@@ -12,7 +12,7 @@ import OrderDetails, {
 } from './order-details.styles'
 import Loader from '../../loader'
 import ErrorBoundary from '../../error-boundary'
-import { formatPrice } from '../../../shared/utils'
+import { formatPrice, getThumbnail } from '../../../shared/utils'
 import { useProductQuery } from '../../../graphql/product/hooks'
 
 const OrderItemComponent = ({ item }) => {
@@ -28,14 +28,12 @@ const OrderItemComponent = ({ item }) => {
     return <Loader size='small' />
   }
 
-  // TODO: put image back
-
   // prettier-ignore
   return (
     <ErrorBoundary error={error}>
       <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
         <OrderItem.ImageContainer>
-          <OrderItem.Image />
+          <OrderItem.Image src={[getThumbnail([item.sku + '-1'])]} />
         </OrderItem.ImageContainer>
         <OrderItem.Cost>
           <Text><TextKey modifiers='red_color'>Price:&nbsp;</TextKey>{formatPrice(item.price)}</Text>

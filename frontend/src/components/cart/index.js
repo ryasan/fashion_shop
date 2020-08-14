@@ -19,7 +19,6 @@ const CartComponent = () => {
   const { data: { cartOpen, cartItems } } = useCartQuery()
   const cartCount = sumBy(cartItems, c => c.quantity)
   const cartTotal = sumBy(cartItems, c => c.product.price * c.quantity)
-
   const handleOnBlur = () => {
     if (cartOpen) toggleCart()
   }
