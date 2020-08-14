@@ -4,23 +4,28 @@ import PropTypes from 'prop-types'
 import Pagination, { PageButton } from './pagination.styles'
 
 const PaginationComponent = ({
-  count,
   pageInfo,
-  perPage,
   children,
-  setSkip,
-  skip
+  changePage,
+  currentPage,
+  totalPages
 }) => {
-  const pages = Math.ceil(count / perPage)
-  const currentPage = Math.ceil((skip + perPage) / perPage)
   const { hasNextPage } = pageInfo
 
   const handlePrevClick = () => {
-    setSkip(prevSkip => prevSkip - perPage)
+    changePage({
+      variables: {
+        page: currentPage - 1
+      }
+    })
   }
 
   const handleNextClick = () => {
-    setSkip(prevSkip => prevSkip + perPage)
+    changePage({
+      variables: {
+        page: currentPage + 1
+      }
+    })
   }
 
   const renderControls = () => (
@@ -28,7 +33,7 @@ const PaginationComponent = ({
       <PageButton disabled={currentPage === 1} onClick={handlePrevClick}>
         <PageButton.Icon name='left-arrow' />
       </PageButton>
-      {pages > 0 ? `${currentPage} / ${pages} pages` : 'No results'}
+      {totalPages > 0 ? `${currentPage} / ${totalPages} pages` : 'No results'}
       <PageButton disabled={!hasNextPage} onClick={handleNextClick}>
         <PageButton.Icon name='right-arrow' />
       </PageButton>
@@ -46,9 +51,10 @@ const PaginationComponent = ({
 
 PaginationComponent.propTypes = {
   children: PropTypes.object.isRequired,
-  count: PropTypes.number.isRequired,
   pageInfo: PropTypes.object.isRequired,
-  setSkip: PropTypes.func.isRequired
+  currentPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  changePage: PropTypes.func.isRequired
 }
 
 export default PaginationComponent

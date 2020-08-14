@@ -13,13 +13,22 @@ import {
   ADD_CATEGORY_FILTER,
   REMOVE_CATEGORY_FILTER
 } from './filter/action-types'
+import {
+  CHANGE_PRODUCTS_PAGE,
+  CHANGE_ORDERS_PAGE
+} from './pagination/action-types'
 import { TOGGLE_OVERLAY } from './overlay/action-types'
 import cartReducer from './cart/reducer'
 import filtersReducer from './filter/reducer'
 import overlayReducer from './overlay/reducer'
+import paginationReducer from './pagination/reducer'
 
 // local data
 export const Mutation = {
+  changeOrdersPage: (_, variables, { client }) =>
+    paginationReducer(CHANGE_ORDERS_PAGE, client, variables),
+  changeProductsPage: (_, variables, { client }) =>
+    paginationReducer(CHANGE_PRODUCTS_PAGE, client, variables),
   toggleCart: (_, variables, { client }) =>
     cartReducer(TOGGLE_CART, client, variables),
   toggleOverlay: (_, variables, { client }) =>

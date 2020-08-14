@@ -30,8 +30,8 @@ const ProductUpdateForm = ({
   const [state, setState] = useState(rest)
 
   const handleTextChange = e => {
-    setState(prev => ({
-      ...prev,
+    setState(prevState => ({
+      ...prevState,
       [camelCase(e.target.name)]: e.target.value
     }))
   }
@@ -40,14 +40,14 @@ const ProductUpdateForm = ({
     e.persist()
 
     const checkbox = e.target
-    setState(prev => ({
-      ...prev,
+    setState(prevState => ({
+      ...prevState,
       [camelCase(e.target.value)]: checkbox.checked
     }))
   }
 
   const handleCategoryChange = category => {
-    setState(prev => ({ ...prev, category }))
+    setState(prevState => ({ ...prevState, category }))
   }
 
   const handleSizeChange = e => {
@@ -57,15 +57,15 @@ const ProductUpdateForm = ({
       p => p !== checkbox.value
     )
 
-    setState(prev => ({
-      ...prev,
+    setState(prevState => ({
+      ...prevState,
       availableSizes: checkbox.checked ? checkboxesPlus1 : checkboxesMinus1
     }))
   }
 
   const handleOneProcessedImg = async ({ publicId }) => {
     state.images.push(publicId)
-    setState(prev => ({ ...prev, images: state.images }))
+    setState(prevState => ({ ...prevState, images: state.images }))
   }
 
   const handleSubmit = async e => {

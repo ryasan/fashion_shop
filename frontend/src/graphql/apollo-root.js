@@ -11,6 +11,7 @@ import { Mutation } from './local-resolvers'
 import { cartInitialState } from './cart/reducer'
 import { filtersInitialState } from './filter/reducer'
 import { overlayInitialState } from './overlay/reducer'
+import { paginationInitialState } from './pagination/reducer'
 
 const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fs-backend-staging.herokuapp.com'
@@ -35,7 +36,8 @@ const PersistApolloProvider = ({ children }) => {
         defaults: {
           ...cartInitialState,
           ...filtersInitialState,
-          ...overlayInitialState
+          ...overlayInitialState,
+          ...paginationInitialState
         }
       },
       credentials: 'include',

@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useApolloClient } from '@apollo/react-hooks'
+import React from 'react'
 
 import Filter from './filter.styles'
 import MultiLevelDropdown from '../../multi-level-dropdown'
@@ -12,10 +11,8 @@ import {
 } from '../../../graphql/filter/hooks'
 import CATEGORY_FILTERS from '../../../types/category-types.js'
 import SIZE_FILTERS from '../../../types/size-types.js'
-import { filtersInitialState } from '../../../graphql/filter/reducer'
 
 const FilterComponent = () => {
-  const client = useApolloClient()
   const { data: { sizeFilters, categoryFilters } } = useFiltersQuery() // prettier-ignore
   const [addCategoryFilter] = useAddCategoryFilterMutation()
   const [removeCategoryFilter] = useRemoveCategoryFilterMutation()
@@ -42,12 +39,6 @@ const FilterComponent = () => {
     }
   }
 
-  useEffect(() => {
-    return () => {
-      client.writeData({ data: { ...filtersInitialState } })
-    }
-  }, [])
-
   return (
     <Filter>
       <MultiLevelDropdown
@@ -56,6 +47,7 @@ const FilterComponent = () => {
         rightMenuTitle='Categories'
         onLeftMenuClick={onCategoryClick}
         onRightMenuClick={onSizeClick}
+        activeFilters={[...sizeFilters, ...categoryFilters]}
       />
     </Filter>
   )

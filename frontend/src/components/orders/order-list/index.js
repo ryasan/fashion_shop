@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import Orders from './order-list.styles'
@@ -8,6 +8,10 @@ import Loader from '../../loader'
 import Select from '../../select'
 import Pagination from '../../pagination'
 import { useOrdersConnectionQuery } from '../../../graphql/order/hooks'
+import {
+  usePaginationQuery,
+  useChangeOrdersPageMutation
+} from '../../../graphql/pagination/hooks'
 
 const perPage = 8
 
@@ -21,11 +25,14 @@ const options = [
 
 const OrderListComponent = ({ me }) => {
   const [orderBy, setOrderBy] = useState('createdAt_DESC')
-  const [skip, setSkip] = useState(0)
+  const [changeOrdersPage] = useChangeOrdersPageMutation()
+  const { data: ordersData } = usePaginationQuery()
+
+  const { ordersPage } = ordersData
 
   const variables = {
     orderBy,
-    skip,
+    skip: (ordersPage - 1) * perPage,
     first: perPage,
     where: { user: { id: me.id } }
   }
@@ -33,6 +40,7 @@ const OrderListComponent = ({ me }) => {
   const { data, loading, error } = useOrdersConnectionQuery({ variables })
   const orders = data?.ordersConnection.edges.map(e => e.node)
   const count = data?.ordersCount.aggregate.count
+  const totalPages = Math.ceil(count / perPage)
 
   return (
     <Orders>
@@ -49,10 +57,9 @@ const OrderListComponent = ({ me }) => {
           ) : (
             <Pagination
               pageInfo={data.ordersConnection.pageInfo}
-              count={count}
-              skip={skip}
-              setSkip={setSkip}
-              perPage={perPage}
+              totalPages={totalPages}
+              currentPage={ordersPage}
+              changePage={changeOrdersPage}
             >
               <Orders.List>
                 {orders.map(order => (

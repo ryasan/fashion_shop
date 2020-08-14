@@ -11,9 +11,8 @@ import DropdownWrap, {
 } from './multi-level-dropdown.styles'
 import DropdownButton from './dropdown-button'
 
-const ListItem = ({ index, text, onClick }) => {
-  const [isSelected, setIsSelected] = useState(false)
-
+const ListItem = ({ index, text, onClick, initial }) => {
+  const [isSelected, setIsSelected] = useState(initial)
   const handleClick = index => {
     setIsSelected(prevState => !prevState)
     onClick(index)
@@ -67,7 +66,8 @@ const MultiLevelDropdownComponent = ({
   leftMenuTitle,
   rightMenuTitle,
   onLeftMenuClick,
-  onRightMenuClick
+  onRightMenuClick,
+  activeFilters
 }) => {
   const dropdownRef = useRef(null)
   const [leftMenu, rightMenu] = levels
@@ -106,24 +106,28 @@ const MultiLevelDropdownComponent = ({
               {constantCase(leftMenuTitle)} &#8594;
             </Categories.Title>
             <MenuList>
-              {leftMenu.map((text, i) => (
+              {leftMenu.map((value, i) => (
                 <ListItem
                   key={i}
                   index={i}
-                  text={capitalCase(text)}
+                  text={capitalCase(value)}
+                  initial={activeFilters.includes(value)}
                   onClick={onLeftMenuClick}
                 />
               ))}
             </MenuList>
           </Categories>
           <Sizes>
-            <Sizes.Title onClick={toggleMenu}>&#8592; {constantCase(rightMenuTitle)}</Sizes.Title>
+            <Sizes.Title onClick={toggleMenu}>
+              &#8592; {constantCase(rightMenuTitle)}
+            </Sizes.Title>
             <MenuList>
-              {rightMenu.map((text, i) => (
+              {rightMenu.map((value, i) => (
                 <ListItem
                   key={i}
                   index={i}
-                  text={constantCase(text)}
+                  text={constantCase(value)}
+                  initial={activeFilters.includes(value)}
                   onClick={onRightMenuClick}
                 />
               ))}
@@ -136,7 +140,8 @@ const MultiLevelDropdownComponent = ({
 }
 
 MultiLevelDropdownComponent.propTypes = {
-  levels: PropTypes.arrayOf(PropTypes.array).isRequired
+  levels: PropTypes.arrayOf(PropTypes.array).isRequired,
+  activeFilters: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default MultiLevelDropdownComponent
