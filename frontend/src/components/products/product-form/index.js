@@ -8,16 +8,15 @@ import CategorySelect from './category-select'
 import ExtraFlagsTable from './extra-flags-table'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { hasPermission } from '../../../shared/utils'
-import { ADMIN, ITEM_UPDATE } from '../../../types/permission-types'
 import { SHIRT, LONG_SLEEVE, HOODIE } from '../../../types/category-types'
 
 const ProductFormComponent = ({
-  productHandler,
   loading,
   leftComponentAddon,
   rightComponentAddon,
   fullWidthAddon,
-  useState
+  useState,
+  requiredPermissions
 }) => {
   const { data } = useCurrentUserQuery()
   const [state, setState] = useState || [{}, () => {}]
@@ -92,7 +91,7 @@ const ProductFormComponent = ({
     isFeatured: state.isFeatured
   }
 
-  if (hasPermission(me, [ADMIN, ITEM_UPDATE])) {
+  if (hasPermission(me, requiredPermissions)) {
     return (
       <Form>
         <Form.LeftColumn>

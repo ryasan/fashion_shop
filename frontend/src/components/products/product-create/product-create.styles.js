@@ -15,7 +15,7 @@ ProductCreate.BtnGroup = styled.div`
 `
 
 ProductCreate.ActionBtn = styled(Button)`
-  ${btns}
+  ${btns.white}
   width: 15rem;
 
   &:hover {

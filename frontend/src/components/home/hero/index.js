@@ -9,7 +9,7 @@ const createLeftAnimation = (height, x) => ({
   animate: { height, x, rotateX: [180, 180, 0, 0, 0] },
   transition: {
     duration: 1.5,
-    delay: 1,
+    delay: 0.5,
     ease: 'easeInOut'
   }
 })
@@ -18,7 +18,7 @@ const createRightAnimation = (height, x) => ({
   animate: { height, x, rotateX: [180, 180, 0, 0, 0] },
   transition: {
     duration: 1.5,
-    delay: 1,
+    delay: 0.5,
     ease: 'easeInOut'
   }
 })

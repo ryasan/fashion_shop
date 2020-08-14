@@ -7,10 +7,8 @@ import ErrorBoundary from '../../error-boundary/index'
 import ImageUpload from '../../image-upload'
 import { useCreateProductMutation } from '../../../graphql/product/hooks'
 import { ACCESSORY } from '../../../types/category-types'
-
-const createPublicId = (sku, currentImages) => {
-  return `${sku}-${currentImages.length + 1}`
-}
+import { ADMIN, ITEM_CREATE } from '../../../types/permission-types'
+import { createPubId } from '../../../shared/utils'
 
 const productInitialState = {
   isFreeShipping: false,
@@ -52,7 +50,7 @@ const ProductCreateComponent = () => {
   const handleUpload = async acceptedFiles => {
     setIsLoading(true)
     const data = new FormData() // eslint-disable-line
-    const pubId = createPublicId(state.sku, state.images)
+    const pubId = createPubId(state.sku, state.images)
     data.append('file', acceptedFiles[0])
     data.append('upload_preset', 'fashion_shop')
     data.append('public_id', pubId)
@@ -76,9 +74,9 @@ const ProductCreateComponent = () => {
       <ProductCreate>
         <ProductCreate.Title>Create fresh new product</ProductCreate.Title>
         <ProductForm
-          productHandler={handleSubmit}
           loading={loading}
           useState={[state, setState]}
+          requiredPermissions={[ADMIN, ITEM_CREATE]}
           leftComponentAddon={
             <ImageUpload
               onUpload={handleUpload}

@@ -27,7 +27,7 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <SEO title='Home' />
+      <SEO title='Home' /> {/* eslint-disable-line */}
       <Home>
         <ScrollProgress scrollPct={pct} />
         <Hero />
