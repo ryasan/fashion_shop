@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ProductImageUpload } from './product-update.styles'
+import { ProductImageUpload } from './product-form.styles'
 import ImageUpload from '../../image-upload'
 
 const createPublicId = (sku, currentImages) => {

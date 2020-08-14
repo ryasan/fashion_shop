@@ -17,7 +17,6 @@ import { formatPrice, useImages } from '../../../shared/utils'
 import { SHIRT, HOODIE, LONG_SLEEVE } from '../../../types/category-types'
 
 const ProductDetailsComponent = ({ product }) => {
-  console.log(product)
   const options = product.availableSizes.map(size => ({
     name: size,
     value: size
