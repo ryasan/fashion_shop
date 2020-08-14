@@ -23,14 +23,6 @@ ProductUpdate.ActionBtn = styled(Button)`
   &:hover {
     ${btns.clearWhite}
   }
-
-  &:first-child {
-    ${btns.clearWhite}
-
-    &:hover {
-      ${btns.clearRed}
-    }
-  }
 `
 
 export default ProductUpdate

@@ -8,9 +8,11 @@ import {
   useUpdateProductMutation,
   useDeleteProductMutation
 } from '../../../graphql/product/hooks'
-import { createPubId } from '../../../shared/utils'
+import { createPubId, hasPermission } from '../../../shared/utils'
 import { toast } from '../../toast'
 import { ITEM_UPDATE, ADMIN } from '../../../types/permission-types'
+import { useCurrentUserQuery } from '../../../graphql/user/hooks'
+import ProductDeleteComponent from '../product-delete'
 
 const ProductUpdateComponent = ({
   product,
@@ -22,6 +24,8 @@ const ProductUpdateComponent = ({
   const { id, __typename, ...rest } = product
   const [state, setState] = useState(rest)
   const [isLoading, setIsLoading] = useState(false)
+  const { data } = useCurrentUserQuery()
+  const me = data && data.me
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -72,7 +76,6 @@ const ProductUpdateComponent = ({
       <ProductForm
         loading={updateLoading || deleteLoading}
         useState={[state, setState]}
-        requiredPermissions={[ADMIN, ITEM_UPDATE]}
         leftComponentAddon={
           <ImageUpload
             onUpload={handleUpload}
@@ -83,12 +86,20 @@ const ProductUpdateComponent = ({
         }
         fullWidthAddon={
           <ProductUpdate.BtnGroup>
-            <ProductUpdate.ActionBtn name='delete' onClick={handleSubmit}>
-              {deleteLoading ? 'Deleting' : 'Delete'}
-            </ProductUpdate.ActionBtn>
-            <ProductUpdate.ActionBtn name='update' onClick={handleSubmit}>
-              {updateLoading ? 'Submitting' : 'Submit'}
-            </ProductUpdate.ActionBtn>
+            <ProductDeleteComponent
+              me={me}
+              loading={deleteLoading}
+              onClick={handleSubmit}
+            />
+            {hasPermission(me, [ADMIN, ITEM_UPDATE]) && (
+              <ProductUpdate.ActionBtn
+                name='update'
+                onClick={handleSubmit}
+                disabled={deleteLoading}
+              >
+                {updateLoading ? 'Submitting' : 'Submit'}
+              </ProductUpdate.ActionBtn>
+            )}
           </ProductUpdate.BtnGroup>
         }
       />
