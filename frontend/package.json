@@ -43,6 +43,7 @@
     "react-flip-move": "^3.0.4",
     "react-helmet": "^5.2.1",
     "react-responsive": "^8.1.0",
+    "react-scroll": "^1.8.1",
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^5.5.0",
     "react-transition-group": "^4.4.1",

@@ -5,7 +5,7 @@ import { btns } from '../../../shared/styles'
 import InputField from '../../input-field'
 
 const Form = styled(FormStyles)`
-  box-shadow: var(--box-shadow-all-around);
+  box-shadow: var(--box-shadow-full);
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: 1fr 1fr;

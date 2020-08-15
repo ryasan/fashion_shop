@@ -32,7 +32,7 @@ const DropdownButton = styled(motion.button)`
 
   &:hover {
     svg {
-      color: #c1c1c1;
+      color: var(--super-light-gray);
     }
   }
 

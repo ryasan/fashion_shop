@@ -5,10 +5,19 @@ import redTexture from '../../../static/red-texture.png'
 
 const Product = styled.div`
   background: var(--dark);
-  border-radius: 0.2rem;
-  box-shadow: var(--box-shadow-all-around);
+  box-shadow: var(--box-shadow-full);
+  color: red;
   position: relative;
+  transition: transform 0.2s;
   width: 100%;
+
+  &:hover {
+    transform: translateY(-1rem);
+
+    > a {
+      color: var(--red);
+    }
+  }
 
   > a {
     color: white;
@@ -53,6 +62,7 @@ Product.Offset = styled.div`
 `
 
 export const Body = styled.div`
+  color: inherit;
   text-align: center;
 `
 
@@ -99,8 +109,6 @@ export const Footer = styled.div`
 Footer.Button = styled(Button)`
   background: var(--red);
   background: url(${redTexture}) center center;
-  border-bottom-left-radius: 0.2rem;
-  border-bottom-right-radius: 0.2rem;
   color: white;
   height: 100%;
   position: relative;
@@ -117,6 +125,10 @@ Footer.Button = styled(Button)`
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  &:hover {
+    color: var(--super-light-gray);
   }
 `
 

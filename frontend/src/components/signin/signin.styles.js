@@ -8,7 +8,7 @@ import redTexture from '../../static/red-texture.png'
 
 const Signin = styled.div`
   align-content: space-between;
-  box-shadow: var(--box-shadow-m);
+  box-shadow: var(--box-shadow-full);
   display: flex;
   flex-direction: column;
   left: 50%;
@@ -18,9 +18,11 @@ const Signin = styled.div`
   position: relative;
   transform: translateX(-50%);
   width: 40rem;
+  z-index: 2;
 `
 
 export const Form = styled(StyledForm)`
+  background: var(--dark);
   flex: 1;
   padding-bottom: 2.4rem;
 `

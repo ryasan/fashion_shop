@@ -38,7 +38,7 @@ Filter.ResetBtn = styled(Button)`
 
   &:hover {
     &::before {
-      color: #c1c1c1;
+      color: var(--super-light-gray);
     }
   }
 

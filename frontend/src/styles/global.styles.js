@@ -12,13 +12,13 @@ const StyledRoot = css`
     --off-white: #ededed;
     --gray: #7b797e;
     --light-gray: #bbb;
+    --super-light-gray: #e1e1e1;
     --font-size-s: 0.8rem;
     --font-size-m: 1.2rem;
     --font-size-lg: 1.6rem;
     --font-size-xlg: 2rem;
     --max-width: 120rem;
-    --box-shadow-all-around: 0 0 2.8rem 0.2rem rgba(0, 0, 0, 0.25),
-      0 0 1rem 0.1rem rgba(0, 0, 0, 0.22);
+    --box-shadow-full: 0 0 3rem black;
     --box-shadow-xs: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.12),
       0 0.1rem 0.2rem rgba(0, 0, 0, 0.24);
     --box-shadow-s: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.16),

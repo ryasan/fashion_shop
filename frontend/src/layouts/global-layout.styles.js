@@ -11,6 +11,7 @@ Layout.Main = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow: hidden;
   position: relative;
 `
 
