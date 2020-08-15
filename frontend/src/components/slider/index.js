@@ -60,7 +60,7 @@ const SliderComponent = ({ items, title }) => {
   const [pct, setPct] = useState(0)
   const [isHovering, setIsHovering] = useState(null)
   const isMobileLg = useMediaQuery({ query: device.mobileL })
-  const cardWidth = isMobileLg ? 20 : 40
+  const cardWidth = isMobileLg ? 20 : 30
 
   const handlePrevClick = () => {
     setSlideData(({ centerPos, translateX }) => ({

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { AnimatePresence } from 'framer-motion'
 
-import Dropdown, { KeepScrolling } from './dropdown.styles'
+import Dropdown, { ScrollBtn } from './dropdown.styles'
 import { useToggleOverlayMutation } from '../../../graphql/overlay/hooks'
 import { getThumbnail } from '../../../shared/utils'
 
@@ -38,11 +38,11 @@ const DropdownComponent = ({
     }
   }
 
-  const showKeepScrollingText = products.length > 7 && !scrolledToBottom
+  const showScrollBtnText = products.length > 7 && !scrolledToBottom
 
   useEffect(() => {
     if (dropdownIsOpen) toggleOverlay({ variables: { bool: true } })
-    else if (!dropdownIsOpen) toggleOverlay({ variables: { bool: false } })
+    if (!dropdownIsOpen) toggleOverlay({ variables: { bool: false } })
   }, [dropdownIsOpen])
 
   return (
@@ -65,13 +65,13 @@ const DropdownComponent = ({
               ))}
             </Dropdown.List>
             <AnimatePresence>
-              {showKeepScrollingText && dropdownIsOpen && (
-                <KeepScrolling {...fadeAway()}>
-                  <KeepScrolling.Text {...pulse()}>
+              {showScrollBtnText && dropdownIsOpen && (
+                <ScrollBtn {...fadeAway()}>
+                  <ScrollBtn.Text {...pulse()}>
                     Scroll down
-                  </KeepScrolling.Text>
-                  <KeepScrolling.Text {...pulse()}>&darr;</KeepScrolling.Text>
-                </KeepScrolling>
+                  </ScrollBtn.Text>
+                  <ScrollBtn.Text {...pulse()}>&darr;</ScrollBtn.Text>
+                </ScrollBtn>
               )}
             </AnimatePresence>
           </Dropdown>

@@ -10,15 +10,14 @@ const ProductSlider = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  height: 100vh;
   justify-content: center;
-  min-height: 100vh;
   overflow: hidden;
   padding: 10rem 0;
   position: relative;
 `
 
 ProductSlider.Title = styled(H1)`
-  margin-bottom: 20rem;
   text-align: center;
 `
 

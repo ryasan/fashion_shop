@@ -27,6 +27,7 @@ import PersonAddIcon from './person-add'
 import DollarIcon from './dollar'
 import SmileyFaceIcon from './smiley-face'
 import UploadIcon from './upload'
+import DownArrowIcon from './down-arrow'
 
 const Icon = props => {
   switch (props.name) {
@@ -37,6 +38,8 @@ const Icon = props => {
       return <CartIcon {...props} />
     case 'dollar':
       return <DollarIcon {...props} />
+    case 'down-arrow':
+      return <DownArrowIcon {...props} />
     case 'envelope':
       return <EnvelopeIcon {...props} />
     case 'exit':

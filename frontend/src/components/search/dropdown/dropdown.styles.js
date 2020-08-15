@@ -56,7 +56,7 @@ Dropdown.ItemImage = styled.img`
   width: 7rem;
 `
 
-const KeepScrolling = styled(motion.div)`
+export const ScrollBtn = styled(motion.div)`
   background: var(--dark);
   border: 0.2rem solid var(--red);
   border-radius: 0 0 0.3rem 0.3rem;
@@ -67,7 +67,7 @@ const KeepScrolling = styled(motion.div)`
   width: calc(100% - 0.5rem);
 `
 
-KeepScrolling.Text = styled(motion.div)`
+ScrollBtn.Text = styled(motion.div)`
   align-items: flex-end;
   display: flex;
   flex: 1;
@@ -81,5 +81,4 @@ KeepScrolling.Text = styled(motion.div)`
   }
 `
 
-export { KeepScrolling }
 export default Dropdown

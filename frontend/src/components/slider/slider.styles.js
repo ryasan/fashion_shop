@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components'
 import { Button, Ul, Li, Span, Image } from '../../shared/elements'
 import { device } from '../../shared/utils'
 
-export const cardWidth = 40
-const cardHeight = 50
+export const cardWidth = 30
+const cardHeight = 37.5
 
 const Slider = styled.div`
   height: 100%;
