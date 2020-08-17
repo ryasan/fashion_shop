@@ -8,7 +8,7 @@ import DotsComponent from './dots'
 import { device } from '../../shared/utils'
 
 const Slide = props => {
-  const { item, centerPos, idx } = props
+  const { item, currentIdx, idx } = props
 
   const handleClick = () => {
     if (item.onClick) item.onClick()
@@ -17,11 +17,11 @@ const Slide = props => {
   return (
     <Slider.ListItem {...props}>
       <Card
-        isCenter={idx === centerPos}
-        isLeftInnerCard={idx === centerPos - 1}
-        isRightInnerCard={idx === centerPos + 1}
-        isLeftOuterCard={idx < centerPos - 1}
-        isRightOuterCard={idx > centerPos + 1}
+        isCenter={idx === currentIdx}
+        isLeftInnerCard={idx === currentIdx - 1}
+        isRightInnerCard={idx === currentIdx + 1}
+        isLeftOuterCard={idx < currentIdx - 1}
+        isRightOuterCard={idx > currentIdx + 1}
         onClick={handleClick}
       >
         <Card.Face>
@@ -41,7 +41,7 @@ const Slide = props => {
 
 Slide.propTypes = {
   item: PropTypes.object,
-  centerPos: PropTypes.number,
+  currentIdx: PropTypes.number,
   idx: PropTypes.number
 }
 
@@ -49,45 +49,28 @@ Slide.defaultProps = {
   onClick: () => ({})
 }
 
+const distances = [90, 60, 30, 0, -30, -60, -90]
+const smallDistances = [-60, -40, -20, 0, 20, 40, 60]
+
 const SliderComponent = ({ items, title }) => {
   const len = items.length
   const half = Math.floor(len / 2)
-  const [{ translateX, centerPos }, setSlideData] = useState({
-    translateX: 0,
-    centerPos: half
-  })
+  const [currentIdx, setCurrentIdx] = useState(half)
 
   const [pct, setPct] = useState(0)
   const [isHovering, setIsHovering] = useState(null)
   const isMobileLg = useMediaQuery({ query: device.mobileL })
-  const cardWidth = isMobileLg ? 20 : 30
 
   const handlePrevClick = () => {
-    setSlideData(({ centerPos, translateX }) => ({
-      translateX: centerPos <= 0 ? half * -cardWidth : translateX + cardWidth,
-      centerPos: (centerPos + (len - 1)) % len
-    }))
+    setCurrentIdx(prev => (prev + (items.length - 1)) % items.length)
   }
 
   const handleNextClick = () => {
-    setSlideData(({ centerPos, translateX }) => ({
-      translateX: centerPos >= 6 ? half * cardWidth : translateX - cardWidth,
-      centerPos: (centerPos + 1) % len
-    }))
+    setCurrentIdx(prev => (prev + 1) % items.length)
   }
 
   const handleDotClick = selectedIdx => {
-    if (selectedIdx < centerPos) {
-      setSlideData(({ centerPos: curCenter, translateX }) => ({
-        centerPos: selectedIdx,
-        translateX: translateX + (centerPos - selectedIdx) * cardWidth
-      }))
-    } else if (selectedIdx > centerPos) {
-      setSlideData(({ centerPos: curCenter, translateX }) => ({
-        centerPos: selectedIdx,
-        translateX: translateX + (centerPos - selectedIdx) * cardWidth
-      }))
-    }
+    setCurrentIdx(selectedIdx)
   }
 
   const toggleIsHovering = () => {
@@ -96,7 +79,6 @@ const SliderComponent = ({ items, title }) => {
 
   useEffect(() => {
     let interval
-
     if (!isHovering) {
       interval = setInterval(() => {
         setPct(prev => {
@@ -106,10 +88,8 @@ const SliderComponent = ({ items, title }) => {
     } else {
       clearInterval(interval)
     }
-
     return () => clearInterval(interval)
   }, [isHovering])
-
   useEffect(() => {
     if (pct === 100) handleNextClick()
   }, [pct])
@@ -126,12 +106,12 @@ const SliderComponent = ({ items, title }) => {
             &#8592;
           </Slider.Button>
           <Slider.List
-            translateX={translateX}
+            translateX={(isMobileLg ? smallDistances : distances)[currentIdx]}
             onMouseEnter={toggleIsHovering}
             onMouseLeave={toggleIsHovering}
           >
             {items.map((item, i) => (
-              <Slide key={i} idx={i} item={item} centerPos={centerPos} />
+              <Slide key={i} idx={i} item={item} currentIdx={currentIdx} />
             ))}
           </Slider.List>
           <Slider.Button
@@ -143,7 +123,7 @@ const SliderComponent = ({ items, title }) => {
           </Slider.Button>
         </Slider.Track>
         <DotsComponent
-          centerPos={centerPos}
+          currentIdx={currentIdx}
           numberOfDots={len}
           onClick={handleDotClick}
         />
