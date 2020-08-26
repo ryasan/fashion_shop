@@ -3,7 +3,8 @@ import React from 'react'
 import {
   ProductInterface,
   OrderItemInterface,
-  OrderInterface
+  OrderInterface,
+  CartItemInterface
 } from '../interfaces'
 
 const baseUrl = 'https://res.cloudinary.com/dbir6orpj/image/upload'
@@ -20,14 +21,15 @@ interface ItemInterface {
   product?: ProductInterface
   order?: OrderInterface
   orderItem?: OrderItemInterface
+  cartItems?: CartItemInterface[]
 }
 
 export const withImages = <P extends {}>(
   WrappedComponent: React.ComponentType<P>
 ) => (props: P & ItemInterface) => {
-  const { product, orderItem, order } = props
 
-  const item = product || orderItem || order?.orderItems[0]
+  const { product, orderItem, order, cartItems } = props
+  const item = product || orderItem || order?.orderItems[0] || cartItems?.[0]?.product
 
   if (item) {
     const [firstPublicId] = item.images

@@ -8,11 +8,16 @@ import {
   DECREASE_CART_ITEM_QUANTITY
 } from './action-types'
 import { HOODIE, LONG_SLEEVE, SHIRT } from '../../types/category-types'
+import { CartItemInterface, ProductInterface } from '../../shared/interfaces'
 
-const itemAlreadyInCart = (cartItems, product) => {
+const itemAlreadyInCart = (
+  cartItems: CartItemInterface[],
+  product: ProductInterface
+) => {
   const findItems = cartItems.filter(
     cartItem => cartItem.product.id === product.id
   )
+
   const itemHasSizeProperty = [HOODIE, LONG_SLEEVE, SHIRT].includes(
     product.category
   )
@@ -26,22 +31,30 @@ const itemAlreadyInCart = (cartItems, product) => {
   return false
 }
 
-const createNewCartItem = (cartItems, product) => {
-  const newItem = {
+const createNewCartItem = (
+  cartItems: CartItemInterface[],
+  product: ProductInterface
+) => [
+  ...cartItems,
+  {
     __typename: 'CartItem',
     size: product.size ? product.size : null,
     product: product,
     quantity: 1
   }
+]
 
-  return [...cartItems, newItem]
-}
-
-const removeCartItem = (cartItems, product) => {
+const removeCartItem = (
+  cartItems: CartItemInterface[],
+  product: ProductInterface
+) => {
   return cartItems.filter(item => item.product.id !== product.id)
 }
 
-const increaseCartItemQty = (cartItems, product) => {
+const increaseCartItemQty = (
+  cartItems: CartItemInterface[],
+  product: ProductInterface
+) => {
   const newCartItems = cartItems.map(cartItem => ({
     ...cartItem,
     quantity:
@@ -53,7 +66,10 @@ const increaseCartItemQty = (cartItems, product) => {
   return newCartItems
 }
 
-const decreaseCartItemQty = (cartItems, product) => {
+const decreaseCartItemQty = (
+  cartItems: CartItemInterface[],
+  product: ProductInterface
+) => {
   return cartItems.map(cartItem => ({
     ...cartItem,
     quantity:
@@ -63,7 +79,14 @@ const decreaseCartItemQty = (cartItems, product) => {
   }))
 }
 
-const mergeRemoteWithLocalCartItems = (localCartItems, remoteCartItems) => {
+interface LooseCartItemObject {
+  [key: string]: { quantity: number; __typename: string }
+}
+
+const mergeRemoteWithLocalCartItems = (
+  localCartItems: CartItemInterface[],
+  remoteCartItems: CartItemInterface[]
+) => {
   return [...localCartItems, ...remoteCartItems].reduce((obj, cartItem) => {
     const productId = cartItem.product.id
 
@@ -74,12 +97,21 @@ const mergeRemoteWithLocalCartItems = (localCartItems, remoteCartItems) => {
     }
 
     return obj
-  }, {})
+  }, {} as LooseCartItemObject)
 }
 
-export const cartInitialState = { cartOpen: false, cartItems: [] }
+export const cartInitialState: {
+  cartOpen: boolean
+  cartItems: CartItemInterface[]
+} = { cartOpen: false, cartItems: [] }
 
-const cartReducer = (actionType, client, variables) => {
+const cartReducer = <
+  T extends { product: ProductInterface; remoteCartItems: CartItemInterface[] }
+>(
+  actionType: string,
+  client: any,
+  variables: T
+) => {
   const state = client.readQuery({ query: CART_QUERY })
   const { cartItems, cartOpen } = state
   const { product, remoteCartItems } = variables || {}

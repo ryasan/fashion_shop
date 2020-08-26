@@ -1,25 +1,25 @@
 export enum SizeEnum {
-  S,
-  M,
-  L,
-  XL,
-  XXL
+  S = 'S',
+  M = 'M',
+  L = 'L',
+  XL = 'XL',
+  XXL = 'XXL'
 }
 
 export enum CategoryEnum {
-  SHIRT,
-  SHORTS,
-  LONG_SLEEVE,
-  HOODIE,
-  BEANIE,
-  ACCESSORY
+  SHIRT = 'SHIRT',
+  SHORTS = 'SHORTS',
+  LONG_SLEEVE = 'LONG_SLEEVE',
+  HOODIE = 'HOODIE',
+  BEANIE = 'BEANIE',
+  ACCESSORY = 'ACCESSORY'
 }
 
 export enum PermissionEnum {
-  ADMIN,
-  USER,
-  ITEM_CREATE,
-  ITEM_UPDATE,
-  ITEM_DELETE,
-  PERMISSION_UPDATE
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  ITEM_CREATE = 'ITEM_CREATE',
+  ITEM_UPDATE = 'ITEM_UPDATE',
+  ITEM_DELETE = 'ITEM_DELETE',
+  PERMISSION_UPDATE = 'PERMISSION_UPDATE'
 }

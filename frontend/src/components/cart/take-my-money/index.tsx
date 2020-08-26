@@ -11,26 +11,38 @@ import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
 import { cartInitialState } from '../../../graphql/cart/reducer'
-import { getPrimaryImage } from '../../../shared/utils'
+import { withImages } from '../../../shared/utils'
+import {
+  CartItemInterface,
+  ImagesInterface,
+  UserInterface,
+  OrderInterface
+} from '../../../shared/interfaces'
 
-const stripeKey = 'pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2'
+const stripeKey: string =
+  'pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2'
 
-const withMainImg = Component => props => {
-  const { cartItems } = props
-  const mainImg = cartItems.length && getPrimaryImage(cartItems[0].product.images)
-
-  return <Component {...props} mainImg={mainImg} />
+interface TakeMyMoneyComponentInterface {
+  images: ImagesInterface
+  cartItems: CartItemInterface[]
+  cartTotal: number
+  cartCount: number
 }
 
-const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount, mainImg }) => {
+const TakeMyMoneyComponent: React.FC<TakeMyMoneyComponentInterface> = ({
+  cartItems,
+  cartTotal,
+  cartCount,
+  images
+}) => {
   const client = useApolloClient()
   const { data: userData } = useCurrentUserQuery()
-  const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation()
-  const [uploadCart, { error: uploadError }] = useUploadCartMutation()
-  const me = userData?.me
-  const isReady = me && cartItems?.length > 0
+  const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation() // prettier-ignore
+  const [uploadCart, { error: uploadError }] = useUploadCartMutation() // prettier-ignore
+  const me = userData?.me as UserInterface
+  const isReady = (me && cartItems?.length > 0) as boolean
 
-  const handleToastMessage = () => {
+  const handleToastMessage = (): void => {
     if (!me) {
       toast('You must be signed in to purchase something')
     } else if (!cartItems.length) {
@@ -38,7 +50,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount, mainImg }) => {
     }
   }
 
-  const onToken = async res => {
+  const onToken = async <T extends { id: string }>(res: T): Promise<void> => {
     await uploadCart({
       variables: {
         data: cartItems.map(c => ({
@@ -52,7 +64,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount, mainImg }) => {
   }
 
   useEffect(() => {
-    const order = orderData?.createOrder
+    const order: OrderInterface = orderData?.createOrder
     if (order) {
       client.writeData({ data: cartInitialState })
       toast('Thank you! Your order is being processed')
@@ -71,17 +83,19 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount, mainImg }) => {
             description={`Order of ${cartCount} items`}
             stripeKey={stripeKey}
             amount={cartTotal}
-            image={mainImg}
+            image={images.bigImage}
             email={me?.email}
             token={res => onToken(res)}
           >
             <CheckoutBtn>CHECKOUT</CheckoutBtn>
           </StripeCheckout>
         )}
-        {!isReady && <CheckoutBtn onClick={handleToastMessage}>CHECKOUT</CheckoutBtn>}
+        {!isReady && (
+          <CheckoutBtn onClick={handleToastMessage}>CHECKOUT</CheckoutBtn>
+        )}
       </TakeMyMoney>
     </ErrorBoundary>
   )
 }
 
-export default withMainImg(TakeMyMoneyComponent)
+export default withImages(TakeMyMoneyComponent)

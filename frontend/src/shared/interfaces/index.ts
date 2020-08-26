@@ -63,3 +63,4 @@ export interface CartItemInterface {
   size: SizeEnum
   user: UserInterface
 }
+
