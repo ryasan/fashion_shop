@@ -234,7 +234,6 @@ const Mutation = {
             size: c.size,
             quantity: c.quantity,
             product: { connect: { id: c.productId } },
-
             user: { connect: { id: userId } }
           }
         },

@@ -68,6 +68,7 @@ type OrderItem {
   sku: String!
   price: Int!
   user: User
+  images: [String]! @scalarList(strategy: RELATION)
 }
 
 type Order {

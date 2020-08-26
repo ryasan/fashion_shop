@@ -11,9 +11,10 @@ const availableSizes = itemIds => {
 }
 
 const Query = {
-  me: (parent, args, ctx, info) => {
+  me: async (parent, args, ctx, info) => {
     if (!isLoggedIn(ctx)) return null
-    return ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
+    const user = await ctx.db.query.user({ where: { id: ctx.request.userId } }, info)
+    return user
   },
   orders: forwardTo('db'),
   ordersConnection: forwardTo('db'),
