@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useViewportScroll, useTransform } from 'framer-motion'
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from 'react-scroll'
+import { Link, Element } from 'react-scroll'
 
 import Home, { Body, ScrollBtn } from '../styles/home-page.styles'
 import SEO from '../components/seo'
@@ -26,7 +19,6 @@ const useCycle = () => {
 
   const rotateIdx = () => {
     setIdx(prevIdx => {
-      console.log((prevIdx + 1) % anchors.length)
       return (prevIdx + 1) % anchors.length
     })
   }

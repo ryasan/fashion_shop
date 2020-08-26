@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import ProductDetails, {
@@ -32,7 +32,7 @@ const ProductDetailsComponent = ({ product }) => {
       variables: {
         product: {
           ...product,
-          size: selectedSize
+          ...(selectedSize && { size: selectedSize.value })
         }
       }
     })

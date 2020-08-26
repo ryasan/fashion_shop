@@ -1,22 +1,25 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import { navigate } from '@reach/router'
 
 import Order, { Header, Text } from './order.styles'
-import { formatPrice, getThumbnail } from '../../../shared/utils'
+import { formatPrice, withImages } from '../../../shared/utils'
+import { OrderInterface, ImagesInterface } from '../../../shared/interfaces'
 
-const OrderComponent = ({ order }) => {
-  const { orderItems, createdAt, total } = order
+const OrderComponent: React.FC<{
+  order: OrderInterface
+  images: ImagesInterface
+}> = ({ order, images }) => {
+  const { orderItems, createdAt, total, id } = order
 
   const goToOrderDetails = () => {
-    navigate(`/account/orders/${order.id}/`, { state: { order } })
+    navigate(`/account/orders/${id}/`, { state: { order: order } })
   }
 
   return (
     <Order onClick={goToOrderDetails}>
       <Header>
-        <Header.Image src={getThumbnail([orderItems[0].sku + '-1'])} />
+        <Header.Image src={images.smallImage} />
       </Header>
       <Order.Body>
         <Text>{orderItems.length} items</Text>
@@ -27,8 +30,4 @@ const OrderComponent = ({ order }) => {
   )
 }
 
-OrderComponent.propTypes = {
-  order: PropTypes.object.isRequired
-}
-
-export default OrderComponent
+export default withImages(OrderComponent)

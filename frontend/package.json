@@ -7,6 +7,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.4",
     "@nfront/global-styles": "^1.2.1",
+    "@types/styled-components": "^5.1.2",
     "apollo-boost": "^0.4.7",
     "apollo-cache-persist": "^0.1.1",
     "babel-plugin-styled-components": "^1.10.7",
@@ -28,6 +29,7 @@
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.4.13",
     "gatsby-plugin-styled-components": "^3.2.1",
+    "gatsby-plugin-typescript": "^2.4.18",
     "gatsby-source-filesystem": "^2.1.56",
     "gatsby-transformer-sharp": "^2.3.19",
     "glamor": "^2.20.40",
@@ -55,12 +57,15 @@
   },
   "devDependencies": {
     "@testing-library/react": "^10.0.2",
-    "eslint": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.7.0",
     "eslint-config-gatsby-standard": "^2.2.0",
     "prettier": "^1.19.1",
     "stylelint": "^13.6.1",
     "stylelint-config-sass-guidelines": "^7.0.0",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint-config-standard": "^20.0.0",
+    "typescript": "^4.0.2"
   },
   "keywords": [
     "gatsby"
@@ -75,7 +80,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "heroku-postbuild": "gatsby build"
+    "heroku-postbuild": "gatsby build",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

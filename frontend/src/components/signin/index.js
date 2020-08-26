@@ -23,6 +23,7 @@ import {
   REQUEST_RESET,
   PASSWORD_RESET
 } from '../../types/auth-form-types'
+import { useCurrentUserQuery } from '../../graphql/user/hooks'
 
 const initialState = {
   email: '',
@@ -76,6 +77,7 @@ const SigninComponent = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
+  const currentUser = useCurrentUserQuery()
   const { email, password, confirm, message, formIsValid, username } = state
   const [authMutation, { loading, data, error }] = useAuth()
   const showsEmailField = () => chosenFields.includes(EMAIL)
@@ -102,6 +104,7 @@ const SigninComponent = ({
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
+      console.log(currentUser.data)
       navigate('/shop/')
     }
     if (data?.signup) {

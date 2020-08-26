@@ -11,10 +11,18 @@ import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { useCreateOrderMutation } from '../../../graphql/order/hooks'
 import { useUploadCartMutation } from '../../../graphql/cart/hooks'
 import { cartInitialState } from '../../../graphql/cart/reducer'
+import { getPrimaryImage } from '../../../shared/utils'
 
 const stripeKey = 'pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2'
 
-const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
+const withMainImg = Component => props => {
+  const { cartItems } = props
+  const mainImg = cartItems.length && getPrimaryImage(cartItems[0].product.images)
+
+  return <Component {...props} mainImg={mainImg} />
+}
+
+const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount, mainImg }) => {
   const client = useApolloClient()
   const { data: userData } = useCurrentUserQuery()
   const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation()
@@ -52,8 +60,6 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
     }
   }, [orderData])
 
-  // TODO: PUT IMAGE BACK ON THIS MOFO
-
   return (
     <ErrorBoundary error={orderError || uploadError}>
       <TakeMyMoney>
@@ -65,6 +71,7 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
             description={`Order of ${cartCount} items`}
             stripeKey={stripeKey}
             amount={cartTotal}
+            image={mainImg}
             email={me?.email}
             token={res => onToken(res)}
           >
@@ -77,4 +84,4 @@ const TakeMyMoneyComponent = ({ cartItems, cartTotal, cartCount }) => {
   )
 }
 
-export default TakeMyMoneyComponent
+export default withMainImg(TakeMyMoneyComponent)

@@ -29,9 +29,9 @@ const itemAlreadyInCart = (cartItems, product) => {
 const createNewCartItem = (cartItems, product) => {
   const newItem = {
     __typename: 'CartItem',
-    size: product.size,
-    quantity: 1,
-    product
+    size: product.size ? product.size : null,
+    product: product,
+    quantity: 1
   }
 
   return [...cartItems, newItem]
@@ -91,6 +91,7 @@ const cartReducer = (actionType, client, variables) => {
       })
 
     case ADD_CART_ITEM:
+      // return createNewCartItem(cartItems, product)
       return client.writeData({
         data: {
           cartOpen: true,

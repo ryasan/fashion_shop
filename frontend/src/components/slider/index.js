@@ -78,18 +78,19 @@ const SliderComponent = ({ items, title }) => {
   }
 
   useEffect(() => {
-    let interval
-    if (!isHovering) {
-      interval = setInterval(() => {
-        setPct(prev => {
-          return prev < 100 ? prev + 25 : 0
-        })
-      }, 1000)
-    } else {
-      clearInterval(interval)
-    }
-    return () => clearInterval(interval)
+    // let interval
+    // if (!isHovering) {
+    //   interval = setInterval(() => {
+    //     setPct(prev => {
+    //       return prev < 100 ? prev + 25 : 0
+    //     })
+    //   }, 1000)
+    // } else {
+    //   clearInterval(interval)
+    // }
+    // return () => clearInterval(interval)
   }, [isHovering])
+
   useEffect(() => {
     if (pct === 100) handleNextClick()
   }, [pct])

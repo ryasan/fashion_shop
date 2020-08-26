@@ -6,7 +6,11 @@ module.exports = {
     author: 'Ryan Santos'
   },
   plugins: [
+    'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -14,8 +18,6 @@ module.exports = {
         path: `${__dirname}/src/static`
       }
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -28,7 +30,6 @@ module.exports = {
         icon: 'src/static/logo-royal.svg'
       }
     },
-    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-global-styles',
       options: {

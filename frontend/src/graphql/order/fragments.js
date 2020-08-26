@@ -11,6 +11,7 @@ export const ORDER_ITEM_FRAGMENT = gql`
     size
     sku
     price
+    images
   }
 `
 
