@@ -39,7 +39,7 @@ const Cart = styled.div`
 `
 
 // prettier-ignore
-Cart.Toggle_Button = styled.div`
+Cart.ToggleButton = styled.div`
   align-items: center;
   background: var(--dark);
   cursor: pointer;
@@ -88,7 +88,7 @@ Cart.Toggle_Button = styled.div`
   }
 `
 
-Cart.Toggle_Button_Icon = styled(Icon)`
+Cart.ToggleButtonIcon = styled(Icon)`
   height: 3rem;
   width: 3rem;
 `
@@ -110,13 +110,13 @@ Cart.Header = styled.div`
   text-align: center;
 `
 
-Cart.Header_Title = styled(H4)`
+Cart.HeaderTitle = styled(H4)`
   margin: 0;
 `
 
-Cart.Header_Icon = Icon
+Cart.HeaderIcon = Icon
 
-Cart.Bag_Container = styled.div`
+Cart.BagContainer = styled.div`
   align-items: center;
   display: flex;
   height: 7rem;
@@ -125,7 +125,7 @@ Cart.Bag_Container = styled.div`
   width: 9rem;
 `
 
-Cart.Header_Link_To_Shop = styled(Link)`
+Cart.HeaderLinkToShop = styled(Link)`
   cursor: pointer;
   font-size: var(--font-size-lg);
   text-decoration: underline;
@@ -144,11 +144,11 @@ Cart.Header_Link_To_Shop = styled(Link)`
   }
 `
 
-Cart.Cart_List = styled.ul`
+Cart.CartList = styled.ul`
   flex: 1;
 `
 
-Cart.Empty_Display = styled.div`
+Cart.EmptyDisplay = styled.div`
   display: block;
   font-size: var(--font-size-lg);
   text-align: center;

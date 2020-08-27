@@ -10,7 +10,7 @@ import {
   MERGE_REMOTE_CART_ITEMS_MUTATION,
   ADD_CART_ITEM_MUTATION
 } from './mutations'
-import { CartItemInterface } from '../../shared/interfaces'
+import { CartItemInterface, ProductInterface } from '../../shared/interfaces'
 
 export const useCartQuery = () => {
   return useQuery<{ cartItems: CartItemInterface[]; cartOpen: boolean }>(
@@ -22,8 +22,20 @@ export const useToggleCartMutation = () => {
   return useMutation(TOGGLE_CART_MUTATION)
 }
 
+interface CartItemPayload {
+  data: any
+  loading: boolean
+  error: any
+}
+
+interface CartItemVariables {
+  product: ProductInterface
+}
+
 export const useIncreaseCartItemQuantityMutation = () => {
-  return useMutation(INCREASE_CART_ITEM_QUANTITY_MUTATION)
+  return useMutation<CartItemPayload, CartItemVariables>(
+    INCREASE_CART_ITEM_QUANTITY_MUTATION
+  )
 }
 
 export const useDecreaseCartItemQuantityMutation = () => {

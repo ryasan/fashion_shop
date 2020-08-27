@@ -19,7 +19,8 @@ export interface ProductInterface {
   sku: string
   title: string
   images: string[]
-  size: SizeEnum
+  size?: SizeEnum | undefined
+  availableSizes: SizeEnum[] | undefined
 }
 
 export interface OrderItemInterface {
@@ -53,7 +54,7 @@ export interface UserInterface {
   orders?: OrderInterface
   resetToken?: string
   resetTokenExpiry?: number
-  permissions: PermissionEnum
+  permissions: PermissionEnum[]
 }
 
 export interface CartItemInterface {
@@ -61,6 +62,5 @@ export interface CartItemInterface {
   quantity: number
   product: ProductInterface
   size: SizeEnum
-  user: UserInterface
+  user?: UserInterface
 }
-

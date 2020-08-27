@@ -14,7 +14,7 @@ const TakeMyMoney = styled.div`
   }
 `
 
-export const CheckoutBtn = styled(Button)`
+TakeMyMoney.CheckoutBtn = styled(Button)`
   background: var(--darker);
   color: white;
   display: block;

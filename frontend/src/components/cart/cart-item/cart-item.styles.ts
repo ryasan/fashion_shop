@@ -9,7 +9,7 @@ const CartItem = styled.li`
   position: relative;
   width: 100%;
 
-  ${props =>
+  ${(props: { isMouseOver: boolean }) =>
     props.isMouseOver &&
     css`
       background: var(--darker);
@@ -20,7 +20,7 @@ const CartItem = styled.li`
     `}
 `
 
-export const Content = styled.div`
+CartItem.Content = styled.div`
   display: flex;
   height: 100%;
   justify-content: space-between;
@@ -28,11 +28,11 @@ export const Content = styled.div`
   width: 100%;
 `
 
-Content.Image = styled(Image)`
+CartItem.Image = styled(Image)`
   height: 100%;
 `
 
-export const Details = styled.div`
+CartItem.Details = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -41,11 +41,11 @@ export const Details = styled.div`
   margin: 0 2rem;
 `
 
-Details.Text = Span
+CartItem.DetailsText = Span
 
-Details.WhiteText = Span
+CartItem.WhiteText = Span
 
-export const Price = styled.div`
+CartItem.Price = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ export const Price = styled.div`
   position: relative;
 `
 
-Price.CloseBtn = styled(Icon)`
+CartItem.PriceCloseBtn = styled(Icon)`
   cursor: pointer;
   fill: white;
   height: 1.5rem;
@@ -64,15 +64,15 @@ Price.CloseBtn = styled(Icon)`
   }
 `
 
-Price.Text = styled(Span)`
+CartItem.PriceText = styled(Span)`
   font-size: var(--font-size-lg);
 `
 
-export const ButtonGroup = styled.div`
+CartItem.ButtonGroup = styled.div`
   display: flex;
 `
 
-ButtonGroup.Button = styled(Button)`
+CartItem.ButtonGroupButton = styled(Button)`
   align-items: center;
   background: var(--darker);
   border-radius: 0;

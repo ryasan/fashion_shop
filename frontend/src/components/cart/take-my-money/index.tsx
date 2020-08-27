@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import { useApolloClient } from '@apollo/react-hooks'
 import { navigate } from '@reach/router'
 
-import TakeMyMoney, { CheckoutBtn } from './take-my-money.styles'
+import TakeMyMoney from './take-my-money.styles'
 import ErrorBoundary from '../../error-boundary'
 import Loader from '../../loader'
 import { toast } from '../../toast'
@@ -23,7 +23,7 @@ const stripeKey: string =
   'pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2'
 
 interface TakeMyMoneyComponentInterface {
-  images: ImagesInterface
+  images?: ImagesInterface
   cartItems: CartItemInterface[]
   cartTotal: number
   cartCount: number
@@ -40,7 +40,7 @@ const TakeMyMoneyComponent: React.FC<TakeMyMoneyComponentInterface> = ({
   const [createOrder, { loading, data: orderData, error: orderError }] = useCreateOrderMutation() // prettier-ignore
   const [uploadCart, { error: uploadError }] = useUploadCartMutation() // prettier-ignore
   const me = userData?.me as UserInterface
-  const isReady = (me && cartItems?.length > 0) as boolean
+  const isReady = !!me as boolean
 
   const handleToastMessage = (): void => {
     if (!me) {
@@ -76,22 +76,23 @@ const TakeMyMoneyComponent: React.FC<TakeMyMoneyComponentInterface> = ({
     <ErrorBoundary error={orderError || uploadError}>
       <TakeMyMoney>
         {loading && <Loader />}
-        {isReady && !loading && (
+        {isReady && !loading ? (
           <StripeCheckout
             currency='USD'
             name='E & S Streetwear'
             description={`Order of ${cartCount} items`}
             stripeKey={stripeKey}
             amount={cartTotal}
-            image={images.bigImage}
+            image={images?.bigImage}
             email={me?.email}
             token={res => onToken(res)}
           >
-            <CheckoutBtn>CHECKOUT</CheckoutBtn>
+            <TakeMyMoney.CheckoutBtn>CHECKOUT</TakeMyMoney.CheckoutBtn>
           </StripeCheckout>
-        )}
-        {!isReady && (
-          <CheckoutBtn onClick={handleToastMessage}>CHECKOUT</CheckoutBtn>
+        ) : (
+          <TakeMyMoney.CheckoutBtn onClick={handleToastMessage}>
+            CHECKOUT
+          </TakeMyMoney.CheckoutBtn>
         )}
       </TakeMyMoney>
     </ErrorBoundary>

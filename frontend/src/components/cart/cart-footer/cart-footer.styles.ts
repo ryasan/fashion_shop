@@ -15,11 +15,11 @@ const CartFooter = styled.footer`
   width: 100%;
 `
 
-export const Footer = styled.div`
+CartFooter.Content = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
-Footer.Text = Span
+CartFooter.Text = Span
 
 export default CartFooter

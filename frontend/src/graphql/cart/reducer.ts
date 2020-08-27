@@ -7,103 +7,26 @@ import {
   MERGE_REMOTE_CART_ITEMS,
   DECREASE_CART_ITEM_QUANTITY
 } from './action-types'
-import { HOODIE, LONG_SLEEVE, SHIRT } from '../../types/category-types'
 import { CartItemInterface, ProductInterface } from '../../shared/interfaces'
-
-const itemAlreadyInCart = (
-  cartItems: CartItemInterface[],
-  product: ProductInterface
-) => {
-  const findItems = cartItems.filter(
-    cartItem => cartItem.product.id === product.id
-  )
-
-  const itemHasSizeProperty = [HOODIE, LONG_SLEEVE, SHIRT].includes(
-    product.category
-  )
-
-  if (findItems.length && !itemHasSizeProperty) {
-    return true
-  } else if (findItems.length && findItems.some(f => f.size === product.size)) {
-    return true
-  }
-
-  return false
-}
-
-const createNewCartItem = (
-  cartItems: CartItemInterface[],
-  product: ProductInterface
-) => [
-  ...cartItems,
-  {
-    __typename: 'CartItem',
-    size: product.size ? product.size : null,
-    product: product,
-    quantity: 1
-  }
-]
-
-const removeCartItem = (
-  cartItems: CartItemInterface[],
-  product: ProductInterface
-) => {
-  return cartItems.filter(item => item.product.id !== product.id)
-}
-
-const increaseCartItemQty = (
-  cartItems: CartItemInterface[],
-  product: ProductInterface
-) => {
-  const newCartItems = cartItems.map(cartItem => ({
-    ...cartItem,
-    quantity:
-      cartItem.product.id === product.id
-        ? cartItem.quantity + 1
-        : cartItem.quantity
-  }))
-
-  return newCartItems
-}
-
-const decreaseCartItemQty = (
-  cartItems: CartItemInterface[],
-  product: ProductInterface
-) => {
-  return cartItems.map(cartItem => ({
-    ...cartItem,
-    quantity:
-      cartItem.product.id === product.id
-        ? cartItem.quantity - 1
-        : cartItem.quantity
-  }))
-}
+import { hasSize } from '../../shared/utils/cart-tools'
 
 interface LooseCartItemObject {
   [key: string]: { quantity: number; __typename: string }
 }
 
-const mergeRemoteWithLocalCartItems = (
-  localCartItems: CartItemInterface[],
-  remoteCartItems: CartItemInterface[]
-) => {
-  return [...localCartItems, ...remoteCartItems].reduce((obj, cartItem) => {
-    const productId = cartItem.product.id
-
-    if (obj[productId]) {
-      obj[productId].quantity += cartItem.quantity
-    } else {
-      obj[productId] = { ...cartItem, __typename: 'CartItem' }
-    }
-
-    return obj
-  }, {} as LooseCartItemObject)
-}
-
-export const cartInitialState: {
+interface CartInterface {
   cartOpen: boolean
   cartItems: CartItemInterface[]
-} = { cartOpen: false, cartItems: [] }
+}
+
+interface DataInterface {
+  data: { cartOpen?: boolean; cartItems?: CartItemInterface[] }
+}
+
+export const cartInitialState: CartInterface = {
+  cartOpen: false,
+  cartItems: []
+}
 
 const cartReducer = <
   T extends { product: ProductInterface; remoteCartItems: CartItemInterface[] }
@@ -112,45 +35,81 @@ const cartReducer = <
   client: any,
   variables: T
 ) => {
-  const state = client.readQuery({ query: CART_QUERY })
+  const state: CartInterface = client.readQuery({ query: CART_QUERY })
+
   const { cartItems, cartOpen } = state
   const { product, remoteCartItems } = variables || {}
 
   switch (actionType) {
     case TOGGLE_CART:
-      return client.writeData({
-        data: { cartOpen: !cartOpen }
+      return client.writeData(<DataInterface>{
+        data: { cartOpen: !cartOpen as boolean }
       })
 
     case ADD_CART_ITEM:
-      // return createNewCartItem(cartItems, product)
-      return client.writeData({
+      return client.writeData(<DataInterface>{
         data: {
           cartOpen: true,
-          cartItems: itemAlreadyInCart(cartItems, product)
-            ? increaseCartItemQty(cartItems, product)
-            : createNewCartItem(cartItems, product)
+          cartItems: [
+            ...cartItems,
+            {
+              __typename: 'CartItem',
+              size: product.size ? product.size : null,
+              product: product,
+              test: '',
+              quantity: 1
+            }
+          ]
         }
       })
 
     case REMOVE_CART_ITEM:
-      return client.writeData({
+      return client.writeData(<DataInterface>{
         data: {
-          cartItems: removeCartItem(cartItems, product)
+          cartItems: cartItems.filter(
+            (cartItem: CartItemInterface): boolean =>
+              cartItem.product.id !== product.id
+          )
         }
       })
 
     case INCREASE_CART_ITEM_QUANTITY:
-      return client.writeData({
+      return client.writeData(<DataInterface>{
         data: {
-          cartItems: increaseCartItemQty(cartItems, product)
+          cartOpen: true,
+          cartItems: cartItems.map(cartItem => {
+            const { product: prev, quantity, size } = cartItem
+            if (prev.id === product.id) {
+              if (!hasSize({ category: product.category })) {
+                return {
+                  ...cartItem,
+                  quantity: prev.id === product.id ? quantity + 1 : quantity,
+                  product: product,
+                  size: size
+                }
+              }
+
+              if (size === product.size) {
+                return {
+                  ...cartItem,
+                  quantity: quantity + 1,
+                  product: product,
+                  size: size
+                }
+              }
+            }
+            return cartItem
+          })
         }
       })
 
     case DECREASE_CART_ITEM_QUANTITY:
-      return client.writeData({
+      return client.writeData(<DataInterface>{
         data: {
-          cartItems: decreaseCartItemQty(cartItems, product)
+          cartItems: cartItems.map(c => ({
+            ...c,
+            quantity: c.product.id === product.id ? c.quantity - 1 : c.quantity
+          }))
         }
       })
 
@@ -158,12 +117,21 @@ const cartReducer = <
       return client.writeData({
         data: {
           cartItems: Object.entries(
-            mergeRemoteWithLocalCartItems(cartItems, remoteCartItems)
-          ).map(([, value]) => ({
-            ...value
-          }))
+            [...cartItems, ...remoteCartItems].reduce((obj, cartItem) => {
+              const productId = cartItem.product.id
+
+              if (obj[productId]) {
+                obj[productId].quantity += cartItem.quantity
+              } else {
+                obj[productId] = { ...cartItem, __typename: 'CartItem' }
+              }
+
+              return obj
+            }, {} as LooseCartItemObject)
+          ).map(([, value]) => ({ ...value }))
         }
       })
+
     default:
       return state
   }

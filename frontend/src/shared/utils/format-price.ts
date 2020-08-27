@@ -1,4 +1,4 @@
-export const formatPrice = (amount, currencyId) => {
+export const formatPrice = (amount: number, currencyId?: string) => {
   const options = {
     style: 'currency',
     currency: currencyId || 'USD',

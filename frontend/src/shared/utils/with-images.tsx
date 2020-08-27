@@ -22,14 +22,20 @@ interface ItemInterface {
   order?: OrderInterface
   orderItem?: OrderItemInterface
   cartItems?: CartItemInterface[]
+  cartItem?: CartItemInterface
 }
 
-export const withImages = <P extends {}>(
-  WrappedComponent: React.ComponentType<P>
-) => (props: P & ItemInterface) => {
+export const withImages = <T extends {}>(
+  WrappedComponent: React.ComponentType<T>
+) => (props: T & ItemInterface) => {
+  const { product, orderItem, order, cartItems, cartItem } = props
 
-  const { product, orderItem, order, cartItems } = props
-  const item = product || orderItem || order?.orderItems[0] || cartItems?.[0]?.product
+  const item =
+    product ||
+    orderItem ||
+    cartItem?.product ||
+    order?.orderItems[0] ||
+    cartItems?.[0]?.product
 
   if (item) {
     const [firstPublicId] = item.images
@@ -39,8 +45,9 @@ export const withImages = <P extends {}>(
       bigImages: item.images.map(bigImage),
       smallImages: item.images.map(smallImage)
     }
+
     return <WrappedComponent {...props} images={images} />
   }
 
-  return null
+  return <WrappedComponent {...props} />
 }

@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import CartCount from './cart-count.styles'
 
-const CartCountComponent = ({ children }) => {
+const CartCountComponent: React.FC<React.ReactNode> = ({ children }) => {
   return (
     <CartCount.AnimationStyles>
       <TransitionGroup>
@@ -20,10 +19,6 @@ const CartCountComponent = ({ children }) => {
       </TransitionGroup>
     </CartCount.AnimationStyles>
   )
-}
-
-CartCountComponent.propTypes = {
-  children: PropTypes.number.isRequired
 }
 
 export default CartCountComponent

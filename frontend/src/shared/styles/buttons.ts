@@ -48,8 +48,8 @@ export const btns = {
   `,
   salmon: css`
     ${btnBase};
-    background: #fa8072;
-    border-color: #fa8072;
+    background: var(--salmon);
+    border-color: var(--salmon);
     color: white;
   `,
   white: css`
