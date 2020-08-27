@@ -10,9 +10,12 @@ import {
   MERGE_REMOTE_CART_ITEMS_MUTATION,
   ADD_CART_ITEM_MUTATION
 } from './mutations'
+import { CartItemInterface } from '../../shared/interfaces'
 
 export const useCartQuery = () => {
-  return useQuery(CART_QUERY)
+  return useQuery<{ cartItems: CartItemInterface[]; cartOpen: boolean }>(
+    CART_QUERY
+  )
 }
 
 export const useToggleCartMutation = () => {

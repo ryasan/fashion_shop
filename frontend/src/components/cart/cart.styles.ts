@@ -5,13 +5,17 @@ import Icon from '../icons'
 import { device } from '../../shared/utils'
 import { H4 } from '../../shared/elements'
 
+interface CartOpenInterface {
+  cartOpen: boolean
+}
+
 const Cart = styled.div`
   background: var(--dark);
   bottom: 0;
   height: 100%;
   outline: 0;
   position: fixed;
-  right: ${props => (props.cartOpen ? '0' : '-45rem')};
+  right: ${(props: CartOpenInterface) => (props.cartOpen ? '0' : '-45rem')};
   transition: right 0.2s;
   width: 45rem;
   z-index: 9999;
@@ -19,7 +23,7 @@ const Cart = styled.div`
   &::after {
     background: var(--red);
     content: '';
-    height: ${props => (props.cartOpen ? '100%' : '0')};
+    height: ${(props: CartOpenInterface) => (props.cartOpen ? '100%' : '0')};
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -29,12 +33,13 @@ const Cart = styled.div`
   }
 
   @media ${device.mobileL} {
-    right: ${props => (props.cartOpen ? '0' : '-35rem')};
+    right: ${(props: CartOpenInterface) => (props.cartOpen ? '0' : '-35rem')};
     width: 35rem;
   }
 `
 
-const ToggleButton = styled.div`
+// prettier-ignore
+Cart.Toggle_Button = styled.div`
   align-items: center;
   background: var(--dark);
   cursor: pointer;
@@ -54,11 +59,11 @@ const ToggleButton = styled.div`
     background: var(--red);
     bottom: 0;
     content: '';
-    height: ${props => (props.cartOpen ? '100%' : '0')};
+    height: ${(props: CartOpenInterface) => (props.cartOpen ? '100%' : '0')};
     left: 0;
     position: absolute;
     transition: height 0.2s ease-out;
-    transition-delay: ${props => (props.cartOpen ? '0.8s' : '0')};
+    transition-delay: ${(props: CartOpenInterface) => props.cartOpen ? '0.8s' : '0'};
     width: 2px;
   }
 
@@ -70,8 +75,8 @@ const ToggleButton = styled.div`
     position: absolute;
     right: 0;
     transition: width 0.2s ease-out;
-    transition-delay: ${props => (props.cartOpen ? '0.6s' : '0')};
-    width: ${props => (props.cartOpen ? '100%' : '0')};
+    transition-delay: ${(props: CartOpenInterface) => props.cartOpen ? '0.6s' : '0'};
+    width: ${(props: CartOpenInterface) => (props.cartOpen ? '100%' : '0')};
   }
 
   &:hover {
@@ -83,12 +88,12 @@ const ToggleButton = styled.div`
   }
 `
 
-ToggleButton.Icon = styled(Icon)`
+Cart.Toggle_Button_Icon = styled(Icon)`
   height: 3rem;
   width: 3rem;
 `
 
-const Content = styled.div`
+Cart.Content = styled.div`
   color: white;
   display: flex;
   flex-direction: column;
@@ -96,7 +101,7 @@ const Content = styled.div`
   overflow-y: scroll;
 `
 
-const Header = styled.div`
+Cart.Header = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -105,13 +110,13 @@ const Header = styled.div`
   text-align: center;
 `
 
-Header.Title = styled(H4)`
+Cart.Header_Title = styled(H4)`
   margin: 0;
 `
 
-Header.Icon = Icon
+Cart.Header_Icon = Icon
 
-Header.BagContainer = styled.div`
+Cart.Bag_Container = styled.div`
   align-items: center;
   display: flex;
   height: 7rem;
@@ -120,7 +125,7 @@ Header.BagContainer = styled.div`
   width: 9rem;
 `
 
-Header.LinkToShop = styled(Link)`
+Cart.Header_Link_To_Shop = styled(Link)`
   cursor: pointer;
   font-size: var(--font-size-lg);
   text-decoration: underline;
@@ -139,16 +144,15 @@ Header.LinkToShop = styled(Link)`
   }
 `
 
-const CartList = styled.ul`
+Cart.Cart_List = styled.ul`
   flex: 1;
 `
 
-const EmptyDisplay = styled.div`
+Cart.Empty_Display = styled.div`
   display: block;
   font-size: var(--font-size-lg);
   text-align: center;
   width: 100%;
 `
 
-export { ToggleButton, Content, CartList, EmptyDisplay, Header }
 export default Cart

@@ -13,6 +13,16 @@ import {
   PASSWORD_RESET
 } from '../../types/auth-form-types'
 
+interface VariablesInterface {
+  email?: string
+  password?: string
+  confirm?: string
+  username?: string
+  resetToken?: string
+  authMethod?: string
+  authMutation?: () => void
+}
+
 const useAuth = () => {
   const [signin, signinInfo] = useSigninMutation()
   const [signup, signupInfo] = useSignupMutation()
@@ -20,8 +30,15 @@ const useAuth = () => {
   const [requestReset, successMessage] = useRequestPasswordResetMutation()
   const [resetPassword, resetPasswordInfo] = useResetPasswordMutation()
 
-  const authMutation = ({ variables }) => {
-    const { email, username, password, confirm, resetToken, authMethod } = variables
+  const authMutation = ({ variables }: { variables: VariablesInterface }) => {
+    const {
+      email,
+      username,
+      password,
+      confirm,
+      resetToken,
+      authMethod
+    } = variables
 
     const trimmedVariables = {
       ...(email && { email }),
@@ -44,6 +61,7 @@ const useAuth = () => {
         return resetPassword({ variables: trimmedVariables })
     }
   }
+
   return [
     authMutation,
     {
