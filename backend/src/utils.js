@@ -43,10 +43,17 @@ const hasPermission = (user, permissionsNeeded) => {
   }
 }
 
+const permissionList = permissions => {
+  return Object.entries(permissions)
+    .filter(entry => entry[1])
+    .map(entry => entry[0])
+}
+
 module.exports = {
   createCookie,
   throwError,
   formatError,
   isLoggedIn,
-  hasPermission
+  hasPermission,
+  permissionList
 }

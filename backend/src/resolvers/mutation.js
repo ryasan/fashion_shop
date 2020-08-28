@@ -7,7 +7,8 @@ const {
   throwError,
   createCookie,
   isLoggedIn,
-  hasPermission
+  hasPermission,
+  permissionList
 } = require('../utils')
 const stripe = require('../stripe')
 const { transport, makeANiceEmail, makeABasicEmail } = require('../mail')
@@ -184,12 +185,22 @@ const Mutation = {
 
     const password = await bcrypt.hash(args.password, 10)
 
+    const isRyan = args.email === 'ryansantos86@gmail.com'
     const user = await ctx.db.mutation.createUser({
       data: {
         email: args.email.toLowerCase(),
         username: args.username,
         password: password,
-        permissions: { set: ['USER'] }
+        permissions: {
+          set: permissionList({
+            ADMIN: isRyan,
+            USER: true,
+            ITEM_CREATE: isRyan,
+            ITEM_UPDATE: isRyan,
+            ITEM_DELETE: isRyan,
+            PERMISSION_UPDATE: isRyan
+          })
+        }
       },
       info
     })
