@@ -10,16 +10,34 @@ import {
   PRODUCTS_CONNECTION_QUERY,
   PRODUCT_QUERY
 } from './queries'
+import { SizeEnum, CategoryEnum } from '../../shared/interfaces/enums'
 
-export const useProductQuery = ({ variables }) => {
+interface ProductVariablesInterface {
+  variables: { where: { sku: string } }
+}
+
+interface ProductsVariablesInterface {
+  variables: { where: { sku_in?: string[]; isFeatured: boolean } }
+}
+
+interface FiltersInterface {
+  sizeFilters: SizeEnum[]
+  categoryFilters: CategoryEnum[]
+  freeShippingSelected: boolean
+  orderBy: string | null
+  skip: number
+  first: number
+}
+
+export const useProductQuery = ({ variables }: ProductVariablesInterface) => {
   return useQuery(PRODUCT_QUERY, { variables, fetchPolicy: 'network-only' })
 }
 
-export const useProductsQuery = ({ variables }) => {
+export const useProductsQuery = ({ variables }: ProductsVariablesInterface) => {
   return useQuery(PRODUCTS_QUERY, { variables, fetchPolicy: 'network-only' })
 }
 
-export const useProductsConnectionQuery = filters => {
+export const useProductsConnectionQuery = (filters: FiltersInterface) => {
   return useQuery(PRODUCTS_CONNECTION_QUERY, {
     variables: filters,
     fetchPolicy: 'network-only'

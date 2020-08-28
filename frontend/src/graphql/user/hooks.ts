@@ -11,9 +11,16 @@ import {
   SEND_CONTACT_MESSAGE_MUTATION
 } from './mutations'
 import { CURRENT_USER_QUERY, USERS_QUERY } from './queries'
+import { UserInterface } from '../../shared/interfaces'
+
+interface CurrentUserInterface {
+  data: { me: UserInterface } | null
+  loading: boolean
+  error: any | null
+}
 
 export const useCurrentUserQuery = () => {
-  return useQuery(CURRENT_USER_QUERY)
+  return useQuery(CURRENT_USER_QUERY) as CurrentUserInterface
 }
 
 export const useUsersQuery = () => {

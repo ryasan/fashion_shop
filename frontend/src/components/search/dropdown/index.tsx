@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 import Dropdown, { ScrollBtn } from './dropdown.styles'
 import { useToggleOverlayMutation } from '../../../graphql/overlay/hooks'
 import { getThumbnail } from '../../../shared/utils'
+import { ProductInterface } from '../../../shared/interfaces'
 
 const fadeAway = () => ({
   initial: { opacity: 0 },
@@ -22,12 +23,17 @@ const DropdownComponent = ({
   highlightedIndex,
   getItemProps,
   products
+}: {
+  dropdownIsOpen: boolean
+  highlightedIndex: number
+  products: ProductInterface[]
+  getItemProps: (prop: { item: ProductInterface }) => void
 }) => {
   const [toggleOverlay] = useToggleOverlayMutation()
   const [scrolledToBottom, setScrolledToBottom] = useState(false)
 
-  const handleScroll = e => {
-    const { offsetHeight, scrollTop, scrollHeight } = e.target
+  const handleScroll = (e: MouseEvent): void => {
+    const { offsetHeight, scrollTop, scrollHeight } = e.target as HTMLElement
     const hasReachedBottom = offsetHeight + scrollTop >= scrollHeight
 
     if (scrolledToBottom === false && hasReachedBottom) {
@@ -67,9 +73,7 @@ const DropdownComponent = ({
             <AnimatePresence>
               {showScrollBtnText && dropdownIsOpen && (
                 <ScrollBtn {...fadeAway()}>
-                  <ScrollBtn.Text {...pulse()}>
-                    Scroll down
-                  </ScrollBtn.Text>
+                  <ScrollBtn.Text {...pulse()}>Scroll down</ScrollBtn.Text>
                   <ScrollBtn.Text {...pulse()}>&darr;</ScrollBtn.Text>
                 </ScrollBtn>
               )}

@@ -23,7 +23,14 @@ interface VariablesInterface {
   authMutation?: () => void
 }
 
-const useAuth = () => {
+interface ResponseInterface {
+  data: any
+  loading: boolean
+  error: any
+}
+
+
+const useAuth = (): [(props: any) => void, ResponseInterface] => {
   const [signin, signinInfo] = useSigninMutation()
   const [signup, signupInfo] = useSignupMutation()
   const [signout, signoutInfo] = useSignoutMutation()

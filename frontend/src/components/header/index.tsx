@@ -15,14 +15,14 @@ import { useCartQuery, useUploadCartMutation } from '../../graphql/cart/hooks'
 import { cartInitialState } from '../../graphql/cart/reducer'
 import { SIGNOUT } from '../../types/auth-form-types'
 
-const HeaderComponent = props => {
+const HeaderComponent: React.FC = () => {
   const client = useApolloClient()
   const { data: cartData } = useCartQuery()
   const { data: userData } = useCurrentUserQuery()
   const [signout, { data: signoutData, loading }] = useAuth()
   const [uploadCart] = useUploadCartMutation()
   const navRef = useRef(null)
-  const me = userData && userData.me
+  const me = userData?.me
 
   const handleSignout = () => {
     signout({
@@ -30,7 +30,7 @@ const HeaderComponent = props => {
     })
     uploadCart({
       variables: {
-        data: cartData.cartItems.map(c => ({
+        data: cartData?.cartItems.map(c => ({
           productId: c.product.id,
           quantity: c.quantity
         }))

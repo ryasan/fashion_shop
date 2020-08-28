@@ -1,4 +1,4 @@
-import React, { useRef, RefObject } from 'react'
+import React, { useRef } from 'react'
 import { sumBy } from 'lodash'
 
 import Cart from './cart.styles'
@@ -27,7 +27,7 @@ const CartComponent = () => {
       <Cart
         cartOpen={cartOpen}
         ref={cartRef}
-        tabIndex='-1'
+        tabIndex='0'
         onBlur={handleOnBlur}
       >
         <Cart.ToggleButton cartOpen={cartOpen} onClick={toggleCart}>

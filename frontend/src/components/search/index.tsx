@@ -4,15 +4,16 @@ import { DebounceInput } from 'react-debounce-input'
 import { navigate } from '@reach/router'
 
 import Search from './search.styles'
-import ErrorBoundary from '../error-boundary/index'
+import ErrorBoundary from '../error-boundary'
 import Dropdown from './dropdown'
 import { useProductsQuery } from '../../graphql/product/hooks'
+import { ProductInterface } from '../../shared/interfaces'
 
-const routeToProduct = product => {
+const routeToProduct = (product: ProductInterface) => {
   navigate(`/shop/${product.id}/`, { state: { sku: product.sku } })
 }
 
-const SearchComponent = ({ className }) => {
+const SearchComponent = () => {
   const [search, setSearch] = useState('')
   const { data, loading, error } = useProductsQuery({
     variables: {
@@ -22,10 +23,10 @@ const SearchComponent = ({ className }) => {
     }
   })
 
-  const onChange = e => {
-    if (e && e.persist) {
+  const onChange = (e: React.FormEvent) => {
+    if (e?.persist) {
       e.persist()
-      setSearch(e.target.value)
+      setSearch((e.target as HTMLInputElement).value)
     }
   }
 
@@ -39,7 +40,6 @@ const SearchComponent = ({ className }) => {
           getInputProps,
           getItemProps,
           getRootProps,
-          inputValue,
           highlightedIndex,
           isOpen: dropdownIsOpen
         }) => (

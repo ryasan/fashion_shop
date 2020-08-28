@@ -3,7 +3,7 @@ import { navigate } from '@reach/router'
 
 import ProductSlider from './product-slider.styles'
 import Slider from '../../slider'
-import Loader from '../../../components/loader'
+import Loader from '../../loader'
 import ErrorBoundary from '../../error-boundary'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 import { formatPrice } from '../../../shared/utils'

@@ -18,7 +18,7 @@ const prodEndpoint = 'https://fs-backend-staging.herokuapp.com'
 
 const LoaderContainer = styled.div`
   align-items: center;
-  background: white;
+  background: var(--dark);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -55,7 +55,7 @@ const PersistApolloProvider = ({ children }) => {
   if (!client) {
     return (
       <LoaderContainer>
-        <Loader color='dark' />
+        <Loader color='white' />
       </LoaderContainer>
     )
   }

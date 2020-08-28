@@ -11,5 +11,5 @@
       "react/jsx-pascal-case": "ignore"
     }
   },
-  "typescript.referencesCodeLens.enabled": true
+  "typescript.referencesCodeLens.enabled": false
 }

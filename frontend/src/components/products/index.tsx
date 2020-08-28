@@ -12,8 +12,10 @@ import {
   usePaginationQuery,
   useChangeProductsPageMutation
 } from '../../graphql/pagination/hooks'
+import { ProductInterface } from '../../shared/interfaces'
 
 const perPage = 8
+const mapNodes = (e: { node: ProductInterface }) => e.node
 
 const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState(null)
@@ -29,7 +31,7 @@ const ProductsComponent = () => {
     first: perPage
   })
   const count = data?.productsCount.aggregate.count
-  const products = data?.productsConnection.edges.map(e => e.node)
+  const products = data?.productsConnection.edges.map(mapNodes)
   const totalPages = Math.ceil(count / perPage)
 
   useEffect(() => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import { navigate } from '@reach/router'
 
@@ -14,13 +13,14 @@ import Loader from '../../loader'
 import ErrorBoundary from '../../error-boundary'
 import { formatPrice, getThumbnail } from '../../../shared/utils'
 import { useProductQuery } from '../../../graphql/product/hooks'
+import { OrderItemInterface, OrderInterface } from '../../../shared/interfaces'
 
-const OrderItemComponent = ({ item }) => {
+const OrderItemComponent = ({ item }: { item: OrderItemInterface }) => {
   const { data, loading, error } = useProductQuery({
     variables: { where: { sku: item.sku } }
   })
 
-  const goToProductDetails = item => {
+  const goToProductDetails = (): void => {
     navigate(`/shop/${data.product.id}/`)
   }
 
@@ -31,7 +31,7 @@ const OrderItemComponent = ({ item }) => {
   // prettier-ignore
   return (
     <ErrorBoundary error={error}>
-      <OrderItem key={item.id} onClick={() => goToProductDetails(item)}>
+      <OrderItem key={item.id} onClick={() => goToProductDetails()}>
         <OrderItem.ImageContainer>
           <OrderItem.Image src={[getThumbnail([item.sku + '-1'])]} />
         </OrderItem.ImageContainer>
@@ -52,7 +52,7 @@ const OrderItemComponent = ({ item }) => {
   )
 }
 
-const OrderDetailsComponent = ({ order }) => {
+const OrderDetailsComponent = ({ order }: { order: OrderInterface }) => {
   // prettier-ignore
   return (
     <OrderDetails>
@@ -70,17 +70,6 @@ const OrderDetailsComponent = ({ order }) => {
       </OrderList>
     </OrderDetails>
   )
-}
-
-OrderDetailsComponent.propTypes = {
-  order: PropTypes.shape({
-    chargeId: PropTypes.string.isRequired,
-    createdAt: PropTypes.string,
-    updatedAt: PropTypes.string,
-    id: PropTypes.string.isRequired,
-    orderItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-    total: PropTypes.number.isRequired
-  })
 }
 
 export default OrderDetailsComponent
