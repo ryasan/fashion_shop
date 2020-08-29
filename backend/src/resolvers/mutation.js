@@ -37,16 +37,24 @@ const Mutation = {
       source: args.token
     })
 
-    const orderItems = user.cart.map(cartItem => {
+    const orderItems = []
+
+    for (const c of user.cart) {
+      const { images } = await ctx.db.query.product(
+        { where: { id: c.product.id } },
+        '{ images }'
+      )
       const orderItem = {
-        ...cartItem.product,
-        size: cartItem.size,
-        quantity: cartItem.quantity,
+        ...c.product,
+        size: c.size,
+        quantity: c.quantity,
+        images: { set: images },
         user: { connect: { id: userId } }
       }
+
       delete orderItem.id
-      return orderItem
-    })
+      orderItems.push(orderItem)
+    }
 
     const order = await ctx.db.mutation.createOrder(
       {

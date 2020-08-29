@@ -59,6 +59,7 @@ type Product {
   images: [String]! @scalarList(strategy: RELATION)
 }
 
+# TODO - remove user from here since it can be referenced from Order
 type OrderItem {
   id: ID! @unique @id
   quantity: Int! @default(value: 1)
@@ -67,7 +68,7 @@ type OrderItem {
   size: Size
   sku: String!
   price: Int!
-  user: User
+  user: User 
   images: [String]! @scalarList(strategy: RELATION)
 }
 
