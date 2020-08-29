@@ -17,12 +17,11 @@ export const withImages = <T extends {}>(
 ) => (props: T & { item: ItemIntersection }) => {
   const { item } = props
 
-  console.log(item)
   const images: string[] =
     item?.images ||
-    item?.product.images ||
-    item?.orderItems[0].images ||
-    item?.[0].product ||
+    item?.product?.images ||
+    item?.orderItems?.[0]?.images ||
+    item?.[0]?.product ||
     []
   
   return (

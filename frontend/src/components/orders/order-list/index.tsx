@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Orders from './order-list.styles'
 import Order from '../order'
@@ -7,11 +7,7 @@ import Loader from '../../loader'
 import Select from '../../select'
 import Pagination from '../../pagination'
 import { useOrdersConnectionQuery } from '../../../graphql/order/hooks'
-import {
-  usePaginationQuery,
-  useChangeOrdersPageMutation
-} from '../../../graphql/pagination/hooks'
-import { UserInterface, OrderItemInterface } from '../../../shared/typings'
+import { UserInterface, OrderInterface } from '../../../shared/typings'
 
 const perPage = 8
 
@@ -23,27 +19,36 @@ const options = [
   { name: 'Later', value: 'createdAt_ASC' }
 ]
 
-const OrderListComponent = ({ me }: { me: UserInterface }) => {
-  const [orderBy, setOrderBy] = useState('createdAt_DESC')
-  const [changeOrdersPage] = useChangeOrdersPageMutation()
-  const { data: ordersData } = usePaginationQuery()
+const ListOfOrders: React.StatelessComponent<{ orders: OrderInterface[] }> = ({
+  orders
+}) => (
+  <Orders.List>
+    {orders.map((order: OrderInterface) => (
+      <Order key={order.id} order={order} />
+    ))}
+  </Orders.List>
+)
 
-  const { ordersPage } = ordersData
+const OrderListComponent: React.FC<{ me: UserInterface }> = ({ me }) => {
+  const [orderBy, setOrderBy] = useState('createdAt_DESC')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const variables = {
     orderBy,
-    skip: (ordersPage - 1) * perPage,
+    skip: (currentPage - 1) * perPage,
     first: perPage,
     where: { user: { id: me.id } }
   }
 
   const { data, loading, error } = useOrdersConnectionQuery({ variables })
 
-  const count = data?.ordersCount.aggregate.count
-  const totalPages = Math.ceil(count / perPage)
-  const orders = data?.ordersConnection.edges.map(
-    ({ node }: { node: OrderItemInterface }) => node
-  )
+  const count = data?.info?.count
+  const orders = data?.orders
+  const totalPages = count ? Math.ceil(count / perPage) : 1
+
+  useEffect(() => {
+    if (count) setCurrentPage(Math.min(currentPage, totalPages))
+  }, [count])
 
   return (
     <Orders>
@@ -59,16 +64,12 @@ const OrderListComponent = ({ me }: { me: UserInterface }) => {
             <Loader color='white' />
           ) : (
             <Pagination
-              pageInfo={data.ordersConnection.pageInfo}
+              pageInfo={data?.info?.pageInfo}
               totalPages={totalPages}
-              currentPage={ordersPage}
-              changePage={changeOrdersPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             >
-              <Orders.List>
-                {orders.map((order: any) => (
-                  <Order key={order.id} item={order} />
-                ))}
-              </Orders.List>
+              {orders && <ListOfOrders orders={orders} />}
             </Pagination>
           )}
         </ErrorBoundary>

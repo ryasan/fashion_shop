@@ -51,7 +51,7 @@ const validateFields = ({
 
 const createNewState = (state: StateType) => (
   type: string,
-  payload: string | undefined
+  payload: string | undefined | null
 ): StateType => {
   const target = type.toLowerCase()
   const formIsValid = validateFields({ ...state, [target]: payload })
@@ -64,10 +64,15 @@ const createNewState = (state: StateType) => (
   }
 }
 
-const reducer = (
-  state: StateType,
-  action: { payload?: string; type: string }
-): StateType => {
+type Action =
+  | { type: 'EMAIL'; payload: string }
+  | { type: 'USERNAME'; payload: string }
+  | { type: 'PASSWORD'; payload: string }
+  | { type: 'CONFIRM'; payload: string }
+  | { type: 'MESSAGE'; payload: string }
+  | { type: 'RESET_FIELDS'; payload: undefined | null }
+
+const reducer = (state: StateType, action: Action): StateType => {
   const { payload, type } = action
 
   switch (type) {
@@ -126,7 +131,6 @@ const SigninComponent: React.FC<SigninInterface> = ({
   useEffect(() => {
     if (data?.signin) {
       // TODO: use me query instead of signin to validate user
-      console.log('fetched my data: ', data.signin)
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
@@ -190,7 +194,7 @@ const SigninComponent: React.FC<SigninInterface> = ({
           authMethod
         }
       })
-      dispatch({ type: RESET_FIELDS })
+      dispatch({ type: RESET_FIELDS, payload: null })
     }
   }
 

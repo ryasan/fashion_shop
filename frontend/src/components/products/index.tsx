@@ -8,40 +8,28 @@ import Pagination from '../pagination'
 import Loader from '../loader'
 import { useProductsConnectionQuery } from '../../graphql/product/hooks'
 import { useFiltersQuery } from '../../graphql/filter/hooks'
-import {
-  usePaginationQuery,
-  useChangeProductsPageMutation
-} from '../../graphql/pagination/hooks'
-import { ProductInterface } from '../../shared/typings'
 
 const perPage = 8
-const mapNodes = (e: { node: ProductInterface }) => e.node
 
 const ProductsComponent = () => {
   const [orderBy, setOrderBy] = useState<string | null>(null)
-  const [changeProductsPage] = useChangeProductsPageMutation()
-  const { data: { productsPage } } = usePaginationQuery() // prettier-ignore
+  const [currentPage, setCurrentPage] = useState(1)
   const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
   const { data, error, loading } = useProductsConnectionQuery({
     sizeFilters,
     categoryFilters,
     freeShippingSelected,
     orderBy,
-    skip: (productsPage - 1) * perPage,
+    skip: (currentPage - 1) * perPage,
     first: perPage
   })
-  const count = data?.productsCount.aggregate.count
-  const products = data?.productsConnection.edges.map(mapNodes)
-  const totalPages = Math.ceil(count / perPage)
+
+  const count = data?.info?.count
+  const products = data?.products
+  const totalPages = count ? Math.ceil(count / perPage) : 1
 
   useEffect(() => {
-    if (count) {
-      changeProductsPage({
-        variables: {
-          page: Math.min(productsPage, totalPages)
-        }
-      })
-    }
+    if (count) setCurrentPage(Math.min(currentPage, totalPages))
   }, [count])
 
   return (
@@ -53,10 +41,10 @@ const ProductsComponent = () => {
             <Loader color='white' />
           ) : (
             <Pagination
-              pageInfo={data.productsConnection.pageInfo}
+              pageInfo={data?.info?.pageInfo}
               totalPages={totalPages}
-              currentPage={productsPage}
-              changePage={changeProductsPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             >
               <ProductList products={products} />
             </Pagination>

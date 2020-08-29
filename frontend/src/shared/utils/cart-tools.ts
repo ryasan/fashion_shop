@@ -1,6 +1,6 @@
 import { CartItemInterface, ProductInterface } from '../typings'
 import { HOODIE, SHIRT, LONG_SLEEVE } from '../../types/category-types'
-import { SizeEnum, CategoryEnum } from '../typings/enums'
+import { SizeEnum } from '../typings/enums'
 
 export const alreadyInCart = ({
   cartItems,

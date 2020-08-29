@@ -9,13 +9,17 @@ const ProductListComponent = ({
 }: {
   products: ProductInterface[]
 }) => {
-  return (
-    <ProductList>
-      {products.map((p: ProductInterface) => (
-        <OneProduct key={p.id} item={p} />
-      ))}
-    </ProductList>
-  )
+  if (products) {
+    return (
+      <ProductList>
+        {products.map(p => (
+          <OneProduct key={p.id} product={p} />
+        ))}
+      </ProductList>
+    )
+  }
+
+  return null
 }
 
 export default ProductListComponent

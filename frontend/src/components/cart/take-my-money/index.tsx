@@ -50,7 +50,7 @@ const TakeMyMoneyComponent: React.FC<TakeMyMoneyComponentInterface> = ({
     }
   }
 
-  const onToken = async <T extends { id: string }>(res: T): Promise<void> => {
+  const onToken = async(res: any) => {
     await uploadCart({
       variables: {
         data: cartItems.map(c => ({

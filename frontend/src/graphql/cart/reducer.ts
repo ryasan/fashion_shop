@@ -130,7 +130,6 @@ const cartReducer = <
         ).map(([, value]) => ({ ...value }))
       }
 
-      console.log('saving to cache: ', data)
     return client.writeData({ data })
 
     default:

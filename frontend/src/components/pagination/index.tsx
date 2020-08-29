@@ -5,7 +5,7 @@ import Pagination, { PageButton } from './pagination.styles'
 interface PaginationInterface {
   pageInfo: { hasNextPage: boolean }
   children: React.ReactChildren | React.ReactChild
-  changePage: ({ variables }: { variables: { page: number } }) => void
+  setCurrentPage: (page: number) => void
   currentPage: number
   totalPages: number
 }
@@ -13,26 +13,18 @@ interface PaginationInterface {
 const PaginationComponent: React.FC<PaginationInterface> = ({
   pageInfo,
   children,
-  changePage,
+  setCurrentPage,
   currentPage,
   totalPages
 }) => {
   const { hasNextPage } = pageInfo
 
   const handlePrevClick = () => {
-    changePage({
-      variables: {
-        page: currentPage - 1
-      }
-    })
+    setCurrentPage(currentPage - 1)
   }
 
   const handleNextClick = () => {
-    changePage({
-      variables: {
-        page: currentPage + 1
-      }
-    })
+    setCurrentPage(currentPage + 1)
   }
 
   const renderControls = () => (
@@ -40,7 +32,9 @@ const PaginationComponent: React.FC<PaginationInterface> = ({
       <PageButton disabled={currentPage === 1} onClick={handlePrevClick}>
         <PageButton.Icon name='left-arrow' />
       </PageButton>
-      {totalPages > 0 ? `${currentPage} / ${totalPages} pages` : 'No results'}
+      {totalPages && totalPages > 0
+        ? `${currentPage} / ${totalPages} pages`
+        : 'No results'}
       <PageButton disabled={!hasNextPage} onClick={handleNextClick}>
         <PageButton.Icon name='right-arrow' />
       </PageButton>

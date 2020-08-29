@@ -3,20 +3,14 @@ import { navigate } from '@reach/router'
 import { Link } from 'gatsby'
 
 import Product, { Promo, Header, Body, Footer } from './product.styles'
-import { formatPrice, withImages } from '../../../shared/utils'
-import { ImagesInterface, ItemIntersection } from '../../../shared/typings'
+import { formatPrice } from '../../../shared/utils'
+import { ProductInterface } from '../../../shared/typings'
 
-const ProductComponent = ({
-  item,
-  images
-}: {
-  item: ItemIntersection
-  images?: ImagesInterface
-}) => {
-  const formattedPrice: string = formatPrice(item.price)
+const ProductComponent = ({ product }: { product: ProductInterface }) => {
+  const formattedPrice: string = formatPrice(product.price)
   const dollars: string = formattedPrice.slice(0, -3)
   const cents: string = formattedPrice.slice(formattedPrice.length - 3)
-  const detailsPage: string = `/shop/${item.id}/`
+  const detailsPage: string = `/shop/${product.id}/`
 
   const handleAddCartItem = (): void => {
     navigate(detailsPage)
@@ -24,14 +18,14 @@ const ProductComponent = ({
 
   return (
     <Product>
-      {item.isFreeShipping && <Promo>Free Shipping</Promo>}
-      <Link to={detailsPage} state={{ sku: item.sku }}>
+      {product.isFreeShipping && <Promo>Free Shipping</Promo>}
+      <Link to={detailsPage} state={{ sku: product.sku }}>
         <Header>
-          <Header.Image src={images?.bigImage} />
+          <Header.Image src={product.imageMap?.bigImage} />
         </Header>
         <Product.Offset />
         <Body>
-          <Body.Title>{item.title}</Body.Title>
+          <Body.Title>{product.title}</Body.Title>
           <Body.Divider />
           <Body.Price>
             <Body.Dollars>{dollars}</Body.Dollars>
@@ -46,4 +40,4 @@ const ProductComponent = ({
   )
 }
 
-export default withImages(ProductComponent)
+export default ProductComponent

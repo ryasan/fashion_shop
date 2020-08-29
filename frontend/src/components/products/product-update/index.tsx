@@ -11,11 +11,10 @@ import {
 } from '../../../graphql/product/hooks'
 import { createPubId, hasPermission } from '../../../shared/utils'
 import { toast } from '../../toast'
-import { ITEM_UPDATE, ADMIN } from '../../../types/permission-types'
 import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import { ProductInterface, UserInterface, PermissionEnum } from '../../../shared/typings'
 
-interface Props {
+interface PropsInterface {
   variables: {
     where: { id: string }
     data: Partial<ProductInterface> & {
@@ -31,9 +30,9 @@ const ProductUpdateComponent = ({
   updateLoading,
   deleteLoading
 }: {
+  updateProduct: (props: PropsInterface) => void
+  deleteProduct: (props: PropsInterface) => void
   product: ProductInterface
-  updateProduct: (props: Props) => void
-  deleteProduct: (props: Props) => void
   updateLoading: boolean
   deleteLoading: boolean
 }) => {
@@ -81,6 +80,8 @@ const ProductUpdateComponent = ({
       method: 'POST',
       body: data
     })
+
+    console.log(res)
 
     handleSetImages([...state.images, pubId])
     setIsLoading(false)

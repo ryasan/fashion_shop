@@ -3,23 +3,22 @@ import moment from 'moment'
 import { navigate } from '@reach/router'
 
 import Order from './order.styles'
-import { formatPrice, withImages } from '../../../shared/utils'
-import { ImagesInterface, OrderInterface } from '../../../shared/typings'
+import { formatPrice } from '../../../shared/utils'
+import { OrderInterface } from '../../../shared/typings'
 
 const OrderComponent: React.FC<{
-  item: OrderInterface
-  images?: ImagesInterface
-}> = ({ item, images }) => {
-  const { orderItems, createdAt, total, id } = item
+  order: OrderInterface
+}> = ({ order }) => {
+  const { orderItems, createdAt, total, id } = order
 
   const goToOrderDetails = () => {
-    navigate(`/account/orders/${id}/`, { state: { order: item } })
+    navigate(`/account/orders/${id}/`, { state: { order } })
   }
-
+  // console.log(orderItems)
   return (
     <Order onClick={goToOrderDetails}>
       <Order.Header>
-        <Order.HeaderImage src={images?.smallImage} />
+        <Order.HeaderImage src={orderItems?.[0]?.imageMap?.smallImage} />
       </Order.Header>
       <Order.Body>
         <Order.Text>{orderItems.length} items</Order.Text>
@@ -30,4 +29,4 @@ const OrderComponent: React.FC<{
   )
 }
 
-export default withImages(OrderComponent)
+export default OrderComponent

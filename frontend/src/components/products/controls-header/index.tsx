@@ -5,9 +5,9 @@ import Filter from '../filter'
 import Select from '../../select'
 import { Div } from '../../../shared/elements'
 
-const Count: React.StatelessComponent<{ count: number }> = ({ count }) => (
+const Count: React.StatelessComponent<{ count: number | null }> = ({ count }) => (
   <Div modifiers={['text_align_center', 'white_color', 'font_size_lg']}>
-    {count > 0 && `Found ${count} product${count > 1 ? 's' : ''}`}
+    {count && count > 0 && `Found ${count} product${count > 1 ? 's' : ''}`}
   </Div>
 )
 
@@ -20,7 +20,7 @@ const options = [
 ]
 
 interface ControlsHeaderInterface {
-  count: number
+  count: number | null
   setOrderBy: (orderBy: string) => void
 }
 

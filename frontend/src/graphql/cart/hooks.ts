@@ -32,7 +32,10 @@ export const useToggleCartMutation = (): [() => void, object] => {
   return useMutation<ApolloPayload>(TOGGLE_CART_MUTATION)
 }
 
-export const useIncreaseCartItemQuantityMutation = (): [() => void, object] => {
+export const useIncreaseCartItemQuantityMutation = (): [
+  ({ variables }: any) => void,
+  object
+] => {
   return useMutation<ApolloPayload, CartItemVariables>(
     INCREASE_CART_ITEM_QUANTITY_MUTATION
   )
@@ -47,13 +50,16 @@ export const useAddCartItemMutation = (): [() => void, object] => {
 }
 
 export const useRemoveCartItemMutation = (): [() => void, object] => {
-  return useMutation<ApolloPayload>(REMOVE_CART_ITEM_MUTATION)
+  return useMutation(REMOVE_CART_ITEM_MUTATION)
 }
 
-export const useUploadCartMutation = (): [() => void, object] => {
+export const useUploadCartMutation = () => {
   return useMutation<ApolloPayload>(CART_UPLOAD_MUTATION)
 }
 
-export const useMergeRemoteCartItemsMutation = (): [() => void, object] => {
+export const useMergeRemoteCartItemsMutation = (): [
+  ({ variables }: any) => void,
+  object
+] => {
   return useMutation<ApolloPayload>(MERGE_REMOTE_CART_ITEMS_MUTATION)
 }

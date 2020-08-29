@@ -11,6 +11,8 @@ import {
   PRODUCT_QUERY
 } from './queries'
 import { SizeEnum, CategoryEnum } from '../../shared/typings/enums'
+import { ProductInterface } from '../../shared/typings'
+import { mapImages } from '../../shared/utils'
 
 interface ProductVariablesInterface {
   variables: {
@@ -44,11 +46,42 @@ export const useProductsQuery = ({ variables }: ProductsVariablesInterface) => {
   return useQuery(PRODUCTS_QUERY, { variables, fetchPolicy: 'network-only' })
 }
 
+interface ProductsConnectionInterface {
+  data: {
+    info: {
+      count: number
+      pageInfo: any
+    }
+    products: ProductInterface[]
+  }
+  error: any
+  loading: boolean
+}
+
 export const useProductsConnectionQuery = (filters: FiltersInterface) => {
-  return useQuery(PRODUCTS_CONNECTION_QUERY, {
+  const { data, loading, error } = useQuery(PRODUCTS_CONNECTION_QUERY, {
     variables: filters,
     fetchPolicy: 'network-only'
   })
+
+  return <ProductsConnectionInterface>{
+    data: data
+      ? {
+          info: {
+            count: data?.productsCount?.aggregate?.count,
+            pageInfo: data?.productsConnection?.pageInfo
+          },
+          products: data?.productsConnection?.edges?.map(
+            (e: { node: ProductInterface }) => ({
+              ...e.node,
+              imageMap: mapImages(e.node.images)
+            })
+          )
+        }
+      : null,
+    error,
+    loading
+  }
 }
 
 export const useCreateProductMutation = () => {
