@@ -24,7 +24,7 @@ const CartFooterComponent: React.FC<CartFooterComponentInterface> = ({
       </CartFooter.Text>
     </CartFooter.Content>
     <TakeMyMoney
-      cartItem={cartItems[0]}
+      item={cartItems[0]}
       cartItems={cartItems}
       cartTotal={cartTotal}
       cartCount={cartCount}

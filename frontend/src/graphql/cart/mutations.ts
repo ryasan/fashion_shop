@@ -20,6 +20,7 @@ export const MERGE_REMOTE_CART_ITEMS_MUTATION = gql`
   mutation($remoteCartItems: [CartItem!]!) {
     mergeRemoteCartItems(remoteCartItems: $remoteCartItems) @client {
       quantity
+      size
       product {
         ...ProductFragment
       }

@@ -32,8 +32,7 @@ const CartComponent: React.FC = () => {
       >
         <Cart.ToggleButton cartOpen={cartOpen} onClick={toggleCart}>
           <Cart.ToggleButtonIcon name={cartOpen ? 'close' : 'cart'} />
-          {!cartOpen && 'CART'}
-          {!cartOpen && <CartCount>{cartCount}</CartCount>}
+          {!cartOpen && 'CART' && <CartCount>{cartCount}</CartCount>}
         </Cart.ToggleButton>
         <Cart.Content>
           <Cart.Header>

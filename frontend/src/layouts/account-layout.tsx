@@ -13,13 +13,10 @@ const AccountLayout: React.FC = ({ children }) => {
   const { data, loading, error } = useCurrentUserQuery()
   const me = data?.me
 
-  const isActive = ({
-    isPartiallyCurrent
-  }: {
-    isPartiallyCurrent: boolean
-  }): { className: string } | {} => {
-    return isPartiallyCurrent ? { className: 'active' } : {}
-  }
+  // TODO: partial matches on route names
+  // const isActive = ({ isPartiallyActive }) => {
+  //   return isPartiallyActive ? { className: "active" } : {}
+  // }
 
   return (
     <Account>
@@ -43,7 +40,6 @@ const AccountLayout: React.FC = ({ children }) => {
                     to='/account/orders/'
                     state={{ me }}
                     activeClassName='active'
-                    getProps={isActive}
                   >
                     Orders
                   </Link>

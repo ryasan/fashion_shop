@@ -28,14 +28,15 @@ const HeaderComponent: React.FC = () => {
     signout({
       variables: { authMethod: SIGNOUT }
     })
-    uploadCart({
-      variables: {
-        data: cartData?.cartItems.map(c => ({
-          productId: c.product.id,
-          quantity: c.quantity
-        }))
-      }
-    })
+
+    const variables = {
+      data: cartData?.cartItems.map(c => ({
+        productId: c.product.id,
+        quantity: c.quantity
+      }))
+    }
+
+    uploadCart({ variables })
     client.writeData({ data: cartInitialState })
   }
 

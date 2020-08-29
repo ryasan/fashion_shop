@@ -24,6 +24,7 @@ export const withImages = <T extends {}>(
     item?.orderItems[0].images ||
     item?.[0].product ||
     []
+  
   return (
     <WrappedComponent
       {...props}

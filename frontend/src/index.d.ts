@@ -7,6 +7,8 @@ declare module 'isomorphic-fetch'
 declare module '@nfront/global-styles'
 declare module 'react-scroll'
 declare module 'framer-motion'
+declare module 'change-case'
+declare module 'email-validator'
 
 // extensions
 declare module '*.svg'

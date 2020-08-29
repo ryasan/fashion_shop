@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery, useMutation, MutationTuple } from '@apollo/react-hooks'
 
 import { CART_QUERY } from './queries'
 import {
@@ -10,19 +10,9 @@ import {
   MERGE_REMOTE_CART_ITEMS_MUTATION,
   ADD_CART_ITEM_MUTATION
 } from './mutations'
-import { CartItemInterface, ProductInterface } from '../../shared/typings'
+import { ProductInterface, CartItemInterface } from '../../shared/typings'
 
-export const useCartQuery = () => {
-  return useQuery<{ cartItems: CartItemInterface[]; cartOpen: boolean }>(
-    CART_QUERY
-  )
-}
-
-export const useToggleCartMutation = () => {
-  return useMutation(TOGGLE_CART_MUTATION)
-}
-
-interface CartItemPayload {
+interface ApolloPayload {
   data: any
   loading: boolean
   error: any
@@ -32,28 +22,38 @@ interface CartItemVariables {
   product: ProductInterface
 }
 
-export const useIncreaseCartItemQuantityMutation = () => {
-  return useMutation<CartItemPayload, CartItemVariables>(
+export const useCartQuery = () => {
+  return useQuery<{ cartItems: CartItemInterface[]; cartOpen: boolean }>(
+    CART_QUERY
+  )
+}
+
+export const useToggleCartMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload>(TOGGLE_CART_MUTATION)
+}
+
+export const useIncreaseCartItemQuantityMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload, CartItemVariables>(
     INCREASE_CART_ITEM_QUANTITY_MUTATION
   )
 }
 
-export const useDecreaseCartItemQuantityMutation = () => {
-  return useMutation(DECREASE_CART_ITEM_QUANTITY_MUTATION)
+export const useDecreaseCartItemQuantityMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload>(DECREASE_CART_ITEM_QUANTITY_MUTATION)
 }
 
-export const useAddCartItemMutation = () => {
-  return useMutation(ADD_CART_ITEM_MUTATION)
+export const useAddCartItemMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload>(ADD_CART_ITEM_MUTATION)
 }
 
-export const useRemoveCartItemMutation = () => {
-  return useMutation(REMOVE_CART_ITEM_MUTATION)
+export const useRemoveCartItemMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload>(REMOVE_CART_ITEM_MUTATION)
 }
 
-export const useUploadCartMutation = () => {
-  return useMutation(CART_UPLOAD_MUTATION)
+export const useUploadCartMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload>(CART_UPLOAD_MUTATION)
 }
 
-export const useMergeRemoteCartItemsMutation = () => {
-  return useMutation(MERGE_REMOTE_CART_ITEMS_MUTATION)
+export const useMergeRemoteCartItemsMutation = (): [() => void, object] => {
+  return useMutation<ApolloPayload>(MERGE_REMOTE_CART_ITEMS_MUTATION)
 }

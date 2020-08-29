@@ -4,10 +4,10 @@ import { Link } from 'gatsby'
 import FooterText from './footer-text.styles'
 
 interface FooterTextInterface {
-  isSignin: boolean
-  isSignup: boolean
-  isRequestReset: boolean
-  isPasswordReset: boolean
+  isSignin: boolean | undefined
+  isSignup: boolean | undefined
+  isRequestReset: boolean | undefined
+  isPasswordReset: boolean | undefined
 }
 
 interface FooterContentInterface {
@@ -47,7 +47,7 @@ const FooterTextComponent: React.StatelessComponent<FooterTextInterface> = ({
 
   return (
     <>
-      {footerContents.map((c: FooterContentInterface, i: number) =>  (
+      {footerContents.map((c: FooterContentInterface, i: number) => (
         <FooterText key={i}>
           {c.text}
           <Link to={c.to} style={{ color: 'var(--red)' }}>

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, FormEvent } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import { navigate } from '@reach/router'
 import { validate } from 'email-validator'
 import { constantCase, capitalCase } from 'change-case'
@@ -7,7 +7,6 @@ import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
 import FooterText from './footer-text'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
-import { toast } from '../toast'
 import {
   EMAIL,
   USERNAME,
@@ -23,21 +22,21 @@ import {
   PASSWORD_RESET
 } from '../../types/auth-form-types'
 
-interface FormInterface {
+type StateType = {
   email: string
   username: string
   password: string
   confirm: string
-  message: string | null
+  message: string
   formIsValid: boolean
 }
 
-const initialState = {
+const initialState: StateType = {
   email: '',
   username: '',
   password: '',
   confirm: '',
-  message: null,
+  message: '',
   formIsValid: false
 }
 
@@ -46,34 +45,29 @@ const validateFields = ({
   confirm,
   email,
   username
-}: FormInterface) => {
-  return validate(email) && username && password && password === confirm
+}: StateType): boolean => {
+  return !!(validate(email) && username && password && password === confirm)
 }
 
-const createNewState = ({
-  state,
-  type,
-  payload
-}: {
-  payload: string | boolean
-  state: any
-  type: string
-}) => {
+const createNewState = (state: StateType) => (
+  type: string,
+  payload: string | undefined
+): StateType => {
   const target = type.toLowerCase()
   const formIsValid = validateFields({ ...state, [target]: payload })
 
   return {
     ...state,
-    message: formIsValid ? 'Looks good!' : null,
-    formIsValid,
-    [target]: payload
+    ...(formIsValid && { message: 'Looks good!' }),
+    [target]: payload,
+    formIsValid
   }
 }
 
 const reducer = (
-  action: { payload: string | boolean; type: string },
-  state: any
-) => {
+  state: StateType,
+  action: { payload?: string; type: string }
+): StateType => {
   const { payload, type } = action
 
   switch (type) {
@@ -82,7 +76,7 @@ const reducer = (
     case PASSWORD:
     case CONFIRM:
     case MESSAGE:
-      return createNewState({ state, type, payload })
+      return createNewState(state)(type, payload)
     case RESET_FIELDS:
       return initialState
     default:
@@ -90,14 +84,16 @@ const reducer = (
   }
 }
 
-const SigninComponent: React.FC<{
-  chosenFields: Required<string[]>
-  resetToken?: string
-  isRequestReset?: boolean
-  isPasswordReset?: boolean
-  isSignin?: boolean
-  isSignup?: boolean
-}> = ({
+interface SigninInterface {
+  chosenFields: string[]
+  resetToken: string
+  isRequestReset: boolean
+  isPasswordReset: boolean
+  isSignin: boolean
+  isSignup: boolean
+}
+
+const SigninComponent: React.FC<SigninInterface> = ({
   chosenFields,
   resetToken,
   isRequestReset,
@@ -130,6 +126,7 @@ const SigninComponent: React.FC<{
   useEffect(() => {
     if (data?.signin) {
       // TODO: use me query instead of signin to validate user
+      console.log('fetched my data: ', data.signin)
       mergeRemoteCartItems({
         variables: { remoteCartItems: data.signin.cart }
       })
@@ -139,15 +136,21 @@ const SigninComponent: React.FC<{
       navigate('/shop/')
     }
     if (data?.requestReset) {
-      toast(data.requestReset.message)
+      dispatch({
+        type: MESSAGE,
+        payload: data.requestReset.message
+      })
     }
     if (data?.resetPassword) {
-      toast('Your password has successfully been changed.')
+      dispatch({
+        type: MESSAGE,
+        payload: 'Passwords do not match'
+      })
       setTimeout(() => navigate('/shop/'), 3000)
     }
   }, [data])
 
-  const handleOnSubmit = (e: FormEvent) => {
+  const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (emailIsNotValid()) {
       return dispatch({
@@ -191,7 +194,8 @@ const SigninComponent: React.FC<{
     }
   }
 
-  const handleOnChange = ({ target }: { target: HTMLInputElement }) => {
+  const handleOnChange = (e: React.FormEvent) => {
+    const target = e.target as HTMLInputElement
     dispatch({
       type: constantCase(target.name),
       payload: target.value
@@ -217,7 +221,7 @@ const SigninComponent: React.FC<{
     }),
     ...(showsPasswordField() && {
       password: {
-        icon: 'key',
+        icon: 'key-outlined',
         type: 'password',
         value: password,
         name: 'password'
@@ -225,7 +229,7 @@ const SigninComponent: React.FC<{
     }),
     ...(showsConfirmField() && {
       confirm: {
-        icon: 'key',
+        icon: 'key-outlined',
         type: 'password',
         value: confirm,
         name: 'confirm'

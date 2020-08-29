@@ -11,7 +11,7 @@ import { CartItemInterface, ProductInterface } from '../../shared/typings'
 import { hasSize } from '../../shared/utils/cart-tools'
 
 interface LooseCartItemObject {
-  [key: string]: { quantity: number; __typename: string }
+  [key: string]: { quantity: number; size?: string; __typename: string }
 }
 
 interface CartInterface {
@@ -114,23 +114,24 @@ const cartReducer = <
       })
 
     case MERGE_REMOTE_CART_ITEMS:
-      return client.writeData({
-        data: {
-          cartItems: Object.entries(
-            [...cartItems, ...remoteCartItems].reduce((obj, cartItem) => {
-              const productId = cartItem.product.id
+      const data = {
+        cartItems: Object.entries(
+          [...cartItems, ...remoteCartItems].reduce((obj, cartItem) => {
+            const productId = cartItem.product.id
 
-              if (obj[productId]) {
-                obj[productId].quantity += cartItem.quantity
-              } else {
-                obj[productId] = { ...cartItem, __typename: 'CartItem' }
-              }
+            if (obj[productId]) {
+              obj[productId].quantity += cartItem.quantity
+            } else {
+              obj[productId] = { ...cartItem, __typename: 'CartItem' }
+            }
 
-              return obj
-            }, {} as LooseCartItemObject)
-          ).map(([, value]) => ({ ...value }))
-        }
-      })
+            return obj
+          }, {} as LooseCartItemObject)
+        ).map(([, value]) => ({ ...value }))
+      }
+
+      console.log('saving to cache: ', data)
+    return client.writeData({ data })
 
     default:
       return state
