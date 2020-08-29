@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
 import FeaturedProducts, { Card } from './featured-products.styles'
@@ -8,6 +7,7 @@ import Loader from '../../loader'
 import { useAddCategoryFilterMutation } from '../../../graphql/filter/hooks'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 import { getPrimaryImage } from '../../../shared/utils/get-image'
+import { ProductInterface } from '../../../shared/typings'
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -22,11 +22,14 @@ const imageVariants = {
   }
 }
 
-const Products = ({ products, scrollPct }) => {
+const Products: React.FC<{
+  products: ProductInterface[]
+  scrollPct: number
+}> = ({ products, scrollPct }) => {
   const [addCategoryFilter, { data, loading }] = useAddCategoryFilterMutation()
   const [isVisible, setIsVisible] = useState(false)
 
-  const handleClick = category => {
+  const handleClick = (category: string) => {
     addCategoryFilter({ variables: { category } })
   }
 
@@ -79,15 +82,9 @@ const Products = ({ products, scrollPct }) => {
   )
 }
 
-Products.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object)
-}
-
-Products.defaultProps = {
-  products: []
-}
-
-const FeaturedProductsComponent = props => {
+const FeaturedProductsComponent: React.FC<{ scrollPct: number }> = ({
+  scrollPct
+}) => {
   const { data, loading, error } = useProductsQuery({
     variables: {
       where: {
@@ -111,13 +108,9 @@ const FeaturedProductsComponent = props => {
 
   return (
     <ErrorBoundary error={error}>
-      <Products scrollPct={props.scrollPct} products={data.products} />
+      <Products scrollPct={scrollPct} products={data.products} />
     </ErrorBoundary>
   )
-}
-
-FeaturedProductsComponent.propTypes = {
-  scrollPct: PropTypes.number.isRequired
 }
 
 export default FeaturedProductsComponent

@@ -24,17 +24,19 @@ import {
   hasSize
 } from '../../../shared/utils'
 import { SHIRT, HOODIE, LONG_SLEEVE } from '../../../types/category-types'
-import { ProductInterface } from '../../../shared/interfaces'
-import { SizeEnum } from '../../../shared/interfaces/enums'
+import { ProductInterface } from '../../../shared/typings'
+import { SizeEnum } from '../../../shared/typings/enums'
 
 interface OptionInterface {
   name: SizeEnum
   value: SizeEnum
 }
 
-const ProductDetailsComponent: React.FC<{ product: ProductInterface }> = ({
+const ProductDetailsComponent: React.FC<{ product?: ProductInterface }> = ({
   product
 }) => {
+  if (!product) return null
+
   const options = product?.availableSizes?.map((size: SizeEnum): {
     name: SizeEnum
     value: SizeEnum
@@ -59,6 +61,7 @@ const ProductDetailsComponent: React.FC<{ product: ProductInterface }> = ({
         ...product,
         ...(size?.value && { size: size.value })
       }
+
       if (alreadyInCart(vars) && (sizeAlreadyInCart(vars) || !hasSize(vars))) {
         increaseCartItemQuantity({
           variables: {

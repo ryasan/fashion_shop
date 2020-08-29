@@ -10,7 +10,7 @@ import {
   MERGE_REMOTE_CART_ITEMS_MUTATION,
   ADD_CART_ITEM_MUTATION
 } from './mutations'
-import { CartItemInterface, ProductInterface } from '../../shared/interfaces'
+import { CartItemInterface, ProductInterface } from '../../shared/typings'
 
 export const useCartQuery = () => {
   return useQuery<{ cartItems: CartItemInterface[]; cartOpen: boolean }>(

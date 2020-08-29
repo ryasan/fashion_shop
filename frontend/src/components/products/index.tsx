@@ -12,13 +12,13 @@ import {
   usePaginationQuery,
   useChangeProductsPageMutation
 } from '../../graphql/pagination/hooks'
-import { ProductInterface } from '../../shared/interfaces'
+import { ProductInterface } from '../../shared/typings'
 
 const perPage = 8
 const mapNodes = (e: { node: ProductInterface }) => e.node
 
 const ProductsComponent = () => {
-  const [orderBy, setOrderBy] = useState(null)
+  const [orderBy, setOrderBy] = useState<string | null>(null)
   const [changeProductsPage] = useChangeProductsPageMutation()
   const { data: { productsPage } } = usePaginationQuery() // prettier-ignore
   const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore

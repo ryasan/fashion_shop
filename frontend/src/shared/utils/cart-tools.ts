@@ -1,6 +1,6 @@
-import { CartItemInterface, ProductInterface } from '../interfaces'
+import { CartItemInterface, ProductInterface } from '../typings'
 import { HOODIE, SHIRT, LONG_SLEEVE } from '../../types/category-types'
-import { SizeEnum, CategoryEnum } from '../interfaces/enums'
+import { SizeEnum, CategoryEnum } from '../typings/enums'
 
 export const alreadyInCart = ({
   cartItems,
@@ -25,6 +25,6 @@ export const sizeAlreadyInCart = ({
   return sizeVariants?.some(cartItem => cartItem.size === size)
 }
 
-export const hasSize = ({ category }: { category: CategoryEnum }) => {
+export const hasSize = ({ category }: { category: string }) => {
   return [HOODIE, SHIRT, LONG_SLEEVE].includes(category)
 }

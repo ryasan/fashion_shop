@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Select from './select.styles'
-import { SizeEnum } from '../../shared/interfaces/enums'
+import { SizeEnum } from '../../shared/typings/enums'
 
 interface OptionInterface {
   name: SizeEnum | string

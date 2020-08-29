@@ -33,7 +33,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-global-styles',
       options: {
-        pathToConfigModule: 'src/styles/global.styles.js',
+        pathToConfigModule: 'src/styles/global.styles.ts',
         props: {
           theme: false
         }
@@ -43,7 +43,10 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          `montserrat\:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i` // eslint-disable-line
+          `Montserrat\:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i`,
+          `Meddon\:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i`, // font-family: 'Meddon', cursive;
+          `Mrs Saint Delafield\:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i`, // font-family: 'Mrs Saint Delafield', cursive;
+          `Mr De Haviland\:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i` // font-family: 'Mr De Haviland', cursive;
         ],
         display: 'swap'
       }

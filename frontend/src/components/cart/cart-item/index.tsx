@@ -6,19 +6,22 @@ import {
   useIncreaseCartItemQuantityMutation,
   useDecreaseCartItemQuantityMutation
 } from '../../../graphql/cart/hooks'
-import { CartItemInterface, ImagesInterface } from '../../../shared/interfaces'
+import {
+  CartItemInterface,
+  ImagesInterface
+} from '../../../shared/typings'
 import { formatPrice, withImages } from '../../../shared/utils'
 
 interface CartItemComponentInterface {
-  cartItem: CartItemInterface
+  item: CartItemInterface
   images?: ImagesInterface
 }
 
 const CartItemComponent: React.FC<CartItemComponentInterface> = ({
-  cartItem,
+  item,
   images
 }) => {
-  const { product, quantity, size } = cartItem
+  const { product, quantity, size } = item
   const { title, price } = product
   const [removeCartItem] = useRemoveCartItemMutation()
   const [increaseCartItemQuantity] = useIncreaseCartItemQuantityMutation()

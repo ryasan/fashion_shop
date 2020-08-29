@@ -38,15 +38,9 @@ const useAuth = (): [(props: any) => void, ResponseInterface] => {
   const [resetPassword, resetPasswordInfo] = useResetPasswordMutation()
 
   const authMutation = ({ variables }: { variables: VariablesInterface }) => {
-    const {
-      email,
-      username,
-      password,
-      confirm,
-      resetToken,
-      authMethod
-    } = variables
-
+    
+    const { email, username, password, confirm, resetToken, authMethod } = variables
+    
     const trimmedVariables = {
       ...(email && { email }),
       ...(password && { password }),

@@ -11,7 +11,7 @@ import {
   SEND_CONTACT_MESSAGE_MUTATION
 } from './mutations'
 import { CURRENT_USER_QUERY, USERS_QUERY } from './queries'
-import { UserInterface } from '../../shared/interfaces'
+import { UserInterface } from '../../shared/typings'
 
 interface CurrentUserInterface {
   data: { me: UserInterface } | null

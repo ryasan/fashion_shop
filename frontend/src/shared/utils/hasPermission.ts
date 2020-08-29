@@ -1,7 +1,6 @@
-import { UserInterface } from "../interfaces"
-import { PermissionEnum } from "../interfaces/enums"
+import { UserInterface } from "../typings"
 
-export const hasPermission = (user: UserInterface, permissionsNeeded: PermissionEnum[]) => {
+export const hasPermission = (user: UserInterface, permissionsNeeded: string[]) => {
   if (!user?.permissions) return null
 
   return user.permissions.some((permission) =>

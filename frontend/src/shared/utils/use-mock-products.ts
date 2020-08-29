@@ -1,7 +1,7 @@
 import { useState, useEffect, SetStateAction } from 'react'
 
 import _mockProducts from '../../mocks/products.json'
-import { ProductInterface } from '../interfaces'
+import { ProductInterface } from '../typings'
 
 const getMockProducts = (): Promise<any> => {
   return new Promise(resolve => {

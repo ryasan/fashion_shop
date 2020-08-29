@@ -7,7 +7,7 @@ import {
   MERGE_REMOTE_CART_ITEMS,
   DECREASE_CART_ITEM_QUANTITY
 } from './action-types'
-import { CartItemInterface, ProductInterface } from '../../shared/interfaces'
+import { CartItemInterface, ProductInterface } from '../../shared/typings'
 import { hasSize } from '../../shared/utils/cart-tools'
 
 interface LooseCartItemObject {

@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion'
 import Dropdown, { ScrollBtn } from './dropdown.styles'
 import { useToggleOverlayMutation } from '../../../graphql/overlay/hooks'
 import { getThumbnail } from '../../../shared/utils'
-import { ProductInterface } from '../../../shared/interfaces'
+import { ProductInterface } from '../../../shared/typings'
 
 const fadeAway = () => ({
   initial: { opacity: 0 },

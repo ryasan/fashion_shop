@@ -10,7 +10,7 @@ const Order = styled.li`
   width: 100%;
 `
 
-export const Header = styled.div`
+Order.Header = styled.div`
   align-items: center;
   background: url(${orderBg}) center center;
   background-repeat: no-repeat;
@@ -21,7 +21,7 @@ export const Header = styled.div`
   position: relative;
 `
 
-Header.Image = styled(Image)`
+Order.HeaderImage = styled(Image)`
   border: 0.8rem solid var(--dark);
   border-radius: 50%;
   bottom: -5rem;
@@ -36,6 +36,5 @@ Order.Body = styled.div`
   text-align: center;
 `
 
-export const Text = P
-
+Order.Text = P
 export default Order

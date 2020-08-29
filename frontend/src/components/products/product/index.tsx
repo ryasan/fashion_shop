@@ -4,21 +4,19 @@ import { Link } from 'gatsby'
 
 import Product, { Promo, Header, Body, Footer } from './product.styles'
 import { formatPrice, withImages } from '../../../shared/utils'
-import { ImagesInterface, ProductInterface } from '../../../shared/interfaces'
+import { ImagesInterface, ItemIntersection } from '../../../shared/typings'
 
-interface ProductComponentInterface {
-  product: ProductInterface
-  images: ImagesInterface
-}
-
-const ProductComponent: React.FC<ProductComponentInterface> = ({
-  product,
+const ProductComponent = ({
+  item,
   images
+}: {
+  item: ItemIntersection
+  images?: ImagesInterface
 }) => {
-  const formattedPrice: string = formatPrice(product.price)
+  const formattedPrice: string = formatPrice(item.price)
   const dollars: string = formattedPrice.slice(0, -3)
   const cents: string = formattedPrice.slice(formattedPrice.length - 3)
-  const detailsPage: string = `/shop/${product.id}/`
+  const detailsPage: string = `/shop/${item.id}/`
 
   const handleAddCartItem = (): void => {
     navigate(detailsPage)
@@ -26,14 +24,14 @@ const ProductComponent: React.FC<ProductComponentInterface> = ({
 
   return (
     <Product>
-      {product.isFreeShipping && <Promo>Free Shipping</Promo>}
-      <Link to={detailsPage} state={{ sku: product.sku }}>
+      {item.isFreeShipping && <Promo>Free Shipping</Promo>}
+      <Link to={detailsPage} state={{ sku: item.sku }}>
         <Header>
-          <Header.Image src={images.bigImage} />
+          <Header.Image src={images?.bigImage} />
         </Header>
         <Product.Offset />
         <Body>
-          <Body.Title>{product.title}</Body.Title>
+          <Body.Title>{item.title}</Body.Title>
           <Body.Divider />
           <Body.Price>
             <Body.Dollars>{dollars}</Body.Dollars>

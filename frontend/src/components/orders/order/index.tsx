@@ -2,29 +2,29 @@ import React from 'react'
 import moment from 'moment'
 import { navigate } from '@reach/router'
 
-import Order, { Header, Text } from './order.styles'
+import Order from './order.styles'
 import { formatPrice, withImages } from '../../../shared/utils'
-import { OrderInterface, ImagesInterface } from '../../../shared/interfaces'
+import { ImagesInterface, OrderInterface } from '../../../shared/typings'
 
 const OrderComponent: React.FC<{
-  order: OrderInterface
-  images: ImagesInterface
-}> = ({ order, images }) => {
-  const { orderItems, createdAt, total, id } = order
+  item: OrderInterface
+  images?: ImagesInterface
+}> = ({ item, images }) => {
+  const { orderItems, createdAt, total, id } = item
 
   const goToOrderDetails = () => {
-    navigate(`/account/orders/${id}/`, { state: { order: order } })
+    navigate(`/account/orders/${id}/`, { state: { order: item } })
   }
 
   return (
     <Order onClick={goToOrderDetails}>
-      <Header>
-        <Header.Image src={images.smallImage} />
-      </Header>
+      <Order.Header>
+        <Order.HeaderImage src={images?.smallImage} />
+      </Order.Header>
       <Order.Body>
-        <Text>{orderItems.length} items</Text>
-        <Text>{formatPrice(total)}</Text>
-        <Text>{moment(createdAt).fromNow()}</Text>
+        <Order.Text>{orderItems.length} items</Order.Text>
+        <Order.Text>{formatPrice(total)}</Order.Text>
+        <Order.Text>{moment(createdAt).fromNow()}</Order.Text>
       </Order.Body>
     </Order>
   )

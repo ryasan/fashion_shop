@@ -3,7 +3,7 @@ import React from 'react'
 import CartFooter from './cart-footer.styles'
 import TakeMyMoney from '../take-my-money'
 import { formatPrice } from '../../../shared/utils'
-import { CartItemInterface } from '../../../shared/interfaces'
+import { CartItemInterface } from '../../../shared/typings'
 
 interface CartFooterComponentInterface {
   cartTotal: number

@@ -10,14 +10,21 @@ import {
   PRODUCTS_CONNECTION_QUERY,
   PRODUCT_QUERY
 } from './queries'
-import { SizeEnum, CategoryEnum } from '../../shared/interfaces/enums'
+import { SizeEnum, CategoryEnum } from '../../shared/typings/enums'
 
 interface ProductVariablesInterface {
-  variables: { where: { sku: string } }
+  variables: {
+    where: { sku?: string; id?: string }
+  }
 }
 
 interface ProductsVariablesInterface {
-  variables: { where: { sku_in?: string[]; isFeatured: boolean } }
+  variables: {
+    where?: {
+      sku_in?: string[]
+      isFeatured?: boolean
+    }
+  }
 }
 
 interface FiltersInterface {

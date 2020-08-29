@@ -21,7 +21,7 @@ Dropdown.List = styled.ul`
 
 Dropdown.Item = styled.li`
   border: 0.2rem solid var(--red);
-  border-left: ${props => (props.highlighted ? '1rem' : 0)} solid var(--darker);
+  border-left: ${(props: { highlighted: boolean }) => (props.highlighted ? '1rem' : 0)} solid var(--darker);
   cursor: pointer;
   display: flex;
   height: 7rem;
@@ -40,7 +40,7 @@ Dropdown.Item = styled.li`
 `
 
 Dropdown.ItemTitle = styled(Span)`
-  background: ${props => (props.highlighted ? 'var(--darker)' : 'var(--dark)')};
+  background: ${(props: { highlighted: boolean }) => (props.highlighted ? 'var(--darker)' : 'var(--dark)')};
   display: inline-block;
   flex: 1;
   line-height: 7rem;

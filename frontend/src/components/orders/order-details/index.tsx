@@ -13,7 +13,7 @@ import Loader from '../../loader'
 import ErrorBoundary from '../../error-boundary'
 import { formatPrice, getThumbnail } from '../../../shared/utils'
 import { useProductQuery } from '../../../graphql/product/hooks'
-import { OrderItemInterface, OrderInterface } from '../../../shared/interfaces'
+import { OrderItemInterface, OrderInterface } from '../../../shared/typings'
 
 const OrderItemComponent = ({ item }: { item: OrderItemInterface }) => {
   const { data, loading, error } = useProductQuery({

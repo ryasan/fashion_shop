@@ -7,7 +7,7 @@ import Search from './search.styles'
 import ErrorBoundary from '../error-boundary'
 import Dropdown from './dropdown'
 import { useProductsQuery } from '../../graphql/product/hooks'
-import { ProductInterface } from '../../shared/interfaces'
+import { ProductInterface } from '../../shared/typings'
 
 const routeToProduct = (product: ProductInterface) => {
   navigate(`/shop/${product.id}/`, { state: { sku: product.sku } })

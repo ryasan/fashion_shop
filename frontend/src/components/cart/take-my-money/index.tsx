@@ -17,7 +17,7 @@ import {
   ImagesInterface,
   UserInterface,
   OrderInterface
-} from '../../../shared/interfaces'
+} from '../../../shared/typings'
 
 const stripeKey: string =
   'pk_test_51H1pe1AjCAxQG9ChPsx3SD8aXdVEcMKUnz3mnbV4jzCzDcNeVL6dnjSW34RmamWPz4PCqHm850nW91kARGVnL4pn00s68jhaO2'

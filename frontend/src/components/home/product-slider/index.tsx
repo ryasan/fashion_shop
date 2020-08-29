@@ -8,8 +8,9 @@ import ErrorBoundary from '../../error-boundary'
 import { useProductsQuery } from '../../../graphql/product/hooks'
 import { formatPrice } from '../../../shared/utils'
 import { getPrimaryImage } from '../../../shared/utils/get-image'
+import { ProductInterface } from '../../../shared/typings'
 
-const ProductSliderComponent = () => {
+const ProductSliderComponent: React.FC = () => {
   const { data, loading, error } = useProductsQuery({
     variables: { where: { isFeatured: true } }
   })
@@ -23,7 +24,7 @@ const ProductSliderComponent = () => {
   }
 
   const products = data.products.slice(0, 7)
-  const slideItems = products.map(item => ({
+  const slideItems = products.map((item: ProductInterface) => ({
     ...item,
     onClick: () => navigate(`/shop/${item.id}/`),
     image: getPrimaryImage(item.images),

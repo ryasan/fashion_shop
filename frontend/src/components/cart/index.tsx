@@ -7,7 +7,7 @@ import CartFooter from './cart-footer/index'
 import CartCount from './cart-count'
 import { useCartQuery, useToggleCartMutation } from '../../graphql/cart/hooks'
 
-const CartComponent = () => {
+const CartComponent: React.FC = () => {
   const cartRef = useRef<HTMLDivElement>()
   const [toggleCart] = useToggleCartMutation()
   const { data } = useCartQuery()
@@ -51,7 +51,7 @@ const CartComponent = () => {
           )}
           <Cart.CartList>
             {cartItems.map((item, i) => (
-              <CartItem key={i} cartItem={item} />
+              <CartItem key={i} item={item} />
             ))}
           </Cart.CartList>
           <CartFooter
