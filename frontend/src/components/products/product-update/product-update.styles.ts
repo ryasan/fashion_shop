@@ -4,25 +4,25 @@ import { H3, Button } from '../../../shared/elements'
 import { btns } from '../../../shared/styles'
 
 const ProductUpdate = styled.div`
-  width: 100%;
+    width: 100%;
 `
 
 ProductUpdate.Title = H3
 
 ProductUpdate.BtnGroup = styled.div`
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 `
 
 ProductUpdate.ActionBtn = styled(Button)`
-  ${btns.white}
-  width: 15rem;
+    ${btns.white}
+    width: 15rem;
 
-  ${btns.white}
-  width: 15rem;
-  &:hover {
-    ${btns.clearWhite}
-  }
+    ${btns.white}
+    width: 15rem;
+    &:hover {
+        ${btns.clearWhite}
+    }
 `
 
 export default ProductUpdate

@@ -4,114 +4,114 @@ import { Link } from 'gatsby'
 import { device } from '../../shared/utils'
 
 const Header = styled.header`
-  align-items: center;
-  background: var(--dark);
-  box-shadow: var(--box-shadow-m);
-  display: flex;
-  height: 10rem;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1000;
+    align-items: center;
+    background: var(--dark);
+    box-shadow: var(--box-shadow-m);
+    display: flex;
+    height: 10rem;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1000;
 `
 
 Header.LogoContainer = styled(Link)`
-  display: flex;
-  flex: 1;
-  height: 100%;
-  justify-content: flex-start;
-  padding: 1rem 2rem;
-  width: 10rem;
-
-  svg {
-    color: white;
+    display: flex;
+    flex: 1;
     height: 100%;
-    width: 15rem;
-  }
+    justify-content: flex-start;
+    padding: 1rem 2rem;
+    width: 10rem;
 
-  @media ${device.tablet} {
-    display: none;
-  }
+    svg {
+        color: white;
+        height: 100%;
+        width: 15rem;
+    }
+
+    @media ${device.tablet} {
+        display: none;
+    }
 `
 
 Header.NavList = styled.ul`
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-  position: relative;
-  width: ${({ me }) => `calc((${me ? 4 : 3} + 1) * 9rem)`};
-  z-index: 10;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    position: relative;
+    width: ${({ me }: any) => `calc((${me ? 4 : 3} + 1) * 9rem)`};
+    z-index: 10;
 
-  @media ${device.tablet} {
-    background: var(--dark);
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-  }
+    @media ${device.tablet} {
+        background: var(--dark);
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+    }
 `
 
 Header.NavItem = styled.li`
-  align-items: center;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 9rem;
-
-  @media ${device.tablet} {
-    margin: 0;
-    width: 100%;
-  }
-
-  &:last-child {
-    margin-right: 9rem;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 9rem;
 
     @media ${device.tablet} {
-      margin-right: 0;
+        margin: 0;
+        width: 100%;
     }
-  }
 
-  &::after {
-    background: var(--red);
-    bottom: 0;
-    content: '';
-    height: 0.2rem;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-    transition: width 0.4s;
-    transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
-    width: 0;
-  }
+    &:last-child {
+        margin-right: 9rem;
 
-  &:hover,
-  &:focus {
-    color: var(--red);
-    outline: none;
+        @media ${device.tablet} {
+            margin-right: 0;
+        }
+    }
 
     &::after {
-      width: 100%;
+        background: var(--red);
+        bottom: 0;
+        content: '';
+        height: 0.2rem;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        transition: width 0.4s;
+        transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
+        width: 0;
     }
-  }
 
-  a {
-    align-items: center;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    font-size: var(--font-size-m);
-    height: 10rem;
-    justify-content: center;
-    text-decoration: none;
-    width: 100%;
-  }
+    &:hover,
+    &:focus {
+        color: var(--red);
+        outline: none;
 
-  svg {
-    fill: white;
-    height: 3rem;
-    transition: fill 0.2s;
-    width: 3rem;
-  }
+        &::after {
+            width: 100%;
+        }
+    }
+
+    a {
+        align-items: center;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--font-size-m);
+        height: 10rem;
+        justify-content: center;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    svg {
+        fill: white;
+        height: 3rem;
+        transition: fill 0.2s;
+        width: 3rem;
+    }
 `
 
 export default Header

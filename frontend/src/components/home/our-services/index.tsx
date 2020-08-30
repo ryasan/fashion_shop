@@ -45,71 +45,73 @@ const services = [
 ]
 
 const renderText = (
-  content: Array<{ paragraph?: string; list?: string[] }>
+    content: Array<{ paragraph?: string; list?: string[] }>
 ) => {
-  return content.map((c, index) => {
-    if (c.paragraph) {
-      return <Item.Text key={index}>{c.paragraph}</Item.Text>
-    } else if (c.list) {
-      return (
-        <Item.List key={index}>
-          {c.list.map((text, idx) => (
-            <Item.ListItem key={idx}>{text}</Item.ListItem>
-          ))}
-        </Item.List>
-      )
-    }
-  })
+    return content.map((c, index) => {
+        if (c.paragraph) {
+            return <Item.Text key={index}>{c.paragraph}</Item.Text>
+        } else if (c.list) {
+            return (
+                <Item.List key={index}>
+                    {c.list.map((text, idx) => (
+                        <Item.ListItem key={idx}>{text}</Item.ListItem>
+                    ))}
+                </Item.List>
+            )
+        }
+    })
 }
 
 const parentVariants = () => ({
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.5
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            duration: 1,
+            staggerChildren: 0.5
+        }
     }
-  }
 })
 
 const childrenVariants = () => ({
-  hidden: { opacity: 0 },
-  show: { opacity: 1 }
+    hidden: { opacity: 0 },
+    show: { opacity: 1 }
 })
 
 const OurServicesComponent: React.FC<{ scrollPct: number }> = ({
-  scrollPct
+    scrollPct
 }) => {
-  return (
-    <OurServices>
-      <OurServices.HugeText>IDEA</OurServices.HugeText>
-      <OurServices.Title>Our Services</OurServices.Title>
-      <AnimatePresence>
-        {scrollPct >= 85 && (
-          <Grid
-            variants={parentVariants()}
-            initial='hidden'
-            animate={scrollPct >= 85 ? 'show' : 'hidden'}
-          >
-            {services.map((service, i) => (
-              <Item key={i} variants={childrenVariants()}>
-                <Item.Icon name={service.icon} color={service.color} />
-                <Item.TextContainer>
-                  <Item.Title>{service.title}</Item.Title>
-                  {renderText(service.description)}
-                </Item.TextContainer>
-              </Item>
-            ))}
-          </Grid>
-        )}
-      </AnimatePresence>
-    </OurServices>
-  )
+    return (
+        <OurServices>
+            <OurServices.HugeText>IDEA</OurServices.HugeText>
+            <OurServices.Title>Our Services</OurServices.Title>
+            <AnimatePresence>
+                {scrollPct >= 85 && (
+                    <Grid
+                        variants={parentVariants()}
+                        initial='hidden'
+                        animate={scrollPct >= 85 ? 'show' : 'hidden'}>
+                        {services.map((service, i) => (
+                            <Item key={i} variants={childrenVariants()}>
+                                <Item.Icon
+                                    name={service.icon}
+                                    color={service.color}
+                                />
+                                <Item.TextContainer>
+                                    <Item.Title>{service.title}</Item.Title>
+                                    {renderText(service.description)}
+                                </Item.TextContainer>
+                            </Item>
+                        ))}
+                    </Grid>
+                )}
+            </AnimatePresence>
+        </OurServices>
+    )
 }
 
 OurServicesComponent.propTypes = {
-  scrollPct: PropTypes.number.isRequired
+    scrollPct: PropTypes.number.isRequired
 }
 
 export default OurServicesComponent

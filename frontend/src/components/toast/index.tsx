@@ -8,24 +8,24 @@ import Icon from '../icons'
 toast.configure()
 
 const options = {
-  draggable: false,
-  closeButton: false,
-  hideProgressBar: true,
-  className: 'toast-container',
-  toastClassName: 'toast',
-  autoClose: 5000
+    draggable: false,
+    closeButton: false,
+    hideProgressBar: true,
+    className: 'toast-container',
+    toastClassName: 'toast',
+    autoClose: 5000
 }
 
 const CloseButton: React.StatelessComponent<{ closeToast?: () => void }> = ({
-  closeToast
+    closeToast
 }) => {
-  return <Icon onClick={closeToast} name='close' className='close-button' />
+    return <Icon onClick={closeToast} name='close' className='close-button' />
 }
 
 export const ToastComponent: React.StatelessComponent = () => (
-  <Toast>
-    <ToastContainer {...options} closeButton={<CloseButton />} />
-  </Toast>
+    <Toast>
+        <ToastContainer {...options} closeButton={<CloseButton />} />
+    </Toast>
 )
 
 export { toast }

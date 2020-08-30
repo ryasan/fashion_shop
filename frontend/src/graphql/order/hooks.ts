@@ -7,63 +7,63 @@ import { OrderInterface } from '../../shared/typings'
 import { mapImages } from '../../shared/utils'
 
 interface VariablesInterface {
-  variables: {
-    orderBy?: string
-    skip?: number
-    first?: number
-    where: { user: { id: string } }
-  }
+    variables: {
+        orderBy?: string
+        skip?: number
+        first?: number
+        where: { user: { id: string } }
+    }
 }
 
 interface OrdersConnectionInterface {
-  data: {
-    info: {
-      count: number
-      pageInfo: any
+    data: {
+        info: {
+            count: number
+            pageInfo: any
+        }
+        orders: OrderInterface[]
     }
-    orders: OrderInterface[]
-  }
-  error: any
-  loading: boolean
+    error: any
+    loading: boolean
 }
 
 export const useCreateOrderMutation = () => {
-  return useMutation(CREATE_ORDER_MUTATION, {
-    refetchQueries: [{ query: CURRENT_USER_QUERY }]
-  })
+    return useMutation(CREATE_ORDER_MUTATION, {
+        refetchQueries: [{ query: CURRENT_USER_QUERY }]
+    })
 }
 
 export const useOrdersQuery = ({ variables }: VariablesInterface) => {
-  return useQuery(ORDERS_QUERY, { variables, fetchPolicy: 'network-only' })
+    return useQuery(ORDERS_QUERY, { variables, fetchPolicy: 'network-only' })
 }
 
 export const useOrdersConnectionQuery = ({ variables }: VariablesInterface) => {
-  const { data, loading, error } = useQuery(ORDERS_CONNECTION_QUERY, {
-    variables,
-    fetchPolicy: 'network-only'
-  })
+    const { data, loading, error } = useQuery(ORDERS_CONNECTION_QUERY, {
+        variables,
+        fetchPolicy: 'network-only'
+    })
 
-  return <OrdersConnectionInterface>{
-    data: data
-      ? {
-          info: {
-            count: data.ordersCount.aggregate.count,
-            pageInfo: data.ordersConnection?.pageInfo
-          },
-          orders: data.ordersConnection.edges.map(
-            (e: { node: OrderInterface }) => {
-              return {
-                ...e.node,
-                orderItems: e.node.orderItems.map(item => console.log(item) || ({
-                  ...item,
-                  imageMap: mapImages(item.images)
-                }))
+    return <OrdersConnectionInterface>{
+        error,
+        loading,
+        data: data
+            ? {
+                  info: {
+                      count: data.ordersCount.aggregate.count,
+                      pageInfo: data.ordersConnection?.pageInfo
+                  },
+                  orders: data.ordersConnection.edges.map(
+                      (e: { node: OrderInterface }) => {
+                          return {
+                              ...e.node,
+                              orderItems: e.node.orderItems.map(item => ({
+                                  ...item,
+                                  imageMap: mapImages(item.images)
+                              }))
+                          }
+                      }
+                  )
               }
-            }
-          )
-        }
-      : null,
-    error,
-    loading
-  }
+            : null
+    }
 }

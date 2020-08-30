@@ -5,21 +5,21 @@ import OneProduct from '../product'
 import { ProductInterface } from '../../../shared/typings'
 
 const ProductListComponent = ({
-  products
+    products
 }: {
-  products: ProductInterface[]
+    products: ProductInterface[]
 }) => {
-  if (products) {
-    return (
-      <ProductList>
-        {products.map(p => (
-          <OneProduct key={p.id} product={p} />
-        ))}
-      </ProductList>
-    )
-  }
+    if (products) {
+        return (
+            <ProductList>
+                {products.map(p => (
+                    <OneProduct key={p.id} product={p} />
+                ))}
+            </ProductList>
+        )
+    }
 
-  return null
+    return null
 }
 
 export default ProductListComponent

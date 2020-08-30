@@ -1,451 +1,376 @@
 [
-  {
-    "sku": "T_4_front6",
-    "style": "",
-    "description": "",
-    "isFreeShipping": true,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "XL",
-      "L",
-      "S"
-    ],
-    "category": "SHIRT",
-    "title": "Skull T - Black"
-  },
-  {
-    "sku": "hoodie_1_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3999,
-    "availableSizes": [
-      "M",
-      "XL"
-    ],
-    "category": "HOODIE",
-    "title": "Skull Hoodie - Sky Blue "
-  },
-  {
-    "sku": "hoodie_7_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3999,
-    "availableSizes": [
-      "XXL",
-      "L",
-      "S"
-    ],
-    "category": "HOODIE",
-    "title": "Skull Hoodie - Black"
-  },
-  {
-    "sku": "hoodie_2_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3999,
-    "availableSizes": [
-      "XXL"
-    ],
-    "category": "HOODIE",
-    "title": "Ninja Hoodie - Red"
-  },
-  {
-    "sku": "hat-2",
-    "style": "Soft wool",
-    "description": "14/15 s/nº",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1499,
-    "availableSizes": [],
-    "category": "BEANIE",
-    "title": "Nectar Beanie - Dark Gray"
-  },
-  {
-    "sku": "long-sleeve2",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1599,
-    "availableSizes": [
-      "L",
-      "XL"
-    ],
-    "category": "LONG_SLEEVE",
-    "title": "Plain Long Sleeve - Black"
-  },
-  {
-    "sku": "hat-3",
-    "style": "Preto",
-    "description": "14/15 + Camiseta 1º Mundial",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1499,
-    "availableSizes": [],
-    "category": "BEANIE",
-    "title": "Nectar Beanie - Blue"
-  },
-  {
-    "sku": "long-sleeve",
-    "style": "Azul escuro",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1599,
-    "availableSizes": [
-      "XL"
-    ],
-    "category": "LONG_SLEEVE",
-    "title": "Plain Long Sleeve - Light Gray"
-  },
-  {
-    "sku": "hoodie_3_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3999,
-    "availableSizes": [
-      "M",
-      "S"
-    ],
-    "category": "HOODIE",
-    "title": "Ninja Hoodie - Beige"
-  },
-  {
-    "sku": "T_3_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "XL"
-    ],
-    "category": "SHIRT",
-    "title": "Skull T - Slime Green"
-  },
-  {
-    "sku": "1-front",
-    "style": "Charcoal with custom print",
-    "description": "4 MSL",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "S",
-      "M",
-      "XXL"
-    ],
-    "category": "SHIRT",
-    "title": "Kings Shirt - Charcoal"
-  },
-  {
-    "sku": "hat-1",
-    "style": "Branco com listras pretas",
-    "description": "14/15 s/nº",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1499,
-    "availableSizes": [],
-    "category": "BEANIE",
-    "title": "Nectar Beanie - Blood Red"
-  },
-  {
-    "sku": "9-front",
-    "style": "Branco com listras pretas",
-    "description": "14/15 s/nº - Jogador",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1099,
-    "availableSizes": [
-      "XL"
-    ],
-    "category": "SHIRT",
-    "title": "Plain Shirt - Off White"
-  },
-  {
-    "sku": "hoodie_5_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3999,
-    "availableSizes": [
-      "M",
-      "L",
-      "S",
-      "XXL"
-    ],
-    "category": "HOODIE",
-    "title": "Ninja Hoodie - Black"
-  },
-  {
-    "sku": "19-front-1",
-    "style": "Preto com listras brancas",
-    "description": "2014 s/nº",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1099,
-    "availableSizes": [
-      "L"
-    ],
-    "category": "SHIRT",
-    "title": "Plain Shirt - Red"
-  },
-  {
-    "sku": "shorts-2",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 2199,
-    "availableSizes": [],
-    "category": "SHORTS",
-    "title": "Shorts - Olive Green"
-  },
-  {
-    "sku": "18-front-1",
-    "style": "Plain",
-    "description": "",
-    "isFreeShipping": true,
-    "isFeatured": false,
-    "price": 999,
-    "availableSizes": [
-      "M",
-      "L"
-    ],
-    "category": "SHIRT",
-    "title": "Plain Shirt - Soft Blue"
-  },
-  {
-    "sku": "T_1_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "M",
-      "XXL",
-      "XL",
-      "L"
-    ],
-    "category": "SHIRT",
-    "title": "Woo T - Red"
-  },
-  {
-    "sku": "4-front",
-    "style": "Front print and paisley print",
-    "description": "White mens shirt",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [],
-    "category": "SHIRT",
-    "title": "Nectar Shirt - White"
-  },
-  {
-    "sku": "T_6_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "XXL"
-    ],
-    "category": "SHIRT",
-    "title": "Woo Ninja T - Light Blue"
-  },
-  {
-    "sku": "long-sleeve3",
-    "style": "Preto com listras brancas",
-    "description": "1977 Infantil",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1599,
-    "availableSizes": [
-      "S",
-      "M",
-      "XL"
-    ],
-    "category": "LONG_SLEEVE",
-    "title": "Plain Long Sleeve - Blue"
-  },
-  {
-    "sku": "sunglasses-2-1",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 2999,
-    "availableSizes": [],
-    "category": "ACCESSORY",
-    "title": "Nectar Sunglasses"
-  },
-  {
-    "sku": "shirt",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1599,
-    "availableSizes": [],
-    "category": "LONG_SLEEVE",
-    "title": "Plain Long Sleeve - Red"
-  },
-  {
-    "sku": "8-front",
-    "style": "Black T-Shirt with front print",
-    "description": "Treino 2014",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 999,
-    "availableSizes": [
-      "S",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "category": "SHIRT",
-    "title": "Plain Shirt - Teal"
-  },
-  {
-    "sku": "6-front",
-    "style": "Front dye print",
-    "description": "GPX Poly 1",
-    "isFreeShipping": true,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "L",
-      "XL"
-    ],
-    "category": "SHIRT",
-    "title": "The Hummer Shirt - Gray"
-  },
-  {
-    "sku": "sunglasses",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 2999,
-    "availableSizes": [],
-    "category": "ACCESSORY",
-    "title": "Kings Sunglasses"
-  },
-  {
-    "sku": "16-front",
-    "style": "Preta com listras brancas",
-    "description": "14/15 s/nº",
-    "isFreeShipping": true,
-    "isFeatured": false,
-    "price": 999,
-    "availableSizes": [
-      "S",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "category": "SHIRT",
-    "title": "Plain Shirt - Slime Green"
-  },
-  {
-    "sku": "hoodie_4_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3999,
-    "availableSizes": [
-      "L"
-    ],
-    "category": "HOODIE",
-    "title": "Ninja Hoodie - Off White"
-  },
-  {
-    "sku": "T_5_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "M",
-      "S",
-      "L",
-      "XL"
-    ],
-    "category": "SHIRT",
-    "title": "Ninja T - Black"
-  },
-  {
-    "sku": "hoodie_6_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 3599,
-    "availableSizes": [
-      "S",
-      "XXL"
-    ],
-    "category": "HOODIE",
-    "title": "Woo Hoodie - Navy Blue"
-  },
-  {
-    "sku": "T_7_front5",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 1999,
-    "availableSizes": [
-      "XL"
-    ],
-    "category": "SHIRT",
-    "title": "Ninja T - Light Gray"
-  },
-  {
-    "sku": "shorts-1",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 2599,
-    "availableSizes": [],
-    "category": "SHORTS",
-    "title": "Shorts - Dark Gray"
-  },
-  {
-    "sku": "tag-1",
-    "style": "",
-    "description": "",
-    "isFreeShipping": false,
-    "isFeatured": false,
-    "price": 299,
-    "availableSizes": [],
-    "category": "ACCESSORY",
-    "title": "Nectar Tag"
-  },
-  {
-    "sku": "hats",
-    "style": "Branco",
-    "description": "Goleiro 13/14",
-    "isFreeShipping": true,
-    "isFeatured": false,
-    "price": 2999,
-    "availableSizes": [],
-    "category": "BEANIE",
-    "title": "Beanies Value Pack"
-  }
+    {
+        "sku": "T_4_front6",
+        "style": "",
+        "description": "",
+        "isFreeShipping": true,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["XL", "L", "S"],
+        "category": "SHIRT",
+        "title": "Skull T - Black"
+    },
+    {
+        "sku": "hoodie_1_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3999,
+        "availableSizes": ["M", "XL"],
+        "category": "HOODIE",
+        "title": "Skull Hoodie - Sky Blue "
+    },
+    {
+        "sku": "hoodie_7_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3999,
+        "availableSizes": ["XXL", "L", "S"],
+        "category": "HOODIE",
+        "title": "Skull Hoodie - Black"
+    },
+    {
+        "sku": "hoodie_2_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3999,
+        "availableSizes": ["XXL"],
+        "category": "HOODIE",
+        "title": "Ninja Hoodie - Red"
+    },
+    {
+        "sku": "hat-2",
+        "style": "Soft wool",
+        "description": "14/15 s/nº",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1499,
+        "availableSizes": [],
+        "category": "BEANIE",
+        "title": "Nectar Beanie - Dark Gray"
+    },
+    {
+        "sku": "long-sleeve2",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1599,
+        "availableSizes": ["L", "XL"],
+        "category": "LONG_SLEEVE",
+        "title": "Plain Long Sleeve - Black"
+    },
+    {
+        "sku": "hat-3",
+        "style": "Preto",
+        "description": "14/15 + Camiseta 1º Mundial",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1499,
+        "availableSizes": [],
+        "category": "BEANIE",
+        "title": "Nectar Beanie - Blue"
+    },
+    {
+        "sku": "long-sleeve",
+        "style": "Azul escuro",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1599,
+        "availableSizes": ["XL"],
+        "category": "LONG_SLEEVE",
+        "title": "Plain Long Sleeve - Light Gray"
+    },
+    {
+        "sku": "hoodie_3_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3999,
+        "availableSizes": ["M", "S"],
+        "category": "HOODIE",
+        "title": "Ninja Hoodie - Beige"
+    },
+    {
+        "sku": "T_3_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["XL"],
+        "category": "SHIRT",
+        "title": "Skull T - Slime Green"
+    },
+    {
+        "sku": "1-front",
+        "style": "Charcoal with custom print",
+        "description": "4 MSL",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["S", "M", "XXL"],
+        "category": "SHIRT",
+        "title": "Kings Shirt - Charcoal"
+    },
+    {
+        "sku": "hat-1",
+        "style": "Branco com listras pretas",
+        "description": "14/15 s/nº",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1499,
+        "availableSizes": [],
+        "category": "BEANIE",
+        "title": "Nectar Beanie - Blood Red"
+    },
+    {
+        "sku": "9-front",
+        "style": "Branco com listras pretas",
+        "description": "14/15 s/nº - Jogador",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1099,
+        "availableSizes": ["XL"],
+        "category": "SHIRT",
+        "title": "Plain Shirt - Off White"
+    },
+    {
+        "sku": "hoodie_5_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3999,
+        "availableSizes": ["M", "L", "S", "XXL"],
+        "category": "HOODIE",
+        "title": "Ninja Hoodie - Black"
+    },
+    {
+        "sku": "19-front-1",
+        "style": "Preto com listras brancas",
+        "description": "2014 s/nº",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1099,
+        "availableSizes": ["L"],
+        "category": "SHIRT",
+        "title": "Plain Shirt - Red"
+    },
+    {
+        "sku": "shorts-2",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 2199,
+        "availableSizes": [],
+        "category": "SHORTS",
+        "title": "Shorts - Olive Green"
+    },
+    {
+        "sku": "18-front-1",
+        "style": "Plain",
+        "description": "",
+        "isFreeShipping": true,
+        "isFeatured": false,
+        "price": 999,
+        "availableSizes": ["M", "L"],
+        "category": "SHIRT",
+        "title": "Plain Shirt - Soft Blue"
+    },
+    {
+        "sku": "T_1_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["M", "XXL", "XL", "L"],
+        "category": "SHIRT",
+        "title": "Woo T - Red"
+    },
+    {
+        "sku": "4-front",
+        "style": "Front print and paisley print",
+        "description": "White mens shirt",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": [],
+        "category": "SHIRT",
+        "title": "Nectar Shirt - White"
+    },
+    {
+        "sku": "T_6_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["XXL"],
+        "category": "SHIRT",
+        "title": "Woo Ninja T - Light Blue"
+    },
+    {
+        "sku": "long-sleeve3",
+        "style": "Preto com listras brancas",
+        "description": "1977 Infantil",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1599,
+        "availableSizes": ["S", "M", "XL"],
+        "category": "LONG_SLEEVE",
+        "title": "Plain Long Sleeve - Blue"
+    },
+    {
+        "sku": "sunglasses-2-1",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 2999,
+        "availableSizes": [],
+        "category": "ACCESSORY",
+        "title": "Nectar Sunglasses"
+    },
+    {
+        "sku": "shirt",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1599,
+        "availableSizes": [],
+        "category": "LONG_SLEEVE",
+        "title": "Plain Long Sleeve - Red"
+    },
+    {
+        "sku": "8-front",
+        "style": "Black T-Shirt with front print",
+        "description": "Treino 2014",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 999,
+        "availableSizes": ["S", "L", "XL", "XXL"],
+        "category": "SHIRT",
+        "title": "Plain Shirt - Teal"
+    },
+    {
+        "sku": "6-front",
+        "style": "Front dye print",
+        "description": "GPX Poly 1",
+        "isFreeShipping": true,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["L", "XL"],
+        "category": "SHIRT",
+        "title": "The Hummer Shirt - Gray"
+    },
+    {
+        "sku": "sunglasses",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 2999,
+        "availableSizes": [],
+        "category": "ACCESSORY",
+        "title": "Kings Sunglasses"
+    },
+    {
+        "sku": "16-front",
+        "style": "Preta com listras brancas",
+        "description": "14/15 s/nº",
+        "isFreeShipping": true,
+        "isFeatured": false,
+        "price": 999,
+        "availableSizes": ["S", "L", "XL", "XXL"],
+        "category": "SHIRT",
+        "title": "Plain Shirt - Slime Green"
+    },
+    {
+        "sku": "hoodie_4_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3999,
+        "availableSizes": ["L"],
+        "category": "HOODIE",
+        "title": "Ninja Hoodie - Off White"
+    },
+    {
+        "sku": "T_5_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["M", "S", "L", "XL"],
+        "category": "SHIRT",
+        "title": "Ninja T - Black"
+    },
+    {
+        "sku": "hoodie_6_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 3599,
+        "availableSizes": ["S", "XXL"],
+        "category": "HOODIE",
+        "title": "Woo Hoodie - Navy Blue"
+    },
+    {
+        "sku": "T_7_front5",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 1999,
+        "availableSizes": ["XL"],
+        "category": "SHIRT",
+        "title": "Ninja T - Light Gray"
+    },
+    {
+        "sku": "shorts-1",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 2599,
+        "availableSizes": [],
+        "category": "SHORTS",
+        "title": "Shorts - Dark Gray"
+    },
+    {
+        "sku": "tag-1",
+        "style": "",
+        "description": "",
+        "isFreeShipping": false,
+        "isFeatured": false,
+        "price": 299,
+        "availableSizes": [],
+        "category": "ACCESSORY",
+        "title": "Nectar Tag"
+    },
+    {
+        "sku": "hats",
+        "style": "Branco",
+        "description": "Goleiro 13/14",
+        "isFreeShipping": true,
+        "isFeatured": false,
+        "price": 2999,
+        "availableSizes": [],
+        "category": "BEANIE",
+        "title": "Beanies Value Pack"
+    }
 ]

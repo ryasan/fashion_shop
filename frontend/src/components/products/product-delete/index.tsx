@@ -8,25 +8,25 @@ import { Button } from '../../../shared/elements'
 import { btns } from '../../../shared/styles'
 
 const ProductDeleteBtn = styled(Button)`
-  width: 15rem;
-  ${btns.clearWhite}
+    width: 15rem;
+    ${btns.clearWhite}
 
-  &:hover {
-    ${btns.clearRed}
-  }
+    &:hover {
+        ${btns.clearRed}
+    }
 `
 
 const ProductDeleteComponent = ({ me, onClick, loading }) =>
-  hasPermission(me, [ADMIN, ITEM_DELETE]) ? (
-    <ProductDeleteBtn name='delete' onClick={onClick}>
-      {loading ? 'Deleting' : 'Delete'}
-    </ProductDeleteBtn>
-  ) : null
+    hasPermission(me, [ADMIN, ITEM_DELETE]) ? (
+        <ProductDeleteBtn name='delete' onClick={onClick}>
+            {loading ? 'Deleting' : 'Delete'}
+        </ProductDeleteBtn>
+    ) : null
 
 ProductDeleteComponent.propTypes = {
-  me: PropTypes.object,
-  onClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool
+    me: PropTypes.object,
+    onClick: PropTypes.func.isRequired,
+    loading: PropTypes.bool
 }
 
 export default ProductDeleteComponent

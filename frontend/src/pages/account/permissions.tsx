@@ -6,12 +6,12 @@ import SEO from '../../components/seo'
 import Permissions from '../../components/permissions'
 
 const PermissionsPage: React.StatelessComponent = () => (
-  <Layout>
-    <AccountLayout>
-      <SEO title='Permissions' />
-      <Permissions />
-    </AccountLayout>
-  </Layout>
+    <Layout>
+        <AccountLayout>
+            <SEO title='Permissions' />
+            <Permissions />
+        </AccountLayout>
+    </Layout>
 )
 
 export default PermissionsPage

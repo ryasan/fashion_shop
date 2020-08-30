@@ -7,19 +7,19 @@ import Signin from '../../components/signin'
 import { PASSWORD, CONFIRM } from '../../types/auth-field-types'
 
 const PasswordResetPage: React.StatelessComponent = (props: any) => {
-  const { resetToken } = parse(location.search)
+    const { resetToken } = parse(location.search)
 
-  return (
-    <Layout>
-      <SEO title='Signup' />
-      <Signin
-        {...props}
-        chosenFields={[PASSWORD, CONFIRM]}
-        resetToken={resetToken}
-        isPasswordReset
-      />
-    </Layout>
-  )
+    return (
+        <Layout>
+            <SEO title='Signup' />
+            <Signin
+                {...props}
+                chosenFields={[PASSWORD, CONFIRM]}
+                resetToken={resetToken}
+                isPasswordReset
+            />
+        </Layout>
+    )
 }
 
 export default PasswordResetPage

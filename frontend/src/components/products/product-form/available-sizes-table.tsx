@@ -5,53 +5,53 @@ import Table from '../../table'
 import { Cell } from '../../table/table.styles'
 import { Input, Label, Div } from '../../../shared/elements'
 import possibleSizes, {
-  SMALL,
-  MEDIUM,
-  LARGE,
-  X_LARGE,
-  XXL_LARGE
+    SMALL,
+    MEDIUM,
+    LARGE,
+    X_LARGE,
+    XXL_LARGE
 } from '../../../types/size-types'
 
 const createSizesData = (props: React.ComponentProps<any>) => ({
-  headRow: [
-    { text: SMALL },
-    { text: MEDIUM },
-    { text: LARGE },
-    { text: X_LARGE },
-    { text: XXL_LARGE }
-  ],
-  bodyRows: [[{ Jsx: ProductSizes, props }]]
+    headRow: [
+        { text: SMALL },
+        { text: MEDIUM },
+        { text: LARGE },
+        { text: X_LARGE },
+        { text: XXL_LARGE }
+    ],
+    bodyRows: [[{ Jsx: ProductSizes, props }]]
 })
 
 const ProductSizes = ({
-  availableSizes,
-  onChange
+    availableSizes,
+    onChange
 }: {
-  availableSizes: string[]
-  onChange: (arg: any) => string[]
+    availableSizes: string[]
+    onChange: (arg: any) => string[]
 }) => {
-  return possibleSizes.map((size, i) => (
-    <Cell key={i}>
-      <Input
-        type='checkbox'
-        value={size}
-        onChange={onChange}
-        checked={availableSizes.includes(size)}
-      />
-    </Cell>
-  ))
+    return possibleSizes.map((size, i) => (
+        <Cell key={i}>
+            <Input
+                type='checkbox'
+                value={size}
+                onChange={onChange}
+                checked={availableSizes.includes(size)}
+            />
+        </Cell>
+    ))
 }
 
 ProductSizes.propTypes = {
-  availableSizes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func.isRequired
+    availableSizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onChange: PropTypes.func.isRequired
 }
 
 const AvailableSizesTableComponent = (props: React.ComponentProps<any>) => (
-  <Div>
-    <Label modifiers='font_size_lg'>Available sizes:</Label>
-    <Table {...createSizesData(props)} />
-  </Div>
+    <Div>
+        <Label modifiers='font_size_lg'>Available sizes:</Label>
+        <Table {...createSizesData(props)} />
+    </Div>
 )
 
 export default AvailableSizesTableComponent

@@ -6,48 +6,50 @@ const spin = keyframes`
 `
 
 const Loader = styled.div`
-  align-items: center;
-  border-radius: 100%;
-  display: flex;
-  height: ${props => props.size?.loader};
-  justify-content: center;
-  left: 50%;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: ${props => props.size?.loader};
-
-  &::before,
-  &::after {
-    border: ${props => props.size?.border} solid transparent;
-    border-bottom-color: ${props => props.primary};
+    align-items: center;
     border-radius: 100%;
-    border-top-color: ${props => props.primary};
-    content: '';
-    height: 100%;
+    display: flex;
+    height: ${(props: any) => props.size?.loader as string};
+    justify-content: center;
+    left: 50%;
+    margin: 0 auto;
     position: absolute;
-    width: 100%;
-  }
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: ${(props: any) => props.size?.loader as string};
 
-  &::before {
-    animation: ${spin} 1s infinite;
-    z-index: 100;
-  }
+    &::before,
+    &::after {
+        border: ${(props: any) => props.size?.border as string} solid
+            transparent;
+        border-bottom-color: ${(props: any) => props.primary as string};
+        border-radius: 100%;
+        border-top-color: ${(props: any) => props.primary as string};
+        content: '';
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
 
-  &::after {
-    border: ${props => props.size?.border} solid ${props => props.secondary};
-  }
+    &::before {
+        animation: ${spin} 1s infinite;
+        z-index: 100;
+    }
 
-  > div {
-    background: ${props => props.primary};
-  }
+    &::after {
+        border: ${(props: any) => props.size?.border as string} solid
+            ${(props: any) => props.secondary as string};
+    }
+
+    > div {
+        background: ${(props: any) => props.primary as string};
+    }
 `
 
 Loader.Dot = styled.div`
-  border-radius: 50%;
-  height: ${props => props.size?.dot};
-  width: ${props => props.size?.dot};
+    border-radius: 50%;
+    height: ${(props: any) => props.size?.dot};
+    width: ${(props: any) => props.size?.dot};
 `
 
 export default Loader

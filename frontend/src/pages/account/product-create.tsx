@@ -6,12 +6,12 @@ import AccountLayout from '../../layouts/account-layout'
 import SEO from '../../components/seo'
 
 const ProductCreatePage: React.StatelessComponent = () => (
-  <Layout>
-    <AccountLayout>
-      <SEO title='Create Product' />
-      <ProductCreateComponent />
-    </AccountLayout>
-  </Layout>
+    <Layout>
+        <AccountLayout>
+            <SEO title='Create Product' />
+            <ProductCreateComponent />
+        </AccountLayout>
+    </Layout>
 )
 
 export default ProductCreatePage

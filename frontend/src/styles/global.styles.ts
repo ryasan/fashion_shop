@@ -3,41 +3,41 @@ import { createGlobalStyle, css } from '@nfront/global-styles'
 import { device } from '../shared/utils'
 
 const StyledRoot = css`
-  :root {
-    --dark: #16141a;
-    --darker: #090909;
-    --red: #f03151;
-    --salmon: #fa8072;
-    --green: #3f3;
-    --off-white: #ededed;
-    --gray: #7b797e;
-    --light-gray: #bbb;
-    --super-light-gray: #e1e1e1;
-    --font-size-s: 0.8rem;
-    --font-size-m: 1.2rem;
-    --font-size-lg: 1.6rem;
-    --font-size-xlg: 2rem;
-    --max-width: 120rem;
-    --box-shadow-full: 0 0 3rem black;
-    --box-shadow-xs: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.12),
-      0 0.1rem 0.2rem rgba(0, 0, 0, 0.24);
-    --box-shadow-s: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.16),
-      0 0.3rem 0.6rem rgba(0, 0, 0, 0.23);
-    --box-shadow-m: 0 1rem 2rem rgba(0, 0, 0, 0.19),
-      0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
-    --box-shadow-lg: 0 1.4rem 2.8rem rgba(0, 0, 0, 0.25),
-      0 1rem 1rem rgba(0, 0, 0, 0.22);
-    --box-shadow-xlg: 0 1.9rem 3.8rem rgba(0, 0, 0, 0.3),
-      0 1.5rem 1.2rem rgba(0, 0, 0, 0.22);
-  }
+    :root {
+        --dark: #16141a;
+        --darker: #090909;
+        --red: #f03151;
+        --salmon: #fa8072;
+        --green: #3f3;
+        --off-white: #ededed;
+        --gray: #7b797e;
+        --light-gray: #bbb;
+        --super-light-gray: #e1e1e1;
+        --font-size-s: 0.8rem;
+        --font-size-m: 1.2rem;
+        --font-size-lg: 1.6rem;
+        --font-size-xlg: 2rem;
+        --max-width: 120rem;
+        --box-shadow-full: 0 0 3rem black;
+        --box-shadow-xs: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.12),
+            0 0.1rem 0.2rem rgba(0, 0, 0, 0.24);
+        --box-shadow-s: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.16),
+            0 0.3rem 0.6rem rgba(0, 0, 0, 0.23);
+        --box-shadow-m: 0 1rem 2rem rgba(0, 0, 0, 0.19),
+            0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
+        --box-shadow-lg: 0 1.4rem 2.8rem rgba(0, 0, 0, 0.25),
+            0 1rem 1rem rgba(0, 0, 0, 0.22);
+        --box-shadow-xlg: 0 1.9rem 3.8rem rgba(0, 0, 0, 0.3),
+            0 1.5rem 1.2rem rgba(0, 0, 0, 0.22);
+    }
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-    font-weight: 400;
-    outline-color: transparent;
-  }
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+        font-weight: 400;
+        outline-color: transparent;
+    }
 `
 
 // prettier-ignore

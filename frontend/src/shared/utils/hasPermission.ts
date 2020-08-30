@@ -1,9 +1,12 @@
-import { UserInterface } from "../typings"
+import { UserInterface } from '../typings'
 
-export const hasPermission = (user: UserInterface, permissionsNeeded: string[]) => {
-  if (!user?.permissions) return null
+export const hasPermission = (
+    user: UserInterface,
+    permissionsNeeded: string[]
+) => {
+    if (!user?.permissions) return null
 
-  return user.permissions.some((permission) =>
-    permissionsNeeded.includes(permission)
-  )
+    return user.permissions.some(permission =>
+        permissionsNeeded.includes(permission)
+    )
 }

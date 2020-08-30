@@ -17,49 +17,54 @@ const devEndpoint = 'http://localhost:5000'
 const prodEndpoint = 'https://fs-backend-staging.herokuapp.com'
 
 const LoaderContainer = styled.div`
-  align-items: center;
-  background: var(--dark);
-  display: flex;
-  height: 100vh;
-  justify-content: center;
+    align-items: center;
+    background: var(--dark);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
 `
 
 const PersistApolloProvider: React.FC<React.ReactChildren> = ({ children }) => {
-  const [client, setClient] = useState<any>(null)
+    const [client, setClient] = useState<any>(null)
 
-  useEffect(() => {
-    const cache = new InMemoryCache()
-    const _client = new ApolloClient({
-      uri: process.env.NODE_ENV === 'development' ? devEndpoint : prodEndpoint,
-      clientState: {
-        resolvers: { Mutation },
-        defaults: {
-          ...cartInitialState,
-          ...filtersInitialState,
-          ...overlayInitialState,
-          ...paginationInitialState
-        }
-      },
-      credentials: 'include',
-      fetch: fetch,
-      cache: cache
-    })
+    useEffect(() => {
+        const cache = new InMemoryCache()
+        const _client = new ApolloClient({
+            uri:
+                process.env.NODE_ENV === 'development'
+                    ? devEndpoint
+                    : prodEndpoint,
+            clientState: {
+                resolvers: { Mutation },
+                defaults: {
+                    ...cartInitialState,
+                    ...filtersInitialState,
+                    ...overlayInitialState,
+                    ...paginationInitialState
+                }
+            },
+            credentials: 'include',
+            fetch: fetch,
+            cache: cache
+        })
 
-    persistCache({ cache, storage: window.localStorage as any }).then(() => {
-      setClient(_client)
-    })
+        persistCache({ cache, storage: window.localStorage as any }).then(
+            () => {
+                setClient(_client)
+            }
+        )
 
-    return () => {}
-  }, [])
+        return () => {}
+    }, [])
 
-  if (!client) {
-    return (
-      <LoaderContainer>
-        <Loader color='white' />
-      </LoaderContainer>
-    )
-  }
-  return <ApolloProvider client={client}>{children}</ApolloProvider>
+    if (!client) {
+        return (
+            <LoaderContainer>
+                <Loader color='white' />
+            </LoaderContainer>
+        )
+    }
+    return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 
 export default PersistApolloProvider

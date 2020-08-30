@@ -4,23 +4,23 @@ import { H3, Button } from '../../../shared/elements'
 import { btns } from '../../../shared/styles'
 
 const ProductCreate = styled.div`
-  width: 100%;
+    width: 100%;
 `
 
 ProductCreate.Title = H3
 
 ProductCreate.BtnGroup = styled.div`
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 `
 
 ProductCreate.ActionBtn = styled(Button)`
-  ${btns.white}
-  width: 15rem;
+    ${btns.white}
+    width: 15rem;
 
-  &:hover {
-    ${btns.clearWhite}
-  }
+    &:hover {
+        ${btns.clearWhite}
+    }
 `
 
 export default ProductCreate

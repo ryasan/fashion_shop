@@ -15,70 +15,70 @@ import Hero from '../components/home/hero'
 const anchors = ['hero', 'featured-products', 'product-slider', 'our-services']
 
 const useCycle = () => {
-  const [idx, setIdx] = useState(1)
+    const [idx, setIdx] = useState(1)
 
-  const rotateIdx = () => {
-    setIdx(prevIdx => {
-      return (prevIdx + 1) % anchors.length
-    })
-  }
+    const rotateIdx = () => {
+        setIdx(prevIdx => {
+            return (prevIdx + 1) % anchors.length
+        })
+    }
 
-  return { next: anchors[idx], goToNext: rotateIdx }
+    return { next: anchors[idx], goToNext: rotateIdx }
 }
 
 const HomePage: React.FC = () => {
-  const [pct, setPct] = useState(0)
-  const { scrollYProgress } = useViewportScroll()
-  const { next, goToNext } = useCycle()
-  const yRange = useTransform(scrollYProgress)
+    const [pct, setPct] = useState(0)
+    const { scrollYProgress } = useViewportScroll()
+    const { next, goToNext } = useCycle()
+    const yRange = useTransform(scrollYProgress)
 
-  const handleChange = (y: number) => {
-    setPct(Math.min(Math.ceil(y * 100), 100))
-  }
+    const handleChange = (y: number) => {
+        setPct(Math.min(Math.ceil(y * 100), 100))
+    }
 
-  useEffect(() => {
-    yRange.onChange(handleChange)
-    return () => yRange.destroy()
-  }, [yRange])
+    useEffect(() => {
+        yRange.onChange(handleChange)
+        return () => yRange.destroy()
+    }, [yRange])
 
-  const scrollBtnProps = {
-    className: 'scroll-btn',
-    onSetActive: goToNext,
-    duration: 500,
-    delay: 500,
-    smooth: true,
-    spy: true,
-    to: next
-  }
+    const scrollBtnProps = {
+        className: 'scroll-btn',
+        onSetActive: goToNext,
+        duration: 500,
+        delay: 500,
+        smooth: true,
+        spy: true,
+        to: next
+    }
 
-  return (
-    <Layout>
-      <SEO title='Home' /> {/* eslint-disable-line */}
-      <Home>
-        <ScrollBtn>
-          <Link {...scrollBtnProps}>
-            <ScrollBtn.Icon name='down-arrow' />
-          </Link>
-        </ScrollBtn>
-        <ScrollProgress scrollPct={pct} />
-        <Element name='hero'>
-          <Hero />
-        </Element>
-        <Body>
-          <Element name='featured-products'>
-            <FeaturedProducts scrollPct={pct} />
-          </Element>
-          <Element name='product-slider'>
-            <ProductSlider />
-          </Element>
-          <Element name='our-services'>
-            <OurServices scrollPct={pct} />
-          </Element>
-        </Body>
-        <Footer />
-      </Home>
-    </Layout>
-  )
+    return (
+        <Layout>
+            <SEO title='Home' />
+            <Home>
+                <ScrollBtn>
+                    <Link {...scrollBtnProps}>
+                        <ScrollBtn.Icon name='down-arrow' />
+                    </Link>
+                </ScrollBtn>
+                <ScrollProgress scrollPct={pct} />
+                <Element name='hero'>
+                    <Hero />
+                </Element>
+                <Body>
+                    <Element name='featured-products'>
+                        <FeaturedProducts scrollPct={pct} />
+                    </Element>
+                    <Element name='product-slider'>
+                        <ProductSlider />
+                    </Element>
+                    <Element name='our-services'>
+                        <OurServices scrollPct={pct} />
+                    </Element>
+                </Body>
+                <Footer />
+            </Home>
+        </Layout>
+    )
 }
 
 export default HomePage

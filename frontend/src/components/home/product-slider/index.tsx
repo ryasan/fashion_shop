@@ -11,36 +11,38 @@ import { getPrimaryImage } from '../../../shared/utils/get-image'
 import { ProductInterface } from '../../../shared/typings'
 
 const ProductSliderComponent: React.FC = () => {
-  const { data, loading, error } = useProductsQuery({
-    variables: { where: { isFeatured: true } }
-  })
+    const { data, loading, error } = useProductsQuery({
+        variables: { where: { isFeatured: true } }
+    })
 
-  if (loading) {
+    if (loading) {
+        return (
+            <ProductSlider>
+                <Loader color='white' />
+            </ProductSlider>
+        )
+    }
+
+    const products = data.products.slice(0, 7)
+    const slideItems = products.map((item: ProductInterface) => ({
+        ...item,
+        onClick: () => navigate(`/shop/${item.id}/`),
+        image: getPrimaryImage(item.images),
+        bodyContent: [item.title, formatPrice(item.price)]
+    }))
+
     return (
-      <ProductSlider>
-        <Loader color='white' />
-      </ProductSlider>
+        <ProductSlider>
+            <ErrorBoundary error={error}>
+                <ProductSlider.Title>
+                    Browser our latest threads.
+                </ProductSlider.Title>
+                <ProductSlider.HugeTextLeft>STYLE</ProductSlider.HugeTextLeft>
+                <ProductSlider.HugeTextRight>IDEA</ProductSlider.HugeTextRight>
+                <Slider items={slideItems} />
+            </ErrorBoundary>
+        </ProductSlider>
     )
-  }
-
-  const products = data.products.slice(0, 7)
-  const slideItems = products.map((item: ProductInterface) => ({
-    ...item,
-    onClick: () => navigate(`/shop/${item.id}/`),
-    image: getPrimaryImage(item.images),
-    bodyContent: [item.title, formatPrice(item.price)]
-  }))
-
-  return (
-    <ProductSlider>
-      <ErrorBoundary error={error}>
-        <ProductSlider.Title>Browser our latest threads.</ProductSlider.Title>
-        <ProductSlider.HugeTextLeft>STYLE</ProductSlider.HugeTextLeft>
-        <ProductSlider.HugeTextRight>IDEA</ProductSlider.HugeTextRight>
-        <Slider items={slideItems} />
-      </ErrorBoundary>
-    </ProductSlider>
-  )
 }
 
 export default ProductSliderComponent

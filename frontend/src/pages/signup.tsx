@@ -7,16 +7,16 @@ import Layout from '../layouts/global-layout'
 import { EMAIL, PASSWORD, USERNAME, CONFIRM } from '../types/auth-field-types'
 
 const SignupPage = props => {
-  return (
-    <Layout>
-      <SEO title='Signup' />
-      <Signin
-        {...props}
-        chosenFields={[EMAIL, USERNAME, PASSWORD, CONFIRM]}
-        isSignup
-      />
-    </Layout>
-  )
+    return (
+        <Layout>
+            <SEO title='Signup' />
+            <Signin
+                {...props}
+                chosenFields={[EMAIL, USERNAME, PASSWORD, CONFIRM]}
+                isSignup
+            />
+        </Layout>
+    )
 }
 
 export default SignupPage
