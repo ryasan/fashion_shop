@@ -7,6 +7,7 @@ import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
 import FooterText from './footer-text'
 import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
+import { toast } from '../toast'
 import {
   EMAIL,
   USERNAME,
@@ -143,28 +144,20 @@ const SigninComponent: React.FC<SigninInterface> = ({
     }
   }, [error])
 
+  // TODO: use me query instead of signin to validate user
   useEffect(() => {
     if (data?.signin) {
-      // TODO: use me query instead of signin to validate user
-      mergeRemoteCartItems({
-        variables: { remoteCartItems: data.signin.cart }
-      })
+      mergeRemoteCartItems({ variables: { remoteCartItems: data.signin.cart } })
       navigate('/shop/')
     }
     if (data?.signup) {
       navigate('/shop/')
     }
     if (data?.requestReset) {
-      dispatch({
-        type: MESSAGE,
-        payload: data.requestReset.message
-      })
+      toast(data.requestReset.message)
     }
     if (data?.resetPassword) {
-      dispatch({
-        type: MESSAGE,
-        payload: 'Passwords do not match'
-      })
+      toast('Password reset successfully')
       setTimeout(() => navigate('/shop/'), 3000)
     }
   }, [data])
