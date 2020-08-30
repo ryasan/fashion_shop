@@ -98,6 +98,29 @@ interface SigninInterface {
   isSignup: boolean
 }
 
+const optionIncludes = (field: string, chosenFields: string[]) => {
+  return chosenFields.includes(field)
+}
+
+const invalidField = (field: string, chosenFields: string[]) => {
+  switch (field) {
+    case EMAIL:
+      return (email: string) =>
+        optionIncludes(EMAIL, chosenFields) && !validate(email)
+    case PASSWORD:
+      return (password: string) =>
+        optionIncludes(PASSWORD, chosenFields) && !password
+    case USERNAME:
+      return (username: string) =>
+        optionIncludes(USERNAME, chosenFields) && !username
+    case CONFIRM:
+      return (confirm: string, password?: string) =>
+        optionIncludes(CONFIRM, chosenFields) && password !== confirm
+    default:
+      throw new Error(`Type ${field} not found.`)
+  }
+}
+
 const SigninComponent: React.FC<SigninInterface> = ({
   chosenFields,
   resetToken,
@@ -110,14 +133,6 @@ const SigninComponent: React.FC<SigninInterface> = ({
   const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
   const { email, password, confirm, message, formIsValid, username } = state
   const [authMutation, { loading, data, error }] = useAuth()
-  const showsEmailField = () => chosenFields.includes(EMAIL)
-  const showsUsernameField = () => chosenFields.includes(USERNAME)
-  const showsPasswordField = () => chosenFields.includes(PASSWORD)
-  const showsConfirmField = () => chosenFields.includes(CONFIRM)
-  const emailIsNotValid = () => showsEmailField() && !validate(email)
-  const passwordIsNotValid = () => showsPasswordField() && !password
-  const usernameIsNotValid = () => showsUsernameField() && !username
-  const confirmPasswordIsNotValid = () => showsConfirmField() && password !== confirm // prettier-ignore
 
   useEffect(() => {
     if (error) {
@@ -156,22 +171,22 @@ const SigninComponent: React.FC<SigninInterface> = ({
 
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (emailIsNotValid()) {
+    if (invalidField(EMAIL, chosenFields)(email)) {
       return dispatch({
         type: MESSAGE,
         payload: 'Email is not valid'
       })
-    } else if (passwordIsNotValid()) {
+    } else if (invalidField(PASSWORD, chosenFields)(password)) {
       return dispatch({
         type: MESSAGE,
         payload: 'Please enter a password'
       })
-    } else if (usernameIsNotValid()) {
+    } else if (invalidField(USERNAME, chosenFields)(username)) {
       return dispatch({
         type: MESSAGE,
         payload: 'Please enter a username'
       })
-    } else if (confirmPasswordIsNotValid()) {
+    } else if (invalidField(CONFIRM, chosenFields)(password, confirm)) {
       return dispatch({
         type: MESSAGE,
         payload: 'Passwords do not match'
@@ -207,7 +222,7 @@ const SigninComponent: React.FC<SigninInterface> = ({
   }
 
   const fields = {
-    ...(showsEmailField() && {
+    ...(optionIncludes(EMAIL, chosenFields) && {
       email: {
         icon: 'account-circle',
         type: 'text',
@@ -215,7 +230,7 @@ const SigninComponent: React.FC<SigninInterface> = ({
         name: 'email'
       }
     }),
-    ...(showsUsernameField() && {
+    ...(optionIncludes(USERNAME, chosenFields) && {
       username: {
         icon: 'account-box',
         type: 'text',
@@ -223,7 +238,7 @@ const SigninComponent: React.FC<SigninInterface> = ({
         name: 'username'
       }
     }),
-    ...(showsPasswordField() && {
+    ...(optionIncludes(PASSWORD, chosenFields) && {
       password: {
         icon: 'key-outlined',
         type: 'password',
@@ -231,7 +246,7 @@ const SigninComponent: React.FC<SigninInterface> = ({
         name: 'password'
       }
     }),
-    ...(showsConfirmField() && {
+    ...(optionIncludes(CONFIRM, chosenFields) && {
       confirm: {
         icon: 'key-outlined',
         type: 'password',
