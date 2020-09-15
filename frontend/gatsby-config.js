@@ -27,7 +27,7 @@ module.exports = {
                 background_color: '#1b1920',
                 theme_color: '#1b1920',
                 display: 'E&S Streetwear',
-                icon: 'src/static/logo-royal.svg'
+                icon: 'src/static/gatsby-icon.png'
             }
         },
         {
