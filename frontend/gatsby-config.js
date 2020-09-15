@@ -26,7 +26,7 @@ module.exports = {
                 start_url: '/',
                 background_color: '#1b1920',
                 theme_color: '#1b1920',
-                display: 'E&S Streetwear',
+                display: `minimal-ui`,
                 icon: 'src/static/gatsby-icon.png'
             }
         },

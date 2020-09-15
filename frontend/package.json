@@ -15,7 +15,7 @@
         "downshift": "^5.4.7",
         "email-validator": "^2.0.4",
         "framer-motion": "^1.11.1",
-        "gatsby": "^2.19.45",
+        "gatsby": "^2.24.58",
         "gatsby-background-image": "^1.1.1",
         "gatsby-cli": "^2.12.87",
         "gatsby-image": "^2.2.44",
@@ -67,7 +67,9 @@
         "stylelint-config-standard": "^20.0.0",
         "typescript": "^4.0.2"
     },
-    "keywords": ["gatsby"],
+    "keywords": [
+        "gatsby"
+    ],
     "license": "MIT",
     "scripts": {
         "build": "gatsby build",
@@ -89,8 +91,8 @@
         "url": "https://github.com/gatsbyjs/gatsby/issues"
     },
     "engines": {
-        "node": "12.18.0",
+        "node": "12.18.3",
         "npm": "6.14.6",
-        "yarn": "1.22.4"
+        "yarn": "1.22.5"
     }
 }
