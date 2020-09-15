@@ -5,6 +5,7 @@
     "version": "0.1.0",
     "author": "Kyle Mathews <mathews.kyle@gmail.com>",
     "dependencies": {
+        "@apollo/client": "^3.2.0",
         "@apollo/react-hooks": "^3.1.4",
         "@nfront/global-styles": "^1.2.1",
         "@types/styled-components": "^5.1.2",
