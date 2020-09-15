@@ -12,5 +12,6 @@
         "noUnusedParameters": true,
         "allowJs": true
     },
-    "exclude": ["node_modules", "public", ".cache", ".history"]
+    "exclude": ["node_modules", "public", ".cache", ".history"],
+    "include": ["src/**/*"]
 }

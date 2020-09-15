@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import ProductUpdate from './product-update.styles'
 import ProductForm from '../product-form'
-import ErrorBoundary from '../../error-boundary/index'
+import ErrorBoundary from '../../error-boundary'
 import ImageUpload from '../../image-upload'
 import ProductDelete from '../product-delete'
 import {
@@ -17,7 +17,7 @@ import {
     UserInterface,
     PermissionEnum,
     SizeEnum
-} from '../../../shared/typings/index'
+} from '../../../shared/typings'
 
 interface PropsInterface {
     variables: {
