@@ -5,18 +5,13 @@ import Form from './product-form.styles'
 import AvailableSizesTable from './available-sizes-table'
 import CategorySelect from './category-select'
 import ExtraFlagsTable from './extra-flags-table'
-import {
-    SHIRT,
-    LONG_SLEEVE,
-    HOODIE,
-    ACCESSORY
-} from '../../../types/category-types'
+import { SHIRT, LONG_SLEEVE, HOODIE } from '../../../types/category-types'
 
 interface ProductFormInterface {
     loading: Required<boolean>
-    leftComponentAddon: Required<React.Component>
-    rightComponentAddon: Required<React.Component>
-    fullWidthAddon: Required<React.Component>
+    leftComponentAddon?: Required<JSX.Element>
+    rightComponentAddon?: Required<JSX.Element>
+    fullWidthAddon?: Required<JSX.Element>
     useState: React.SetStateAction<any>
 }
 
@@ -31,20 +26,6 @@ interface InitialStateInterface {
     description: string
     category: string
     availableSizes: []
-    images: []
-}
-
-const defaultState = {
-    isFreeShipping: false,
-    isFeatured: false,
-    isAvailable: true,
-    price: 0,
-    sku: '',
-    style: '',
-    title: '',
-    description: '',
-    category: ACCESSORY,
-    availableSizes: [],
     images: []
 }
 

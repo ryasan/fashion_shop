@@ -15,14 +15,17 @@ import { useCurrentUserQuery } from '../../../graphql/user/hooks'
 import {
     ProductInterface,
     UserInterface,
-    PermissionEnum
+    PermissionEnum,
+    SizeEnum
 } from '../../../shared/typings'
 
 interface PropsInterface {
     variables: {
         where: { id: string }
-        data: Partial<ProductInterface> & {
-            images: { set: string[] }
+        data?: {
+            price: number
+            images: { set: string[] } | string[]
+            availableSizes: { set: string[] | undefined } | SizeEnum[]
         }
     }
 }
@@ -73,19 +76,16 @@ const ProductUpdateComponent = ({
 
     const handleUpload = async (acceptedFiles: any[]) => {
         setIsLoading(true)
-        const data = new FormData() // eslint-disable-line
+        const data = new FormData()
         const pubId = createPubId(state.sku, state.images)
         data.append('file', acceptedFiles[0])
         data.append('upload_preset', 'fashion_shop')
         data.append('public_id', pubId)
 
-        // prettier-ignore
-        const res = await fetch('https://api.cloudinary.com/v1_1/dbir6orpj/image/upload', { // eslint-disable-line
-      method: 'POST',
-      body: data
-    })
-
-        console.log(res)
+        await fetch('https://api.cloudinary.com/v1_1/dbir6orpj/image/upload', {
+            method: 'POST',
+            body: data
+        })
 
         handleSetImages([...state.images, pubId])
         setIsLoading(false)
@@ -153,7 +153,7 @@ const withProductData = <T extends {}>(Component: React.ComponentType<T>) => (
                 {...props}
                 product={props.product}
                 updateProduct={updateProduct}
-                deleteMutation={deleteProduct}
+                deleteProduct={deleteProduct}
                 deleteLoading={deleteProductInfo.loading}
                 updateLoading={updateProductInfo.loading}
             />
