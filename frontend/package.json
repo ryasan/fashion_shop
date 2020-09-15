@@ -89,7 +89,6 @@
         "url": "https://github.com/gatsbyjs/gatsby/issues"
     },
     "engines": {
-        "node": "12.18.1",
         "npm": "6.14.6",
         "yarn": "1.22.4"
     }
