@@ -17,7 +17,7 @@ import {
     UserInterface,
     PermissionEnum,
     SizeEnum
-} from '../../../shared/typings'
+} from '../../../shared/typings/index'
 
 interface PropsInterface {
     variables: {

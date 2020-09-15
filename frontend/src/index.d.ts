@@ -1,4 +1,4 @@
-declare module 'react'
+// declare module 'react'
 declare module 'styled-components'
 declare module 'react-transition-group'
 declare module 'uuid'
