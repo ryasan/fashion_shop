@@ -8,10 +8,11 @@ import Pagination from '../pagination'
 import Loader from '../loader'
 import { useProductsConnectionQuery } from '../../graphql/product/hooks'
 import { useFiltersQuery } from '../../graphql/filter/hooks'
+import { withSeedProducts } from '../../shared/utils'
 
 const perPage = 8
 
-const ProductsComponent = () => {
+const ProductsComponent = ({ seedProducts }: { seedProducts: () => void }) => {
     const [orderBy, setOrderBy] = useState<string | null>(null)
     const [currentPage, setCurrentPage] = useState(1)
     const { data: { sizeFilters, categoryFilters, freeShippingSelected } } = useFiltersQuery() // prettier-ignore
@@ -34,6 +35,7 @@ const ProductsComponent = () => {
 
     return (
         <Products>
+            <button onClick={seedProducts}>seed</button>
             <ControlsHeader count={count} setOrderBy={setOrderBy} />
             <Products.Container>
                 <ErrorBoundary error={error}>
@@ -54,4 +56,4 @@ const ProductsComponent = () => {
     )
 }
 
-export default ProductsComponent
+export default withSeedProducts(ProductsComponent)
