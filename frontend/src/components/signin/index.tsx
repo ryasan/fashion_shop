@@ -6,8 +6,9 @@ import { constantCase, capitalCase } from 'change-case'
 import Signin, { Header, Form } from './signin.styles'
 import useAuth from '../auth'
 import FooterText from './footer-text'
-import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
 import { toast } from '../toast'
+import { useMergeRemoteCartItemsMutation } from '../../graphql/cart/hooks'
+import { useCurrentUserQuery } from '../../graphql/user/hooks'
 import {
     EMAIL,
     USERNAME,
@@ -134,6 +135,7 @@ const SigninComponent: React.FC<SigninInterface> = ({
     const [mergeRemoteCartItems] = useMergeRemoteCartItemsMutation()
     const { email, password, confirm, message, formIsValid, username } = state
     const [authMutation, { loading, data, error }] = useAuth()
+    const { data: userData } = useCurrentUserQuery()
 
     useEffect(() => {
         if (error) {
@@ -146,11 +148,11 @@ const SigninComponent: React.FC<SigninInterface> = ({
 
     // TODO: use me query instead of signin to validate user
     useEffect(() => {
-        if (data?.signin) {
+        if (data?.signin && userData) {
             mergeRemoteCartItems({
                 variables: { remoteCartItems: data.signin.cart }
             })
-            navigate('/shop/')
+            // navigate('/shop/')
         }
         if (data?.signup) {
             navigate('/shop/')

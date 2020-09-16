@@ -11,16 +11,11 @@ import {
     SEND_CONTACT_MESSAGE_MUTATION
 } from './mutations'
 import { CURRENT_USER_QUERY, USERS_QUERY } from './queries'
-import { UserInterface } from '../../shared/typings'
-
-interface CurrentUserInterface {
-    data: { me: UserInterface } | null
-    loading: boolean
-    error: any | null
-}
 
 export const useCurrentUserQuery = () => {
-    return useQuery(CURRENT_USER_QUERY) as CurrentUserInterface
+    return useQuery(CURRENT_USER_QUERY, {
+        fetchPolicy: 'network-only'
+    })
 }
 
 export const useUsersQuery = () => {
