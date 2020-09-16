@@ -39,6 +39,8 @@ server.express.use(async (req, res, next) => {
   next()
 })
 
+// server.express.set('trust proxy', 1)
+
 const options = {
   cors: {
     credentials: true,
@@ -53,6 +55,6 @@ const options = {
   formatError: formatError
 }
 
-server.start(options, (deets) =>
+server.start(options, deets =>
   console.log('Server is running on port: ', deets.port)
 )
