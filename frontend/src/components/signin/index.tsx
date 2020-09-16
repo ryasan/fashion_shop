@@ -151,17 +151,17 @@ const SigninComponent: React.FC<SigninInterface> = ({
             mergeRemoteCartItems({
                 variables: { remoteCartItems: data.signin.cart }
             })
-            // navigate('/shop/')
+            navigate('/shop/')
         }
         if (data?.signup) {
-            // navigate('/shop/')
+            navigate('/shop/')
         }
         if (data?.requestReset) {
             toast(data.requestReset.message)
         }
         if (data?.resetPassword) {
             toast('Password reset successfully')
-            // setTimeout(() => navigate('/shop/'), 3000)
+            setTimeout(() => navigate('/shop/'), 3000)
         }
     }, [data])
 
