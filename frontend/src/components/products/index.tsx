@@ -34,7 +34,7 @@ const ProductsComponent: React.FC = () => {
 
     return (
         <Products>
-=            <ControlsHeader count={count} setOrderBy={setOrderBy} />
+            <ControlsHeader count={count} setOrderBy={setOrderBy} />
             <Products.Container>
                 <ErrorBoundary error={error}>
                     {loading ? (

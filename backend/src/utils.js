@@ -23,7 +23,7 @@ const createCookie = ({ ctx, userId }) => {
   const token = jwt.sign({ userId }, process.env.APP_SECRET)
   ctx.response.cookie('token', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    // secure: process.env.NODE_ENV === 'production',
     maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
   })
 }
