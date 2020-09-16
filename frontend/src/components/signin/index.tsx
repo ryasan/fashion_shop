@@ -146,7 +146,6 @@ const SigninComponent: React.FC<SigninInterface> = ({
         }
     }, [error])
 
-    // TODO: use me query instead of signin to validate user
     useEffect(() => {
         if (data?.signin && userData) {
             mergeRemoteCartItems({
