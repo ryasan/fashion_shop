@@ -89,16 +89,25 @@ const Products: React.FC<{
     )
 }
 
+const devFeatured = [
+    '7add67da-0e1a-42d5-ba3c-bdf72b7be8ba',
+    '451209a9-330a-40ff-b95f-b5e3830a07c1'
+]
+const prodFeatured = [
+    '425537be-9d76-4283-828a-eb111e6add07',
+    'd4984525-ed2a-49dd-93a6-59fe751cf3e2'
+]
+
 const FeaturedProductsComponent: React.FC<{ scrollPct: number }> = ({
     scrollPct
 }) => {
     const { data, loading, error } = useProductsQuery({
         variables: {
             where: {
-                sku_in: [
-                    '7add67da-0e1a-42d5-ba3c-bdf72b7be8ba',
-                    '451209a9-330a-40ff-b95f-b5e3830a07c1'
-                ]
+                sku_in:
+                    process.env.NODE_ENV === 'development'
+                        ? devFeatured
+                        : prodFeatured
             }
         }
     })
