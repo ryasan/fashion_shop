@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { P } from '../../shared/elements'
+import { P, Span } from '../../shared/elements'
 
 const ErrorBoundary = styled.div`
     display: flex;
@@ -16,5 +16,7 @@ ErrorBoundary.Text = styled(P)`
     display: inline-block;
     padding: 1rem 2rem;
 `
+
+ErrorBoundary.Text.Addon = Span
 
 export default ErrorBoundary
