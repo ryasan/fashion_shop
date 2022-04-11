@@ -5,7 +5,7 @@ import { Span } from '../../../shared/elements'
 
 const Dropdown = styled(motion.div)`
     position: absolute;
-    top: calc(100% - 2.4rem);
+    top: calc(100%);
     width: 90%;
 `
 
@@ -19,7 +19,7 @@ export const SearchResults = styled.ul`
     width: 100%;
 `
 
-Dropdown.Item = styled.li`
+SearchResults.Item = styled.li`
     border: 0.2rem solid var(--red);
     border-left: ${(props: { highlighted: boolean }) =>
             props.highlighted ? '1rem' : 0}

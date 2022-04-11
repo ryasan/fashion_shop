@@ -8,6 +8,7 @@ const ControlsHeader = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 5rem;
+    padding: 0 2.25rem;
     position: relative;
     width: 100%;
 

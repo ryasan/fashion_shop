@@ -12,11 +12,6 @@ const fadeAway = () => ({
     exit: { opacity: 0 }
 })
 
-const pulse = () => ({
-    animate: { scale: [1, 1.2, 1] },
-    transition: { loop: Infinity, ease: 'easeOut' }
-})
-
 const DropdownComponent = ({
     dropdownIsOpen,
     highlightedIndex,
@@ -77,10 +72,10 @@ const DropdownComponent = ({
                         <AnimatePresence>
                             {showScrollBtnText && dropdownIsOpen && (
                                 <ScrollBtn {...fadeAway()}>
-                                    <ScrollBtn.Text {...pulse()}>
+                                    <ScrollBtn.Text>
                                         Scroll down
                                     </ScrollBtn.Text>
-                                    <ScrollBtn.Text {...pulse()}>
+                                    <ScrollBtn.Text>
                                         &darr;
                                     </ScrollBtn.Text>
                                 </ScrollBtn>

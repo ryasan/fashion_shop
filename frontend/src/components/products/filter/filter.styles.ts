@@ -35,6 +35,7 @@ Filter.ResetBtn = styled(Button)`
     position: relative;
     width: 10rem;
     z-index: -1;
+    border-radius: 0.5rem;
 
     &:hover {
         &::before {
