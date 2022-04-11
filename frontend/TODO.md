@@ -10,3 +10,4 @@
 8. Lazy load images with suspense
 9. Add multi item view in details,
 10. Ability to upload images from admin users.
+11. Fix permissions for updating products.

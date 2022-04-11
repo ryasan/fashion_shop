@@ -143,7 +143,7 @@ const ProductDetailsComponent: React.FC<{ product?: ProductInterface }> = ({
                     )}
                 </Details>
             </Content>
-            <ProductUpdate product={product} />
+            {/* <ProductUpdate product={product} /> */}
         </ProductDetails>
     )
 }
